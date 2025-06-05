@@ -1,5 +1,9 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Get base URL from environment or use default
 const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://typewriting.ai').replace(/\/$/, '');
@@ -12,13 +16,48 @@ const pages = [
     changeFrequency: 'daily',
     priority: 1,
   },
-  // Add other pages as needed
-  // {
-  //   url: '/about',
-  //   lastModified: new Date(),
-  //   changeFrequency: 'monthly',
-  //   priority: 0.8,
-  // },
+  {
+    url: '/about',
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  },
+  {
+    url: '/blog',
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  },
+  {
+    url: '/contact',
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  },
+  {
+    url: '/services',
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  },
+  {
+    url: '/work',
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  },
+  {
+    url: '/privacy-policy',
+    lastModified: new Date(),
+    changeFrequency: 'yearly',
+    priority: 0.5,
+  },
+  {
+    url: '/terms-and-conditions',
+    lastModified: new Date(),
+    changeFrequency: 'yearly',
+    priority: 0.5,
+  },
 ];
 
 // Generate sitemap XML

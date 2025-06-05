@@ -14,7 +14,7 @@ export default function Work() {
               <Link href={`/work/${project.id}`}>
                 <div className="relative h-[60vh] w-full overflow-hidden rounded-2xl">
                   <Image
-                    src={project.images[0]}
+                    src={project.images?.[0] || project.image}
                     alt={project.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"

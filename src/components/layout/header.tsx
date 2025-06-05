@@ -86,7 +86,7 @@ export default function Header() {
             initial={{ opacity: 0, y: -0.625 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex items-center space-x-1 bg-gray-100/50 rounded-full px-1.5 py-1.5"
+            className="hidden md:flex items-center space-x-1 bg-gray-100/50 rounded-full px-1.5 py-1.5"
           >
             {navItems.map((item, index) => (
               <motion.div 
@@ -198,17 +198,11 @@ export default function Header() {
                       transition={{ 
                         duration: 0.4, 
                         delay: 0.05 * index,
-                        ease: [0.4, 0, 0.2, 1]
                       }}
                     >
                       <Link
-                        key={item.href}
                         href={item.href}
-                        className={`block px-4 py-2 text-base font-medium rounded-md ${
-                          isActive(item.href)
-                            ? 'text-blue-600 bg-blue-50'
-                            : 'text-gray-700 hover:bg-gray-100'
-                        }`}
+                        className="block py-2 text-lg font-medium text-gray-900 hover:text-blue-600"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {item.label}
@@ -216,30 +210,6 @@ export default function Header() {
                     </motion.div>
                   ))}
                 </div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                  className="pt-6 mt-6 space-y-4 border-t border-gray-100"
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-                  >
-                    <a
-                      href="https://calendly.com/uddinmoin/typewriting"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="w-full inline-flex items-center justify-center px-6 py-4 bg-blue-600 text-white text-lg font-medium rounded-xl hover:bg-blue-700 transition-colors"
-                    >
-                      Book a Call
-                      <FiCalendar className="ml-2.5" />
-                    </a>
-                  </motion.div>
-                </motion.div>
               </nav>
             </div>
           </motion.div>
