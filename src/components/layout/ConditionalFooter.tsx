@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import Footer from './Footer'; // Using relative import since it's in the same directory
+import Footer from './Footer';
 
 export default function ConditionalFooter() {
   const pathname = usePathname();
