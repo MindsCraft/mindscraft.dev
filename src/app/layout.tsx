@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "@/styles/globals.css";
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
 import React from "react";
 import { Providers } from "@/components/providers";
 // Import the client-side Google Analytics wrapper
-import GoogleAnalyticsWrapper from '@/components/analytics/GoogleAnalyticsWrapper';
+import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
+import ConditionalHeader from "@/components/layout/ConditionalHeader";
+import ConditionalFooter from "@/components/layout/ConditionalFooter";
 
 // Site metadata constants
 const SITE_TITLE = 'Mindscraft - UX-Focused Web Development Agency';
@@ -19,6 +19,7 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   weight: ['400', '500', '600', '700'],
+  preload: false,
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -26,6 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ['400', '500', '600', '700'],
+  preload: false,
 });
 
 // Viewport settings
@@ -136,7 +138,7 @@ export default function RootLayout({
     >
       <head>
         {/* Google Analytics - Client Component */}
-        <GoogleAnalyticsWrapper />
+        <GoogleAnalytics />
 
         {/* JSON-LD Structured Data */}
         <script
@@ -157,11 +159,12 @@ export default function RootLayout({
 
       <body className="font-sans antialiased">
         <Providers>
-          <Header />
+          {/* Conditional Header and Footer */}
+          <ConditionalHeader />
           <main id="main-content" className="min-h-screen pt-16">
             {children}
           </main>
-          <Footer />
+          <ConditionalFooter />
         </Providers>
       </body>
     </html>
