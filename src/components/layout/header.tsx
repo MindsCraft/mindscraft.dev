@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiArrowRight, FiCalendar } from 'react-icons/fi';
+import { ArrowRightIcon, CalendarIcon } from '@/components/ui/icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -133,7 +133,7 @@ export default function Header() {
                 className="inline-flex items-center justify-center px-5 py-2.5 bg-[#2382fc] text-white text-[0.875rem] leading-[1.25rem] font-medium rounded-lg hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg cursor-pointer"
               >
                 Book a Call
-                <FiCalendar className="ml-2" />
+                <CalendarIcon className="ml-2" />
               </a>
             </motion.div>
 

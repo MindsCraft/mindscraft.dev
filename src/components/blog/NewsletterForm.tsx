@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FiMail, FiCheck, FiAlertCircle } from 'react-icons/fi';
+import { MailIcon, CheckIcon, AlertCircleIcon } from '@/components/ui/icons';
 import { motion, AnimatePresence } from 'framer-motion';
 import { trackNewsletterSubscription } from '@/lib/analytics';
 
@@ -30,7 +30,7 @@ export default function NewsletterForm() {
   return (
     <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8">
       <div className="max-w-2xl mx-auto text-center">
-        <FiMail className="w-12 h-12 text-blue-500 mx-auto mb-4" />
+        <MailIcon className="w-12 h-12 text-blue-500 mx-auto mb-4" />
         <h3 className="text-2xl font-bold mb-2">Subscribe to Our Newsletter</h3>
         <p className="text-gray-600 dark:text-gray-400 mb-6">
           Get the latest articles and insights delivered straight to your inbox.
@@ -63,7 +63,7 @@ export default function NewsletterForm() {
                 exit={{ opacity: 0, y: -10 }}
                 className="flex items-center justify-center text-green-600 dark:text-green-400"
               >
-                <FiCheck className="w-5 h-5 mr-2" />
+                <CheckIcon className="w-5 h-5 mr-2" />
                 <span>Successfully subscribed!</span>
               </motion.div>
             )}
@@ -75,7 +75,7 @@ export default function NewsletterForm() {
                 exit={{ opacity: 0, y: -10 }}
                 className="flex items-center justify-center text-red-600 dark:text-red-400"
               >
-                <FiAlertCircle className="w-5 h-5 mr-2" />
+                <AlertCircleIcon className="w-5 h-5 mr-2" />
                 <span>Something went wrong. Please try again.</span>
               </motion.div>
             )}

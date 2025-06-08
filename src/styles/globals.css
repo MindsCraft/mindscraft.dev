@@ -358,10 +358,9 @@ body {
   background-position: -1px -1px;
   opacity: 0.15;
   mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0.5) 70%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0.5) 70%, transparent 100%);
 
   /* Subtle animation */
-  animation: grid-pulse 20s infinite alternate;
+  /*animation: grid-pulse 20s infinite alternate;*/
 }
 
 @keyframes grid-pulse {
