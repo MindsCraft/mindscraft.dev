@@ -11,12 +11,12 @@
     "start": "next start",
     "lint": "next lint",
     "sitemap": "node scripts/generate-sitemap.js",
-    "prisma:seed": "ts-node --esm prisma/seed.ts",
+    "prisma:seed": "node prisma/seed.mjs",
     "prisma:setup": "node scripts/setup-prisma.js",
     "install:legacy": "npm install --legacy-peer-deps"
   },
   "prisma": {
-    "seed": "ts-node --esm prisma/seed.ts"
+    "seed": "node prisma/seed.mjs"
   },
   "resolutions": {
     "next": "^15.0.0"

@@ -36,6 +36,18 @@ If you prefer to run the commands manually, you can:
    npm run prisma:seed
    ```
 
+## Database Seeding
+
+The project uses a JavaScript ES module file (`seed.mjs`) for database seeding instead of TypeScript. This is because the project is configured to use ES modules (`"type": "module"` in package.json), and there can be issues with running TypeScript files directly in this environment.
+
+To seed the database:
+
+```bash
+npm run prisma:seed
+```
+
+If you need to modify the seed data, edit the `prisma/seed.mjs` file. For more details on how we resolved issues with the seeding process, see the [Prisma Seed Notes](./PRISMA-SEED-NOTES.md).
+
 ## Troubleshooting
 
 ### Error: @prisma/client did not initialize yet
