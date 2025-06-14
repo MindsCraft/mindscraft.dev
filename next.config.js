@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   images: {
     remotePatterns: [
       {
@@ -15,6 +16,7 @@ const nextConfig = {
         hostname: 'localhost',
       },
     ],
+    unoptimized: true,
   },
   // Ensure meta tags are properly generated
   poweredByHeader: false,

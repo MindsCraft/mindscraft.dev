@@ -3,6 +3,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FiArrowLeft, FiExternalLink, FiGithub, FiCode } from 'react-icons/fi';
 import { getWorkItem, getRelatedWork } from '@/data/workData';
+import { workItems } from '@/data/workData';
+
+export function generateStaticParams() {
+  return workItems.map((item) => ({
+    id: item.id.toString(),
+  }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
