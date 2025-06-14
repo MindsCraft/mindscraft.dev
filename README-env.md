@@ -11,6 +11,8 @@ Next.js supports several types of environment files:
 3. `.env.development`: Environment variables for development environment
 4. `.env.production`: Environment variables for production environment
 
+For production deployment, we've provided an `.env.production.example` file that you can use as a template. Copy this file to `.env.production` and update the values with your production configuration.
+
 ## What to Include in Each File
 
 ### `.env`
@@ -70,6 +72,23 @@ This project requires the following environment variables:
 1. Copy the `.env.example` file to create your own `.env` and `.env.local` files
 2. Update the values in `.env.local` with your actual configuration
 3. Make sure not to commit `.env.local` to your repository (it should be in `.gitignore`)
+
+## Production Environment Variables
+
+When deploying to production, you'll need to set up environment variables for your production environment:
+
+1. Copy the `.env.production.example` file to create a `.env.production` file
+2. Update the values with your production configuration
+3. For hosting providers like Vercel or Netlify, set these variables in their dashboard instead
+
+Important production variables to set:
+
+- `NEXT_PUBLIC_SITE_URL`: Set this to your production domain (e.g., https://mindscraft.dev)
+- `NEXTAUTH_URL`: Set this to the same value as NEXT_PUBLIC_SITE_URL
+- `NEXTAUTH_SECRET`: Generate a new secure random string for production
+- `DATABASE_URL`: If you're using a production database, set this to your database connection string
+
+For more detailed information about deploying to production, see the [Deployment Guide](./docs/DEPLOYMENT.md).
 
 ## Notes on Environment Variables in Next.js
 
