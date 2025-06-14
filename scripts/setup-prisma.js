@@ -30,12 +30,12 @@ try {
   }
 
   // Run seed script if available
-  try {
-    console.log('🌱 Seeding database...');
-    execSync('npm run prisma:seed', { stdio: 'inherit' });
-  } catch (error) {
-    console.warn('⚠️ Seeding failed, but setup can continue:', error.message);
-  }
+  // try {
+  //   console.log('🌱 Seeding database...');
+  //   execSync('npm run prisma:seed', { stdio: 'inherit' });
+  // } catch (error) {
+  //   console.warn('⚠️ Seeding failed, but setup can continue:', error.message);
+  // }
 
   console.log('✅ Prisma setup completed successfully!');
   console.log('');
