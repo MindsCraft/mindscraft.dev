@@ -3,10 +3,11 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FiSearch, FiClock, FiTag } from 'react-icons/fi';
+import { FiClock, FiTag } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import NewsletterForm from './NewsletterForm';
 import { trackSearch, trackCategoryFilter } from '@/lib/analytics';
+import { SearchIcon } from '@/components/ui/icons';
 
 interface Post {
   id: number;
@@ -86,7 +87,7 @@ export default function BlogList({ posts, categories }: BlogListProps) {
           onChange={handleSearch}
           className="w-full px-4 py-3 pl-12 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         />
-        <FiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+        <SearchIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
       </div>
 
       {/* Categories */}

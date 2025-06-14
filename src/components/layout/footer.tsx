@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { FaGithub, FaTwitter, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { GithubIcon, TwitterIcon, LinkedInIcon, YoutubeIcon } from '@/components/ui/icons';
 
 type FooterLink = {
   title: string;
@@ -84,19 +84,19 @@ export default function Footer() {
             <div className="flex gap-4">
               <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">GitHub</span>
-                <FaGithub className="h-5 w-5" />
+                <GithubIcon className="h-5 w-5" />
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">Twitter</span>
-                <FaTwitter className="h-5 w-5" />
+                <TwitterIcon className="h-5 w-5" />
               </a>
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">LinkedIn</span>
-                <FaLinkedin className="h-5 w-5" />
+                <LinkedInIcon className="h-5 w-5" />
               </a>
               <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">YouTube</span>
-                <FaYoutube className="h-5 w-5" />
+                <YoutubeIcon className="h-5 w-5" />
               </a>
             </div>
           </div>
