@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  // Skip API routes during static export
+  skipTrailingSlashRedirect: true,
+  skipApiRoutes: true,
   images: {
     remotePatterns: [
       {

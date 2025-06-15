@@ -1,7 +1,7 @@
 import { authOptions } from '@/lib/auth'
 import NextAuth from 'next-auth'
 
-export const dynamic = "force-static"
+export const dynamic = "force-dynamic"
 
 // This function is required for static export with dynamic routes
 export function generateStaticParams() {
