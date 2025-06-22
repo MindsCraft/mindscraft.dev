@@ -4,15 +4,17 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "prebuild": "npm run prisma:setup",
-    "build": "next build ",
+    "dev": "next dev",
+    "prebuild-original": "npm run prisma:setup:safe",
+    "build": "next build",
+    "build:no-prisma": "next build",
     "postbuild": "node scripts/generate-sitemap.js",
     "start": "next start",
     "lint": "next lint",
     "sitemap": "node scripts/generate-sitemap.js",
     "prisma:seed": "node prisma/seed.mjs",
     "prisma:setup": "node scripts/setup-prisma.js",
+    "prisma:setup:safe": "node scripts/setup-prisma-safe.js",
     "install:legacy": "npm install --legacy-peer-deps"
   },
   "prisma": {

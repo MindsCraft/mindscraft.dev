@@ -16,7 +16,8 @@ const LoginForm = () => {
   useEffect(() => {
     // If session exists, redirect to dashboard
     if (status === 'authenticated') {
-      router.push('/admin/(protected)/dashboard')
+      // Use a proper URL that doesn't include the (protected) segment in the URL
+      router.push('/admin/dashboard')
     }
   }, [status, router])
 
@@ -30,7 +31,7 @@ const LoginForm = () => {
         redirect: false,
         email,
         password,
-        callbackUrl: '/admin/(protected)/dashboard'
+        callbackUrl: '/admin/dashboard'
       })
 
       if (result?.error) {

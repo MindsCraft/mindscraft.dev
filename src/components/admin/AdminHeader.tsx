@@ -4,10 +4,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { BellIconOutline, UserCircleIconOutline, Cog6ToothIconOutline } from '@/components/ui/icons'
 import { usePathname } from 'next/navigation'
+import { useSession, signOut } from 'next-auth/react'
 
 export default function AdminHeader() {
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const { data: session } = useSession()
 
   // Extract the current page name from the pathname
   const getPageTitle = () => {
@@ -47,7 +49,7 @@ export default function AdminHeader() {
               <UserCircleIconOutline className="h-8 w-8 text-gray-400" aria-hidden="true" />
               <span className="hidden lg:flex lg:items-center">
                 <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                  Admin User
+                  {session?.user?.name || 'Admin User'}
                 </span>
               </span>
             </button>
@@ -69,6 +71,15 @@ export default function AdminHeader() {
                 >
                   Back to Website
                 </Link>
+                <button
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => {
+                    setIsProfileMenuOpen(false);
+                    signOut({ callbackUrl: '/' });
+                  }}
+                >
+                  Sign Out
+                </button>
               </div>
             )}
           </div>
