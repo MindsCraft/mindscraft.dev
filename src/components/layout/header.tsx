@@ -35,6 +35,7 @@ export default function Header() {
     { href: '/about', label: 'About' },
     { href: '/blog', label: 'Blog' },
     { href: '/contact', label: 'Contact' },
+    { href: '/admin', label: 'Admin' },
   ];
 
   // Check if a link is active
@@ -89,7 +90,7 @@ export default function Header() {
             className="hidden md:flex items-center space-x-1 bg-gray-100/50 rounded-full px-1.5 py-1.5"
           >
             {navItems.map((item, index) => (
-              <motion.div 
+              <motion.div
                 key={item.href}
                 className="relative"
                 initial={{ opacity: 0, y: -0.625 }}
@@ -191,12 +192,12 @@ export default function Header() {
               <nav className="space-y-6">
                 <div className="space-y-1">
                   {navItems.map((item, index) => (
-                    <motion.div 
+                    <motion.div
                       key={item.href}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ 
-                        duration: 0.4, 
+                      transition={{
+                        duration: 0.4,
                         delay: 0.05 * index,
                       }}
                     >

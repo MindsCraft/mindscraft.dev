@@ -113,12 +113,8 @@ export default function ContactContent() {
       // For now, we'll simulate a successful submission
       await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // Use safe console logging with try/catch to avoid console errors
-      try {
-        console.log('Form submitted:', formData);
-      } catch (logError) {
-        // Silent catch for environments where console might be restricted
-      }
+      // Form submitted successfully
+      // No need to log form data in production
 
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -127,12 +123,8 @@ export default function ContactContent() {
       // Reset submission status after 5 seconds
       setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
-      // Safe error logging
-      try {
-        console.error('Error submitting form:', error);
-      } catch (logError) {
-        // Silent catch
-      }
+      // Handle form submission error
+      // No need to log errors in production
 
       setIsSubmitting(false);
       setSubmitError('There was an error submitting your message. Please try again.');

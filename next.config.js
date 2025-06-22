@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Simplified configuration for troubleshooting build issues
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -16,7 +18,6 @@ const nextConfig = {
       },
     ],
   },
-  // Ensure meta tags are properly generated
   poweredByHeader: false,
   reactStrictMode: true,
 }

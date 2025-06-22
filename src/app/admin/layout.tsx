@@ -1,9 +1,6 @@
 // src/app/admin/layout.tsx
 import type { Metadata } from 'next';
-// Authentication has been temporarily removed as per README-admin.md
-// import { getServerSession } from 'next-auth';
-// import { redirect } from 'next/navigation';
-// import { authOptions } from '@/lib/auth';
+import { headers } from 'next/headers';
 import { AdminLayout } from '@/components/admin/AdminLayout';
 
 export const metadata: Metadata = {
@@ -12,8 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function RootAdminLayout({ children }: { children: React.ReactNode }) {
-  // Authentication has been temporarily removed as per README-admin.md
-  // No session check or redirect to login page
-
+  // The authentication check is now handled by the middleware
+  // and the (protected) layout for protected routes
   return <AdminLayout>{children}</AdminLayout>;
 }
