@@ -65,19 +65,19 @@ import Logo from '@/components/ui/Logo';
 
 ### Available Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'full' \| 'icon' \| 'text' \| 'horizontal'` | `'full'` | Logo variation to display |
-| `theme` | `'dark' \| 'light'` | `'dark'` | Color theme |
-| `size` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Predefined size (ignored if width/height set) |
-| `width` | `number` | `undefined` | Custom width in pixels |
-| `height` | `number` | `undefined` | Custom height in pixels |
-| `className` | `string` | `''` | Additional CSS classes |
+| Prop        | Type                                         | Default     | Description                                   |
+| ----------- | -------------------------------------------- | ----------- | --------------------------------------------- |
+| `variant`   | `'full' \| 'icon' \| 'text' \| 'horizontal'` | `'full'`    | Logo variation to display                     |
+| `theme`     | `'dark' \| 'light'`                          | `'dark'`    | Color theme                                   |
+| `size`      | `'sm' \| 'md' \| 'lg' \| 'xl'`               | `'md'`      | Predefined size (ignored if width/height set) |
+| `width`     | `number`                                     | `undefined` | Custom width in pixels                        |
+| `height`    | `number`                                     | `undefined` | Custom height in pixels                       |
+| `className` | `string`                                     | `''`        | Additional CSS classes                        |
 
 ### Size Reference
 
-| Size | Height |
-|------|--------|
+| Size | Height      |
+| ---- | ----------- |
 | `sm` | 32px (2rem) |
 | `md` | 48px (3rem) |
 | `lg` | 64px (4rem) |
