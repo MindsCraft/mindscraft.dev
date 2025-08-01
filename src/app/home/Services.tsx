@@ -33,7 +33,7 @@ const services = [
 export default function Services() {
   return (
     <section id="services" className="py-20 md:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <motion.span
             className="inline-block text-blue-600 font-medium mb-4 text-sm uppercase tracking-wider"

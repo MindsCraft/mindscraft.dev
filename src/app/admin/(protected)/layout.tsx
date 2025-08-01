@@ -16,7 +16,7 @@ export default async function ProtectedAdminLayout({
   }
 
   // Get the current path
-  const headersList = headers();
+  const headersList = await headers();
   const pathname = headersList.get('x-pathname') || headersList.get('x-url') || '';
 
   // If trying to access the dashboard within the (protected) folder, redirect to the main dashboard

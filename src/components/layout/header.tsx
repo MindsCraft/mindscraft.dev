@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRightIcon, CalendarIcon } from '@/components/ui/icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Logo from '@/components/ui/Logo';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -16,16 +17,14 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+      setScrolled(isScrolled);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [scrolled]);
+  }, []);
 
   // Navigation items to keep DRY
   const navItems = [
@@ -67,7 +66,7 @@ export default function Header() {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-100/15 via-indigo-100/10 to-purple-100/15 opacity-40 mix-blend-overlay"></div>
       </motion.div>
 
-      <div className="max-w-[80rem] mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="w-full px-4 sm:px-6 lg:px-8 relative">
         <div className="flex items-center justify-between h-16">
           <motion.div
             initial={{ opacity: 0, x: -1.25 }}
@@ -76,9 +75,11 @@ export default function Header() {
             className="flex-shrink-0 z-10"
           >
             <Link href="/" className="flex items-center cursor-pointer group">
-              <span className="text-lg font-medium tracking-tight text-gray-900 group-hover:text-gray-800 transition-colors duration-200">
-                Mindscraft<span className="text-[#2382fc] group-hover:text-blue-700 transition-colors duration-200">.dev</span>
-              </span>
+              <Logo 
+                variant="horizontal" 
+                size="md" 
+                className="transition-opacity duration-200 group-hover:opacity-80" 
+              />
             </Link>
           </motion.div>
 
