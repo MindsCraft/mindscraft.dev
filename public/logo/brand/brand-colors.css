@@ -1,0 +1,120 @@
+/* Mindscraft Brand Colors */
+
+:root {
+  /* === PRIMARY BRAND COLORS === */
+  
+  /* Dark Slate - Primary Brand Color */
+  --brand-dark: #101828;
+  --brand-dark-rgb: 16, 24, 40;
+  --brand-dark-hsl: 220, 43%, 11%;
+  
+  /* Light Yellow-Green - Accent Color */
+  --brand-accent: #F3F4C0;
+  --brand-accent-rgb: 243, 244, 192;
+  --brand-accent-hsl: 61, 68%, 85%;
+  
+  /* === EXTENDED PALETTE === */
+  
+  /* Dark Variations */
+  --brand-dark-lighter: #1F2937;
+  --brand-dark-medium: #374151;
+  --brand-dark-darker: #0F172A;
+  
+  /* Accent Variations */
+  --brand-accent-darker: #E5E619;
+  --brand-accent-lighter: #F9FAFB;
+  --brand-accent-muted: #D1D5DB;
+  
+  /* === SEMANTIC COLORS === */
+  
+  /* Text Colors */
+  --text-primary: var(--brand-dark);
+  --text-on-dark: var(--brand-accent);
+  --text-muted: var(--brand-dark-medium);
+  
+  /* Background Colors */
+  --bg-primary: var(--brand-dark);
+  --bg-accent: var(--brand-accent);
+  --bg-light: #FFFFFF;
+  
+  /* Border Colors */
+  --border-primary: var(--brand-dark);
+  --border-accent: var(--brand-accent);
+  --border-light: var(--brand-accent-muted);
+}
+
+/* === UTILITY CLASSES === */
+
+/* Background Colors */
+.bg-brand-dark { background-color: var(--brand-dark); }
+.bg-brand-accent { background-color: var(--brand-accent); }
+
+/* Text Colors */
+.text-brand-dark { color: var(--brand-dark); }
+.text-brand-accent { color: var(--brand-accent); }
+
+/* Border Colors */
+.border-brand-dark { border-color: var(--brand-dark); }
+.border-brand-accent { border-color: var(--brand-accent); }
+
+/* === COMPONENT STYLES === */
+
+/* Logo Container */
+.logo-container {
+  background-color: var(--brand-dark);
+  color: var(--brand-accent);
+}
+
+/* Brand Button */
+.btn-brand {
+  background-color: var(--brand-dark);
+  color: var(--brand-accent);
+  border: 2px solid var(--brand-dark);
+  transition: all 0.3s ease;
+}
+
+.btn-brand:hover {
+  background-color: var(--brand-accent);
+  color: var(--brand-dark);
+}
+
+/* Brand Accent Button */
+.btn-brand-accent {
+  background-color: var(--brand-accent);
+  color: var(--brand-dark);
+  border: 2px solid var(--brand-accent);
+  transition: all 0.3s ease;
+}
+
+.btn-brand-accent:hover {
+  background-color: var(--brand-dark);
+  color: var(--brand-accent);
+}
+
+/* === OPACITY VARIATIONS === */
+
+/* Dark with opacity */
+.bg-brand-dark-10 { background-color: rgba(var(--brand-dark-rgb), 0.1); }
+.bg-brand-dark-20 { background-color: rgba(var(--brand-dark-rgb), 0.2); }
+.bg-brand-dark-50 { background-color: rgba(var(--brand-dark-rgb), 0.5); }
+.bg-brand-dark-80 { background-color: rgba(var(--brand-dark-rgb), 0.8); }
+
+/* Accent with opacity */
+.bg-brand-accent-10 { background-color: rgba(var(--brand-accent-rgb), 0.1); }
+.bg-brand-accent-20 { background-color: rgba(var(--brand-accent-rgb), 0.2); }
+.bg-brand-accent-50 { background-color: rgba(var(--brand-accent-rgb), 0.5); }
+.bg-brand-accent-80 { background-color: rgba(var(--brand-accent-rgb), 0.8); }
+
+/* === GRADIENTS === */
+
+.gradient-brand {
+  background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-dark-lighter) 100%);
+}
+
+.gradient-brand-accent {
+  background: linear-gradient(135deg, var(--brand-accent) 0%, var(--brand-accent-darker) 100%);
+}
+
+.gradient-brand-mixed {
+  background: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-accent) 100%);
+}

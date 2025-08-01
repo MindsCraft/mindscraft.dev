@@ -3,6 +3,7 @@
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import Logo from '@/components/ui/Logo'
 
 // Create a client-side only LoginForm component
 const LoginForm = () => {
@@ -54,15 +55,19 @@ const LoginForm = () => {
 
   if (status === 'loading') {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      <div className="flex flex-col items-center justify-center min-h-screen space-y-4">
+        <Logo variant="icon" size="lg" className="animate-pulse" />
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
       </div>
     )
   }
 
   return (
     <div className="max-w-md w-full space-y-8">
-      <div>
+      <div className="text-center">
+        <div className="flex justify-center mb-6">
+          <Logo variant="icon" size="lg" />
+        </div>
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           Sign in to your account
         </h2>

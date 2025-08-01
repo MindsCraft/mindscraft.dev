@@ -46,7 +46,7 @@ const jsonLd = {
   "url": SITE_URL,
   "logo": {
     "@type": "ImageObject",
-    "url": `${SITE_URL}/logo.png`
+    "url": `${SITE_URL}/logo/png/mindscraft-logo.png`
   },
   "sameAs": [
     "https://twitter.com/mindscraft",
@@ -109,15 +109,15 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/logo/favicon/favicon.ico' },
+      { url: '/logo/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/logo/favicon/favicon.svg', type: 'image/svg+xml' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png' },
+      { url: '/logo/favicon/apple-touch-icon.png' },
     ],
   },
-  manifest: '/site.webmanifest',
+  manifest: '/logo/favicon/site.webmanifest',
 };
 
 export default function RootLayout({
@@ -148,11 +148,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
+        {/* Apple mobile web app */}
+        <meta name="apple-mobile-web-app-title" content="MindsCraft" />
+
         {/* Favicon and icon links */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="icon" href="/logo/favicon/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/logo/favicon/favicon-96x96.png" sizes="96x96" type="image/png" />
+        <link rel="icon" href="/logo/favicon/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/logo/favicon/apple-touch-icon.png" />
+        <link rel="manifest" href="/logo/favicon/site.webmanifest" />
       </head>
 
       <body className="font-sans antialiased">
