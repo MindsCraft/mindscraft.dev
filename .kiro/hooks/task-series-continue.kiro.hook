@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "name": "Task Series Continuation",
+  "description": "Monitors project files for changes and automatically continues with tasks 5-10 in the current development series, then stops execution",
+  "version": "1",
+  "when": {
+    "type": "userTriggered",
+    "patterns": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/**/*.js",
+      "src/**/*.jsx",
+      "package.json",
+      "prisma/schema.prisma"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A file change has been detected in the project. Please continue with tasks 5 through 10 in the current development series, then stop execution. Focus on completing the remaining tasks systematically and provide a summary when task 10 is complete."
+  }
+}
