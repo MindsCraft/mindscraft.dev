@@ -77,7 +77,7 @@ export default function Header() {
             <Link href="/" className="flex items-center cursor-pointer group">
               <Logo 
                 variant="horizontal" 
-                size="md" 
+                size="sm" 
                 className="transition-opacity duration-200 group-hover:opacity-80" 
               />
             </Link>
