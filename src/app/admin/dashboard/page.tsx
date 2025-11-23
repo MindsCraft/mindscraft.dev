@@ -12,90 +12,131 @@ export default function DashboardPage() {
   ]
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
-          <p className="mt-2 text-sm text-gray-700">
-            Welcome to the admin dashboard! Here's what's happening with your agency.
-          </p>
-        </div>
+    <div className="container" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-12)' }}>
+      {/* Page Header - Proper spacing and typography */}
+      <div style={{ marginBottom: 'var(--space-8)' }}>
+        <h1 className="heading-1">Dashboard</h1>
+        <p className="body-base" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--space-2)' }}>
+          Welcome to the admin dashboard! Here's what's happening with your agency.
+        </p>
       </div>
 
-      <div className="mt-8">
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Stats Grid - Using design system spacing */}
+      <div className="section">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
-            <Card key={stat.name}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  {stat.name}
-                </CardTitle>
-                <stat.icon className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{stat.value}</div>
-                <p className={`text-xs mt-1 ${stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}`}>
-                  {stat.change} from last month
-                </p>
-              </CardContent>
-            </Card>
+            <div key={stat.name} className="stat-card">
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span className="stat-label">{stat.name}</span>
+                <stat.icon style={{ width: '18px', height: '18px', color: 'var(--color-text-tertiary)' }} />
+              </div>
+              <div className="stat-value">{stat.value}</div>
+              <p className="stat-change">
+                {stat.change} from last month
+              </p>
+            </div>
           ))}
         </div>
       </div>
 
-      <div className="mt-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Analytics Overview</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="h-80 flex items-center justify-center bg-gray-50 rounded-md">
-              <p className="text-gray-500">Analytics chart will be displayed here</p>
+      {/* Analytics Chart Card */}
+      <div className="section">
+        <div className="card">
+          <div className="card-header">
+            <h2 className="heading-3" style={{ marginBottom: 'var(--space-1)' }}>Analytics Overview</h2>
+            <p className="caption">Performance metrics and insights</p>
+          </div>
+          <div className="card-body">
+            <div style={{
+              height: '320px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'var(--color-surface)',
+              borderRadius: 'var(--radius-md)',
+              border: '1px dashed var(--color-border)'
+            }}>
+              <p className="body-sm" style={{ color: 'var(--color-text-tertiary)' }}>
+                Analytics chart will be displayed here
+              </p>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Posts</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="flex items-center justify-between border-b pb-4 last:border-0 last:pb-0">
-                  <div>
-                    <p className="font-medium">Post Title {i}</p>
-                    <p className="text-sm text-gray-500">Published 2 days ago</p>
-                  </div>
-                  <button className="text-sm text-blue-600 hover:text-blue-800">View</button>
+      {/* Two Column Grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--space-6)' }} className="lg:grid-cols-2">
+        {/* Recent Posts */}
+        <div className="card">
+          <div className="card-header">
+            <h3 className="heading-4" style={{ marginBottom: 'var(--space-1)' }}>Recent Posts</h3>
+            <p className="caption">Latest published blog posts</p>
+          </div>
+          <div className="card-body">
+            <div className="stack-sm">
+              {[1, 2, 3, 4].map((i) => (
+                <div
+                  key={i}
+                  style={{
+                    padding: 'var(--space-4)',
+                    border: '1px solid var(--color-border)',
+                    borderRadius: 'var(--radius-md)',
+                    transition: 'all var(--transition-base)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--color-border-hover)'
+                    e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--color-border)'
+                    e.currentTarget.style.boxShadow = 'none'
+                  }}
+                >
+                  <p className="body-base font-medium" style={{ marginBottom: 'var(--space-1)' }}>
+                    Sample Blog Post Title {i}
+                  </p>
+                  <p className="caption">Published 2 days ago</p>
                 </div>
               ))}
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Projects</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="flex items-center justify-between border-b pb-4 last:border-0 last:pb-0">
-                  <div>
-                    <p className="font-medium">Project {i}</p>
-                    <p className="text-sm text-gray-500">Last updated 5 days ago</p>
-                  </div>
-                  <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
-                    Active
-                  </span>
+        {/* Recent Projects */}
+        <div className="card">
+          <div className="card-header">
+            <h3 className="heading-4" style={{ marginBottom: 'var(--space-1)' }}>Recent Projects</h3>
+            <p className="caption">Latest portfolio work</p>
+          </div>
+          <div className="card-body">
+            <div className="stack-sm">
+              {[1, 2, 3, 4].map((i) => (
+                <div
+                  key={i}
+                  style={{
+                    padding: 'var(--space-4)',
+                    border: '1px solid var(--color-border)',
+                    borderRadius: 'var(--radius-md)',
+                    transition: 'all var(--transition-base)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--color-border-hover)'
+                    e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--color-border)'
+                    e.currentTarget.style.boxShadow = 'none'
+                  }}
+                >
+                  <p className="body-base font-medium" style={{ marginBottom: 'var(--space-1)' }}>
+                    Sample Project {i}
+                  </p>
+                  <p className="caption">Updated last week</p>
                 </div>
               ))}
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   )
