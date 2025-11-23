@@ -7,6 +7,7 @@ import { Providers } from "@/components/providers";
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import ConditionalHeader from "@/components/layout/ConditionalHeader";
 import ConditionalFooter from "@/components/layout/ConditionalFooter";
+import JsonLd from "@/components/seo/JsonLd";
 
 // Site metadata constants
 const SITE_TITLE = 'Mindscraft - UX-Focused Web Development Agency';
@@ -37,30 +38,7 @@ export const viewport: Viewport = {
   themeColor: '#ffffff',
 };
 
-// JSON-LD structured data
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Mindscraft",
-  "description": SITE_DESCRIPTION,
-  "url": SITE_URL,
-  "logo": {
-    "@type": "ImageObject",
-    "url": `${SITE_URL}/logo/png/mindscraft-logo.png`
-  },
-  "sameAs": [
-    "https://twitter.com/mindscraft",
-    "https://linkedin.com/company/mindscraft"
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "US"
-  },
-  "offers": {
-    "@type": "Offer",
-    "category": "Web Development Services"
-  }
-};
+
 
 export const metadata: Metadata = {
   title: SITE_TITLE,
@@ -138,29 +116,14 @@ export default function RootLayout({
         {/* Google Analytics - Client Component */}
         <GoogleAnalytics />
 
-        {/* JSON-LD Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-
         {/* Preconnect to important origins */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
-        {/* Apple mobile web app */}
-        <meta name="apple-mobile-web-app-title" content="MindsCraft" />
-
-        {/* Favicon and icon links */}
-        <link rel="icon" href="/logo/favicon/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" href="/logo/favicon/favicon-96x96.png" sizes="96x96" type="image/png" />
-        <link rel="icon" href="/logo/favicon/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/logo/favicon/apple-touch-icon.png" />
-        <link rel="manifest" href="/logo/favicon/site.webmanifest" />
       </head>
 
       <body className="font-sans antialiased">
         <Providers>
+          <JsonLd />
           {/* Conditional Header and Footer */}
           <ConditionalHeader />
           <main id="main-content" className="min-h-screen pt-16">
