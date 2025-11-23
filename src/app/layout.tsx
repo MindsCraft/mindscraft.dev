@@ -126,7 +126,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
+    <html suppressHydrationWarning
       lang="en"
       className={`font-sans ${inter.variable} ${jetbrainsMono.variable} h-full scroll-smooth`}
       style={{

@@ -1,16 +1,15 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
-// Group navigation items by category - same as in Sidebar
+// Navigation items for the admin panel
 const navigationItems = [
   {
     category: 'Main',
-    items: [
-      { name: 'Dashboard', href: '/admin/dashboard' }
-    ]
+    items: [{ name: 'Dashboard', href: '/admin/dashboard' }],
   },
   {
     category: 'Content',
@@ -18,157 +17,303 @@ const navigationItems = [
       { name: 'Posts', href: '/admin/posts' },
       { name: 'Projects', href: '/admin/projects' },
       { name: 'Team', href: '/admin/team' },
-      { name: 'Media', href: '/admin/media' }
-    ]
+      { name: 'Media', href: '/admin/media' },
+    ],
   },
   {
     category: 'System',
     items: [
-      { name: 'Analytics', href: '/admin/analytics' },
       { name: 'Settings', href: '/admin/settings' },
-      { name: 'API', href: '/admin/api' }
-    ]
-  }
-]
+      { name: 'API', href: '/admin/api' },
+    ],
+  },
+];
 
 const MobileHeader = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [profileMenuOpen, setProfileMenuOpen] = useState(false)
-  const pathname = usePathname()
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const profileMenuRef = useRef<HTMLDivElement>(null);
 
-  // Extract the current page name from the pathname
   const getPageTitle = () => {
-    const path = pathname.split('/').filter(Boolean)
+    const path = pathname.split('/').filter(Boolean);
     if (path.length > 1) {
-      // Capitalize the first letter of the last path segment
-      const pageName = path[path.length - 1]
-      return pageName.charAt(0).toUpperCase() + pageName.slice(1)
+      const pageName = path[path.length - 1];
+      return pageName.charAt(0).toUpperCase() + pageName.slice(1);
     }
-    return 'Dashboard'
-  }
+    return 'Dashboard';
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
+        setProfileMenuOpen(false);
+      }
+    };
+    if (profileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [profileMenuOpen]);
+
+  const getUserInitials = () => 'AU';
 
   return (
-    <div className="sticky top-0 z-40 flex items-center justify-between gap-x-6 bg-white px-4 py-4 shadow-sm sm:px-6 lg:hidden">
-      <button
-        type="button"
-        className="-m-2.5 p-2.5 text-gray-700"
-        onClick={() => setSidebarOpen(true)}
+    <>
+      {/* Mobile Header Bar */}
+      <div
+        className="admin-mobile-header"
+        style={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 50,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 'var(--space-6)',
+          backgroundColor: 'var(--color-background)',
+          padding: 'var(--space-4) var(--space-6)',
+          boxShadow: 'var(--shadow-sm)',
+          borderBottom: '1px solid var(--color-border)',
+        }}
       >
-        <span className="sr-only">Open sidebar</span>
-        <span className="h-6 w-6">☰</span>
-      </button>
-
-      <div className="text-sm font-semibold leading-6 text-gray-900">{getPageTitle()}</div>
-
-      <div className="relative">
+        {/* Menu Button */}
         <button
           type="button"
-          className="-m-2.5 p-2.5 text-gray-700"
-          onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+          style={{
+            padding: 'var(--space-2)',
+            color: 'var(--color-text-primary)',
+            backgroundColor: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+            fontSize: 'var(--text-lg)',
+          }}
+          onClick={() => setSidebarOpen(true)}
         >
-          <span className="sr-only">Open user menu</span>
-          <span className="h-6 w-6">👤</span>
+          <span className="sr-only">Open sidebar</span>
+          <span>☰</span>
         </button>
 
-        {/* Profile dropdown menu */}
-        {profileMenuOpen && (
-          <div className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <Link
-              href="/admin/settings"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              onClick={() => setProfileMenuOpen(false)}
+        {/* Page Title */}
+        <div className="heading-4" style={{ marginBottom: 0 }}>
+          {getPageTitle()}
+        </div>
+
+        {/* Profile Menu */}
+        <div style={{ position: 'relative' }} ref={profileMenuRef}>
+          <button
+            type="button"
+            style={{
+              padding: 'var(--space-2)',
+              color: 'var(--color-text-primary)',
+              backgroundColor: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: 'var(--text-lg)',
+            }}
+            onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+          >
+            <span className="sr-only">Open user menu</span>
+            <span>👤</span>
+          </button>
+
+          {profileMenuOpen && (
+            <div
+              style={{
+                position: 'absolute',
+                right: 0,
+                marginTop: 'var(--space-2)',
+                width: '192px',
+                borderRadius: 'var(--radius-md)',
+                backgroundColor: 'var(--color-background)',
+                padding: 'var(--space-2)',
+                boxShadow: 'var(--shadow-lg)',
+                border: '1px solid var(--color-border)',
+              }}
             >
-              Settings
-            </Link>
-            <Link
-              href="/"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              onClick={() => setProfileMenuOpen(false)}
-            >
-              Back to Website
-            </Link>
-          </div>
-        )}
+              <Link
+                href="/admin/settings"
+                className="body-sm"
+                style={{
+                  display: 'block',
+                  padding: 'var(--space-2) var(--space-3)',
+                  color: 'var(--color-text-primary)',
+                  textDecoration: 'none',
+                  borderRadius: 'var(--radius-sm)',
+                  transition: 'all var(--transition-fast)',
+                }}
+                onClick={() => setProfileMenuOpen(false)}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-surface)')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+              >
+                Settings
+              </Link>
+              <Link
+                href="/"
+                className="body-sm"
+                style={{
+                  display: 'block',
+                  padding: 'var(--space-2) var(--space-3)',
+                  color: 'var(--color-text-primary)',
+                  textDecoration: 'none',
+                  borderRadius: 'var(--radius-sm)',
+                  transition: 'all var(--transition-fast)',
+                }}
+                onClick={() => setProfileMenuOpen(false)}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-surface)')}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+              >
+                Back to Website
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Mobile sidebar */}
-      <div
-        className={`fixed inset-0 z-50 lg:hidden ${sidebarOpen ? 'block' : 'hidden'}`}
-      >
-        <div className="fixed inset-0 bg-gray-900/80" onClick={() => setSidebarOpen(false)} />
-        <div className="fixed inset-y-0 left-0 flex w-64 flex-col">
-          <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4">
-            <div className="flex h-16 shrink-0 items-center">
-              <div className="h-8 w-8 mr-3 relative">
-                <div className="absolute inset-0 bg-blue-600 rounded-md flex items-center justify-center text-white font-bold text-lg">
-                  M
-                </div>
-              </div>
-              <h1 className="text-xl font-bold text-gray-900">Mindscraft</h1>
-              <button
-                type="button"
-                className="ml-auto -mr-2.5 p-2.5 text-gray-700"
-                onClick={() => setSidebarOpen(false)}
-              >
-                <span className="sr-only">Close sidebar</span>
-                <span className="h-6 w-6">✕</span>
-              </button>
-            </div>
+      {/* Mobile Sidebar Overlay */}
+      {sidebarOpen && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 50 }} className="lg:hidden">
+          {/* Backdrop */}
+          <div
+            style={{
+              position: 'fixed',
+              inset: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            }}
+            onClick={() => setSidebarOpen(false)}
+          />
 
-            <nav className="flex flex-1 flex-col">
-              <div className="space-y-6">
-                {navigationItems.map((group) => (
-                  <div key={group.category}>
-                    <h3 className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                      {group.category}
-                    </h3>
-                    <div className="mt-2 space-y-1">
-                      {group.items.map((item) => {
-                        const isActive = pathname.startsWith(item.href)
-                        return (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            className={`group flex items-center px-3 py-2 text-sm font-medium rounded-md ${
-                              isActive
-                                ? 'bg-blue-50 text-blue-600'
-                                : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
-                            }`}
-                            onClick={() => setSidebarOpen(false)}
-                          >
-                            {item.name}
-                          </Link>
-                        )
-                      })}
+          {/* Sidebar Panel */}
+          <div
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              width: '280px',
+              backgroundColor: 'var(--color-background)',
+              boxShadow: 'var(--shadow-xl)',
+              display: 'flex',
+              flexDirection: 'column',
+              overflowY: 'auto',
+            }}
+          >
+            <div style={{ display: 'flex', flexGrow: 1, flexDirection: 'column', gap: 'var(--space-5)', padding: 'var(--space-6)', paddingBottom: 'var(--space-4)' }}>
+              {/* Logo Header */}
+              <div style={{ display: 'flex', height: '64px', flexShrink: 0, alignItems: 'center', borderBottom: '1px solid var(--color-border)', paddingBottom: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
+                <Image src="/logo/png/mindscraft-logo.png" alt="Mindscraft" width={140} height={40} className="h-8 w-auto" />
+                <button
+                  type="button"
+                  style={{
+                    marginLeft: 'auto',
+                    padding: 'var(--space-2)',
+                    color: 'var(--color-text-primary)',
+                    backgroundColor: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontSize: 'var(--text-lg)',
+                  }}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <span className="sr-only">Close sidebar</span>
+                  <span>✕</span>
+                </button>
+              </div>
+
+              {/* Navigation */}
+              <nav style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-6)' }}>
+                  {navigationItems.map((group) => (
+                    <div key={group.category}>
+                      <h3 className="label" style={{ paddingLeft: 'var(--space-3)', marginBottom: 'var(--space-2)' }}>
+                        {group.category}
+                      </h3>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-1)' }}>
+                        {group.items.map((item) => {
+                          const isActive = pathname.startsWith(item.href);
+                          return (
+                            <Link
+                              key={item.name}
+                              href={item.href}
+                              className="body-base"
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                padding: 'var(--space-2) var(--space-3)',
+                                fontSize: 'var(--text-sm)',
+                                fontWeight: isActive ? 'var(--font-medium)' : 'var(--font-normal)',
+                                borderRadius: 'var(--radius-md)',
+                                backgroundColor: isActive ? 'var(--color-surface)' : 'transparent',
+                                color: isActive ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+                                textDecoration: 'none',
+                                transition: 'all var(--transition-fast)',
+                              }}
+                              onClick={() => setSidebarOpen(false)}
+                              onMouseEnter={(e) => {
+                                if (!isActive) {
+                                  e.currentTarget.style.backgroundColor = 'var(--color-surface)';
+                                  e.currentTarget.style.color = 'var(--color-text-primary)';
+                                }
+                              }}
+                              onMouseLeave={(e) => {
+                                if (!isActive) {
+                                  e.currentTarget.style.backgroundColor = 'transparent';
+                                  e.currentTarget.style.color = 'var(--color-text-secondary)';
+                                }
+                              }}
+                            >
+                              {item.name}
+                            </Link>
+                          );
+                        })}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </nav>
+                  ))}
+                </div>
+              </nav>
 
-            {/* User section */}
-            <div className="flex-shrink-0 border-t border-gray-200 pt-4">
-              <Link href="/admin/settings/profile" className="flex items-center" onClick={() => setSidebarOpen(false)}>
-                <div className="inline-block h-9 w-9 rounded-full bg-gray-100 overflow-hidden">
-                  <div className="h-full w-full flex items-center justify-center bg-blue-100 text-blue-600 font-medium">
-                    A
+              {/* User Profile */}
+              <div style={{ flexShrink: 0, borderTop: '1px solid var(--color-border)', paddingTop: 'var(--space-4)' }}>
+                <Link
+                  href="/admin/settings/profile"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    textDecoration: 'none',
+                    transition: 'opacity var(--transition-fast)',
+                  }}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <div
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: 'var(--radius-full)',
+                      backgroundColor: 'var(--color-text-primary)',
+                      color: 'var(--color-background)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: 'var(--text-sm)',
+                      fontWeight: 'var(--font-semibold)',
+                    }}
+                  >
+                    {getUserInitials()}
                   </div>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-700">
-                    Admin User
-                  </p>
-                  <p className="text-xs font-medium text-gray-500">
-                    View profile
-                  </p>
-                </div>
-              </Link>
+                  <div style={{ marginLeft: 'var(--space-3)' }}>
+                    <p className="body-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>
+                      Admin User
+                    </p>
+                    <p className="caption">View profile</p>
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  )
-}
+      )}
+    </>
+  );
+};
 
-export default MobileHeader
+export default MobileHeader;

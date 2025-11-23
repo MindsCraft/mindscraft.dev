@@ -4,20 +4,63 @@ export default function AdminFooter() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-white border-t border-gray-200 py-4 px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-col md:flex-row justify-between items-center">
-        <div className="text-sm text-gray-500">
-          &copy; {currentYear} Mindscraft. All rights reserved.
+    <footer style={{
+      borderTop: '1px solid #e5e5e5',
+      padding: 'var(--space-6) var(--space-8)',
+      backgroundColor: '#fafafa'
+    }}>
+      <div style={{
+        maxWidth: '1400px',
+        margin: '0 auto',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: 'var(--space-4)'
+      }}>
+        <div style={{ fontSize: '12px', color: '#a3a3a3' }}>
+          © {currentYear} MindsCraft Design System
         </div>
-        <div className="mt-4 md:mt-0 flex space-x-6">
-          <a href="/privacy" className="text-sm text-gray-500 hover:text-gray-900">
-            Privacy Policy
+        <div style={{ display: 'flex', gap: 'var(--space-6)' }}>
+          <a
+            href="/about"
+            style={{
+              fontSize: '12px',
+              color: '#a3a3a3',
+              textDecoration: 'none',
+              transition: 'color 150ms ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#171717'}
+            onMouseLeave={(e) => e.currentTarget.style.color = '#a3a3a3'}
+          >
+            About
           </a>
-          <a href="/terms" className="text-sm text-gray-500 hover:text-gray-900">
-            Terms of Service
+          <a
+            href="/support"
+            style={{
+              fontSize: '12px',
+              color: '#a3a3a3',
+              textDecoration: 'none',
+              transition: 'color 150ms ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#171717'}
+            onMouseLeave={(e) => e.currentTarget.style.color = '#a3a3a3'}
+          >
+            Support
           </a>
-          <a href="/help" className="text-sm text-gray-500 hover:text-gray-900">
-            Help Center
+          <a
+            href="/contact"
+            style={{
+              fontSize: '12px',
+              color: '#a3a3a3',
+              textDecoration: 'none',
+              transition: 'color 150ms ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#171717'}
+            onMouseLeave={(e) => e.currentTarget.style.color = '#a3a3a3'}
+          >
+            Contact Us
           </a>
         </div>
       </div>

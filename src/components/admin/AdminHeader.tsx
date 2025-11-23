@@ -1,90 +1,162 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { BellIconOutline, UserCircleIconOutline, Cog6ToothIconOutline } from '@/components/ui/icons'
-import { usePathname } from 'next/navigation'
-import { useSession, signOut } from 'next-auth/react'
+import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { BellIconOutline, UserCircleIconOutline, Cog6ToothIconOutline } from '@/components/ui/icons';
+import { usePathname } from 'next/navigation';
 
 export default function AdminHeader() {
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false)
-  const pathname = usePathname()
-  const { data: session } = useSession()
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const profileMenuRef = useRef<HTMLDivElement>(null);
 
-  // Extract the current page name from the pathname
   const getPageTitle = () => {
-    const path = pathname.split('/').filter(Boolean)
+    const path = pathname.split('/').filter(Boolean);
     if (path.length > 1) {
-      // Capitalize the first letter of the last path segment
-      const pageName = path[path.length - 1]
-      return pageName.charAt(0).toUpperCase() + pageName.slice(1)
+      const pageName = path[path.length - 1];
+      return pageName.charAt(0).toUpperCase() + pageName.slice(1);
     }
-    return 'Dashboard'
-  }
+    return 'Dashboard';
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target as Node)) {
+        setIsProfileMenuOpen(false);
+      }
+    };
+    if (isProfileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isProfileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-      <div className="flex flex-1 items-center justify-between">
-        <div>
-          <h1 className="text-xl font-semibold text-gray-900">{getPageTitle()}</h1>
-        </div>
-        <div className="flex items-center gap-x-4 lg:gap-x-6">
+    <header
+      className="admin-desktop-header"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: '256px',
+        right: 0,
+        zIndex: 50,
+        height: '64px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 'var(--space-6)',
+        borderBottom: '1px solid var(--color-border)',
+        backgroundColor: 'var(--color-background)',
+        padding: '0 var(--space-6)',
+        boxShadow: 'var(--shadow-sm)',
+      }}
+    >
+      <div style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'space-between' }}>
+        <div className="heading-3" style={{ marginBottom: 0 }}>{getPageTitle()}</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
           {/* Notification button */}
           <button
             type="button"
-            className="-m-2.5 p-2.5 text-gray-500 hover:text-gray-900"
+            style={{
+              padding: 'var(--space-2)',
+              color: 'var(--color-text-tertiary)',
+              backgroundColor: 'transparent',
+              border: 'none',
+              borderRadius: 'var(--radius-md)',
+              cursor: 'pointer',
+              transition: 'all var(--transition-fast)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = 'var(--color-text-primary)';
+              e.currentTarget.style.backgroundColor = 'var(--color-surface)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'var(--color-text-tertiary)';
+              e.currentTarget.style.backgroundColor = 'transparent';
+            }}
           >
             <span className="sr-only">View notifications</span>
-            <BellIconOutline className="h-6 w-6" aria-hidden="true" />
+            <BellIconOutline style={{ width: '20px', height: '20px' }} aria-hidden="true" />
           </button>
 
           {/* Profile dropdown */}
-          <div className="relative">
+          <div style={{ position: 'relative' }} ref={profileMenuRef}>
             <button
               type="button"
-              className="-m-1.5 flex items-center p-1.5"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'var(--space-2)',
+                padding: 'var(--space-2)',
+                backgroundColor: 'transparent',
+                border: 'none',
+                borderRadius: 'var(--radius-md)',
+                cursor: 'pointer',
+                transition: 'all var(--transition-fast)',
+              }}
               onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-surface)')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
             >
-              <span className="sr-only">Open user menu</span>
-              <UserCircleIconOutline className="h-8 w-8 text-gray-400" aria-hidden="true" />
-              <span className="hidden lg:flex lg:items-center">
-                <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                  {session?.user?.name || 'Admin User'}
-                </span>
-              </span>
+              <UserCircleIconOutline style={{ width: '28px', height: '28px', color: 'var(--color-text-tertiary)' }} aria-hidden="true" />
+              <span className="body-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>Admin User</span>
             </button>
-
-            {/* Profile dropdown menu */}
             {isProfileMenuOpen && (
-              <div className="absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div
+                style={{
+                  position: 'absolute',
+                  right: 0,
+                  marginTop: 'var(--space-2)',
+                  width: '192px',
+                  borderRadius: 'var(--radius-md)',
+                  backgroundColor: 'var(--color-background)',
+                  padding: 'var(--space-2)',
+                  boxShadow: 'var(--shadow-lg)',
+                  border: '1px solid var(--color-border)',
+                }}
+              >
                 <Link
                   href="/admin/settings"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  className="body-sm"
+                  style={{
+                    display: 'block',
+                    padding: 'var(--space-2) var(--space-3)',
+                    color: 'var(--color-text-primary)',
+                    textDecoration: 'none',
+                    borderRadius: 'var(--radius-sm)',
+                    transition: 'all var(--transition-fast)',
+                  }}
                   onClick={() => setIsProfileMenuOpen(false)}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-surface)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
                 >
                   Settings
                 </Link>
                 <Link
                   href="/"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  className="body-sm"
+                  style={{
+                    display: 'block',
+                    padding: 'var(--space-2) var(--space-3)',
+                    color: 'var(--color-text-primary)',
+                    textDecoration: 'none',
+                    borderRadius: 'var(--radius-sm)',
+                    transition: 'all var(--transition-fast)',
+                  }}
                   onClick={() => setIsProfileMenuOpen(false)}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--color-surface)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
                 >
                   Back to Website
                 </Link>
-                <button
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={() => {
-                    setIsProfileMenuOpen(false);
-                    signOut({ callbackUrl: '/' });
-                  }}
-                >
-                  Sign Out
-                </button>
+                {/* Sign Out removed */}
               </div>
             )}
           </div>
         </div>
       </div>
     </header>
-  )
+  );
 }
