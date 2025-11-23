@@ -24,7 +24,6 @@ const navigationItems = [
   {
     category: 'System',
     items: [
-      { name: 'Analytics', href: '/admin/analytics', description: 'Site traffic and metrics' },
       { name: 'Settings', href: '/admin/settings', description: 'Site configuration' },
       { name: 'API', href: '/admin/api', description: 'API endpoints' }
     ]

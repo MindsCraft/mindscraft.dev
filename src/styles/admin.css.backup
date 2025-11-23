@@ -346,46 +346,5 @@
 .stack-lg>*+* {
   margin-top: var(--space-8);
 }
-
-.stack-xl>*+* {
-  margin-top: var(--space-12);
 }
 
-/* === FOCUS STATES (Accessibility) === */
-*:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-/* === RESET & BASE STYLES === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-p {
-  margin: 0;
-}
-
-body {
-  font-family: var(--font-sans);
-  font-size: var(--text-base);
-  line-height: var(--leading-normal);
-  color: var(--color-text-primary);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* === ADMIN HEADER RESPONSIVE === */
-@media (max-width: 1023px) {
-  .admin-desktop-header {
-    display: none !important;
-  }
-}
-
-@media (min-width: 1024px) {
-  .admin-mobile-header {
-    display: none !important;
-  }
-}

@@ -1,158 +1,183 @@
-'use client';
+'use client'
 
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { PlusCircle, Edit, ExternalLink } from '@/components/ui/icons';
-import Link from 'next/link';
-import { DeleteButton } from '@/components/admin/DeleteButton';
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  image?: string;
-  tags?: string;
-  url?: string;
-  featured: boolean;
-}
+import { Plus, Pencil, Trash, ArrowUpRight } from 'phosphor-react'
+import Link from 'next/link'
 
 export default function ProjectsPage() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [isClient, setIsClient] = useState(false);
+  const projects = [
+    { id: 1, name: 'E-commerce Platform', client: 'TechCorp', status: 'Active', progress: 75, dueDate: 'Jan 15, 2025' },
+    { id: 2, name: 'Mobile App Design', client: 'StartupXYZ', status: 'Active', progress: 60, dueDate: 'Jan 20, 2025' },
+    { id: 3, name: 'Brand Identity', client: 'Creative Co', status: 'Completed', progress: 100, dueDate: 'Dec 10, 2024' },
+    { id: 4, name: 'Website Redesign', client: 'Agency Inc', status: 'On Hold', progress: 30, dueDate: 'Feb 1, 2025' },
+    { id: 5, name: 'Marketing Campaign', client: 'BizCorp', status: 'Active', progress: 45, dueDate: 'Jan 25, 2025' },
+  ]
 
-  useEffect(() => {
-    // This code will only run on the client side
-    setIsClient(true);
-    
-    async function fetchProjects() {
-      try {
-        const response = await fetch('/api/projects');
-        if (response.ok) {
-          const data = await response.json();
-          setProjects(data);
-        } else {
-          console.error('Failed to fetch projects');
-        }
-      } catch (error) {
-        console.error('Error fetching projects:', error);
-      } finally {
-        setLoading(false);
-      }
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'Active': return '#06b6d4'
+      case 'Completed': return '#10b981'
+      case 'On Hold': return '#f59e0b'
+      default: return '#525252'
     }
-
-    fetchProjects();
-  }, []);
-
-  if (!isClient) {
-    // Return a loading state or null during SSR
-    return null;
   }
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1 className="text-2xl font-semibold text-gray-900">Projects</h1>
-          <p className="mt-2 text-sm text-gray-700">
-            A list of all the projects showcased on your website.
+    <div style={{
+      padding: 'var(--space-8)',
+      maxWidth: '1400px',
+      margin: '0 auto'
+    }}>
+      {/* Page Header */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-8)' }}>
+        <div>
+          <h1 style={{
+            fontSize: '24px',
+            fontWeight: '600',
+            color: '#171717',
+            marginBottom: 'var(--space-2)'
+          }}>
+            Projects
+          </h1>
+          <p style={{ fontSize: '14px', color: '#525252' }}>
+            Manage your portfolio projects and client work
           </p>
         </div>
-        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-          <Link
-            href="/admin/projects/new"
-            className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto"
+        <Link href="/admin/projects/new">
+          <button style={{
+            padding: '12px 24px',
+            borderRadius: '8px',
+            border: 'none',
+            backgroundColor: '#171717',
+            color: '#ffffff',
+            fontSize: '14px',
+            fontWeight: '500',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 'var(--space-2)',
+            transition: 'all 150ms ease'
+          }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#000000'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#171717'}
           >
-            <PlusCircle className="h-4 w-4 mr-2" />
-            Add project
-          </Link>
-        </div>
+            <Plus size={18} weight="bold" />
+            New Project
+          </button>
+        </Link>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.length > 0 ? (
-          projects.map((project) => (
-            <Card key={project.id} className="overflow-hidden">
-              {project.image && (
-                <div className="h-48 w-full overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              )}
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-500 mb-4">{project.description}</p>
+      {/* Projects Grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: 'var(--space-5)' }}>
+        {projects.map((project) => (
+          <div
+            key={project.id}
+            style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '12px',
+              border: '1px solid #e5e5e5',
+              padding: 'var(--space-5)',
+              transition: 'all 150ms ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)'}
+            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}
+          >
+            {/* Project Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'var(--space-4)' }}>
+              <div>
+                <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#171717', marginBottom: 'var(--space-1)' }}>
+                  {project.name}
+                </h3>
+                <p style={{ fontSize: '13px', color: '#a3a3a3' }}>
+                  {project.client}
+                </p>
+              </div>
+              <span style={{
+                display: 'inline-block',
+                padding: '4px 12px',
+                borderRadius: '12px',
+                fontSize: '12px',
+                fontWeight: '500',
+                color: getStatusColor(project.status),
+                backgroundColor: `${getStatusColor(project.status)}15`
+              }}>
+                {project.status}
+              </span>
+            </div>
 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags && typeof project.tags === 'string' &&
-                    (() => {
-                      try {
-                        const parsedTags = JSON.parse(project.tags);
-                        return Array.isArray(parsedTags) && parsedTags.map((tag: string, index: number) => (
-                      <span
-                        key={index}
-                        className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800"
-                      >
-                        {tag}
-                      </span>
-                    ));
-                      } catch (e) {
-                        console.error('Error parsing tags:', e);
-                        return null;
-                      }
-                    })()
-                  }
-                </div>
+            {/* Progress Bar */}
+            <div style={{ marginBottom: 'var(--space-4)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 'var(--space-2)' }}>
+                <span style={{ fontSize: '12px', color: '#525252', fontWeight: '500' }}>Progress</span>
+                <span style={{ fontSize: '12px', color: '#171717', fontWeight: '600' }}>{project.progress}%</span>
+              </div>
+              <div style={{ width: '100%', height: '6px', backgroundColor: '#f5f5f5', borderRadius: '3px', overflow: 'hidden' }}>
+                <div style={{
+                  width: `${project.progress}%`,
+                  height: '100%',
+                  backgroundColor: getStatusColor(project.status),
+                  transition: ' width 300ms ease'
+                }} />
+              </div>
+            </div>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex space-x-2">
-                    <Link
-                      href={`/admin/projects/${project.id}`}
-                      className="text-blue-600 hover:text-blue-900"
-                    >
-                      <Edit className="h-4 w-4" />
-                      <span className="sr-only">Edit {project.title}</span>
-                    </Link>
-                    <DeleteButton
-                      title={project.title}
-                      itemId={project.id}
-                      resourceType="projects"
-                    />
-                  </div>
-
-                  {project.url && (
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-gray-900"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      <span className="sr-only">Visit {project.title}</span>
-                    </a>
-                  )}
-                </div>
-
-                <div className="mt-2 flex items-center">
-                  <span className={`inline-flex rounded-full px-2 text-xs font-semibold leading-5 ${
-                    project.featured ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
-                  }`}>
-                    {project.featured ? 'Featured' : 'Not Featured'}
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          ))
-        ) : (
-          <div className="col-span-full text-center py-10 text-gray-500">
-            No projects found. Create your first project!
+            {/* Footer */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: '13px', color: '#a3a3a3' }}>
+                Due: {project.dueDate}
+              </span>
+              <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+                <button style={{
+                  padding: '6px',
+                  borderRadius: '6px',
+                  border: '1px solid #e5e5e5',
+                  backgroundColor: '#ffffff',
+                  color: '#525252',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  transition: 'all 150ms ease'
+                }}
+                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#f5f5f5'; e.currentTarget.style.color = '#171717' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.color = '#525252' }}
+                >
+                  <ArrowUpRight size={16} />
+                </button>
+                <button style={{
+                  padding: '6px',
+                  borderRadius: '6px',
+                  border: '1px solid #e5e5e5',
+                  backgroundColor: '#ffffff',
+                  color: '#525252',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  transition: 'all 150ms ease'
+                }}
+                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#f5f5f5'; e.currentTarget.style.color = '#171717' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.color = '#525252' }}
+                >
+                  <Pencil size={16} />
+                </button>
+                <button style={{
+                  padding: '6px',
+                  borderRadius: '6px',
+                  border: '1px solid #fee2e2',
+                  backgroundColor: '#ffffff',
+                  color: '#ef4444',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  transition: 'all 150ms ease'
+                }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#fef2f2'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ffffff'}
+                >
+                  <Trash size={16} />
+                </button>
+              </div>
+            </div>
           </div>
-        )}
+        ))}
       </div>
     </div>
   )

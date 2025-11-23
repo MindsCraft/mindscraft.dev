@@ -1,106 +1,161 @@
 'use client'
 
-export const dynamic = 'force-dynamic'
-
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { PlusCircle, Upload, FolderOpen } from '@/components/ui/icons'
-import Link from 'next/link'
+import { UploadSimple, File, Trash, MagnifyingGlass } from 'phosphor-react'
 
 export default function MediaPage() {
-  // Dummy media items for demonstration
-  const mediaItems = [
-    { id: '1', name: 'hero-image.jpg', type: 'image/jpeg', size: '1.2 MB', url: 'https://picsum.photos/800/600?random=1' },
-    { id: '2', name: 'about-team.jpg', type: 'image/jpeg', size: '0.8 MB', url: 'https://picsum.photos/800/600?random=2' },
-    { id: '3', name: 'project-screenshot.png', type: 'image/png', size: '2.4 MB', url: 'https://picsum.photos/800/600?random=3' },
-    { id: '4', name: 'company-logo.svg', type: 'image/svg+xml', size: '0.1 MB', url: 'https://picsum.photos/800/600?random=4' },
-    { id: '5', name: 'product-demo.mp4', type: 'video/mp4', size: '8.7 MB', url: 'https://picsum.photos/800/600?random=5' },
-    { id: '6', name: 'whitepaper.pdf', type: 'application/pdf', size: '3.5 MB', url: 'https://picsum.photos/800/600?random=6' },
+  const files = [
+    { id: 1, name: 'hero-image.jpg', type: 'image', size: '2.4 MB', date: 'Dec 20, 2024' },
+    { id: 2, name: 'logo.svg', type: 'image', size: '45 KB', date: 'Dec 18, 2024' },
+    { id: 3, name: 'presentation.pdf', type: 'document', size: '5.1 MB', date: 'Dec 15, 2024' },
+    { id: 4, name: 'screenshot.png', type: 'image', size: '890 KB', date: 'Dec 12, 2024' },
+    { id: 5, name: 'video-intro.mp4', type: 'video', size: '15.2 MB', date: 'Dec 10, 2024' },
+    { id: 6, name: 'report.xlsx', type: 'document', size: '125 KB', date: 'Dec 8, 2024' },
   ]
 
+  const getFileIcon = (type: string) => {
+    return type === 'image' ? '🖼️' : type === 'video' ? '🎥' : '📄'
+  }
+
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1 className="text-2xl font-semibold text-gray-900">Media Library</h1>
-          <p className="mt-2 text-sm text-gray-700">
-            Manage your website's images, videos, and other media files.
-          </p>
+    <div style={{
+      padding: 'var(--space-8)',
+      maxWidth: '1400px',
+      margin: '0 auto'
+    }}>
+      {/* Page Header */}
+      <div style={{ marginBottom: 'var(--space-8)' }}>
+        <h1 style={{
+          fontSize: '24px',
+          fontWeight: '600',
+          color: '#171717',
+          marginBottom: 'var(--space-2)'
+        }}>
+          Media Library
+        </h1>
+        <p style={{ fontSize: '14px', color: '#525252' }}>
+          Manage your images, videos, and documents
+        </p>
+      </div>
+
+      {/* Upload Area */}
+      <div style={{
+        backgroundColor: '#fafafa',
+        borderRadius: '12px',
+        border: '2px dashed #e5e5e5',
+        padding: 'var(--space-8)',
+        marginBottom: 'var(--space-6)',
+        textAlign: 'center',
+        cursor: 'pointer',
+        transition: 'all 150ms ease'
+      }}
+        onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#171717'; e.currentTarget.style.backgroundColor = '#ffffff' }}
+        onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#e5e5e5'; e.currentTarget.style.backgroundColor = '#fafafa' }}
+      >
+        <UploadSimple size={48} style={{ color: '#a3a3a3', marginBottom: 'var(--space-3)' }} />
+        <h3 style={{ fontSize: '16px', fontWeight: '600', color: '#171717', marginBottom: 'var(--space-2)' }}>
+          Drop files to upload
+        </h3>
+        <p style={{ fontSize: '14px', color: '#a3a3a3' }}>
+          or click to browse
+        </p>
+      </div>
+
+      {/* Search & Filter */}
+      <div style={{ marginBottom: 'var(--space-6)' }}>
+        <div style={{ position: 'relative', maxWidth: '400px' }}>
+          <MagnifyingGlass size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#a3a3a3' }} />
+          <input
+            type="text"
+            placeholder="Search files..."
+            style={{
+              width: '100%',
+              padding: '12px 12px 12px 40px',
+              borderRadius: '8px',
+              border: '1px solid #e5e5e5',
+              fontSize: '14px',
+              color: '#171717',
+              outline: 'none'
+            }}
+            onFocus={(e) => e.currentTarget.style.borderColor = '#171717'}
+            onBlur={(e) => e.currentTarget.style.borderColor = '#e5e5e5'}
+          />
         </div>
-        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-          <button
-            type="button"
-            className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto"
+      </div>
+
+      {/* Files Grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: 'var(--space-4)' }}>
+        {files.map((file) => (
+          <div
+            key={file.id}
+            style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '12px',
+              border: '1px solid #e5e5e5',
+              overflow: 'hidden',
+              transition: 'all 150ms ease'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)'}
+            onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}
           >
-            <Upload className="h-4 w-4 mr-2" />
-            Upload Files
-          </button>
-        </div>
-      </div>
-
-      {/* Folder navigation */}
-      <div className="mt-6 flex space-x-2 text-sm">
-        <button className="inline-flex items-center px-3 py-1 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">
-          <FolderOpen className="h-4 w-4 mr-1" />
-          All Files
-        </button>
-        <button className="inline-flex items-center px-3 py-1 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">
-          <FolderOpen className="h-4 w-4 mr-1" />
-          Images
-        </button>
-        <button className="inline-flex items-center px-3 py-1 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">
-          <FolderOpen className="h-4 w-4 mr-1" />
-          Videos
-        </button>
-        <button className="inline-flex items-center px-3 py-1 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200">
-          <FolderOpen className="h-4 w-4 mr-1" />
-          Documents
-        </button>
-      </div>
-
-      {/* Media grid */}
-      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {mediaItems.map((item) => (
-          <Card key={item.id} className="overflow-hidden">
-            <div className="h-40 bg-gray-100 flex items-center justify-center">
-              {item.type.startsWith('image/') ? (
-                <img src={item.url} alt={item.name} className="h-full w-full object-cover" />
-              ) : (
-                <div className="text-center p-4">
-                  <div className="text-4xl mb-2">📄</div>
-                  <p className="text-sm text-gray-500">{item.type}</p>
-                </div>
-              )}
+            {/* File Preview */}
+            <div style={{
+              height: '160px',
+              backgroundColor: '#f5f5f5',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '48px'
+            }}>
+              {getFileIcon(file.type)}
             </div>
-            <CardContent className="p-4">
-              <h3 className="font-medium text-gray-900 truncate">{item.name}</h3>
-              <div className="mt-1 flex justify-between text-sm text-gray-500">
-                <span>{item.size}</span>
-                <span>{item.type.split('/')[1]}</span>
-              </div>
-              <div className="mt-4 flex justify-end space-x-2">
-                <button className="text-blue-600 hover:text-blue-800 text-sm">View</button>
-                <button className="text-blue-600 hover:text-blue-800 text-sm">Copy URL</button>
-                <button className="text-red-600 hover:text-red-800 text-sm">Delete</button>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
 
-      {/* Note about implementation */}
-      <div className="mt-8 bg-yellow-50 border-l-4 border-yellow-400 p-4">
-        <div className="flex">
-          <div className="flex-shrink-0">
-            <svg className="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-            </svg>
+            {/* File Info */}
+            <div style={{ padding: 'var(--space-4)' }}>
+              <h4 style={{ fontSize: '14px', fontWeight: '500', color: '#171717', marginBottom: 'var(--space-2)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {file.name}
+              </h4>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-3)' }}>
+                <span style={{ fontSize: '12px', color: '#a3a3a3' }}>{file.size}</span>
+                <span style={{ fontSize: '12px', color: '#a3a3a3' }}>{file.date}</span>
+              </div>
+              <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+                <button style={{
+                  flex: 1,
+                  padding: '8px',
+                  borderRadius: '6px',
+                  border: '1px solid #e5e5e5',
+                  backgroundColor: '#ffffff',
+                  color: '#525252',
+                  fontSize: '13px',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  transition: 'all 150ms ease'
+                }}
+                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#f5f5f5'; e.currentTarget.style.color = '#171717' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.color = '#525252' }}
+                >
+                  View
+                </button>
+                <button style={{
+                  padding: '8px',
+                  borderRadius: '6px',
+                  border: '1px solid #fee2e2',
+                  backgroundColor: '#ffffff',
+                  color: '#ef4444',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  transition: 'all 150ms ease'
+                }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#fef2f2'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ffffff'}
+                >
+                  <Trash size={16} />
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="ml-3">
-            <p className="text-sm text-yellow-700">
-              Note: This is a placeholder page. To fully implement media management, you'll need to add file upload functionality and storage integration.
-            </p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   )
