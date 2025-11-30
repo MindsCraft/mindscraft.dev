@@ -39,7 +39,6 @@ export default function Header() {
     { href: '/about', label: 'About' },
     { href: '/blog', label: 'Blog' },
     { href: '/contact', label: 'Contact' },
-    { href: '/admin', label: 'Admin' },
   ];
 
   // Check if a link is active
@@ -82,8 +81,8 @@ export default function Header() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
         className={`border-b border-gray-200/30 absolute inset-0 transition-all duration-500 ease-in-out backdrop-filter backdrop-blur-lg bg-gradient-to-r from-white/75 via-white/85 to-white/75 ${scrolled
-            ? 'bg-opacity-85 shadow-md'
-            : 'bg-opacity-75'
+          ? 'bg-opacity-85 shadow-md'
+          : 'bg-opacity-75'
           }`}
         style={{
           backdropFilter: 'blur(12px) saturate(180%)',
