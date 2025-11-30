@@ -5,7 +5,7 @@ import { FiChevronDown } from "react-icons/fi";
 import { cn } from "@/lib/utils";
 
 export interface SelectProps
-  extends React.SelectHTMLAttributes<HTMLSelectElement> {}
+  extends React.SelectHTMLAttributes<HTMLSelectElement> { }
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   ({ className, children, ...props }, ref) => {
@@ -13,7 +13,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       <div className="relative">
         <select
           className={cn(
-            "block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm appearance-none pr-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            "block w-full border border-gray-200 bg-white px-3 py-2 text-sm appearance-none pr-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
             className
           )}
           ref={ref}
@@ -31,7 +31,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
 Select.displayName = "Select";
 
 export interface SelectOptionProps
-  extends React.OptionHTMLAttributes<HTMLOptionElement> {}
+  extends React.OptionHTMLAttributes<HTMLOptionElement> { }
 
 const SelectOption = React.forwardRef<HTMLOptionElement, SelectOptionProps>(
   ({ className, ...props }, ref) => {

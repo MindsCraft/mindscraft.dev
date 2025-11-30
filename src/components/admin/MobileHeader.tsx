@@ -201,7 +201,7 @@ const MobileHeader = () => {
             <div style={{ display: 'flex', flexGrow: 1, flexDirection: 'column', gap: 'var(--space-5)', padding: 'var(--space-6)', paddingBottom: 'var(--space-4)' }}>
               {/* Logo Header */}
               <div style={{ display: 'flex', height: '64px', flexShrink: 0, alignItems: 'center', borderBottom: '1px solid var(--color-border)', paddingBottom: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
-                <Image src="/logo/png/mindscraft-logo.png" alt="Mindscraft" width={140} height={40} className="h-8 w-auto" />
+                <Image src="/logo/new-logo.svg" alt="Mindscraft" width={140} height={40} className="h-8 w-auto" />
                 <button
                   type="button"
                   style={{

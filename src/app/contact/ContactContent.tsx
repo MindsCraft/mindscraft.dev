@@ -12,7 +12,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectOption } from '@/components/ui/select';
 import { Form, FormField } from '@/components/ui/form';
 import { FileInput } from '@/components/ui/file-input';
-import { MailIcon, Globe, UsersIcon, CheckIcon } from '@/components/ui/icons';
 import { motion } from 'framer-motion';
 
 // Form validation schema - conditionally use FileList for client-side only
@@ -36,9 +35,7 @@ type FormData = z.infer<typeof formSchema>;
 
 const SERVICES = [
   'New Web Application',
-  'Mobile App Development',
   'UI/UX Design',
-  'Cloud & DevOps Consulting',
   'Website Maintenance',
   'General Inquiry'
 ];
@@ -53,26 +50,6 @@ const BUDGET_RANGES = [
 
 const ACCEPTED_FILE_TYPES = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-
-interface ContactInfoItem {
-  title: string;
-  value: string;
-  link?: string;
-  target?: string;
-}
-
-const ContactInfo: ContactInfoItem[] = [
-  {
-    title: 'Email',
-    value: 'hello@mindscraft.dev',
-    link: 'mailto:hello@mindscraft.dev'
-  },
-  {
-    title: 'Phone',
-    value: '+1 (555) 123-4567',
-    link: 'tel:+15551234567'
-  },
-];
 
 export default function ContactContent() {
   const [isBudgetVisible, setIsBudgetVisible] = useState(false);
@@ -134,17 +111,35 @@ export default function ContactContent() {
         }
       });
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Call the API route
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nameOrCompany: data.nameOrCompany,
+          email: data.email,
+          service: data.service,
+          budget: data.budget,
+          message: data.message,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to send message');
+      }
 
       // On success
       reset();
       setSelectedFile(null);
 
     } catch (error) {
+      console.error('Form submission error:', error);
       setError('root', {
         type: 'manual',
-        message: 'Something went wrong. Please try again or email us directly at hello@mindscraft.dev'
+        message: error instanceof Error ? error.message : 'Something went wrong. Please try again or email us directly at hello@mindscraft.dev'
       });
     }
   };
@@ -185,46 +180,47 @@ export default function ContactContent() {
       {/* Contact Form Section */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
             {/* Left Content */}
-            <div className="flex flex-col">
-
-              <h2 className="text-3xl md:text-4xl text-gray-900 mb-4 relative inline-block">
-                Get in Touch
-              </h2>
-              <p className="text-gray-500 mb-10 max-w-xl leading-relaxed">
-                We'd love to hear about your project. Tell us what you're looking for, and we'll help you achieve your goals with our expertise in web development and design.
+            <div className="flex flex-col pr-0 lg:pr-12 pt-4">
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
+                Let’s Talk
+              </h1>
+              <p className="text-xl text-gray-600 mb-16 max-w-md leading-relaxed">
+                We’d love to learn more about you and what we can design and build together.
               </p>
 
-              <div className="mb-8">
-                {ContactInfo.map((item, index) => (
-                  <div key={index} className="flex items-center space-x-4 mb-6 p-6 bg-gray-50 rounded-lg">
-                    <div className="flex flex-col justify-center">
-                      <h4 className="mb-1 uppercase text-sm text-gray-600">
-                        {item.title}
-                      </h4>
-                      {item.link ? (
-                        <a
-                          href={item.link}
-                          target={item.target || '_self'}
-                          rel="noopener noreferrer"
-                          className="text-xl text-gray-900 hover:text-blue-500 transition-colors"
-                          aria-label={`${item.title}: ${item.value}`}
-                        >
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-gray-600 mb-0">{item.value}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mb-20">
+                <div>
+                  <h3 className="text-gray-500 mb-3 text-lg">Become a Client</h3>
+                  <a
+                    href="mailto:hello@mindscraft.dev"
+                    className="text-2xl font-medium text-gray-900 border-b border-gray-300 hover:border-gray-900 transition-colors pb-1 inline-block"
+                  >
+                    hello@mindscraft.dev
+                  </a>
+                </div>
+                <div>
+                  <h3 className="text-gray-500 mb-3 text-lg">Join Us</h3>
+                  <a
+                    href="#"
+                    className="text-2xl font-medium text-gray-900 border-b border-gray-300 hover:border-gray-900 transition-colors pb-1 inline-block"
+                  >
+                    See Open Positions
+                  </a>
+                </div>
               </div>
 
+              <div>
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">Locations</h2>
+                <p className="text-lg text-gray-600 max-w-md leading-relaxed">
+                  We’re remote-first but gather in physical spaces when in-person collaboration is essential for impact.
+                </p>
+              </div>
             </div>
 
             {/* Right Form */}
-            <div className="bg-white p-6 md:p-10 relative border border-gray-100">
+            <div className="bg-gray-50 p-6 md:p-10 relative">
               {isSubmitSuccessful ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -265,6 +261,12 @@ export default function ContactContent() {
               ) : (
                 <FormProvider {...methods}>
                   <Form onSubmit={methods.handleSubmit(onSubmit)} className="">
+                    {/* Form Header */}
+                    <div className="mb-8">
+                      <h3 className="text-2xl font-bold text-back mb-2">Tell us about your project</h3>
+                      <p className="text-sm text-gray-600">Share your vision and we'll get back to you within 24 hours.</p>
+                    </div>
+
                     {/* Honeypot Field */}
                     <div className="hidden">
                       <Label htmlFor="website">Leave this field empty</Label>
@@ -275,17 +277,17 @@ export default function ContactContent() {
                     </div>
 
                     {/* Form Fields */}
-                    <div className="grid grid-cols-1 gap-4">
+                    <div className="grid grid-cols-1 gap-6">
                       {/* Name / Company Name */}
                       <div className="md:col-span-2">
                         <FormField name="nameOrCompany">
-                          <Label htmlFor="nameOrCompany" required className="text-gray-700 font-medium">
+                          <Label htmlFor="nameOrCompany" required className="text-gray-700 font-semibold mb-2 block">
                             Name / Company Name
                           </Label>
                           <Input
                             id="nameOrCompany"
                             placeholder="John Doe or Acme Inc."
-                            className={`transition-all duration-200 ${errors.nameOrCompany ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-500 focus:ring-blue-500'}`}
+                            className={`h-12 transition-all duration-200 ${errors.nameOrCompany ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-500 focus:ring-blue-500'}`}
                             {...register('nameOrCompany')}
                             required
                             minLength={2}
@@ -298,14 +300,14 @@ export default function ContactContent() {
                       {/* Email */}
                       <div className="md:col-span-2">
                         <FormField name="email">
-                          <Label htmlFor="email" required className="text-gray-700 font-medium">
+                          <Label htmlFor="email" required className="text-gray-700 font-semibold mb-2 block">
                             Work Email
                           </Label>
                           <Input
                             type="email"
                             id="email"
                             placeholder="you@company.com"
-                            className={`transition-all duration-200 ${errors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-500 focus:ring-blue-500'}`}
+                            className={`h-12 transition-all duration-200 ${errors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-500 focus:ring-blue-500'}`}
                             {...register('email')}
                             required
                             aria-invalid={errors.email ? 'true' : 'false'}
@@ -317,12 +319,12 @@ export default function ContactContent() {
                       {/* Service Dropdown */}
                       <div className="md:col-span-2">
                         <FormField name="service">
-                          <Label htmlFor="service" required className="text-gray-700 font-medium">
+                          <Label htmlFor="service" required className="text-gray-700 font-semibold mb-2 block">
                             Service of Interest
                           </Label>
                           <Select
                             id="service"
-                            className={`transition-all duration-200 ${errors.service ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-500 focus:ring-blue-500'}`}
+                            className={`h-12 transition-all duration-200 ${errors.service ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-500 focus:ring-blue-500'}`}
                             {...register('service')}
                             required
                             aria-invalid={errors.service ? 'true' : 'false'}
@@ -340,14 +342,14 @@ export default function ContactContent() {
 
                       {/* Conditional Budget Dropdown */}
                       {isBudgetVisible && (
-                        <div>
+                        <div className="md:col-span-2">
                           <div>
-                            <Label htmlFor="budget" className="text-gray-700 font-medium">
+                            <Label htmlFor="budget" className="text-gray-700 font-semibold mb-2 block">
                               Project Budget
                             </Label>
                             <Select
                               id="budget"
-                              className=""
+                              className="h-12"
                               {...register('budget')}
                             >
                               {BUDGET_RANGES.map((range) => (
@@ -362,9 +364,9 @@ export default function ContactContent() {
                     </div>
 
                     {/* Message */}
-                    <div>
+                    <div className="mt-6">
                       <FormField name="message">
-                        <Label htmlFor="message" required className="text-gray-700 font-medium">
+                        <Label htmlFor="message" required className="text-gray-700 font-semibold mb-2 block">
                           Your Message
                         </Label>
                         <Textarea
@@ -378,15 +380,15 @@ export default function ContactContent() {
                           aria-invalid={errors.message ? 'true' : 'false'}
                           aria-describedby={errors.message ? 'message-error' : undefined}
                         />
-                        <p className="mt-1 text-xs text-gray-500">
+                        <p className="mt-2 text-xs text-gray-500">
                           Provide details about your project requirements, timeline, and any specific technologies you're interested in.
                         </p>
                       </FormField>
                     </div>
 
                     {/* File Upload */}
-                    <div className="bg-gray-50 p-3 rounded-lg border border-gray-100">
-                      <Label className="text-gray-700 font-medium">
+                    <div className="mt-6 bg-white p-4 border border-gray-100">
+                      <Label className="text-gray-700 font-semibold mb-2 block">
                         Attach a file (PDF, DOCX up to 5MB)
                       </Label>
                       <div className="mt-1">
@@ -402,7 +404,7 @@ export default function ContactContent() {
                           error={fileError}
                           {...register('attachment')}
                         />
-                        <p className="text-xs text-gray-500 mt-1">
+                        <p className="text-xs text-gray-500 mt-2">
                           Optional: Attach a project brief, RFP, or any relevant documents
                         </p>
                       </div>
@@ -410,7 +412,7 @@ export default function ContactContent() {
 
                     {/* Form Errors */}
                     {errors.root && (
-                      <div className="rounded-lg bg-red-50 pt-2 border border-red-100">
+                      <div className="mt-6 rounded-lg bg-red-50 pt-2 border border-red-100">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 bg-red-100 rounded-full p-2">
                             <FiAlertCircle className="h-5 w-5 text-red-500" aria-hidden="true" />
@@ -428,16 +430,48 @@ export default function ContactContent() {
                     )}
 
                     {/* Submit Button */}
-                    <div className="pt-2">
+                    <div className="pt-8">
                       <div>
                         <motion.div
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
                         >
-                          <Button
+                          <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full flex justify-center py-4 px-6 border border-transparent rounded-lg text-base font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                            className="w-full inline-flex items-center justify-center px-6 py-4 text-base font-semibold text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 disabled:opacity-50 disabled:cursor-not-allowed"
+                            style={{
+                              backgroundColor: '#101828',
+                              boxShadow: `
+                                0px 1px 1px 0px rgba(255, 255, 255, 0.20) inset,
+                                0px 6px 12px 0px rgba(255, 255, 255, 0.08) inset,
+                                0px 1px 3px 0px rgba(0, 0, 0, 0.3),
+                                0px 4px 8px 0px rgba(0, 0, 0, 0.15)
+                              `,
+                              transition: 'all 0.2s ease',
+                            }}
+                            onMouseEnter={(e) => {
+                              if (!isSubmitting) {
+                                e.currentTarget.style.transform = 'translateY(-1px)';
+                                e.currentTarget.style.boxShadow = `
+                                  0px 1px 1px 0px rgba(255, 255, 255, 0.25) inset,
+                                  0px 8px 16px 0px rgba(255, 255, 255, 0.10) inset,
+                                  0px 2px 4px 0px rgba(0, 0, 0, 0.3),
+                                  0px 8px 16px 0px rgba(0, 0, 0, 0.2)
+                                `;
+                              }
+                            }}
+                            onMouseLeave={(e) => {
+                              if (!isSubmitting) {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = `
+                                  0px 1px 1px 0px rgba(255, 255, 255, 0.20) inset,
+                                  0px 6px 12px 0px rgba(255, 255, 255, 0.08) inset,
+                                  0px 1px 3px 0px rgba(0, 0, 0, 0.3),
+                                  0px 4px 8px 0px rgba(0, 0, 0, 0.15)
+                                `;
+                              }
+                            }}
                           >
                             {isSubmitting ? (
                               <>
@@ -450,11 +484,11 @@ export default function ContactContent() {
                             ) : (
                               'Send Inquiry'
                             )}
-                          </Button>
+                          </button>
                         </motion.div>
                       </div>
-                      <p className="text-center text-xs text-gray-500 mt-3">
-                        By submitting this form, you agree to our <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a>
+                      <p className="text-center text-xs text-gray-500 mt-4">
+                        By submitting this form, you agree to our <a href="#" className="text-gray-900 underline hover:text-gray-700">Privacy Policy</a>
                       </p>
                     </div>
                   </Form>

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Manrope, JetBrains_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import React from "react";
 import { Providers } from "@/components/providers";
@@ -15,7 +15,7 @@ const SITE_DESCRIPTION = 'We help startups and product teams launch faster with 
 const SITE_URL = 'https://mindscraft.dev';
 
 // Fonts
-const inter = Inter({
+const manrope = Manrope({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
@@ -37,8 +37,6 @@ export const viewport: Viewport = {
   userScalable: true,
   themeColor: '#ffffff',
 };
-
-
 
 export const metadata: Metadata = {
   title: SITE_TITLE,
@@ -106,9 +104,9 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning
       lang="en"
-      className={`font-sans ${inter.variable} ${jetbrainsMono.variable} h-full scroll-smooth`}
+      className={`font-sans ${manrope.variable} ${jetbrainsMono.variable} h-full scroll-smooth`}
       style={{
-        '--font-sans': 'Inter, system-ui, -apple-system, sans-serif',
+        '--font-sans': 'Manrope, system-ui, -apple-system, sans-serif',
         '--font-mono': 'JetBrains Mono, monospace'
       } as React.CSSProperties}
     >

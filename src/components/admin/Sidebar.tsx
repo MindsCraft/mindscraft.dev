@@ -50,7 +50,7 @@ const Sidebar = () => {
           }}>
             <Link href="/admin/dashboard">
               <Image
-                src="/logo/png/mindscraft-logo.png"
+                src="/logo/new-logo.svg"
                 alt="Mindscraft"
                 width={140}
                 height={40}

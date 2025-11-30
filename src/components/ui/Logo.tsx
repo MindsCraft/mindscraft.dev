@@ -9,13 +9,13 @@ interface LogoProps {
   height?: number;
 }
 
-const Logo: React.FC<LogoProps> = ({ 
+const Logo: React.FC<LogoProps> = ({
   variant = 'full',
   theme = 'dark',
-  size = 'md', 
+  size = 'md',
   className = '',
   width,
-  height 
+  height
 }) => {
   const sizeClasses = {
     sm: 'h-8',
@@ -25,10 +25,10 @@ const Logo: React.FC<LogoProps> = ({
   };
 
   const logoSrc = {
-    full: '/logo/png/mindscraft-logo.png',
-    icon: '/logo/png/mindscraft-icon.png',
-    text: '/images/logo-text.svg', // Fallback to SVG until PNG text version is available
-    horizontal: '/logo/png/mindscraft-logo.png' // Using full logo for horizontal until separate version is available
+    full: '/logo/new-logo.svg',
+    icon: '/logo/new-logo.svg',
+    text: '/logo/new-logo.svg',
+    horizontal: '/logo/new-logo.svg'
   };
 
   const altText = {

@@ -6,7 +6,7 @@ export default function JsonLd() {
         "@type": "Organization",
         "name": "Mindscraft",
         "url": "https://mindscraft.dev",
-        "logo": "https://mindscraft.dev/logo/png/mindscraft-logo.png",
+        "logo": "https://mindscraft.dev/logo/new-logo.svg",
         "sameAs": [
             "https://twitter.com/mindscraft",
             "https://linkedin.com/company/mindscraft"
