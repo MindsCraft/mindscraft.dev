@@ -17,10 +17,7 @@ import { motion } from 'framer-motion';
 // Form validation schema - conditionally use FileList for client-side only
 const formSchema = z.object({
   nameOrCompany: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email').refine(
-    email => !['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com'].includes(email.split('@')[1]?.toLowerCase() || ''),
-    { message: 'Please use your work email for better service' }
-  ),
+  email: z.string().email('Please enter a valid email'),
   service: z.string().min(1, 'Please select a service'),
   budget: z.string().optional(),
   message: z.string().min(10, 'Please provide more details about your project'),
