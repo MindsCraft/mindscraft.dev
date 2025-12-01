@@ -176,32 +176,33 @@ export default function ContactContent() {
     <div className="min-h-screen bg-white">
       {/* Contact Form Section */}
       <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Left Content */}
-            <div className="flex flex-col pr-0 lg:pr-12 pt-4">
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
+            <div className="flex flex-col pr-0 lg:pr-12">
+
+              <h2 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-none">
                 Let’s Talk
-              </h1>
-              <p className="text-xl text-gray-600 mb-16 max-w-md leading-relaxed">
+              </h2>
+              <p className="text-xl md:text-2xl text-gray-700 mb-28 max-w-xl leading-relaxed">
                 We’d love to learn more about you and what we can design and build together.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mb-20">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-12 mb-40">
                 <div>
-                  <h3 className="text-gray-500 mb-3 text-lg">Become a Client</h3>
+                  <p className="font-medium text-gray-500 mb-2 text-lg">Become a Client</p>
                   <a
                     href="mailto:hello@mindscraft.dev"
-                    className="text-2xl font-medium text-gray-900 border-b border-gray-300 hover:border-gray-900 transition-colors pb-1 inline-block"
+                    className="text-2xl font-normal text-gray-900 border-b-2 border-gray-300 hover:border-gray-900 transition-colors inline-block"
                   >
                     hello@mindscraft.dev
                   </a>
                 </div>
                 <div>
-                  <h3 className="text-gray-500 mb-3 text-lg">Join Us</h3>
+                  <p className="font-medium text-gray-500 mb-2 text-lg">Join Us</p>
                   <a
                     href="#"
-                    className="text-2xl font-medium text-gray-900 border-b border-gray-300 hover:border-gray-900 transition-colors pb-1 inline-block"
+                    className="text-2xl font-normal text-gray-900 border-b-2 border-gray-300 hover:border-gray-900 transition-colors inline-block"
                   >
                     See Open Positions
                   </a>
@@ -209,8 +210,8 @@ export default function ContactContent() {
               </div>
 
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">Locations</h2>
-                <p className="text-lg text-gray-600 max-w-md leading-relaxed">
+                <h3 className="text-4xl font-bold text-gray-900 mb-6 leading-none">Locations</h3>
+                <p className="text-xl text-gray-700 max-w-xl leading-relaxed">
                   We’re remote-first but gather in physical spaces when in-person collaboration is essential for impact.
                 </p>
               </div>

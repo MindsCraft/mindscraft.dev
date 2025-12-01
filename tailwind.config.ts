@@ -37,10 +37,7 @@ const config: Config = {
           900: 'rgb(var(--accent-900) / <alpha-value>)',
         },
       },
-      fontFamily: {
-        sans: ['var(--font-sans)', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        mono: ['var(--font-mono)', 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', 'monospace'],
-      },
+
       keyframes: {
         'fade-in': {
           '0%': { opacity: '0' },
@@ -74,9 +71,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
 };
 
 export default config;

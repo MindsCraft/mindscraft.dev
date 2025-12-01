@@ -1,33 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, JetBrains_Mono } from "next/font/google";
 import "@/styles/globals.css";
-import React from "react";
-import { Providers } from "@/components/providers";
-// Import the client-side Google Analytics wrapper
-import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
-import ConditionalHeader from "@/components/layout/ConditionalHeader";
-import ConditionalFooter from "@/components/layout/ConditionalFooter";
+import { ThemeProvider } from "@/components/theme-context";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 import JsonLd from "@/components/seo/JsonLd";
 
-// Site metadata constants
-const SITE_TITLE = 'Mindscraft - UX-Focused Web Development Agency';
+const SITE_TITLE = 'Mindscraft | AI-Powered Web Development & Design Agency';
 const SITE_DESCRIPTION = 'We help startups and product teams launch faster with our AI-powered web development and UX design services. Transform your ideas into reality with our expert team.';
 const SITE_URL = 'https://mindscraft.dev';
-
-// Fonts
-const manrope = Manrope({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ['400', '500', '600', '700'],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ['400', '500', '600', '700'],
-});
 
 // Viewport settings
 export const viewport: Viewport = {
@@ -104,31 +84,21 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning
       lang="en"
-      className={`font-sans ${manrope.variable} ${jetbrainsMono.variable} h-full scroll-smooth`}
-      style={{
-        '--font-sans': 'Manrope, system-ui, -apple-system, sans-serif',
-        '--font-mono': 'JetBrains Mono, monospace'
-      } as React.CSSProperties}
+      className="h-full scroll-smooth"
     >
       <head>
-        {/* Google Analytics - Client Component */}
-        <GoogleAnalytics />
-
-        {/* Preconnect to important origins */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <JsonLd />
       </head>
-
-      <body className="font-sans antialiased">
-        <Providers>
-          <JsonLd />
-          {/* Conditional Header and Footer */}
-          <ConditionalHeader />
-          <main id="main-content" className="min-h-screen pt-16">
-            {children}
-          </main>
-          <ConditionalFooter />
-        </Providers>
+      <body className="antialiased h-full bg-background text-foreground selection:bg-primary-100 selection:text-primary-900">
+        <ThemeProvider>
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1 w-full pt-[80px]">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

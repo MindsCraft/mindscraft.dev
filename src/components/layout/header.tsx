@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, px } from 'framer-motion';
 import { ArrowRightIcon, CalendarIcon } from '@/components/ui/icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -38,7 +38,6 @@ export default function Header() {
     { href: '/work', label: 'Work' },
     { href: '/about', label: 'About' },
     { href: '/blog', label: 'Blog' },
-    { href: '/contact', label: 'Contact' },
   ];
 
   // Check if a link is active
@@ -74,122 +73,59 @@ export default function Header() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-      {/* Enhanced frosted glass effect with Navy tint */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className={`border-b border-gray-200/30 absolute inset-0 transition-all duration-500 ease-in-out backdrop-filter backdrop-blur-lg bg-gradient-to-r from-white/75 via-white/85 to-white/75 ${scrolled
-          ? 'bg-opacity-85 shadow-md'
-          : 'bg-opacity-75'
-          }`}
+    <header className="fixed top-0 left-0 right-0 z-50">
+      {/* Blur background */}
+      <div 
+        className="absolute inset-0 bg-white/70 backdrop-blur-md"
         style={{
-          backdropFilter: 'blur(12px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(12px) saturate(180%)'
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)'
         }}
-      >
-        {/* Subtle cream accent overlay */}
-        <div
-          className="absolute inset-0 opacity-5 mix-blend-overlay"
-          style={{ background: `linear-gradient(to right, ${CREAM_LIGHT}, transparent, ${CREAM_LIGHT})` }}
-        ></div>
-      </motion.div>
+      />
 
-      <div className="w-full px-4 sm:px-6 lg:px-8 relative">
-        <div className="flex items-center justify-between h-16">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex-shrink-0 z-10"
-          >
-            <Link href="/" className="flex items-center cursor-pointer group">
-              <Logo
-                variant="horizontal"
-                size="sm"
-                className="transition-opacity duration-200 group-hover:opacity-80"
-              />
-            </Link>
-          </motion.div>
+      <div className="container relative">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center cursor-pointer group">
+            <Logo
+              width={36}
+              variant="horizontal"
+              className="transition-opacity duration-200 group-hover:opacity-80"
+            />
+          </Link>
 
-          {/* Navigation - Center with updated styling */}
-          <motion.nav
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="hidden md:flex items-center space-x-1 bg-white/60 backdrop-blur-sm rounded-full px-2 py-2 shadow-sm border border-gray-200/50"
-          >
-            {navItems.map((item, index) => (
-              <motion.div
+          {/* Navigation - Center */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <Link
                 key={item.href}
-                className="relative"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.1 + index * 0.05 }}
+                href={item.href}
+                className={`text-base font-medium transition-colors duration-200 ${
+                  isActive(item.href)
+                    ? 'text-gray-900'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
               >
-                <Link
-                  href={item.href}
-                  className="relative px-3 py-2 text-sm font-medium rounded-full transition-all duration-200"
-                  style={
-                    isActive(item.href)
-                      ? {
-                        color: NAVY,
-                        backgroundColor: '#F3F4F6',
-                        fontWeight: '600',
-                        boxShadow: `0px 1px 2px 0px rgba(16, 24, 40, 0.05)`,
-                      }
-                      : {
-                        color: '#6B7280',
-                      }
-                  }
-                  onMouseEnter={(e) => {
-                    if (!isActive(item.href)) {
-                      e.currentTarget.style.backgroundColor = '#F3F4F6';
-                      e.currentTarget.style.color = '#374151';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive(item.href)) {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.color = '#6B7280';
-                    }
-                  }}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              </motion.div>
+                {item.label}
+              </Link>
             ))}
-          </motion.nav>
+          </nav>
 
-          {/* CTA - Right - Navy button */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center justify-end flex-shrink-0 z-10"
-          >
-            {/* Book a call button - Premium Navy */}
-            <div className="hidden md:block">
-              <a
-                href="https://calendly.com/uddinmoin/typewriting"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer"
-                style={ctaButtonStyle}
-                onMouseEnter={(e) => Object.assign(e.currentTarget.style, ctaHoverStyle)}
-                onMouseLeave={(e) => Object.assign(e.currentTarget.style, ctaButtonStyle)}
-              >
-                Book a Call
-                <CalendarIcon className="ml-2" />
-              </a>
-            </div>
+          {/* CTA Button */}
+          <div className="flex items-center gap-4">
+            <Link
+              href="/contact"
+              className="hidden md:inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white transition-all duration-200"
+              style={ctaButtonStyle}
+              onMouseEnter={(e) => Object.assign(e.currentTarget.style, ctaHoverStyle)}
+              onMouseLeave={(e) => Object.assign(e.currentTarget.style, ctaButtonStyle)}
+            >
+              Contact
+            </Link>
 
             {/* Mobile menu button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <button
               className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-gray-700 hover:text-gray-900 hover:bg-gray-100/70 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
@@ -208,8 +144,8 @@ export default function Header() {
                   d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
                 />
               </svg>
-            </motion.button>
-          </motion.div>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -272,16 +208,14 @@ export default function Header() {
                   transition={{ duration: 0.4, delay: 0.4 }}
                   className="pt-6 border-t border-gray-200"
                 >
-                  <a
-                    href="https://calendly.com/uddinmoin/typewriting"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center w-full px-6 py-3 text-base font-semibold rounded-lg"
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center w-full px-6 py-3 text-base font-semibold"
                     style={ctaButtonStyle}
+                    onClick={() => setMobileMenuOpen(false)}
                   >
-                    Book a Call
-                    <CalendarIcon className="ml-2" />
-                  </a>
+                    Contact
+                  </Link>
                 </motion.div>
               </nav>
             </div>

@@ -12,7 +12,7 @@ interface LogoProps {
 const Logo: React.FC<LogoProps> = ({
   variant = 'full',
   theme = 'dark',
-  size = 'md',
+  size = 'lg',
   className = '',
   width,
   height
@@ -24,31 +24,54 @@ const Logo: React.FC<LogoProps> = ({
     xl: 'h-24'
   };
 
-  const logoSrc = {
-    full: '/logo/new-logo.svg',
-    icon: '/logo/new-logo.svg',
-    text: '/logo/new-logo.svg',
-    horizontal: '/logo/new-logo.svg'
+  const textSizeClasses = {
+    sm: 'text-xl',
+    md: 'text-2xl',
+    lg: 'text-3xl',
+    xl: 'text-4xl'
   };
 
-  const altText = {
-    full: 'Mindscraft - Full Logo',
-    icon: 'Mindscraft - Icon',
-    text: 'Mindscraft - Text',
-    horizontal: 'Mindscraft - Horizontal Logo'
-  };
+  const logoSrc = '/logo/new-logo.svg';
 
-  const baseClasses = 'object-contain';
-  const finalClasses = `${baseClasses} ${!width && !height ? sizeClasses[size] : ''} ${className}`;
+  // If only icon variant is requested
+  if (variant === 'icon') {
+    const baseClasses = 'object-contain';
+    const finalClasses = `${baseClasses} ${!width && !height ? sizeClasses[size] : ''} ${className}`;
+
+    return (
+      <img
+        src={logoSrc}
+        alt="Mindscraft Icon"
+        className={finalClasses}
+        width={width}
+        height={height}
+      />
+    );
+  }
+
+  // Default: icon + text
+  const iconClasses = `object-contain ${!width && !height ? sizeClasses[size] : ''}`;
 
   return (
-    <img
-      src={logoSrc[variant]}
-      alt={altText[variant]}
-      className={finalClasses}
-      width={width}
-      height={height}
-    />
+    <div className={`flex items-center gap-2 ${className}`}>
+      <img
+        src={logoSrc}
+        alt="Mindscraft"
+        className={iconClasses}
+        width={width}
+        height={height}
+      />
+      <span
+        className="text-gray-800"
+        style={{
+          fontSize: '24px',
+          letterSpacing: '-0.02em',
+          fontWeight: 500
+        }}
+      >
+        MindsCraft.
+      </span>
+    </div>
   );
 };
 

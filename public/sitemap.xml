@@ -1,91 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<<<<<<< HEAD
 
     <url>
       <loc>https://typewriting.ai/</loc>
-      <lastmod>2025-11-23T13:48:39.087Z</lastmod>
-=======
-  
-    <url>
-      <loc>https://typewriting.ai/</loc>
-      <lastmod>2025-11-24T13:35:19.953Z</lastmod>
->>>>>>> e9e1462 (feat: contact page and home updated)
+      <lastmod>2025-11-30T23:30:30.827Z</lastmod>
       <changefreq>daily</changefreq>
       <priority>1</priority>
     </url>
     <url>
       <loc>https://typewriting.ai/about</loc>
-<<<<<<< HEAD
-      <lastmod>2025-11-23T13:48:39.087Z</lastmod>
-=======
-      <lastmod>2025-11-24T13:35:19.953Z</lastmod>
->>>>>>> e9e1462 (feat: contact page and home updated)
+      <lastmod>2025-11-30T23:30:30.827Z</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>https://typewriting.ai/blog</loc>
-<<<<<<< HEAD
-      <lastmod>2025-11-23T13:48:39.087Z</lastmod>
-=======
-      <lastmod>2025-11-24T13:35:19.953Z</lastmod>
->>>>>>> e9e1462 (feat: contact page and home updated)
+      <lastmod>2025-11-30T23:30:30.827Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.9</priority>
     </url>
     <url>
       <loc>https://typewriting.ai/contact</loc>
-<<<<<<< HEAD
-      <lastmod>2025-11-23T13:48:39.087Z</lastmod>
-=======
-      <lastmod>2025-11-24T13:35:19.953Z</lastmod>
->>>>>>> e9e1462 (feat: contact page and home updated)
+      <lastmod>2025-11-30T23:30:30.827Z</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>
     <url>
       <loc>https://typewriting.ai/services</loc>
-<<<<<<< HEAD
-      <lastmod>2025-11-23T13:48:39.087Z</lastmod>
-=======
-      <lastmod>2025-11-24T13:35:19.953Z</lastmod>
->>>>>>> e9e1462 (feat: contact page and home updated)
+      <lastmod>2025-11-30T23:30:30.827Z</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
     </url>
     <url>
       <loc>https://typewriting.ai/work</loc>
-<<<<<<< HEAD
-      <lastmod>2025-11-23T13:48:39.087Z</lastmod>
-=======
-      <lastmod>2025-11-24T13:35:19.953Z</lastmod>
->>>>>>> e9e1462 (feat: contact page and home updated)
+      <lastmod>2025-11-30T23:30:30.827Z</lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.9</priority>
     </url>
     <url>
       <loc>https://typewriting.ai/privacy-policy</loc>
-<<<<<<< HEAD
-      <lastmod>2025-11-23T13:48:39.087Z</lastmod>
-=======
-      <lastmod>2025-11-24T13:35:19.953Z</lastmod>
->>>>>>> e9e1462 (feat: contact page and home updated)
+      <lastmod>2025-11-30T23:30:30.827Z</lastmod>
       <changefreq>yearly</changefreq>
       <priority>0.5</priority>
     </url>
     <url>
       <loc>https://typewriting.ai/terms-and-conditions</loc>
-<<<<<<< HEAD
-      <lastmod>2025-11-23T13:48:39.087Z</lastmod>
+      <lastmod>2025-11-30T23:30:30.827Z</lastmod>
       <changefreq>yearly</changefreq>
       <priority>0.5</priority>
     </url>
 </urlset>
-=======
-      <lastmod>2025-11-24T13:35:19.953Z</lastmod>
-      <changefreq>yearly</changefreq>
-      <priority>0.5</priority>
-    </url>
-</urlset>
->>>>>>> e9e1462 (feat: contact page and home updated)
