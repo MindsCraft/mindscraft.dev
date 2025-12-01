@@ -1,332 +1,160 @@
-/* Button System Variables */
+/* Button System CSS */
 
-/* CSS Custom Properties for animated gradients */
-@property --button-primary-bg-from {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: #000;
+/* Base Button Style */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: middle;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-family: inherit;
+  font-weight: 600;
+  border: 1px solid transparent;
+  text-decoration: none;
+
+  /* Default to pill shape as requested */
+  border-radius: 9999px;
 }
 
-@property --button-primary-bg-to {
-  syntax: "<color>";
-  inherits: false;
-  initial-value: #000;
+/* Button Content Layout */
+.btn .button-text {
+  display: inline-flex;
+  align-items: center;
 }
 
-/* Primary Button Base Styles */
-:root .button-primary {
-  background-image: radial-gradient(at center -10%, var(--button-primary-bg-from) 0, var(--button-primary-bg-to) 100%);
-  background-color: var(--button-primary-bg-fallback);
-  border-color: var(--button-primary-border);
-  color: var(--button-primary-text);
-  transition-property: color, border-color, --button-primary-bg-from, --button-primary-bg-to;
+.btn .button-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.5rem;
 }
 
-/* Primary Button Hover State */
-:root .button-primary:hover,
-:root .button-primary[data-state=open] {
-  --button-primary-bg-from: var(--button-primary-bg-hover-from);
-  --button-primary-bg-to: var(--button-primary-bg-hover-to);
-  border-color: var(--button-primary-border-hover);
-  color: var(--button-primary-text-hover);
+.btn .button-icon:empty {
+  margin-left: 0;
+  display: none;
 }
 
-/* Primary Button Focus State */
-:root .button-primary:focus-visible {
-  --button-primary-bg-from: var(--button-primary-bg-focus-from);
-  --button-primary-bg-to: var(--button-primary-bg-focus-to);
-  border-color: var(--button-primary-border-focus);
-  color: var(--button-primary-text-focus);
+/* Disabled State */
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
-/* Primary Button Active State */
-:root .button-primary:active,
-:root .button-primary[data-active=true] {
-  --button-primary-bg-from: var(--button-primary-bg-active-from);
-  --button-primary-bg-to: var(--button-primary-bg-active-to);
-  border-color: var(--button-primary-border-active);
-  color: var(--button-primary-text-active);
+/* Focus State */
+.btn:focus-visible {
+  outline: 2px solid #101828;
+  outline-offset: 2px;
 }
 
-/* Primary Button Disabled State */
-:root .button-primary:disabled {
-  --button-primary-bg-from: var(--button-primary-bg-disabled-from);
-  --button-primary-bg-to: var(--button-primary-bg-disabled-to);
-  border-color: var(--button-primary-border-disabled);
-  color: var(--button-primary-text-disabled-foreground);
+/* Sizes */
+.btn-xs {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
-/* Safari Fallback Support */
-@supports (-webkit-hyphens: none) {
-  :root .button-primary {
-    background-image: none;
-    background-color: var(--button-primary-bg-fallback);
-    transition-property: color, border-color, background-color;
-  }
-
-  :root .button-primary:hover,
-  :root .button-primary[data-state=open] {
-    background-color: var(--button-primary-bg-hover-fallback);
-  }
-
-  :root .button-primary:focus-visible {
-    background-color: var(--button-primary-bg-focus-fallback);
-  }
-
-  :root .button-primary:active,
-  :root .button-primary[data-active=true] {
-    background-color: var(--button-primary-bg-active-fallback);
-  }
-
-  :root .button-primary:disabled {
-    background-color: var(--button-primary-bg-disabled-fallback);
-  }
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
-/* Primary Button Theme Variables - Default */
-:root .button-primary {
-  --button-primary-bg-from: var(--color-black-200);
-  --button-primary-bg-to: var(--color-black-200);
-  --button-primary-bg-fallback: var(--color-black-200);
-  --button-primary-border: var(--color-black-600);
-  --button-primary-text: var(--color-white-300);
-  --button-primary-bg-hover-from: var(--color-black-600);
-  --button-primary-bg-hover-to: var(--color-black-200);
-  --button-primary-bg-hover-fallback: var(--color-black-500);
-  --button-primary-border-hover: var(--color-black-600);
-  --button-primary-text-hover: var(--color-white-100);
-  --button-primary-bg-focus-from: var(--color-black-600);
-  --button-primary-bg-focus-to: var(--color-black-200);
-  --button-primary-bg-focus-fallback: var(--color-black-500);
-  --button-primary-border-focus: var(--color-black-600);
-  --button-primary-text-focus: var(--color-white-100);
-  --button-primary-bg-active-from: var(--color-black-500);
-  --button-primary-bg-active-to: var(--color-black-500);
-  --button-primary-bg-active-fallback: var(--color-black-600);
-  --button-primary-border-active: var(--color-black-600);
-  --button-primary-text-active: var(--color-white-100);
-  --button-primary-bg-disabled-from: var(--color-white-900);
-  --button-primary-bg-disabled-to: var(--color-white-900);
-  --button-primary-bg-disabled-fallback: var(--color-white-900);
-  --button-primary-border-disabled: var(--color-white-900);
-  --button-primary-text-disabled-foreground: var(--color-white-100);
+.btn-md {
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
-/* Primary Button Theme Variables - Dark Mode */
-.dark .button-primary {
-  --button-primary-bg-from: var(--color-black-500);
-  --button-primary-bg-to: var(--color-black-500);
-  --button-primary-bg-fallback: var(--color-black-500);
-  --button-primary-border: #50596780;
-  --button-primary-text: var(--color-white-400);
-  --button-primary-bg-hover-from: var(--color-black-600);
-  --button-primary-bg-hover-to: var(--color-black-500);
-  --button-primary-bg-hover-fallback: var(--color-black-600);
-  --button-primary-border-hover: var(--color-black-600);
-  --button-primary-text-hover: var(--color-white-100);
-  --button-primary-bg-focus-from: var(--color-black-600);
-  --button-primary-bg-focus-to: var(--color-black-500);
-  --button-primary-bg-focus-fallback: var(--color-black-600);
-  --button-primary-border-focus: var(--color-black-600);
-  --button-primary-text-focus: var(--color-white-100);
-  --button-primary-bg-active-from: var(--color-black-600);
-  --button-primary-bg-active-to: var(--color-black-600);
-  --button-primary-bg-active-fallback: var(--color-black-600);
-  --button-primary-border-active: var(--color-black-700);
-  --button-primary-text-active: var(--color-white-100);
-  --button-primary-bg-disabled-from: var(--color-black-500);
-  --button-primary-bg-disabled-to: var(--color-black-500);
-  --button-primary-bg-disabled-fallback: var(--color-black-500);
-  --button-primary-border-disabled: #50596780;
-  --button-primary-text-disabled-foreground: var(--color-black-200);
+.btn-lg {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
-/* Primary Button Theme Variables - Blue Theme */
-.blue .button-primary {
-  --button-primary-bg-from: var(--color-blue-450);
-  --button-primary-bg-to: var(--color-blue-450);
-  --button-primary-bg-fallback: var(--color-blue-450);
-  --button-primary-border: var(--color-blue-400);
-  --button-primary-text: var(--color-white-300);
-  --button-primary-bg-hover-from: var(--color-white-100);
-  --button-primary-bg-hover-to: #c8dcffb2;
-  --button-primary-bg-hover-fallback: var(--color-white-200);
-  --button-primary-border-hover: var(--color-blue-400);
-  --button-primary-text-hover: var(--color-blue-500);
-  --button-primary-bg-focus-from: var(--color-white-100);
-  --button-primary-bg-focus-to: #c8dcffb2;
-  --button-primary-bg-focus-fallback: var(--color-white-200);
-  --button-primary-border-focus: var(--color-blue-400);
-  --button-primary-text-focus: var(--color-blue-500);
-  --button-primary-bg-active-from: var(--color-white-100);
-  --button-primary-bg-active-to: var(--color-white-100);
-  --button-primary-bg-active-fallback: var(--color-white-100);
-  --button-primary-border-active: var(--color-blue-400);
-  --button-primary-text-active: var(--color-blue-500);
-  --button-primary-bg-disabled-from: var(--color-blue-450);
-  --button-primary-bg-disabled-to: var(--color-blue-450);
-  --button-primary-bg-disabled-fallback: var(--color-blue-450);
-  --button-primary-border-disabled: var(--color-blue-400);
-  --button-primary-text-disabled-foreground: var(--color-blue-500);
+.btn-xl {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
-/* Outline Button Variables - Default */
-:root {
-  --button-outline-bg: var(--color-white-100);
-  --button-outline-border: var(--color-white-800);
-  --button-outline-text: var(--color-black-400);
-  --button-outline-bg-hover: var(--color-white-100);
-  --button-outline-border-hover: var(--color-black-700);
-  --button-outline-text-hover: var(--color-black-400);
-  --button-outline-bg-focus: var(--color-white-100);
-  --button-outline-border-focus: var(--color-black-700);
-  --button-outline-text-focus: var(--color-black-400);
-  --button-outline-bg-active: var(--color-white-300);
-  --button-outline-border-active: var(--color-black-500);
-  --button-outline-text-active: var(--color-black-300);
-  --button-outline-bg-disabled: var(--color-white-100);
-  --button-outline-border-disabled: var(--color-white-500);
-  --button-outline-text-disabled-foreground: var(--color-white-800);
+/* Full Width Modifier */
+.btn-full {
+  width: 100%;
+}
+/* Variants */
+
+/* Primary: Navy Background, White Text */
+.btn-primary {
+  background-color: #101828;
+  color: #ffffff;
+  border-color: #101828;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* Outline Button Base Styles */
-:root .button-outline {
-  background: var(--button-outline-bg);
-  border-color: var(--button-outline-border);
-  color: var(--button-outline-text);
+.btn-primary:hover {
+  background-color: #1D2939;
+  border-color: #1D2939;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-:root .button-outline:hover,
-:root .button-outline[data-state=open] {
-  background: var(--button-outline-bg-hover);
-  border-color: var(--button-outline-border-hover);
-  color: var(--button-outline-text-hover);
+/* Secondary: Cream/White Background, Navy Text & Border */
+.btn-secondary {
+  background-color: #FDFDF5;
+  color: #101828;
+  border-color: #101828;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-:root .button-outline:focus-visible {
-  background: var(--button-outline-bg-focus);
-  border-color: var(--button-outline-border-focus);
-  color: var(--button-outline-text-focus);
+.btn-secondary:hover {
+  background-color: #F3F4C0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-:root .button-outline:active,
-:root .button-outline[data-active=true] {
-  background: var(--button-outline-bg-active);
-  border-color: var(--button-outline-border-active);
-  color: var(--button-outline-text-active);
+/* Accent: Cream Background, Navy Text & Border */
+.btn-accent {
+  background-color: #F3F4C0;
+  color: #101828;
+  border-color: #101828;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-:root .button-outline:disabled {
-  background: var(--button-outline-bg-disabled);
-  border-color: var(--button-outline-border-disabled);
-  color: var(--button-outline-text-disabled-foreground);
+.btn-accent:hover {
+  background-color: #EAEBAC;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* Outline Button Theme Variables - Dark Mode */
-.dark {
-  --button-outline-bg: var(--color-black-200);
-  --button-outline-border: var(--color-black-500);
-  --button-outline-text: var(--color-white-400);
-  --button-outline-bg-hover: var(--color-black-200);
-  --button-outline-border-hover: var(--color-white-700);
-  --button-outline-text-hover: var(--color-white-400);
-  --button-outline-bg-focus: var(--color-black-200);
-  --button-outline-border-focus: var(--color-white-700);
-  --button-outline-text-focus: var(--color-white-400);
-  --button-outline-bg-active: var(--color-black-350);
-  --button-outline-border-active: var(--color-white-100);
-  --button-outline-text-active: var(--color-white-100);
-  --button-outline-bg-disabled: var(--color-black-200);
-  --button-outline-border-disabled: var(--color-black-400);
-  --button-outline-text-disabled-foreground: var(--color-black-500);
+/* Ghost: Transparent, Navy Text */
+.btn-ghost {
+  background-color: transparent;
+  color: #374151;
+  border-color: transparent;
+  border-radius: 0.5rem; /* Ghost buttons often look better with smaller radius, but can be pill too */
 }
 
-/* Outline Button Theme Variables - Blue Theme */
-.blue {
-  --button-outline-bg: var(--color-blue-500);
-  --button-outline-border: var(--color-blue-400);
-  --button-outline-text: var(--color-white-400);
-  --button-outline-bg-hover: var(--color-blue-500);
-  --button-outline-border-hover: var(--color-white-500);
-  --button-outline-text-hover: var(--color-white-400);
-  --button-outline-bg-focus: var(--color-blue-500);
-  --button-outline-border-focus: var(--color-white-500);
-  --button-outline-text-focus: var(--color-white-400);
-  --button-outline-bg-active: var(--color-blue-450);
-  --button-outline-border-active: var(--color-white-100);
-  --button-outline-text-active: var(--color-white-100);
-  --button-outline-bg-disabled: var(--color-blue-500);
-  --button-outline-border-disabled: var(--color-blue-400);
-  --button-outline-text-disabled-foreground: var(--color-blue-400);
+.btn-ghost:hover {
+  background-color: #F3F4F6;
+  color: #101828;
 }
 
-/* Ghost Button Variables - Default */
-:root {
-  --button-ghost-bg: transparent;
-  --button-ghost-text: var(--color-black-400);
-  --button-ghost-bg-hover: var(--color-white-300);
-  --button-ghost-text-hover: var(--color-black-300);
-  --button-ghost-bg-focus: var(--color-white-300);
-  --button-ghost-text-focus: var(--color-black-300);
-  --button-ghost-bg-active: var(--color-white-400);
-  --button-ghost-text-active: var(--color-black-200);
-  --button-ghost-bg-disabled: transparent;
-  --button-ghost-text-disabled-foreground: var(--color-white-900);
+/* Destructive: Red Background, White Text */
+.btn-destructive {
+  background-color: #DC2626;
+  color: #ffffff;
+  border-color: #DC2626;
+  border-radius: 0.5rem;
 }
 
-/* Ghost Button Base Styles */
-:root .button-ghost {
-  background: var(--button-ghost-bg);
-  color: var(--button-ghost-text);
-  border-color: rgba(0, 0, 0, 0);
+.btn-destructive:hover {
+  background-color: #B91C1C;
+  border-color: #B91C1C;
 }
 
-:root .button-ghost:hover,
-:root .button-ghost[data-state=open] {
-  background: var(--button-ghost-bg-hover);
-  color: var(--button-ghost-text-hover);
-}
-
-:root .button-ghost:focus-visible {
-  background: var(--button-ghost-bg-focus);
-  color: var(--button-ghost-text-focus);
-}
-
-:root .button-ghost:active,
-:root .button-ghost[data-active=true] {
-  background: var(--button-ghost-bg-active);
-  color: var(--button-ghost-text-active);
-}
-
-:root .button-ghost:disabled {
-  background: var(--button-ghost-bg-disabled);
-  color: var(--button-ghost-text-disabled-foreground);
-}
-
-/* Ghost Button Theme Variables - Dark Mode */
-.dark {
-  --button-ghost-bg: transparent;
-  --button-ghost-text: var(--color-white-500);
-  --button-ghost-bg-hover: var(--color-black-400);
-  --button-ghost-text-hover: var(--color-white-100);
-  --button-ghost-bg-focus: var(--color-black-400);
-  --button-ghost-text-focus: var(--color-white-100);
-  --button-ghost-bg-active: var(--color-black-500);
-  --button-ghost-text-active: var(--color-white-100);
-  --button-ghost-bg-disabled: transparent;
-  --button-ghost-text-disabled-foreground: var(--color-black-600);
-}
-
-/* Ghost Button Theme Variables - Blue Theme */
-.blue {
-  --button-ghost-bg: transparent;
-  --button-ghost-text: var(--color-white-500);
-  --button-ghost-bg-hover: var(--color-blue-450);
-  --button-ghost-text-hover: var(--color-white-100);
-  --button-ghost-bg-focus: var(--color-blue-450);
-  --button-ghost-text-focus: var(--color-white-100);
-  --button-ghost-bg-active: var(--color-blue-400);
-  --button-ghost-text-active: var(--color-white-100);
-  --button-ghost-bg-disabled: transparent;
-  --button-ghost-text-disabled-foreground: var(--color-blue-400);
-}

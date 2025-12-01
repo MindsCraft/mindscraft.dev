@@ -4,30 +4,27 @@ import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-// Notion-inspired button variants using class-variance-authority
+// MindsCraft design system button variants
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer",
+  "btn",
   {
     variants: {
       variant: {
-        // Notion's blue accent color for primary
-        primary: "bg-[#2382fc] hover:bg-[#0b71e6] text-white border border-[#2382fc]",
-        // Secondary (outline) style with hover effect
-        secondary: "bg-white hover:bg-gray-50 text-gray-900 border border-gray-300",
-        // Subtle text-only style
-        subtle: "bg-transparent hover:bg-gray-100 text-gray-700",
-        // Destructive action style
-        destructive: "bg-red-600 hover:bg-red-700 text-white",
+        primary: "btn-primary",
+        secondary: "btn-secondary",
+        accent: "btn-accent",
+        ghost: "btn-ghost",
+        destructive: "btn-destructive",
       },
       size: {
-        xs: "px-2.5 py-1.5 text-xs",
-        sm: "px-3 py-2 text-sm",
-        md: "px-4 py-2 text-sm",
-        lg: "px-5 py-2.5 text-base",
-        xl: "px-6 py-3 text-base",
+        xs: "btn-xs",
+        sm: "btn-sm",
+        md: "btn-md",
+        lg: "btn-lg",
+        xl: "btn-xl",
       },
       fullWidth: {
-        true: "w-full",
+        true: "btn-full",
         false: "",
       },
     },
@@ -41,19 +38,21 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   children: React.ReactNode;
+  icon?: React.ReactNode;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, fullWidth, children, ...props }, ref) => {
+  ({ className, variant, size, fullWidth, children, icon, ...props }, ref) => {
     return (
       <button
         className={cn(buttonVariants({ variant, size, fullWidth, className }))}
         ref={ref}
         {...props}
       >
-        {children}
+        <span className="button-text">{children}</span>
+        {icon && <span className="button-icon">{icon}</span>}
       </button>
     );
   }

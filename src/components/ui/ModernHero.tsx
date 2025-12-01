@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FiArrowRight } from 'react-icons/fi';
 import DottedBackground from './DottedBackground';
+import { Button } from '@/components/ui/button';
 
 interface ModernHeroProps {
     title: string;
@@ -29,52 +30,10 @@ export default function ModernHero({
     badge,
     rightContent
 }: ModernHeroProps) {
-    // Design system button styles - SQUARE (no border-radius)
-    const navyButtonStyle = {
-        backgroundColor: '#101828',
-        boxShadow: `
-      0px 1px 1px 0px rgba(255, 255, 255, 0.20) inset,
-      0px 6px 12px 0px rgba(255, 255, 255, 0.08) inset,
-      0px 1px 3px 0px rgba(0, 0, 0, 0.3),
-      0px 4px 8px 0px rgba(0, 0, 0, 0.15)
-    `,
-        transition: 'all 0.2s ease',
-    };
-
-    const navyButtonHoverStyle = {
-        transform: 'translateY(-1px)',
-        boxShadow: `
-      0px 1px 1px 0px rgba(255, 255, 255, 0.25) inset,
-      0px 8px 16px 0px rgba(255, 255, 255, 0.10) inset,
-      0px 2px 4px 0px rgba(0, 0, 0, 0.3),
-      0px 8px 16px 0px rgba(0, 0, 0, 0.2)
-    `,
-    };
-
-    const outlineButtonStyle = {
-        backgroundColor: 'white',
-        borderWidth: '1.5px',
-        borderStyle: 'solid' as const,
-        borderColor: '#E5E7EB',
-        boxShadow: `
-      0px 1px 2px 0px rgba(0, 0, 0, 0.05),
-      0px 1px 3px 0px rgba(0, 0, 0, 0.03)
-    `,
-        transition: 'all 0.2s ease',
-    };
-
-    const outlineButtonHoverStyle = {
-        borderColor: '#D1D5DB',
-        backgroundColor: '#F9FAFB',
-        transform: 'translateY(-1px)',
-        boxShadow: `
-      0px 2px 4px 0px rgba(0, 0, 0, 0.08),
-      0px 4px 8px 0px rgba(0, 0, 0, 0.05)
-    `,
-    };
+    // Removed hardcoded styles as we now use the Button component
 
     return (
-        <section className="relative py-20 flex items-center overflow-hidden bg-gradient-to-br from-white via-cream-50 to-cream-100">
+        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-white via-cream-50 to-cream-100">
             <DottedBackground
                 dotColor="rgba(16, 24, 40, 0.12)"
                 dotSize={2}
@@ -134,28 +93,22 @@ export default function ModernHero({
                             >
                                 {primaryCta && (
                                     <Link href={primaryCta.href}>
-                                        <button
-                                            className="group inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
-                                            style={navyButtonStyle}
-                                            onMouseEnter={(e) => Object.assign(e.currentTarget.style, navyButtonHoverStyle)}
-                                            onMouseLeave={(e) => Object.assign(e.currentTarget.style, navyButtonStyle)}
+                                        <Button
+                                            variant="primary"
+                                            size="xl"
+                                            className="group"
+                                            icon={<FiArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />}
                                         >
-                                            <span>{primaryCta.text}</span>
-                                            <FiArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                                        </button>
+                                            {primaryCta.text}
+                                        </Button>
                                     </Link>
                                 )}
 
                                 {secondaryCta && (
                                     <Link href={secondaryCta.href}>
-                                        <button
-                                            className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200"
-                                            style={outlineButtonStyle}
-                                            onMouseEnter={(e) => Object.assign(e.currentTarget.style, outlineButtonHoverStyle)}
-                                            onMouseLeave={(e) => Object.assign(e.currentTarget.style, outlineButtonStyle)}
-                                        >
-                                            <span>{secondaryCta.text}</span>
-                                        </button>
+                                        <Button variant="secondary" size="xl">
+                                            {secondaryCta.text}
+                                        </Button>
                                     </Link>
                                 )}
                             </motion.div>
