@@ -5,8 +5,8 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import JsonLd from "@/components/seo/JsonLd";
 
-const SITE_TITLE = 'Mindscraft | AI-Powered Web Development & Design Agency';
-const SITE_DESCRIPTION = 'We help startups and product teams launch faster with our AI-powered web development and UX design services. Transform your ideas into reality with our expert team.';
+const SITE_TITLE = 'MindsCraft - Expert UX Design & AI-Powered Web Development';
+const SITE_DESCRIPTION = 'Leading agency in Bangladesh delivering scalable solutions for global enterprises and local businesses, blending intuitive UX engineering with cutting-edge AI integrations to drive measurable results.';
 const SITE_URL = 'https://mindscraft.dev';
 
 // Viewport settings
@@ -65,15 +65,15 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/logo/favicon/favicon.ico' },
-      { url: '/logo/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
-      { url: '/logo/favicon/favicon.svg', type: 'image/svg+xml' },
+      { url: '/images/favicon.ico' },
+      { url: '/images/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/images/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
     ],
     apple: [
-      { url: '/logo/favicon/apple-touch-icon.png' },
+      { url: '/images/apple-touch-icon.png' },
     ],
   },
-  manifest: '/logo/favicon/site.webmanifest',
+  manifest: '/images/site.webmanifest',
 };
 
 export default function RootLayout({

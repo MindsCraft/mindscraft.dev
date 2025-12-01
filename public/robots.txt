@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mindscraft.dev/sitemap.xml
+
+# Disallow admin and API routes
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+
+# Disallow design system and sandbox pages (development only)
+User-agent: *
+Disallow: /design-system
+Disallow: /sandbox/
+
+# Allow all other pages
+User-agent: *
+Allow: /
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
