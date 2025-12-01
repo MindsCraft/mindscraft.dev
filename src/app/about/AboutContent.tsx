@@ -5,6 +5,7 @@ import { AnimatedSection, AnimatedDiv } from '@/components/ui/AnimatedSection';
 import { FiArrowRight, FiUsers, FiTarget, FiAward, FiHeart } from 'react-icons/fi';
 import Link from 'next/link';
 import { Variants } from 'framer-motion';
+import PageHeader from '@/components/ui/PageHeader';
 
 const teamMembers = [
   {
@@ -75,32 +76,25 @@ export default function AboutContent() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <AnimatedSection 
-        initial="hidden"
-        animate="visible"
-        variants={fadeIn}
-        className="py-20 bg-gray-50"
-      >
-        <div className="container mx-auto px-4">
-          <AnimatedDiv
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeInUp}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">About Mindscraft</h1>
-            <p className="text-xl text-gray-600">
-              We're a team of passionate designers, developers, and AI experts helping startups transform their ideas into reality.
-            </p>
-          </AnimatedDiv>
-        </div>
-      </AnimatedSection>
+      {/* Page Header */}
+      <PageHeader
+        title="About Mindscraft"
+        description="We're a team of passionate designers, developers, and AI experts helping startups transform their ideas into reality."
+        variant="solid"
+        align="center"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'About' }
+        ]}
+        cta={{
+          text: 'Join Our Team',
+          href: '/contact',
+          variant: 'secondary'
+        }}
+      />
 
       {/* Mission Section */}
-      <AnimatedSection 
+      <AnimatedSection
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -137,7 +131,7 @@ export default function AboutContent() {
       </AnimatedSection>
 
       {/* Values Section */}
-      <AnimatedSection 
+      <AnimatedSection
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -179,7 +173,7 @@ export default function AboutContent() {
       </AnimatedSection>
 
       {/* Team Section */}
-      <AnimatedSection 
+      <AnimatedSection
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -220,7 +214,7 @@ export default function AboutContent() {
       </AnimatedSection>
 
       {/* CTA Section */}
-      <AnimatedSection 
+      <AnimatedSection
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
@@ -237,8 +231,8 @@ export default function AboutContent() {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Join Us on Our Journey</h2>
             <p className="text-xl mb-8 text-blue-100">Let's create something amazing together</p>
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="inline-flex items-center px-6 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
             >
               Get in Touch

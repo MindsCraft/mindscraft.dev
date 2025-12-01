@@ -1,0 +1,6 @@
+/* Background Styles */
+
+/* Hero Section Background */
+.hero-background {
+    background: linear-gradient(360deg, rgb(253 255 142), rgb(255 255 255));
+}

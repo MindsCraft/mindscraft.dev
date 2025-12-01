@@ -1,4 +1,4 @@
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-VVR0XTQPJD';
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-YVGX6Q8GXE';
 
 declare global {
   interface Window {
@@ -20,9 +20,15 @@ declare global {
 
 // Track page views
 export const pageview = (url: string) => {
-  window.gtag('config', GA_MEASUREMENT_ID, {
-    page_path: url,
-  });
+  try {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', GA_MEASUREMENT_ID, {
+        page_path: url,
+      });
+    }
+  } catch (e) {
+    console.warn('Analytics error:', e);
+  }
 };
 
 // Track custom events
@@ -32,9 +38,15 @@ export const event = ({ action, category, label, value }: {
   label?: string;
   value?: number;
 }) => {
-  window.gtag('event', action, {
-    event_category: category,
-    event_label: label,
-    value: value,
-  });
+  try {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', action, {
+        event_category: category,
+        event_label: label,
+        value: value,
+      });
+    }
+  } catch (e) {
+    console.warn('Analytics error:', e);
+  }
 };

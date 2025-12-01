@@ -1,7 +1,8 @@
 "use client";
 
 import Link from 'next/link';
-import { FaGithub, FaTwitter, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { GithubIcon, TwitterIcon, LinkedInIcon, YoutubeIcon } from '@/components/ui/icons';
+import Logo from '@/components/ui/Logo';
 
 type FooterLink = {
   title: string;
@@ -70,13 +71,11 @@ export default function Footer() {
 
   return (
     <footer className="bg-white border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="container py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-6">
             <div className="flex items-center">
-              <span className="text-xl font-bold text-gray-900">
-                Mindscraft<span className="text-blue-600">.dev</span>
-              </span>
+              <Logo variant="horizontal" size="md" />
             </div>
             <p className="text-sm text-gray-500 max-w-xs">
               UX-focused web development agency helping startups and product teams launch faster with AI-powered solutions.
@@ -84,19 +83,19 @@ export default function Footer() {
             <div className="flex gap-4">
               <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">GitHub</span>
-                <FaGithub className="h-5 w-5" />
+                <GithubIcon className="h-5 w-5" />
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">Twitter</span>
-                <FaTwitter className="h-5 w-5" />
+                <TwitterIcon className="h-5 w-5" />
               </a>
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">LinkedIn</span>
-                <FaLinkedin className="h-5 w-5" />
+                <LinkedInIcon className="h-5 w-5" />
               </a>
               <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">YouTube</span>
-                <FaYoutube className="h-5 w-5" />
+                <YoutubeIcon className="h-5 w-5" />
               </a>
             </div>
           </div>
