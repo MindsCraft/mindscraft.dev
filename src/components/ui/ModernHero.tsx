@@ -33,16 +33,16 @@ export default function ModernHero({
     // Removed hardcoded styles as we now use the Button component
 
     return (
-        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-white via-cream-50 to-cream-100">
+        <section className="hero-background relative flex items-center overflow-hidden">
             <DottedBackground
-                dotColor="rgba(16, 24, 40, 0.12)"
+                dotColor="rgba(16, 24, 40, 0.2)"
                 dotSize={2}
                 spacing={24}
                 animate={true}
             />
 
-            <div className="container relative z-10 py-20 md:py-24">
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="container relative z-10 pt-[200px] pb-[160px]">
+                <div className="w-full">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export default function ModernHero({
                                 transition={{ duration: 0.6, delay: 0.1 }}
                                 className="inline-flex"
                             >
-                                <span className="inline-flex items-center gap-2 px-4 py-2 bg-navy-900/5 border border-navy-900/10 rounded-full text-sm font-medium text-navy-900">
+                                <span className="hero-badge">
                                     {badge}
                                 </span>
                             </motion.div>
@@ -66,8 +66,7 @@ export default function ModernHero({
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            className="text-5xl md:text-6xl lg:text-7xl font-normal leading-tight tracking-tight text-navy-900"
-                            style={{ fontWeight: 400 }}
+                            className="text-5xl md:text-6xl lg:text-7xl font-normal leading-tight tracking-tight text-navy-900 mb-4"
                         >
                             {title}
                         </motion.h1>
@@ -77,7 +76,7 @@ export default function ModernHero({
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.3 }}
-                                className="text-lg md:text-xl text-gray-700 max-w-xl leading-relaxed"
+                                className="text-lg md:text-xl text-gray-700 leading-relaxed mb-20"
                                 style={{ letterSpacing: '-0.02em' }}
                             >
                                 {description}
@@ -89,42 +88,34 @@ export default function ModernHero({
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.8, delay: 0.4 }}
-                                className="flex flex-col sm:flex-row gap-4"
+                                className="flex flex-col sm:flex-row gap-5"
                             >
                                 {primaryCta && (
-                                    <Link href={primaryCta.href}>
-                                        <Button
-                                            variant="primary"
-                                            size="xl"
-                                            className="group"
-                                            icon={<FiArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />}
-                                        >
-                                            {primaryCta.text}
-                                        </Button>
-                                    </Link>
+                                    <Button
+                                        variant="primary"
+                                        size="xl"
+                                        className="group"
+                                        href={primaryCta.href}
+                                        icon={<FiArrowRight className="h-7 w-7 hover:h-8 hover:w-8" />}
+                                    >
+                                        {primaryCta.text}
+                                    </Button>
                                 )}
 
                                 {secondaryCta && (
-                                    <Link href={secondaryCta.href}>
-                                        <Button variant="secondary" size="xl">
-                                            {secondaryCta.text}
-                                        </Button>
-                                    </Link>
+                                    <Button
+                                        variant="secondary"
+                                        size="xl"
+                                        href={secondaryCta.href}
+                                    >
+                                        {secondaryCta.text}
+                                    </Button>
                                 )}
                             </motion.div>
                         )}
                     </motion.div>
 
-                    {rightContent && (
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8, delay: 0.3 }}
-                            className="hidden lg:flex items-center justify-center"
-                        >
-                            {rightContent}
-                        </motion.div>
-                    )}
+
                 </div>
             </div>
         </section>

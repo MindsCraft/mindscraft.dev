@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FiCheck, FiAlertCircle } from 'react-icons/fi';
+import { FiCheck, FiAlertCircle, FiSend } from 'react-icons/fi';
 import { useForm, FormProvider } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -430,60 +430,26 @@ export default function ContactContent() {
                     {/* Submit Button */}
                     <div className="pt-8">
                       <div>
-                        <motion.div
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                        <Button
+                          type="submit"
+                          variant="primary"
+                          size="xl"
+                          fullWidth
+                          disabled={isSubmitting}
+                          icon={!isSubmitting ? <FiSend className="h-5 w-5" /> : undefined}
                         >
-                          <button
-                            type="submit"
-                            disabled={isSubmitting}
-                            className="w-full inline-flex items-center justify-center px-6 py-4 text-base font-semibold text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 disabled:opacity-50 disabled:cursor-not-allowed"
-                            style={{
-                              backgroundColor: '#101828',
-                              boxShadow: `
-                                0px 1px 1px 0px rgba(255, 255, 255, 0.20) inset,
-                                0px 6px 12px 0px rgba(255, 255, 255, 0.08) inset,
-                                0px 1px 3px 0px rgba(0, 0, 0, 0.3),
-                                0px 4px 8px 0px rgba(0, 0, 0, 0.15)
-                              `,
-                              transition: 'all 0.2s ease',
-                            }}
-                            onMouseEnter={(e) => {
-                              if (!isSubmitting) {
-                                e.currentTarget.style.transform = 'translateY(-1px)';
-                                e.currentTarget.style.boxShadow = `
-                                  0px 1px 1px 0px rgba(255, 255, 255, 0.25) inset,
-                                  0px 8px 16px 0px rgba(255, 255, 255, 0.10) inset,
-                                  0px 2px 4px 0px rgba(0, 0, 0, 0.3),
-                                  0px 8px 16px 0px rgba(0, 0, 0, 0.2)
-                                `;
-                              }
-                            }}
-                            onMouseLeave={(e) => {
-                              if (!isSubmitting) {
-                                e.currentTarget.style.transform = 'translateY(0)';
-                                e.currentTarget.style.boxShadow = `
-                                  0px 1px 1px 0px rgba(255, 255, 255, 0.20) inset,
-                                  0px 6px 12px 0px rgba(255, 255, 255, 0.08) inset,
-                                  0px 1px 3px 0px rgba(0, 0, 0, 0.3),
-                                  0px 4px 8px 0px rgba(0, 0, 0, 0.15)
-                                `;
-                              }
-                            }}
-                          >
-                            {isSubmitting ? (
-                              <>
-                                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                Sending...
-                              </>
-                            ) : (
-                              'Send Inquiry'
-                            )}
-                          </button>
-                        </motion.div>
+                          {isSubmitting ? (
+                            <>
+                              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                              </svg>
+                              Sending...
+                            </>
+                          ) : (
+                            'Send Inquiry'
+                          )}
+                        </Button>
                       </div>
                       <p className="text-center text-xs text-gray-500 mt-4">
                         By submitting this form, you agree to our <a href="#" className="text-gray-900 underline hover:text-gray-700">Privacy Policy</a>

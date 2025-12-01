@@ -1,0 +1,9 @@
+.hero-badge {
+    display: inline-flex;
+    font-size: 16px;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 4px 16px;
+    font-weight: 500;
+    backdrop-filter: blur(20px);
+    border-radius: 4px;
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
@@ -37,22 +38,45 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'href'>,
   VariantProps<typeof buttonVariants> {
   children: React.ReactNode;
   icon?: React.ReactNode;
+  href?: string;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, fullWidth, children, icon, ...props }, ref) => {
-    return (
-      <button
-        className={cn(buttonVariants({ variant, size, fullWidth, className }))}
-        ref={ref}
-        {...props}
-      >
+const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+  ({ className, variant, size, fullWidth, children, icon, href, ...props }, ref) => {
+    const classes = cn(buttonVariants({ variant, size, fullWidth, className }));
+
+    const content = (
+      <>
         <span className="button-text">{children}</span>
         {icon && <span className="button-icon">{icon}</span>}
+      </>
+    );
+
+    // Render as Link if href is provided
+    if (href) {
+      return (
+        <Link
+          href={href}
+          className={classes}
+          ref={ref as React.Ref<HTMLAnchorElement>}
+        >
+          {content}
+        </Link>
+      );
+    }
+
+    // Otherwise render as button
+    return (
+      <button
+        className={classes}
+        ref={ref as React.Ref<HTMLButtonElement>}
+        {...props}
+      >
+        {content}
       </button>
     );
   }

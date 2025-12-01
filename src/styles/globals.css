@@ -4,6 +4,9 @@
 @import "./typography.css";
 @import "./button-system.css";
 @import "./animation.css";
+@import "./background.css";
+@import "./components.css";
+
 
 /* Utility Classes */
 .text-balance {

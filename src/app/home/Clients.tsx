@@ -36,11 +36,11 @@ export default function Clients() {
         <div className="inline-flex items-center rounded-full border border-gray-200 px-3 py-1 mb-6">
           <span className="text-sm font-medium text-gray-600">Trusted Partners</span>
         </div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 mb-6">
-          The CRM behind the next<br className="hidden md:block" /> generation of companies.
+        <h2 className="text-3xl md:text-4xl lg:text-5xl tracking-tight text-gray-900 mb-6">
+          Trusted by Industry <br className="hidden md:block" />Leaders Worldwide.
         </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Discover how thousands of companies use MindsCraft to scale their business.
+        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          We have collaborated with forward-thinking organizations across global enterprises to create impactful UX designs, AI-integrated developments, and scalable web solutions that drive success.
         </p>
       </div>
 

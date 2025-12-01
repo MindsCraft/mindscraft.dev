@@ -1,5 +1,36 @@
 /* Button System CSS */
 
+/* CSS Variables for Button System */
+:root {
+  /* Colors */
+  --btn-navy-primary: #101828;
+  --btn-navy-hover: #1D2939;
+  --btn-cream-light: #FDFDF5;
+  --btn-cream: #F3F4C0;
+  --btn-cream-hover: #EAEBAC;
+  --btn-white: #ffffff;
+  --btn-gray: #374151;
+  --btn-gray-light: #F3F4F6;
+  --btn-red: #DC2626;
+  --btn-red-hover: #B91C1C;
+
+  /* Shadows */
+  --btn-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --btn-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --btn-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  /* Transitions */
+  --btn-transition: all 0.2s ease-in-out;
+
+  /* Border Radius */
+  --btn-radius-default: 9999px;
+  /* Pill shape */
+  --btn-radius-small: 0.5rem;
+
+  /* Spacing */
+  --btn-icon-spacing: 1px;
+}
+
 /* Base Button Style */
 .btn {
   display: inline-flex;
@@ -11,14 +42,16 @@
   outline: none;
   user-select: none;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: var(--btn-transition);
   font-family: inherit;
-  font-weight: 600;
-  border: 1px solid transparent;
+  font-weight: 400;
+  border: 3px solid transparent;
   text-decoration: none;
-
+  letter-spacing: -0.02em;
+  gap: 3px;
   /* Default to pill shape as requested */
-  border-radius: 9999px;
+  border-radius: var(--btn-radius-default);
+  overflow: hidden;
 }
 
 /* Button Content Layout */
@@ -30,7 +63,8 @@
 .btn .button-icon {
   display: inline-flex;
   align-items: center;
-  margin-left: 0.5rem;
+  justify-content: center;
+  transition: var(--btn-transition);
 }
 
 .btn .button-icon:empty {
@@ -48,113 +82,150 @@
 
 /* Focus State */
 .btn:focus-visible {
-  outline: 2px solid #101828;
+  outline: 2px solid var(--btn-navy-primary);
   outline-offset: 2px;
 }
 
 /* Sizes */
-.btn-xs {
+.btn-xs .button-text {
   padding: 0.375rem 0.75rem;
   font-size: 0.75rem;
   line-height: 1rem;
 }
 
-.btn-sm {
+.btn-sm .button-text {
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
 
-.btn-md {
+.btn-sm .button-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.btn-md .button-text {
   padding: 0.625rem 1.5rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
 
-.btn-lg {
+.btn-lg .button-text {
   padding: 0.75rem 2rem;
   font-size: 1rem;
   line-height: 1.5rem;
 }
 
-.btn-xl {
-  padding: 1rem 2.5rem;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+.btn-xl .button-text {
+  padding: 16px 20px 16px 20px;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.btn-xl .button-icon {
+  width: 48px;
+  height: 48px;
 }
 
 /* Full Width Modifier */
 .btn-full {
   width: 100%;
 }
+
+.btn-full .button-text {
+  width: calc(100% - 48px);
+  text-align: center;
+  justify-content: center;
+}
+
 /* Variants */
 
 /* Primary: Navy Background, White Text */
 .btn-primary {
-  background-color: #101828;
-  color: #ffffff;
-  border-color: #101828;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-color: var(--btn-navy-primary);
+  box-shadow: var(--btn-shadow-md);
+  background-color: var(--btn-navy-primary);
+  /* box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 1px 0px inset, rgba(255, 255, 255, 0.08) 0px 6px 12px 0px inset, rgba(0, 0, 0, 0.3) 0px 1px 3px 0px, rgba(0, 0, 0, 0.15) 0px 4px 8px 0px; */
+  box-shadow: inset -20px 0px 32px 0px #f2ff8e, inset 20px 0px 0px 0px #f2ff8e, 0 1px 3px #0000002e, 0 4px 8px #00000026;
+}
+
+.btn-primary .button-text {
+  background-color: var(--btn-navy-primary);
+  color: var(--btn-white);
+  border-radius: var(--btn-radius-default);
 }
 
 .btn-primary:hover {
-  background-color: #1D2939;
-  border-color: #1D2939;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background-color: var(--btn-navy-hover);
+  border-color: var(--btn-navy-hover);
+  box-shadow: inset -20px 0 32px 4px #f2ff8e, inset 20px 0 #f2ff8e, 0 1px 3px #0000002e, 0 4px 8px #00000026;
 }
+
+/* Circle Icon for Primary Button */
+.btn-primary .button-icon {
+  /* background-color: var(--btn-white); */
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  color: var(--btn-navy-primary);
+  border-radius: 50%;
+}
+
+.btn-primary:hover .button-icon {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+
 
 /* Secondary: Cream/White Background, Navy Text & Border */
 .btn-secondary {
-  background-color: #FDFDF5;
-  color: #101828;
-  border-color: #101828;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  background-color: var(--btn-white);
+  color: var(--btn-navy-primary);
+  border: 2px solid var(--btn-navy-primary);
+  box-shadow: none;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .btn-secondary:hover {
-  background-color: #F3F4C0;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background-color: var(--btn-cream-light);
+  box-shadow: var(--btn-shadow-sm);
 }
 
 /* Accent: Cream Background, Navy Text & Border */
 .btn-accent {
-  background-color: #F3F4C0;
-  color: #101828;
-  border-color: #101828;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  background-color: var(--btn-cream);
+  color: var(--btn-navy-primary);
+  border-color: var(--btn-navy-primary);
+  box-shadow: var(--btn-shadow-sm);
 }
 
 .btn-accent:hover {
-  background-color: #EAEBAC;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background-color: var(--btn-cream-hover);
+  box-shadow: var(--btn-shadow-md);
 }
 
 /* Ghost: Transparent, Navy Text */
 .btn-ghost {
   background-color: transparent;
-  color: #374151;
+  color: var(--btn-gray);
   border-color: transparent;
-  border-radius: 0.5rem; /* Ghost buttons often look better with smaller radius, but can be pill too */
+  border-radius: var(--btn-radius-small);
 }
 
 .btn-ghost:hover {
-  background-color: #F3F4F6;
-  color: #101828;
+  background-color: var(--btn-gray-light);
+  color: var(--btn-navy-primary);
 }
 
 /* Destructive: Red Background, White Text */
 .btn-destructive {
-  background-color: #DC2626;
-  color: #ffffff;
-  border-color: #DC2626;
-  border-radius: 0.5rem;
+  background-color: var(--btn-red);
+  color: var(--btn-white);
+  border-color: var(--btn-red);
+  border-radius: var(--btn-radius-small);
 }
 
 .btn-destructive:hover {
-  background-color: #B91C1C;
-  border-color: #B91C1C;
+  background-color: var(--btn-red-hover);
+  border-color: var(--btn-red-hover);
 }
-

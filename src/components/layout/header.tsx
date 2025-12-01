@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence, px } from 'framer-motion';
 import { ArrowRightIcon, CalendarIcon } from '@/components/ui/icons';
+import { FiMail } from 'react-icons/fi';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/ui/Logo';
@@ -48,34 +49,12 @@ export default function Header() {
     return pathname.startsWith(href);
   };
 
-  // Premium button styles
-  const ctaButtonStyle = {
-    backgroundColor: NAVY,
-    color: 'white',
-    boxShadow: `
-      0px 1px 1px 0px rgba(255, 255, 255, 0.20) inset,
-      0px 4px 8px 0px rgba(255, 255, 255, 0.08) inset,
-      0px 1px 3px 0px rgba(0, 0, 0, 0.3),
-      0px 3px 6px 0px rgba(0, 0, 0, 0.15)
-    `,
-    transition: 'all 0.2s ease',
-  };
 
-  const ctaHoverStyle = {
-    ...ctaButtonStyle,
-    transform: 'translateY(-1px)',
-    boxShadow: `
-      0px 1px 2px 0px rgba(255, 255, 255, 0.25) inset,
-      0px 6px 12px 0px rgba(255, 255, 255, 0.10) inset,
-      0px 2px 4px 0px rgba(0, 0, 0, 0.35),
-      0px 6px 12px 0px rgba(0, 0, 0, 0.20)
-    `,
-  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Blur background */}
-      <div 
+      <div
         className="absolute inset-0 bg-white/70 backdrop-blur-md"
         style={{
           backdropFilter: 'blur(12px)',
@@ -100,11 +79,10 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-base font-medium transition-colors duration-200 ${
-                  isActive(item.href)
+                className={`text-base font-medium transition-colors duration-200 ${isActive(item.href)
                     ? 'text-gray-900'
                     : 'text-gray-600 hover:text-gray-900'
-                }`}
+                  }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
@@ -114,15 +92,15 @@ export default function Header() {
 
           {/* CTA Button */}
           <div className="flex items-center gap-4">
-            <Link
+            <Button
+              variant="primary"
+              size="sm"
               href="/contact"
-              className="hidden md:inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white transition-all duration-200"
-              style={ctaButtonStyle}
-              onMouseEnter={(e) => Object.assign(e.currentTarget.style, ctaHoverStyle)}
-              onMouseLeave={(e) => Object.assign(e.currentTarget.style, ctaButtonStyle)}
+              icon={<FiMail className="h-4 w-4" />}
+              className="hidden md:inline-flex"
             >
               Contact
-            </Link>
+            </Button>
 
             {/* Mobile menu button */}
             <button
@@ -208,14 +186,16 @@ export default function Header() {
                   transition={{ duration: 0.4, delay: 0.4 }}
                   className="pt-6 border-t border-gray-200"
                 >
-                  <Link
+                  <Button
+                    variant="primary"
+                    size="md"
                     href="/contact"
-                    className="inline-flex items-center justify-center w-full px-6 py-3 text-base font-semibold"
-                    style={ctaButtonStyle}
+                    icon={<FiMail className="h-4 w-4" />}
+                    fullWidth
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Contact
-                  </Link>
+                  </Button>
                 </motion.div>
               </nav>
             </div>
