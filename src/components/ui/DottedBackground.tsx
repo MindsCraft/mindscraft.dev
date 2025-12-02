@@ -69,7 +69,6 @@ export default function DottedBackground({
                             cy={spacing / 2}
                             r={dotSize / 2}
                             fill={dotColor}
-                            className={animate ? 'animate-pulse-slow' : ''}
                         />
                     </pattern>
 
