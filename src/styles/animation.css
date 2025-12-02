@@ -86,3 +86,38 @@
         transform: translateY(-20px);
     }
 }
+
+/* Marquee animations for logo cloud */
+@keyframes marquee-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-33.333%);
+    }
+}
+
+@keyframes marquee-right {
+    0% {
+        transform: translateX(-33.333%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.animate-marquee-left {
+    animation: marquee-left 60s linear infinite;
+}
+
+.animate-marquee-right {
+    animation: marquee-right 60s linear infinite;
+}
+
+/* Pause animation on hover */
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+    animation-play-state: paused;
+}
