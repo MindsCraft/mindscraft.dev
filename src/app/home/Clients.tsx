@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const LOGOS = [
@@ -58,11 +57,8 @@ function StackedGrid() {
   const rows = Math.ceil(LOGOS.length / itemsPerRow);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="flex flex-col gap-8 md:gap-16"
-    >
+    <div className="flex flex-col gap-8 md:gap-16">
+
       {Array.from({ length: rows }).map((_, rowIndex) => {
         const rowLogos = LOGOS.slice(rowIndex * itemsPerRow, (rowIndex + 1) * itemsPerRow);
 
@@ -82,6 +78,7 @@ function StackedGrid() {
                     alt={logo.name}
                     fill
                     className="object-contain"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -89,6 +86,6 @@ function StackedGrid() {
           </div>
         );
       })}
-    </motion.div>
+    </div>
   );
 }

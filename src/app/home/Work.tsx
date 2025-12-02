@@ -18,6 +18,8 @@ export default function Work() {
                     alt={project.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <div className="text-center text-white p-8">
