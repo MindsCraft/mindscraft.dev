@@ -4,14 +4,23 @@ import { workItems } from '@/data/workData'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { Button } from '@/components/ui/button'
 
 export default function Work() {
   // Show only first 4 projects on homepage
   const featuredProjects = workItems.slice(0, 4);
 
   return (
-    <section id="work" className="py-12 md:py-16 lg:py-[120px] bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="work" className="py-12 md:py-16 lg:py-[120px] bg-gray-50 relative">
+      {/* Background Element */}
+      <div 
+        className="absolute left-0 right-0 top-0 w-full h-[800px] -z-0"
+        style={{
+          background: 'linear-gradient(180deg, #fdff8e, #f9fafb)'
+        }}
+      />
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-16 items-end">
           {/* Left Column - Heading */}
@@ -31,8 +40,8 @@ export default function Work() {
 
         {/* Portfolio List - 1 card per row */}
         <div className="space-y-8 mb-16">
-          {featuredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {featuredProjects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} imageOnRight={index % 2 !== 0} />
           ))}
         </div>
 
@@ -55,43 +64,64 @@ export default function Work() {
 
 interface ProjectCardProps {
   project: typeof workItems[0];
+  imageOnRight?: boolean;
 }
 
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({ project, imageOnRight = true }: ProjectCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div className="relative bg-white group h-[720px] transition-all duration-300 rounded-[8px] overflow-hidden">
+      {/* Dots Pattern Background */}
+      <div 
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='%23000000'/%3E%3C/svg%3E")`,
+          backgroundSize: '20px 20px'
+        }}
+      />
+      
       {/* Main Card Content */}
-      <div className="grid md:grid-cols-[1fr_2fr] h-full">
-        {/* Left: Project Info (1/3 width) */}
-        <div className="flex flex-col justify-center p-10 md:p-14 h-full relative z-10">
-          {/* Project Name */}
-          <h3 className="text-4xl md:text-5xl md:leading-tight font-bold text-gray-900 mb-6 tracking-tight">
-            {project.title}
-          </h3>
-
-          {/* Project Description */}
-          <p className="text-gray-600 mb-8 text-lg leading-relaxed line-clamp-4 font-medium">
-            {project.description}
-          </p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mt-auto">
-            <span className="inline-block border border-gray-200 bg-gray-50 px-4 py-1.5 text-sm font-medium text-gray-900 rounded-full">
+      <div className={`grid h-full relative z-[1] ${imageOnRight ? 'md:grid-cols-[40%_60%]' : 'md:grid-cols-[60%_40%]'}`}>
+        {/* Project Info (40% width) */}
+        <div className={`flex flex-col justify-between py-16 px-8 md:px-12 lg:px-16 h-full relative z-10 ${imageOnRight ? 'order-1' : 'order-2'}`}>
+          <div>
+            {/* Small label at top */}
+            <p className="text-sm text-gray-500 mb-12">
               {project.category}
-            </span>
-            {project.technologies?.slice(0, 2).map((tech) => (
-              <span key={tech} className="inline-block border border-gray-200 bg-gray-50 px-4 py-1.5 text-sm font-medium text-gray-600 rounded-full">
-                {tech}
-              </span>
-            ))}
+            </p>
+
+            {/* Project Name */}
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-[1.1] mb-8">
+              {project.title}
+            </h3>
+
+            {/* One line about project */}
+            <p className="text-base text-gray-400 leading-relaxed mb-10">
+              {project.description}
+            </p>
+
+            {/* Tags - simple text with spaces */}
+            <div className="flex flex-wrap gap-4 text-sm text-gray-400">
+              {project.technologies?.slice(0, 3).map((tech) => (
+                <span key={tech}>
+                  {tech.toLowerCase()}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Button */}
+          <div>
+            <Button variant="secondary" size="lg" href={`/work/${project.id}`}>
+              View More
+            </Button>
           </div>
         </div>
 
-        {/* Right: Project Image (2/3 width) */}
-        <div className="relative h-full overflow-hidden">
-          <div className="absolute left-0 right-0 top-20 bottom-20">
+        {/* Project Image (60% width) */}
+        <div className={`relative h-full overflow-hidden ${imageOnRight ? 'order-2' : 'order-1'}`}>
+          <div className="absolute left-0 right-0 top-16 bottom-16">
             <div className="relative w-full h-full overflow-hidden ">
               <Image
                 src={project.images?.[0] || project.image}

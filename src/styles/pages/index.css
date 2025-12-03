@@ -1,0 +1,14 @@
+/* ============================================
+   PAGES INDEX
+   Import all page-specific styles
+   ============================================ */
+
+@import './home.css';
+@import './about.css';
+@import './services.css';
+@import './work.css';
+@import './contact.css';
+@import './blog.css';
+@import './design-system.css';
+@import './privacy-policy.css';
+@import './terms-and-conditions.css';

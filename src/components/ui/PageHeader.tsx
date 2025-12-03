@@ -84,54 +84,41 @@ const PageHeader: React.FC<PageHeaderProps> = ({
         },
     };
 
-    // Background styles based on variant
-    const getBackgroundClasses = () => {
+    const getVariantClass = () => {
         switch (variant) {
-            case 'gradient':
-                return 'bg-gradient-to-br from-navy-50 via-white to-cream-100 relative overflow-hidden';
-            case 'solid':
-                return 'bg-navy-900 text-white';
-            case 'minimal':
-                return 'bg-white border-b border-gray-200';
-            default:
-                return 'bg-gradient-to-br from-navy-50 via-white to-cream-100';
+            case 'solid': return 'page-header-solid';
+            case 'minimal': return 'page-header-minimal';
+            default: return 'page-header-gradient';
         }
     };
 
-    const getTextAlignClasses = () => {
-        return align === 'center' ? 'text-center mx-auto' : 'text-left';
-    };
-
-    const getContainerAlignClasses = () => {
-        return align === 'center' ? 'items-center' : 'items-start';
+    const getAlignClass = () => {
+        return align === 'center' ? 'page-header-align-center' : 'page-header-align-left';
     };
 
     return (
-        <section className={`relative ${getBackgroundClasses()} py-16 md:py-24 lg:py-28`}>
+        <section className={`page-header ${getVariantClass()}`}>
             {/* Decorative Elements for gradient variant */}
             {variant === 'gradient' && (
                 <>
-                    {/* Floating accent blob */}
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-cream-400/20 rounded-full blur-3xl animate-float-slow" />
-                    <div className="absolute bottom-0 left-0 w-80 h-80 bg-navy-200/30 rounded-full blur-3xl animate-float-slow-reverse" />
-
-                    {/* Grid pattern overlay */}
-                    <div className="absolute inset-0 bg-grid-slate-100 pointer-events-none" />
+                    <div className="page-header-blob-1" />
+                    <div className="page-header-blob-2" />
+                    <div className="page-header-grid" />
                 </>
             )}
 
-            <div className="container relative z-10">
+            <div className="container relative z-10 py-36">
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
-                    className={`max-w-4xl ${getTextAlignClasses()} flex flex-col ${getContainerAlignClasses()} gap-6`}
+                    className={`page-header-container ${getAlignClass()}`}
                 >
                     {/* Breadcrumbs */}
                     {breadcrumbs && breadcrumbs.length > 0 && (
                         <motion.nav
                             variants={itemVariants}
-                            className="flex items-center gap-2 text-sm"
+                            className="page-header-breadcrumbs"
                             aria-label="Breadcrumb"
                         >
                             {breadcrumbs.map((crumb, index) => (
@@ -139,18 +126,17 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                                     {crumb.href ? (
                                         <Link
                                             href={crumb.href}
-                                            className={`${variant === 'solid' ? 'text-cream-300 hover:text-cream-200' : 'text-gray-600 hover:text-navy-900'
-                                                } transition-colors`}
+                                            className="breadcrumb-link"
                                         >
                                             {crumb.label}
                                         </Link>
                                     ) : (
-                                        <span className={variant === 'solid' ? 'text-white font-medium' : 'text-navy-900 font-medium'}>
+                                        <span className="breadcrumb-current">
                                             {crumb.label}
                                         </span>
                                     )}
                                     {index < breadcrumbs.length - 1 && (
-                                        <span className={variant === 'solid' ? 'text-cream-400' : 'text-gray-400'}>/</span>
+                                        <span className="breadcrumb-separator">/</span>
                                     )}
                                 </React.Fragment>
                             ))}
@@ -160,12 +146,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                     {/* Badge */}
                     {badge && (
                         <motion.div variants={itemVariants} className="inline-flex">
-                            <span
-                                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold ${variant === 'solid'
-                                        ? 'bg-cream-400/20 text-cream-300 border border-cream-400/30'
-                                        : 'bg-navy-900/5 text-navy-900 border border-navy-900/10'
-                                    }`}
-                            >
+                            <span className="page-header-badge">
                                 {badge}
                             </span>
                         </motion.div>
@@ -174,8 +155,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                     {/* Title */}
                     <motion.h1
                         variants={itemVariants}
-                        className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight ${variant === 'solid' ? 'text-white' : 'text-navy-900'
-                            }`}
+                        className="page-header-title"
                     >
                         {title}
                     </motion.h1>
@@ -184,8 +164,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                     {description && (
                         <motion.p
                             variants={itemVariants}
-                            className={`text-lg md:text-xl leading-relaxed max-w-2xl ${variant === 'solid' ? 'text-cream-200' : 'text-gray-700'
-                                }`}
+                            className="page-header-description"
                         >
                             {description}
                         </motion.p>
@@ -193,16 +172,13 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 
                     {/* CTA Button */}
                     {cta && (
-                        <motion.div variants={itemVariants} className="mt-4">
+                        <motion.div variants={itemVariants} className="page-header-cta">
                             <Link
                                 href={cta.href}
-                                className={`group inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${cta.variant === 'secondary' || variant === 'solid'
-                                        ? 'bg-white text-navy-900 hover:bg-cream-100 shadow-lg hover:shadow-xl hover:-translate-y-0.5'
-                                        : 'bg-navy-900 text-white hover:bg-navy-800 shadow-lg hover:shadow-xl hover:-translate-y-0.5'
-                                    }`}
+                                className={`cta-button ${cta.variant === 'secondary' || variant === 'solid' ? 'cta-secondary' : 'cta-primary'}`}
                             >
                                 <span>{cta.text}</span>
-                                <FiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                                <FiArrowRight className="w-5 h-5" />
                             </Link>
                         </motion.div>
                     )}

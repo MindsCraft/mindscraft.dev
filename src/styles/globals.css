@@ -1,11 +1,23 @@
 @import "tailwindcss";
-@import "./variables.css";
-@import "./layout.css";
-@import "./typography.css";
-@import "./button-system.css";
-@import "./animation.css";
-@import "./background.css";
-@import "./components.css";
+
+@theme {
+  /* Tailwind v4 theme configuration */
+}
+
+/* Foundation - Core design system */
+@import "./foundation/index.css";
+
+/* Utilities - Helpers and utility classes */
+@import "./utilities/index.css";
+
+/* Components - Reusable component styles */
+@import "./components/index.css";
+
+/* Pages - Page-specific styles */
+@import "./pages/index.css";
+
+/* Admin Theme - Admin-specific styles */
+/* @import "./admin/index.css"; */
 
 
 /* Utility Classes */
