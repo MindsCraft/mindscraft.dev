@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { FiArrowRight } from 'react-icons/fi';
 import DottedBackground from './DottedBackground';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 interface ModernHeroProps {
     title: string;
@@ -40,32 +41,29 @@ export default function ModernHero({
                 animate={true}
             />
 
-            <div className="container relative z-10 pt-[200px] pb-[160px]">
+            <div className="container hero-container">
                 <div className="w-full">
-                    <div className="space-y-8 animate-fade-in">
+                    <div className="hero-content animate-fade-in">
                         {badge && (
                             <div className="inline-flex">
-                                <span className="hero-badge">
+                                <Badge variant="default" size="lg">
                                     {badge}
-                                </span>
+                                </Badge>
                             </div>
                         )}
 
-                        <h1 className="text-5xl md:text-6xl lg:text-7xl font-normal leading-tight tracking-tight text-navy-900 mb-4">
+                        <h1 className="hero-title">
                             {title}
                         </h1>
 
                         {description && (
-                            <p
-                                className="text-lg md:text-xl text-gray-700 leading-relaxed mb-20"
-                                style={{ letterSpacing: '-0.02em' }}
-                            >
+                            <p className="hero-description">
                                 {description}
                             </p>
                         )}
 
                         {(primaryCta || secondaryCta) && (
-                            <div className="flex flex-col sm:flex-row gap-5">
+                            <div className="hero-cta">
                                 {primaryCta && (
                                     <Button
                                         variant="primary"

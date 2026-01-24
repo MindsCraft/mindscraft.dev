@@ -2,10 +2,6 @@
    COMPONENTS INDEX
    Import all component styles
    ============================================ */
-/* ============================================
-   COMPONENTS INDEX
-   Import all component styles
-   ============================================ */
 
 @import './hero.css';
 @import './navigation.css';

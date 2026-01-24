@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     // Send email using Resend
     const { data, error } = await resend.emails.send({
       from: 'MindsCraft Contact Form <contact@mindscraft.dev>',
-      to: [process.env.CONTACT_EMAIL || 'anikpgp@gmail.com'],
+      to: [process.env.CONTACT_EMAIL || 'anikphp@gmail.com'],
       replyTo: email,
       subject: `New Project Inquiry: ${service}`,
       html: `

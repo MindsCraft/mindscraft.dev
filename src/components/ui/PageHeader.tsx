@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FiArrowRight } from 'react-icons/fi';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
 
 interface PageHeaderProps {
     /**
@@ -146,9 +147,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                     {/* Badge */}
                     {badge && (
                         <motion.div variants={itemVariants} className="inline-flex">
-                            <span className="page-header-badge">
+                            <Badge variant="outline" size="md">
                                 {badge}
-                            </span>
+                            </Badge>
                         </motion.div>
                     )}
 

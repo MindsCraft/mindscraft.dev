@@ -1,0 +1,74 @@
+/* ============================================
+   BADGE COMPONENT STYLES
+   MindsCraft Design System
+   ============================================ */
+
+/* Base Badge */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 150ms ease;
+}
+
+/* ============================================
+   VARIANTS
+   ============================================ */
+
+/* Default: Glass/blur effect (hero-badge style) */
+.badge-default {
+    background: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(20px);
+    border-radius: 4px;
+    color: rgb(var(--gray-700));
+}
+
+/* Outline: Border only, transparent bg (page-header style) */
+.badge-outline {
+    background-color: rgb(var(--gray-50));
+    border: 1px solid rgb(var(--gray-200));
+    border-radius: 9999px;
+    color: rgb(var(--gray-600));
+}
+
+/* Solid: Solid background */
+.badge-solid {
+    background-color: rgb(var(--primary-900));
+    border-radius: 4px;
+    color: rgb(var(--background));
+}
+
+/* Accent: Accent/cream color background */
+.badge-accent {
+    background-color: rgb(var(--accent-100));
+    border: 1px solid rgb(var(--accent-400));
+    border-radius: 4px;
+    color: rgb(var(--primary-900));
+}
+
+/* ============================================
+   SIZES
+   ============================================ */
+
+/* Small */
+.badge-sm {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    padding: 2px 8px;
+}
+
+/* Medium (default) */
+.badge-md {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding: 4px 12px;
+}
+
+/* Large */
+.badge-lg {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 4px 16px;
+}

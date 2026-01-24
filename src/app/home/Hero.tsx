@@ -28,7 +28,7 @@ export default function Hero() {
   return (
     <ModernHero
       badge="Available for new projects"
-      title="Elevate Your Digital Presence with Expert UX Design and AI-Powered Web Development"
+      title="Elevate Your Digital Presence with AI-Powered UX Design and Development"
       description="As a leading agency in Bangladesh, we deliver scalable solutions for global enterprises and local businesses, blending intuitive UX engineering with cutting-edge AI integrations to drive measurable results."
       primaryCta={{
         text: 'Request a Free Quote',

@@ -2,6 +2,7 @@
    HERO COMPONENT STYLES
    ============================================ */
 
+/* Legacy hero-badge (keeping for backwards compatibility) */
 .hero-badge {
     display: inline-flex;
     font-size: 16px;
@@ -12,14 +13,113 @@
     border-radius: 4px;
 }
 
-/* Modern Hero Styles */
-.modern-hero {
-    /* Add modern hero component styles here */
+/* ============================================
+   MODERN HERO SECTION
+   ============================================ */
+
+/* Hero Container */
+.hero-container {
+    position: relative;
+    z-index: 10;
+    padding-top: 120px;
+    padding-bottom: 80px;
+}
+
+@media (min-width: 640px) {
+    .hero-container {
+        padding-top: 140px;
+        padding-bottom: 100px;
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-container {
+        padding-top: 160px;
+        padding-bottom: 120px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-container {
+        padding-top: 200px;
+        padding-bottom: 160px;
+    }
+}
+
+/* Hero Content */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+    .hero-content {
+        gap: var(--space-8);
+    }
+}
+
+/* Hero Title */
+.hero-title {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: rgb(var(--gray-900));
+}
+
+@media (min-width: 640px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 3.75rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-title {
+        font-size: 4.5rem;
+    }
+}
+
+/* Hero Description */
+.hero-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgb(var(--gray-600));
+    letter-spacing: -0.01em;
+    max-width: 42rem;
+    margin-bottom: var(--space-8);
+}
+
+@media (min-width: 640px) {
+    .hero-description {
+        font-size: 1.125rem;
+        margin-bottom: var(--space-10);
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-description {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-12);
+    }
 }
 
 /* Hero CTA Section */
 .hero-cta {
-    /* Add hero CTA styles here */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
 }
 
-/* Add other hero component specific styles below */
+@media (min-width: 640px) {
+    .hero-cta {
+        flex-direction: row;
+        gap: var(--space-5);
+    }
+}

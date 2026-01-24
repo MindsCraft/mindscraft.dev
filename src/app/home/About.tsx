@@ -1,4 +1,8 @@
-import Image from 'next/image'
+'use client';
+
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { FiArrowRight } from 'react-icons/fi';
 
 export default function About() {
   return (
@@ -6,7 +10,7 @@ export default function About() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">About Us</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">About Us</h2>
             <p className="text-lg text-gray-600 mb-6">
               We are a team of passionate designers and developers dedicated to creating exceptional digital experiences.
               Our approach combines creativity with technical excellence to deliver solutions that make a real impact.
@@ -15,11 +19,17 @@ export default function About() {
               With years of experience in the industry, we've helped startups and established companies alike bring their
               ideas to life through thoughtful design and robust development.
             </p>
-            <button className="px-6 py-3 border-2 border-black rounded-full hover:bg-black hover:text-white transition">
+            <Button
+              variant="secondary"
+              size="lg"
+              href="/about"
+              icon={<FiArrowRight className="w-5 h-5" />}
+            >
               Learn more about us
-            </button>
+            </Button>
           </div>
           <div className="relative h-96 bg-gray-200 rounded-xl overflow-hidden">
+            {/* TODO: Replace with actual team/office image */}
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="text-gray-400">Team photo</span>
             </div>
@@ -27,5 +37,5 @@ export default function About() {
         </div>
       </div>
     </section>
-  )
+  );
 }

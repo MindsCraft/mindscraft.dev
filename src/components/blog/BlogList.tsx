@@ -1,13 +1,8 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { FiClock, FiTag } from 'react-icons/fi';
-import { motion } from 'framer-motion';
-import NewsletterForm from './NewsletterForm';
-import { trackSearch, trackCategoryFilter } from '@/lib/analytics';
-import { SearchIcon } from '@/components/ui/icons';
+
 
 interface Post {
   id: number;
@@ -28,22 +23,10 @@ interface BlogListProps {
 const POSTS_PER_PAGE = 6;
 
 export default function BlogList({ posts, categories }: BlogListProps) {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
-  const filteredPosts = useMemo(() => {
-    return posts.filter(post => {
-      const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
-      const matchesSearch = searchQuery === '' || 
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.description.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
-  }, [posts, selectedCategory, searchQuery]);
-
-  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
-  const paginatedPosts = filteredPosts.slice(
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+  const paginatedPosts = posts.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
     currentPage * POSTS_PER_PAGE
   );
@@ -53,76 +36,14 @@ export default function BlogList({ posts, categories }: BlogListProps) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Track search
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-    if (query) {
-      trackSearch(query, filteredPosts.length);
-    }
-  };
-
-  // Track category selection
-  const handleCategorySelect = (category: string) => {
-    setSelectedCategory(category);
-    setCurrentPage(1);
-    if (category) {
-      trackCategoryFilter(category);
-    }
-  };
-
   return (
     <div className="container mx-auto px-4 py-20">
-      <h1 className="text-4xl font-bold mb-8 text-center">Mindscraft Blog</h1>
-      <p className="text-lg text-gray-600 text-center mb-12">
-        Insights on UX, web development, AI, and startup growth. Stay tuned for our latest articles!
-      </p>
-
-      {/* Search Bar */}
-      <div className="relative mb-8">
-        <input
-          type="text"
-          placeholder="Search articles..."
-          value={searchQuery}
-          onChange={handleSearch}
-          className="w-full px-4 py-3 pl-12 rounded-lg border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        />
-        <SearchIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
-      </div>
-
-      {/* Categories */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        <button
-          onClick={() => handleCategorySelect('')}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-            selectedCategory === ''
-              ? 'bg-blue-500 text-white'
-              : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-          }`}
-        >
-          All
-        </button>
-        {categories.map((category) => (
-          <button
-            key={category}
-            onClick={() => handleCategorySelect(category)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              selectedCategory === category
-                ? 'bg-blue-500 text-white'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-            }`}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-
       {/* Blog Posts Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {paginatedPosts.length > 0 ? (
           paginatedPosts.map((post) => (
-            <Link 
-              key={post.id} 
+            <Link
+              key={post.id}
               href={`/blog/${post.slug}`}
               className="group flex flex-col h-full p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-all cursor-pointer hover:scale-[1.02]"
             >
@@ -172,22 +93,16 @@ export default function BlogList({ posts, categories }: BlogListProps) {
             <button
               key={page}
               onClick={() => handlePageChange(page)}
-              className={`px-4 py-2 rounded-lg transition-all ${
-                currentPage === page
-                  ? 'bg-black text-white'
-                  : 'bg-gray-100 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-2 rounded-lg transition-all ${currentPage === page
+                ? 'bg-black text-white'
+                : 'bg-gray-100 hover:bg-gray-200'
+                }`}
             >
               {page}
             </button>
           ))}
         </div>
       )}
-
-      {/* Newsletter Form */}
-      <div className="mt-20">
-        <NewsletterForm />
-      </div>
     </div>
   );
 } 
