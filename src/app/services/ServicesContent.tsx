@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { Check } from 'lucide-react';
 import { Variants } from 'framer-motion';
 import { AnimatedSection, AnimatedDiv } from '@/components/ui/AnimatedSection';
 import PageHeader from '@/components/ui/PageHeader';
@@ -115,7 +116,10 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
                 <div className="service-features-list">
                     {service.features.map((feature, i) => (
                         <div key={i} className="service-feature-item">
-                            {feature}
+                            <span className="feature-icon-wrapper">
+                                <Check size={14} className="text-primary-600" strokeWidth={3} />
+                            </span>
+                            <span className="feature-text">{feature}</span>
                         </div>
                     ))}
                 </div>

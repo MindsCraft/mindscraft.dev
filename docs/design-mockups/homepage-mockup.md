@@ -3,6 +3,7 @@
 ## Design Specifications
 
 ### Color Palette Application
+
 - **Primary Background**: `#FFFFFF` (White)
 - **Brand Dark**: `#101828` (Headers, navigation, primary text)
 - **Brand Accent**: `#F3F4C0` (Highlights, hover states, decorative elements)
@@ -11,6 +12,7 @@
 - **Gray Scale**: `#F9FAFB` to `#111827` (Backgrounds, secondary text)
 
 ### Typography Implementation
+
 - **Font Family**: Inter, system-ui, sans-serif
 - **Hero Headline**: 48px (3rem) desktop / 32px (2rem) mobile, font-weight: 700
 - **Section Headers**: 36px (2.25rem) desktop / 28px (1.75rem) mobile, font-weight: 600
@@ -18,6 +20,7 @@
 - **Button Text**: 16px (1rem), font-weight: 500, letter-spacing: 0.025em
 
 ## Header Section
+
 ```css
 /* Header Styling */
 .header {
@@ -57,6 +60,7 @@
 ## Hero Section Design
 
 ### Visual Layout
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                                                                             │
@@ -80,6 +84,7 @@
 ```
 
 ### CSS Implementation
+
 ```css
 .hero-section {
   background: linear-gradient(135deg, #F9FAFB 0%, #FFFFFF 100%);
@@ -171,6 +176,7 @@
 ## Social Proof Section
 
 ### Visual Design
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                                                                             │
@@ -194,6 +200,7 @@
 ```
 
 ### CSS Implementation
+
 ```css
 .social-proof {
   background: #F9FAFB;
@@ -271,6 +278,7 @@
 ## Services Overview Section
 
 ### Visual Design
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                                                                             │
@@ -304,6 +312,7 @@
 ```
 
 ### CSS Implementation
+
 ```css
 .services-section {
   padding: 6rem 0;
@@ -314,13 +323,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  margin-top: 3rem;
+  margin-top: 4rem;
 }
 
 .service-card {
   background: white;
-  border: 1px solid #E5E7EB;
-  border-radius: 1rem;
+  border: none;
+  /* border-radius: 1rem; */
   padding: 2rem;
   text-align: center;
   transition: all 0.3s ease;
@@ -368,6 +377,7 @@
 ## Featured Work Section
 
 ### Visual Design
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                                                                             │
@@ -405,6 +415,7 @@
 ```
 
 ### CSS Implementation
+
 ```css
 .featured-work {
   background: #F9FAFB;
@@ -515,6 +526,7 @@
 ## Process Section
 
 ### Visual Design
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                                                                             │
@@ -550,6 +562,7 @@
 ```
 
 ### CSS Implementation
+
 ```css
 .process-section {
   padding: 6rem 0;
@@ -631,6 +644,7 @@
 ## Final CTA Section
 
 ### Visual Design
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                                                                             │
@@ -652,6 +666,7 @@
 ```
 
 ### CSS Implementation
+
 ```css
 .final-cta {
   background: linear-gradient(135deg, #2563EB 0%, #1E40AF 100%);
@@ -698,6 +713,7 @@
 ## Responsive Design Specifications
 
 ### Mobile Adaptations (375px - 640px)
+
 ```css
 @media (max-width: 640px) {
   .hero-headline {
@@ -740,6 +756,7 @@
 ```
 
 ### Tablet Adaptations (641px - 1024px)
+
 ```css
 @media (min-width: 641px) and (max-width: 1024px) {
   .hero-headline {
