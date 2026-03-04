@@ -23,18 +23,19 @@ export default function Cta() {
               Experience the next generation of web development. Fast, reliable, and beautifully crafted.
             </p>
           </div>
-          
+
           <div className="pt-4">
             <Button
               variant="primary"
               size="xl"
               href="/contact"
-              icon={<FiArrowRight className="w-6 h-6" />}
+              icon={<FiArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />}
+              className="group"
             >
-              Experience It
+              Start Your Project
             </Button>
           </div>
-          
+
           <p className="text-sm text-gray-400 pt-2">
             Free consultation • No commitment required
           </p>

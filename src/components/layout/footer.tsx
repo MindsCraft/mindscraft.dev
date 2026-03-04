@@ -18,10 +18,11 @@ const products: FooterLink[] = [
 ];
 
 const services: FooterLink[] = [
-  { title: 'Custom Software', href: '/services/custom-software' },
-  { title: 'E-commerce', href: '/services/ecommerce' },
-  { title: 'SaaS Development', href: '/services/saas' },
-  { title: 'API Development', href: '/services/api' },
+  { title: 'Custom Software', href: '/services' },
+  { title: 'E-commerce', href: '/services' },
+  { title: 'SaaS Development', href: '/services' },
+  { title: 'API Development', href: '/services' },
+  { title: 'Pricing', href: '/pricing' },
 ];
 
 const company: FooterLink[] = [
@@ -32,10 +33,9 @@ const company: FooterLink[] = [
 ];
 
 const resources: FooterLink[] = [
-  { title: 'Documentation', href: '/docs', external: true },
   { title: 'Case Studies', href: '/case-studies' },
-  { title: 'Guides', href: '/guides' },
   { title: 'FAQ', href: '/faq' },
+  { title: 'Pricing', href: '/pricing' },
 ];
 
 const linkGroups = [
@@ -113,13 +113,13 @@ export default function Footer() {
               &copy; {currentYear} Mindscraft.dev. All rights reserved.
             </p>
             <div className="mt-4 md:mt-0 flex space-x-6">
-              <Link href="/privacy" className="text-sm text-gray-500 hover:text-gray-700">
+              <Link href="/privacy-policy" className="text-sm text-gray-500 hover:text-gray-700">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-sm text-gray-500 hover:text-gray-700">
+              <Link href="/terms-and-conditions" className="text-sm text-gray-500 hover:text-gray-700">
                 Terms of Service
               </Link>
-              <Link href="/cookies" className="text-sm text-gray-500 hover:text-gray-700">
+              <Link href="/cookie-policy" className="text-sm text-gray-500 hover:text-gray-700">
                 Cookie Policy
               </Link>
             </div>

@@ -56,7 +56,7 @@ const PageHeaderLeft: React.FC<PageHeaderLeftProps> = ({
                     {/* Badge */}
                     {badge && (
                         <div className="page-header-badge-wrapper">
-                            <Badge variant="outline" size="md">
+                            <Badge variant="default" size="md">
                                 {badge}
                             </Badge>
                         </div>

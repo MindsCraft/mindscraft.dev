@@ -118,7 +118,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                     {/* Breadcrumbs */}
                     {breadcrumbs && breadcrumbs.length > 0 && (
                         <motion.nav
-                            variants={itemVariants}
+                            variants={itemVariants as any}
                             className="page-header-breadcrumbs"
                             aria-label="Breadcrumb"
                         >
@@ -146,8 +146,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 
                     {/* Badge */}
                     {badge && (
-                        <motion.div variants={itemVariants} className="inline-flex">
-                            <Badge variant="outline" size="md">
+                        <motion.div variants={itemVariants as any} className="inline-flex">
+                            <Badge variant="default" size="md">
                                 {badge}
                             </Badge>
                         </motion.div>
@@ -155,7 +155,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 
                     {/* Title */}
                     <motion.h1
-                        variants={itemVariants}
+                        variants={itemVariants as any}
                         className="page-header-title"
                     >
                         {title}
@@ -164,7 +164,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                     {/* Description */}
                     {description && (
                         <motion.p
-                            variants={itemVariants}
+                            variants={itemVariants as any}
                             className="page-header-description"
                         >
                             {description}
@@ -173,7 +173,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 
                     {/* CTA Button */}
                     {cta && (
-                        <motion.div variants={itemVariants} className="page-header-cta">
+                        <motion.div variants={itemVariants as any} className="page-header-cta">
                             <Link
                                 href={cta.href}
                                 className={`cta-button ${cta.variant === 'secondary' || variant === 'solid' ? 'cta-secondary' : 'cta-primary'}`}

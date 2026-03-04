@@ -37,6 +37,7 @@ export default function Header() {
     { href: '/', label: 'Home' },
     { href: '/services', label: 'Services' },
     { href: '/work', label: 'Work' },
+    { href: '/pricing', label: 'Pricing' },
     { href: '/about', label: 'About' },
     { href: '/blog', label: 'Blog' },
   ];
@@ -80,8 +81,8 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 className={`text-base font-medium transition-colors duration-200 ${isActive(item.href)
-                    ? 'text-gray-900'
-                    : 'text-gray-600 hover:text-gray-900'
+                  ? 'text-gray-900'
+                  : 'text-gray-600 hover:text-gray-900'
                   }`}
                 onClick={() => setMobileMenuOpen(false)}
               >

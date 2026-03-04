@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic';
 const AboutContent = dynamic(() => import('./AboutContent'));
 
 export const metadata: Metadata = {
-  title: 'About Us | Mindscraft',
-  description: 'Learn about Mindscraft, our mission, values, and the team behind our AI-powered web development and UX design services.',
+  title: 'About Us | MindsCraft',
+  description: 'MindsCraft is a digital product studio based in Dhaka, Bangladesh. Meet our team of senior specialists with 40+ combined years of experience in web development, UX design, and AI integration.',
 };
 
 export const viewport: Viewport = {

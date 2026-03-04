@@ -4,7 +4,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { workItems } from '@/data/workData';
-import PageHeaderLeft from '@/components/ui/PageHeaderLeft';
+import WorkHero from './WorkHero';
 import { FiArrowRight } from 'react-icons/fi';
 import '@/styles/pages/work.css';
 
@@ -58,13 +58,8 @@ export default function WorkContent() {
 
   return (
     <div className="work-page-bg">
-      {/* Page Header */}
-      <PageHeaderLeft
-        badge="Portfolio"
-        title="Transforming Ideas into Digital Excellence"
-        description="Explore our portfolio of successful projects that have helped businesses grow, engage users, and achieve measurable results."
-        variant="dotted"
-      />
+      {/* 2026 Work Page Hero */}
+      <WorkHero />
 
       {/* Work Section */}
       <section className="work-section">

@@ -211,9 +211,18 @@ export default function ContactContent() {
 
               <div>
                 <h3 className="text-4xl font-bold text-gray-900 mb-6 leading-none">Locations</h3>
-                <p className="text-xl text-gray-700 max-w-xl leading-relaxed">
-                  We’re remote-first but gather in physical spaces when in-person collaboration is essential for impact.
-                </p>
+                <div className="space-y-6">
+                  <div>
+                    <p className="font-semibold text-gray-900 mb-1">🇧🇩 Dhaka, Bangladesh</p>
+                    <p className="text-gray-600 text-lg leading-relaxed max-w-xs">
+                      Remote-first. Available for in-person meetings in Dhaka by appointment.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-500">
+                    <span className="text-green-500 text-lg">●</span>
+                    <p className="text-base">We reply to all inquiries within <span className="font-semibold text-gray-900">24 hours</span>.</p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -452,7 +461,7 @@ export default function ContactContent() {
                         </Button>
                       </div>
                       <p className="text-center text-xs text-gray-500 mt-4">
-                        By submitting this form, you agree to our <a href="#" className="text-gray-900 underline hover:text-gray-700">Privacy Policy</a>
+                        By submitting this form, you agree to our <a href="/privacy-policy" className="text-gray-900 underline hover:text-gray-700">Privacy Policy</a>
                       </p>
                     </div>
                   </Form>
