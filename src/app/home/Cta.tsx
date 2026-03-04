@@ -1,44 +1,64 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
 import { FiArrowRight } from 'react-icons/fi';
+import './cta.css';
 
 export default function Cta() {
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-br from-gray-900 to-gray-800">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+    <section className="cta-modern-section">
+      <div className="cta-modern-container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="space-y-8"
+          className="cta-modern-content"
         >
-          <div className="space-y-6">
-            <h2 className="text-5xl md:text-6xl font-bold text-white leading-[1.1] tracking-tight">
-              Built for the future
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-              Experience the next generation of web development. Fast, reliable, and beautifully crafted.
-            </p>
-          </div>
+          {/* Aurora gradient overlays */}
+          <div className="cta-glow cta-glow--cream" />
+          <div className="cta-glow cta-glow--blue" />
 
-          <div className="pt-4">
-            <Button
-              variant="primary"
-              size="xl"
-              href="/contact"
-              icon={<FiArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />}
-              className="group"
-            >
-              Start Your Project
-            </Button>
-          </div>
+          <div className="cta-inner">
+            {/* Left — Copy */}
+            <div className="cta-left">
+              <h2 className="cta-heading">
+                Your next digital product{' '}
+                <span className="cta-heading-accent">starts here.</span>
+              </h2>
+              <p className="cta-subtext">
+                From concept to launch in under 8 weeks. We handle UX design,
+                full-stack development, and deployment — so you can focus on
+                growing your business.
+              </p>
+              {/* Social proof */}
+              <div className="cta-proof">
+                <div className="cta-proof-avatars">
+                  <span className="cta-avatar" style={{ background: '#4F46E5' }}>S</span>
+                  <span className="cta-avatar" style={{ background: '#059669' }}>A</span>
+                  <span className="cta-avatar" style={{ background: '#D97706' }}>K</span>
+                  <span className="cta-avatar" style={{ background: '#DC2626' }}>R</span>
+                </div>
+                <span className="cta-proof-text">
+                  Trusted by <strong>30+ startups</strong> worldwide
+                </span>
+              </div>
+            </div>
 
-          <p className="text-sm text-gray-400 pt-2">
-            Free consultation • No commitment required
-          </p>
+            {/* Right — CTA Button */}
+            <div className="cta-right">
+              <a href="/contact" className="cta-button group">
+                <span className="cta-button-text">
+                  Get a Free Proposal
+                  <FiArrowRight className="cta-button-arrow" />
+                </span>
+                <div className="cta-button-shine" />
+              </a>
+              <p className="cta-micro">
+                Free consultation · No commitment required
+              </p>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
