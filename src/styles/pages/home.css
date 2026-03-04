@@ -1,25 +1,331 @@
 /* ============================================
-   HOME PAGE STYLES
+   HOME PAGE — BLOG SECTION (MOCKUP MATCH)
+   Brand: Navy #101828 | Cream #F3F4C0
+   Layout: 3 columns, 16px border-radius, flat shadowless
+   Container: 1280px (matches rest of site)
    ============================================ */
 
-/* Hero Section */
-.home-hero {
-    /* Add home-specific hero styles here */
+.bb-section {
+    padding: 5rem 0 6rem;
+    background: #f0f0ee;
+    /* From mockup */
+    font-family: var(--font-sans), sans-serif;
 }
 
-/* Work Section */
-.home-work {
-    /* Add home-specific work section styles here */
+.bb-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
-/* Services Section */
-.home-services {
-    /* Add home-specific services styles here */
+/* ── Header ── */
+.bb-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
 }
 
-/* Contact Section */
-.home-contact {
-    /* Add home-specific contact styles here */
+.bb-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
 }
 
-/* Add other home page specific styles below */
+.bb-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #101828;
+}
+
+.bb-title {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 800;
+    color: #101828;
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.bb-view-all {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #101828;
+    text-decoration: none;
+    border-bottom: 1px solid #101828;
+    padding-bottom: 2px;
+    margin-bottom: 0.5rem;
+    transition: opacity 0.2s;
+}
+
+.bb-view-all:hover {
+    opacity: 0.6;
+}
+
+/* Header Rule */
+.bb-header-rule {
+    width: 100%;
+    height: 1px;
+    background: rgba(16, 24, 40, 0.15);
+    margin-bottom: 2.5rem;
+}
+
+/* ── Grid ── */
+.bb-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.95fr 0.95fr;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+/* ── Columns ── */
+.bb-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ── Shared Classes ── */
+.bb-img-wrap-lg,
+.bb-img-wrap-md {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px 16px 0 0;
+}
+
+.bb-img-wrap-lg {
+    height: 380px;
+}
+
+.bb-img-wrap-md {
+    height: 220px;
+}
+
+.bb-img-wrap-sm {
+    height: 160px;
+}
+
+.bb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── Featured Card (Col 1) ── */
+.bb-card-featured {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    height: 100%;
+    min-height: 600px;
+}
+
+.bb-badge-pill {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: #F3F4C0;
+    color: #101828;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.bb-content-featured {
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* ── Standard Card (Col 2) ── */
+.bb-card-std {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+}
+
+.bb-content-std {
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Cream Card (Col 3 Top) ── */
+.bb-card-cream {
+    display: flex;
+    flex-direction: column;
+    background: #F3F4C0;
+    border-radius: 16px;
+    text-decoration: none;
+    color: inherit;
+    padding: 1.8rem;
+    position: relative;
+    height: 360px;
+}
+
+.bb-ghost-num {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: rgba(16, 24, 40, 0.08);
+    /* Light navy */
+    line-height: 1;
+    pointer-events: none;
+}
+
+/* ── Navy Card (Col 3 Bottom) ── */
+.bb-card-navy {
+    display: flex;
+    flex-direction: column;
+    background: #101828;
+    border-radius: 16px;
+    text-decoration: none;
+    color: #fff;
+    padding: 1.8rem;
+    height: 300px;
+}
+
+/* ── Typography & Elements ── */
+.bb-meta {
+    font-size: 0.85rem;
+    color: rgba(16, 24, 40, 0.7);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.bb-heading-lg {
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    font-weight: 800;
+    color: #101828;
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.01em;
+}
+
+.bb-heading-md {
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    font-weight: 800;
+    color: #101828;
+    line-height: 1.25;
+    margin: 0 0 0.8rem 0;
+    letter-spacing: -0.01em;
+}
+
+.bb-text-white {
+    color: #ffffff;
+}
+
+.bb-excerpt {
+    font-size: 0.95rem;
+    color: rgba(16, 24, 40, 0.6);
+    line-height: 1.5;
+    margin: 0 0 1.5rem 0;
+}
+
+.bb-excerpt-sm {
+    font-size: 0.85rem;
+    color: rgba(16, 24, 40, 0.65);
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+}
+
+.bb-excerpt-navy {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+    margin: 0 0 1rem 0;
+}
+
+.bb-cat {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(16, 24, 40, 0.5);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+}
+
+.bb-cat-cream {
+    color: rgba(16, 24, 40, 0.6);
+}
+
+.bb-meta-flex {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: rgba(16, 24, 40, 0.6);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.bb-read {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #101828;
+    text-decoration: none;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.bb-read-cream {
+    color: #F3F4C0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .bb-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bb-col:nth-child(1) {
+        grid-column: 1 / -1;
+    }
+
+    .bb-img-wrap-lg {
+        height: 480px;
+    }
+}
+
+@media (max-width: 768px) {
+    .bb-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bb-img-wrap-lg {
+        height: 320px;
+    }
+
+    .bb-card-cream,
+    .bb-card-navy {
+        height: auto;
+        min-height: 250px;
+    }
+
+    .bb-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
