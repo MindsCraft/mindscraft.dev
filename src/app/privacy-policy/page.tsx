@@ -4,7 +4,19 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | MindsCraft',
-  description: 'Learn how MindsCraft collects, uses, and protects your personal information.',
+  description: 'Learn how MindsCraft collects, uses, and protects your personal information in compliance with applicable data protection laws.',
+  alternates: {
+    canonical: 'https://mindscraft.dev/privacy-policy',
+  },
+  openGraph: {
+    title: 'Privacy Policy | MindsCraft',
+    description: 'How MindsCraft collects, uses, and protects your personal information.',
+    url: 'https://mindscraft.dev/privacy-policy',
+    siteName: 'MindsCraft',
+    images: [{ url: 'https://mindscraft.dev/images/og-image.png', width: 1200, height: 630, alt: 'MindsCraft Privacy Policy' }],
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 const LAST_UPDATED = 'March 3, 2026';

@@ -3,8 +3,20 @@ import Link from 'next/link';
 import { FiArrowRight } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-    title: 'Case Studies | MindsCraft',
-    description: 'In-depth case studies of real client projects — the problems we solved, our process, and the measurable results.',
+    title: 'Client Case Studies — Real Project Results | MindsCraft',
+    description: 'In-depth case studies of real client projects — the problems we solved, our development process, and the measurable business results we delivered.',
+    alternates: {
+        canonical: 'https://mindscraft.dev/case-studies',
+    },
+    openGraph: {
+        title: 'Client Case Studies | MindsCraft',
+        description: 'Real project results: problems solved, process used, and measurable business outcomes.',
+        url: 'https://mindscraft.dev/case-studies',
+        siteName: 'MindsCraft',
+        images: [{ url: 'https://mindscraft.dev/images/og-image.png', width: 1200, height: 630, alt: 'MindsCraft Case Studies' }],
+        locale: 'en_US',
+        type: 'website',
+    },
 };
 
 export default function CaseStudiesPage() {

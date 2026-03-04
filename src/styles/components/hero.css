@@ -123,3 +123,29 @@
         gap: var(--space-5);
     }
 }
+
+/* ============================================
+   AURORA MESH BACKGROUND (PREMIUM 2026 HERO)
+   ============================================ */
+.aurora-mesh-bg {
+    background-color: #fcfdfe;
+    /* Very light cool grey/white base */
+    background-image:
+        radial-gradient(at 0% 0%, hsla(210, 100%, 95%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 0%, hsla(60, 100%, 95%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(180, 100%, 95%, 1) 0, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(60, 100%, 93%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 100%, hsla(210, 100%, 93%, 1) 0, transparent 50%);
+    background-size: 150% 150%;
+    animation: aurora-mesh-flow 15s ease infinite alternate;
+}
+
+@keyframes aurora-mesh-flow {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 100% 100%;
+    }
+}

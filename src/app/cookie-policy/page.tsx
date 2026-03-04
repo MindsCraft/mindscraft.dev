@@ -4,7 +4,19 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: 'Cookie Policy | MindsCraft',
-    description: 'Learn how MindsCraft uses cookies and how you can manage your cookie preferences.',
+    description: 'Learn how MindsCraft uses cookies on mindscraft.dev and how you can manage your cookie preferences on our website.',
+    alternates: {
+        canonical: 'https://mindscraft.dev/cookie-policy',
+    },
+    openGraph: {
+        title: 'Cookie Policy | MindsCraft',
+        description: 'How MindsCraft uses cookies and how to manage your preferences.',
+        url: 'https://mindscraft.dev/cookie-policy',
+        siteName: 'MindsCraft',
+        images: [{ url: 'https://mindscraft.dev/images/og-image.png', width: 1200, height: 630, alt: 'MindsCraft Cookie Policy' }],
+        locale: 'en_US',
+        type: 'website',
+    },
 };
 
 const LAST_UPDATED = 'March 3, 2026';

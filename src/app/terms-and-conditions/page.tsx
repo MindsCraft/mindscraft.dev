@@ -4,7 +4,19 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions | MindsCraft',
-  description: 'Read the terms and conditions governing the use of MindsCraft services and website.',
+  description: 'Terms and conditions governing the use of MindsCraft web development and design services. Read before engaging our agency.',
+  alternates: {
+    canonical: 'https://mindscraft.dev/terms-and-conditions',
+  },
+  openGraph: {
+    title: 'Terms & Conditions | MindsCraft',
+    description: 'Terms governing the use of MindsCraft web development and design services.',
+    url: 'https://mindscraft.dev/terms-and-conditions',
+    siteName: 'MindsCraft',
+    images: [{ url: 'https://mindscraft.dev/images/og-image.png', width: 1200, height: 630, alt: 'MindsCraft Terms & Conditions' }],
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 const LAST_UPDATED = 'March 3, 2026';

@@ -2,9 +2,30 @@ import React from 'react';
 import { Metadata } from 'next';
 import BlogList from '@/components/blog/BlogList';
 
+const SITE_URL = 'https://mindscraft.dev';
+
 export const metadata: Metadata = {
-  title: 'Blog | Mindscraft',
-  description: 'Insights on UX, web development, AI, and startup growth from the Mindscraft team.',
+  title: 'UX Design & Web Development Blog | MindsCraft',
+  description: 'Insights on UX design, web development, AI integration, and startup growth from the MindsCraft team. Practical guides for building better digital products.',
+  alternates: {
+    canonical: `${SITE_URL}/blog`,
+  },
+  openGraph: {
+    title: 'UX Design & Web Development Blog | MindsCraft',
+    description: 'Insights on UX design, web development, AI integration, and startup growth from the MindsCraft team.',
+    url: `${SITE_URL}/blog`,
+    siteName: 'MindsCraft',
+    images: [{ url: `${SITE_URL}/images/og-image.png`, width: 1200, height: 630, alt: 'MindsCraft Blog' }],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'UX Design & Web Development Blog | MindsCraft',
+    description: 'Insights on UX, web dev, AI, and startup growth.',
+    site: '@mindscraft',
+    images: [`${SITE_URL}/images/og-image.png`],
+  },
 };
 
 const categories = [
@@ -80,4 +101,4 @@ const posts = [
 
 export default function Blog() {
   return <BlogList posts={posts} categories={categories} />;
-} 
+}
