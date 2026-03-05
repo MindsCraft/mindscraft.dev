@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { FiCheck, FiAlertCircle, FiSend } from 'react-icons/fi';
+import { FiCheck, FiAlertCircle, FiSend, FiFastForward, FiUsers, FiClock } from 'react-icons/fi';
 import { useForm, FormProvider } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -31,9 +31,12 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 const SERVICES = [
-  'New Web Application',
-  'UI/UX Design',
-  'Website Maintenance',
+  'AI Product Development',
+  'SaaS MVP Development',
+  'UX Design & Conversion Optimisation',
+  'Full-Stack Web Development',
+  'Performance Engineering',
+  'Headless E-commerce & CMS',
   'General Inquiry'
 ];
 
@@ -82,10 +85,11 @@ export default function ContactContent() {
   // Show budget field for project-related services
   useEffect(() => {
     const isProjectService = [
-      'New Web Application',
-      'Mobile App Development',
-      'UI/UX Design',
-      'Cloud & DevOps Consulting'
+      'AI Product Development',
+      'SaaS MVP Development',
+      'UX Design & Conversion Optimisation',
+      'Full-Stack Web Development',
+      'Headless E-commerce & CMS'
     ].includes(selectedService);
 
     setIsBudgetVisible(isProjectService);
@@ -201,26 +205,44 @@ export default function ContactContent() {
                 <div>
                   <p className="font-medium text-gray-500 mb-2 text-lg">Join Us</p>
                   <a
-                    href="#"
+                    href="/about"
                     className="text-2xl font-normal text-gray-900 border-b-2 border-gray-300 hover:border-gray-900 transition-colors inline-block"
                   >
-                    See Open Positions
+                    See Our Culture
                   </a>
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-4xl font-bold text-gray-900 mb-6 leading-none">Locations</h3>
+              {/* Trust Signals replacing Location */}
+              <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why founders choose us</h3>
                 <div className="space-y-6">
-                  <div>
-                    <p className="font-semibold text-gray-900 mb-1">🇧🇩 Dhaka, Bangladesh</p>
-                    <p className="text-gray-600 text-lg leading-relaxed max-w-xs">
-                      Remote-first. Available for in-person meetings in Dhaka by appointment.
-                    </p>
+                  <div className="flex gap-4 items-start">
+                    <div className="bg-gray-100 p-2 rounded-full mt-1">
+                      <FiFastForward className="w-5 h-5 text-gray-700" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900">Shipping Velocity</p>
+                      <p className="text-gray-600 mt-1 leading-relaxed">We optimize for time-to-market. Average MVP launch is under 6 weeks.</p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-500">
-                    <span className="text-green-500 text-lg">●</span>
-                    <p className="text-base">We reply to all inquiries within <span className="font-semibold text-gray-900">24 hours</span>.</p>
+                  <div className="flex gap-4 items-start">
+                    <div className="bg-gray-100 p-2 rounded-full mt-1">
+                      <FiUsers className="w-5 h-5 text-gray-700" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900">Senior Talent Only</p>
+                      <p className="text-gray-600 mt-1 leading-relaxed">No juniors learning on your dime. You work directly with veterans.</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-4 items-start">
+                    <div className="bg-green-50 p-2 rounded-full mt-1">
+                      <FiClock className="w-5 h-5 text-green-600" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900">24-Hour Response</p>
+                      <p className="text-gray-600 mt-1 leading-relaxed">All inquiries are reviewed and answered by a partner within 24 hours.</p>
+                    </div>
                   </div>
                 </div>
               </div>
