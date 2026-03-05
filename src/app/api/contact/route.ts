@@ -1,17 +1,23 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Force dynamic so Next.js never pre-renders / statically analyses this route
+export const dynamic = 'force-dynamic';
+
+// Resend client is instantiated lazily inside the handler so it is only
+// evaluated at request time, not at module load / build time.
+// This prevents the build failing locally when RESEND_API_KEY is not set.
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { nameOrCompany, email, service, budget, message, attachment } = body;
 
-    // Send email using Resend
+    // Send email using Resend (instantiated here to avoid build-time evaluation)
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const { data, error } = await resend.emails.send({
       from: 'MindsCraft Contact Form <contact@mindscraft.dev>',
-      to: [process.env.CONTACT_EMAIL || 'anikpgp@gmail.com'],
+      to: [process.env.CONTACT_EMAIL || 'anikphp@gmail.com'],
       replyTo: email,
       subject: `New Project Inquiry: ${service}`,
       html: `

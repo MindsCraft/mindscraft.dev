@@ -1,0 +1,232 @@
+/* ============================================
+   CTA SECTION — PREMIUM FLOATING CARD
+   Navy #101828 on #f0f0ee page bg
+   ============================================ */
+
+.cta-modern-section {
+    background: #f0f0ee;
+    padding: 3rem 0 5rem;
+}
+
+.cta-modern-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ── Dark card ── */
+.cta-modern-content {
+    background: #101828;
+    border-radius: 24px;
+    padding: 4.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Aurora glows ── */
+.cta-glow {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+}
+
+.cta-glow--cream {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    right: -60px;
+    background: rgba(243, 244, 192, 0.06);
+}
+
+.cta-glow--blue {
+    width: 350px;
+    height: 350px;
+    bottom: -80px;
+    left: -40px;
+    background: rgba(37, 99, 235, 0.08);
+}
+
+/* ── Inner grid ── */
+.cta-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Left side ── */
+.cta-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.cta-heading {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin: 0;
+}
+
+.cta-heading-accent {
+    color: #F3F4C0;
+}
+
+.cta-subtext {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 480px;
+}
+
+/* ── Social proof ── */
+.cta-proof {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.cta-proof-avatars {
+    display: flex;
+}
+
+.cta-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #fff;
+    border: 2px solid #101828;
+    margin-right: -6px;
+}
+
+.cta-proof-text {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+}
+
+.cta-proof-text strong {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 700;
+}
+
+/* ── Right side ── */
+.cta-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+/* ── Button ── */
+.cta-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #F3F4C0;
+    color: #101828;
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 1.25rem 2.5rem;
+    border-radius: 999px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 0 40px rgba(243, 244, 192, 0.15);
+}
+
+.cta-button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 60px rgba(243, 244, 192, 0.25);
+}
+
+.cta-button-text {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.cta-button-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s;
+}
+
+.cta-button:hover .cta-button-arrow {
+    transform: translateX(4px);
+}
+
+/* Shine sweep */
+.cta-button-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg,
+            transparent 40%,
+            rgba(255, 255, 255, 0.5) 50%,
+            transparent 60%);
+    transform: translateX(-100%);
+    transition: transform 0.7s ease-in-out;
+    pointer-events: none;
+}
+
+.cta-button:hover .cta-button-shine {
+    transform: translateX(100%);
+}
+
+/* ── Micro text ── */
+.cta-micro {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.25);
+    margin: 0;
+    text-align: right;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .cta-modern-content {
+        padding: 3rem 2rem;
+        border-radius: 20px;
+    }
+
+    .cta-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .cta-right {
+        align-items: center;
+    }
+
+    .cta-proof {
+        justify-content: center;
+    }
+
+    .cta-micro {
+        text-align: center;
+    }
+
+    .cta-subtext {
+        max-width: 100%;
+    }
+}

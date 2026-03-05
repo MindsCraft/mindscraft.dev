@@ -2,82 +2,121 @@ import React from 'react';
 import { Metadata } from 'next';
 import BlogList from '@/components/blog/BlogList';
 
+const SITE_URL = 'https://mindscraft.dev';
+
 export const metadata: Metadata = {
-  title: 'Blog | Mindscraft',
-  description: 'Insights on UX, web development, AI, and startup growth from the Mindscraft team.',
+  title: 'Blog — AI, SaaS & Web Development Insights | MindsCraft',
+  description: 'Practical guides on AI product development, SaaS MVPs, Core Web Vitals, UX/CRO, and modern web engineering from the MindsCraft team.',
+  alternates: {
+    canonical: `${SITE_URL}/blog`,
+  },
+  openGraph: {
+    title: 'Blog — AI, SaaS & Web Development Insights | MindsCraft',
+    description: 'Practical guides on AI product development, SaaS MVPs, Core Web Vitals, UX/CRO, and modern web engineering.',
+    url: `${SITE_URL}/blog`,
+    siteName: 'MindsCraft',
+    images: [{ url: `${SITE_URL}/images/og-image.png`, width: 1200, height: 630, alt: 'MindsCraft Blog' }],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog — AI, SaaS & Web Development Insights | MindsCraft',
+    description: 'Practical guides on AI product development, SaaS MVPs, Core Web Vitals, UX/CRO, and modern web engineering.',
+    site: '@mindscraft',
+    images: [`${SITE_URL}/images/og-image.png`],
+  },
 };
 
-const categories = [
+export const categories = [
   'All',
-  'UX Design',
+  'AI & SaaS',
   'Web Development',
-  'AI & Technology',
-  'Startup Growth'
+  'UX & CRO',
+  'Performance',
 ];
 
-const posts = [
+export const posts = [
   {
     id: 1,
-    title: 'The Future of UX Design in AI-Powered Applications',
-    description: 'Exploring how AI is transforming user experience design and what it means for developers.',
-    category: 'UX Design',
-    date: '2024-03-20',
-    slug: 'future-of-ux-design',
-    image: 'https://picsum.photos/seed/ux-design/800/500',
-    imageAlt: 'AI and UX Design concept'
+    title: 'How to Build an AI-Powered SaaS in 6 Weeks',
+    description:
+      'The exact stack, process, and decisions that let us take a founder from zero to a live, paying-user product in under 6 weeks — using Next.js, LangChain, and Supabase.',
+    category: 'AI & SaaS',
+    date: '2026-02-28',
+    readTime: '8 min read',
+    slug: 'build-ai-saas-6-weeks',
+    image: '/images/blog/blog-ai-saas.png',
+    imageAlt: 'Glowing neural network on dark background — AI SaaS development',
+    featured: true,
   },
   {
     id: 2,
-    title: 'Building Scalable Web Applications with Next.js',
-    description: 'A comprehensive guide to creating performant and scalable web applications.',
-    category: 'Web Development',
-    date: '2024-03-18',
-    slug: 'scalable-web-applications',
-    image: 'https://picsum.photos/seed/nextjs/800/500',
-    imageAlt: 'Next.js development'
+    title: 'RAG vs Fine-Tuning: Which One Does Your Product Actually Need?',
+    description:
+      'Two of the most misunderstood options in AI product development explained clearly. We break down when to use retrieval-augmented generation vs fine-tuning your own model — with real cost and latency comparisons.',
+    category: 'AI & SaaS',
+    date: '2026-02-20',
+    readTime: '6 min read',
+    slug: 'rag-vs-fine-tuning',
+    image: '/images/blog/blog-llm-rag.png',
+    imageAlt: 'Abstract data streams representing RAG vs fine-tuning for LLMs',
+    featured: false,
   },
   {
     id: 3,
-    title: 'AI Integration Strategies for Startups',
-    description: 'How startups can leverage AI to gain competitive advantages and improve efficiency.',
-    category: 'AI & Technology',
-    date: '2024-03-15',
-    slug: 'ai-integration-strategies',
-    image: 'https://picsum.photos/seed/ai-startup/800/500',
-    imageAlt: 'AI in business'
+    title: 'Core Web Vitals in 2026: What Actually Moves the SEO Needle',
+    description:
+      'Google has updated its ranking signals again. We audited 40 client sites and identified exactly which CWV metrics correlate with ranking improvements — and which ones everyone is wasting time on.',
+    category: 'Performance',
+    date: '2026-02-14',
+    readTime: '5 min read',
+    slug: 'core-web-vitals-2026',
+    image: '/images/blog/blog-core-web-vitals.png',
+    imageAlt: 'Glowing performance gauge rings — Core Web Vitals 2026',
+    featured: false,
   },
   {
     id: 4,
-    title: 'Startup Growth Hacking Techniques',
-    description: 'Proven strategies for accelerating your startup\'s growth in the digital age.',
-    category: 'Startup Growth',
-    date: '2024-03-12',
-    slug: 'startup-growth-hacking',
-    image: 'https://picsum.photos/seed/startup/800/500',
-    imageAlt: 'Startup growth strategies'
+    title: 'From 2% to 9%: A SaaS Trial-to-Paid CRO Case Study',
+    description:
+      'We redesigned the onboarding flow for a B2B SaaS tool and tripled their trial-to-paid conversion in 8 weeks. Here\'s every change we made, what worked, and what didn\'t.',
+    category: 'UX & CRO',
+    date: '2026-02-07',
+    readTime: '7 min read',
+    slug: 'saas-cro-case-study',
+    image: '/images/blog/blog-cro-saas.png',
+    imageAlt: 'Abstract funnel visualising SaaS conversion optimisation',
+    featured: false,
   },
   {
     id: 5,
-    title: 'The Role of UX in Product Success',
-    description: 'Why user experience is crucial for product success and how to get it right.',
-    category: 'UX Design',
-    date: '2024-03-10',
-    slug: 'role-of-ux-in-product-success',
-    image: 'https://picsum.photos/seed/ux-role/800/500',
-    imageAlt: 'User experience design process'
+    title: 'Building a Design System That Actually Scales',
+    description:
+      'Most design systems die in the Figma file phase. We\'ve shipped five this year. Here\'s the structural decisions that separate the ones teams love from the ones teams abandon.',
+    category: 'UX & CRO',
+    date: '2026-01-30',
+    readTime: '9 min read',
+    slug: 'design-system-that-scales',
+    image: '/images/blog/blog-design-system.png',
+    imageAlt: 'Glowing UI component grid — design system architecture',
+    featured: false,
   },
   {
     id: 6,
-    title: 'Modern Web Development Best Practices',
-    description: 'Essential best practices for building modern, maintainable web applications.',
+    title: 'Next.js 15 App Router: Patterns That Work in Production',
+    description:
+      'After shipping 12 Next.js 15 projects, we\'ve landed on a set of patterns for data fetching, caching, auth, and error handling that actually hold up under real-world traffic.',
     category: 'Web Development',
-    date: '2024-03-08',
-    slug: 'modern-web-development',
-    image: 'https://picsum.photos/seed/web-dev-best/800/500',
-    imageAlt: 'Web development best practices'
-  }
+    date: '2026-01-22',
+    readTime: '11 min read',
+    slug: 'nextjs-15-app-router-patterns',
+    image: '/images/blog/blog-nextjs-patterns.png',
+    imageAlt: 'Abstract route tree diagram — Next.js App Router architecture',
+    featured: false,
+  },
 ];
 
 export default function Blog() {
   return <BlogList posts={posts} categories={categories} />;
-} 
+}

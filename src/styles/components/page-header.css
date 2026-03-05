@@ -1,0 +1,297 @@
+/* ============================================
+   PAGE HEADER STYLES
+   ============================================ */
+
+.page-header-section {
+    position: relative;
+    background-color: rgb(var(--background));
+    overflow: hidden;
+    border-bottom: 1px solid rgb(var(--gray-100));
+}
+
+.page-header-gradient-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    /* Gradient applied via inline style for specific colors, or define here if static */
+}
+
+.page-header-container {
+    width: 100%;
+    max-width: 80rem;
+    /* max-w-7xl equivalent */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+    position: relative;
+    z-index: 10;
+    padding-top: 5rem;
+    /* py-20 */
+    padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+    .page-header-container {
+        padding-top: 6rem;
+        /* py-24 */
+        padding-bottom: 6rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .page-header-container {
+        padding-top: 7rem;
+        /* py-28 */
+        padding-bottom: 7rem;
+    }
+}
+
+.page-header-content-wrapper {
+    max-width: 56rem;
+    /* max-w-4xl */
+}
+
+/* Badge */
+.page-header-badge-wrapper {
+    display: inline-flex;
+    margin-bottom: var(--space-6);
+}
+
+.page-header-badge {
+    font-size: 0.875rem;
+    /* text-sm */
+    line-height: 1.25rem;
+    font-weight: 500;
+    color: rgb(var(--gray-600));
+    background-color: rgb(var(--gray-50));
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+    padding-top: 0.375rem;
+    /* py-1.5 */
+    padding-bottom: 0.375rem;
+    border-radius: 9999px;
+    /* rounded-full */
+    border: 1px solid rgb(var(--gray-200));
+}
+
+/* Title */
+.page-header-title {
+    font-size: 2.25rem;
+    /* text-4xl */
+    line-height: 2.5rem;
+    font-weight: 700;
+    color: rgb(var(--gray-900));
+    letter-spacing: -0.025em;
+    /* tracking-tight */
+    line-height: 1.25;
+    /* leading-tight */
+    margin-bottom: var(--space-6);
+    margin-top: 0;
+}
+
+@media (min-width: 768px) {
+    .page-header-title {
+        font-size: 3rem;
+        /* text-5xl */
+        line-height: 1;
+    }
+}
+
+@media (min-width: 1024px) {
+    .page-header-title {
+        font-size: 3.75rem;
+        /* text-6xl */
+        line-height: 1;
+    }
+}
+
+/* Description */
+.page-header-description {
+    font-size: 1.125rem;
+    /* text-lg */
+    line-height: 1.75rem;
+    color: rgb(var(--gray-600));
+    line-height: 1.625;
+    /* leading-relaxed */
+    max-width: 48rem;
+    /* max-w-3xl */
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .page-header-description {
+        font-size: 1.25rem;
+        /* text-xl */
+        line-height: 1.75rem;
+    }
+}
+
+/* ============================================
+   PAGE HEADER COMPONENT STYLES
+   (Used by Services, About, Design System pages)
+   ============================================ */
+
+/* Base Page Header */
+.page-header {
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+}
+
+/* Variant: Gradient Background */
+.page-header-gradient {
+    background: linear-gradient(180deg, rgb(var(--accent-50)) 0%, rgb(var(--background)) 100%);
+}
+
+/* Variant: Solid Background */
+.page-header-solid {
+    background-color: rgb(var(--primary-900));
+}
+
+.page-header-solid .page-header-title,
+.page-header-solid .page-header-description,
+.page-header-solid .breadcrumb-link,
+.page-header-solid .breadcrumb-current,
+.page-header-solid .breadcrumb-separator {
+    color: rgb(var(--background));
+}
+
+.page-header-solid .page-header-badge {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgb(var(--background));
+}
+
+/* Variant: Minimal Background */
+.page-header-minimal {
+    background-color: rgb(var(--background));
+    border-bottom: 1px solid rgb(var(--gray-100));
+}
+
+/* Decorative Blob Elements */
+.page-header-blob-1 {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(243, 244, 192, 0.4) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.page-header-blob-2 {
+    position: absolute;
+    bottom: -150px;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(243, 244, 192, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Grid Pattern Background */
+.page-header-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Alignment Classes */
+.page-header-align-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-header-align-center .page-header-title,
+.page-header-align-center .page-header-description {
+    max-width: 56rem;
+}
+
+.page-header-align-left {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Breadcrumb Navigation */
+.page-header-breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+    font-size: 0.875rem;
+}
+
+.breadcrumb-link {
+    color: rgb(var(--gray-500));
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+
+.breadcrumb-link:hover {
+    color: rgb(var(--primary-900));
+}
+
+.breadcrumb-current {
+    color: rgb(var(--gray-900));
+    font-weight: 500;
+}
+
+.breadcrumb-separator {
+    color: rgb(var(--gray-300));
+    margin: 0 var(--space-1);
+}
+
+/* CTA Button Container */
+.page-header-cta {
+    margin-top: var(--space-8);
+}
+
+/* CTA Button Styles */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-8);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 9999px;
+    transition: all 200ms ease;
+}
+
+.cta-primary {
+    background-color: rgb(var(--primary-900));
+    color: rgb(var(--background));
+    box-shadow: var(--shadow-md);
+}
+
+.cta-primary:hover {
+    background-color: #1D2939;
+    box-shadow: var(--shadow-lg);
+}
+
+.cta-secondary {
+    background-color: rgb(var(--background));
+    color: rgb(var(--primary-900));
+    border: 2px solid rgb(var(--primary-900));
+}
+
+.cta-secondary:hover {
+    background-color: rgb(var(--gray-50));
+}

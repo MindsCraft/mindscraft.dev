@@ -1,0 +1,128 @@
+/* ============================================
+   WORK HERO COMPONENT - 2026 AESTHETIC
+   ============================================ */
+
+/* Aurora Background */
+.aurora-bg {
+    position: absolute;
+    inset: -50%;
+    z-index: 0;
+    pointer-events: none;
+    background-color: rgb(var(--primary-900));
+    overflow: hidden;
+}
+
+.aurora-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.7;
+}
+
+.orb-1 {
+    width: 60vw;
+    height: 60vw;
+    top: 5%;
+    left: -15%;
+    background: radial-gradient(circle, rgba(var(--primary-600), 0.4) 0%, rgba(var(--primary-900), 0) 70%);
+}
+
+.orb-2 {
+    width: 55vw;
+    height: 55vw;
+    bottom: -10%;
+    right: -10%;
+    background: radial-gradient(circle, rgba(243, 244, 192, 0.12) 0%, rgba(243, 244, 192, 0) 70%);
+    /* accent-400 */
+}
+
+/* Glass Badge */
+.glass-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 20px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: white;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-radius: 9999px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    text-transform: uppercase;
+}
+
+/* Gradient Text Masking */
+.gradient-text-mask {
+    background: linear-gradient(135deg, rgb(243, 244, 192) 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    padding-bottom: 0.1em;
+}
+
+/* Bento Showcase Marquee area */
+.bento-showcase {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 28px;
+    padding: 8px;
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+}
+
+.bento-card {
+    position: absolute;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+    cursor: pointer;
+}
+
+.bento-card:hover {
+    transform: scale(1.03) translateZ(30px) !important;
+    z-index: 20;
+    border-color: rgba(243, 244, 192, 0.4);
+    box-shadow: 0 0 40px rgba(243, 244, 192, 0.1);
+}
+
+/* Specific Bento Placements */
+.bento-card-0 {
+    top: 0;
+    right: 5%;
+    width: 65%;
+    height: 380px;
+    z-index: 3;
+}
+
+.bento-card-1 {
+    top: 45%;
+    left: 0;
+    width: 50%;
+    height: 280px;
+    z-index: 2;
+}
+
+.bento-card-2 {
+    bottom: -5%;
+    right: 15%;
+    width: 45%;
+    height: 260px;
+    z-index: 4;
+}
+
+/* Helper Custom Colors */
+.bg-accent-brand {
+    background-color: rgb(243, 244, 192);
+}
+
+.text-accent-brand {
+    color: rgb(243, 244, 192);
+}

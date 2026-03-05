@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-context";
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
+import ConditionalLayout from "@/components/layout/ConditionalLayout";
 import JsonLd from "@/components/seo/JsonLd";
 
 const SITE_TITLE = 'MindsCraft - Expert UX Design & AI-Powered Web Development';
@@ -91,13 +90,9 @@ export default function RootLayout({
       </head>
       <body className="antialiased h-full bg-background text-foreground selection:bg-primary-100 selection:text-primary-900">
         <ThemeProvider>
-          <div className="flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1 w-full pt-[80px]">
-              {children}
-            </main>
-            <Footer />
-          </div>
+          <ConditionalLayout>
+            {children}
+          </ConditionalLayout>
         </ThemeProvider>
       </body>
     </html>

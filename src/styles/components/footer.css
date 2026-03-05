@@ -1,0 +1,295 @@
+/* ============================================
+   FOOTER — PREMIUM MODERN DESIGN
+   Background: #f0f0ee (matches page flow)
+   Brand: Navy #101828 | Cream #F3F4C0
+   Container: 1280px
+   ============================================ */
+
+.ft-footer {
+    background: #f0f0ee;
+    padding-top: 0;
+}
+
+.ft-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 4rem 2rem 0;
+}
+
+/* ── Main grid ── */
+.ft-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(16, 24, 40, 0.1);
+}
+
+/* ── Brand column ── */
+.ft-brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ft-logo-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.ft-description {
+    font-size: 0.85rem;
+    color: rgba(16, 24, 40, 0.5);
+    line-height: 1.65;
+    margin: 0;
+    max-width: 280px;
+}
+
+/* ── Contact info ── */
+.ft-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+}
+
+.ft-contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #101828;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.ft-contact-link:hover {
+    opacity: 0.6;
+}
+
+/* ── Social icons ── */
+.ft-socials {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.ft-social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(16, 24, 40, 0.05);
+    color: rgba(16, 24, 40, 0.45);
+    transition: background 0.2s, color 0.2s;
+}
+
+.ft-social-icon:hover {
+    background: #101828;
+    color: #F3F4C0;
+}
+
+/* ── Link columns ── */
+.ft-link-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ft-col-title {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #101828;
+    margin: 0;
+}
+
+.ft-link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.ft-link {
+    font-size: 0.85rem;
+    color: rgba(16, 24, 40, 0.55);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.ft-link:hover {
+    color: #101828;
+}
+
+/* ── Newsletter ── */
+.ft-newsletter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(16, 24, 40, 0.1);
+}
+
+.ft-newsletter-text {
+    flex-shrink: 0;
+}
+
+.ft-newsletter-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #101828;
+    margin: 0 0 0.25rem 0;
+}
+
+.ft-newsletter-sub {
+    font-size: 0.8rem;
+    color: rgba(16, 24, 40, 0.45);
+    margin: 0;
+    max-width: 360px;
+    line-height: 1.5;
+}
+
+.ft-newsletter-form {
+    display: flex;
+    gap: 0;
+    flex-shrink: 0;
+}
+
+.ft-newsletter-input {
+    padding: 0.75rem 1.1rem;
+    font-size: 0.85rem;
+    border: 1px solid rgba(16, 24, 40, 0.15);
+    border-right: none;
+    background: #fff;
+    color: #101828;
+    outline: none;
+    min-width: 240px;
+    border-radius: 999px 0 0 999px;
+    font-weight: 500;
+    transition: border-color 0.2s;
+}
+
+.ft-newsletter-input:focus {
+    border-color: rgba(16, 24, 40, 0.4);
+}
+
+.ft-newsletter-input::placeholder {
+    color: rgba(16, 24, 40, 0.3);
+}
+
+.ft-newsletter-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    border: none;
+    background: #101828;
+    color: #F3F4C0;
+    cursor: pointer;
+    border-radius: 0 999px 999px 0;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+}
+
+.ft-newsletter-btn:hover {
+    opacity: 0.85;
+}
+
+.ft-newsletter-success {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #059669;
+    padding: 0.75rem 0;
+}
+
+/* ── Bottom bar ── */
+.ft-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.75rem 0 2rem;
+}
+
+.ft-copyright {
+    font-size: 0.78rem;
+    color: rgba(16, 24, 40, 0.35);
+    margin: 0;
+    font-weight: 500;
+}
+
+.ft-legal {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.ft-legal-link {
+    font-size: 0.78rem;
+    color: rgba(16, 24, 40, 0.35);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.ft-legal-link:hover {
+    color: #101828;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+    .ft-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2.5rem;
+    }
+
+    .ft-brand-col {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .ft-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .ft-newsletter {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ft-newsletter-form {
+        width: 100%;
+    }
+
+    .ft-newsletter-input {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .ft-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .ft-legal {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .ft-grid {
+        grid-template-columns: 1fr;
+    }
+}

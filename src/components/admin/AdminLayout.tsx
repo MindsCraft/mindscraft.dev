@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 import Sidebar from './Sidebar'
 import MobileHeader from './MobileHeader'
 import AdminFooter from './AdminFooter'
-import '@/styles/admin.css'
+import '@/styles/admin/index.css'
 
 interface AdminLayoutProps {
   children: ReactNode
