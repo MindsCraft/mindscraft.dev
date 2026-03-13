@@ -21,9 +21,6 @@ export const metadata: Metadata = {
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
   metadataBase: new URL(SITE_URL),
-  alternates: {
-    canonical: SITE_URL,
-  },
   openGraph: {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
@@ -85,10 +82,8 @@ export default function RootLayout({
       lang="en"
       className="h-full scroll-smooth"
     >
-      <head>
-        <JsonLd />
-      </head>
       <body className="antialiased h-full bg-background text-foreground selection:bg-primary-100 selection:text-primary-900">
+        <JsonLd />
         <ThemeProvider>
           <ConditionalLayout>
             {children}

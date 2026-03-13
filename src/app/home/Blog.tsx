@@ -1,66 +1,32 @@
 'use client';
 
 import Link from 'next/link';
-
-const posts = [
-  {
-    slug: 'future-of-ux-design',
-    title: 'The Future of UX Design in AI-Powered Apps',
-    excerpt: 'A critical look at how large language models are reshaping interaction design — and what your product team needs to stay ahead.',
-    category: 'UX Design',
-    date: 'Feb 18, 2026',
-    readTime: '7 min',
-    image: 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1200&q=80',
-    type: 'featured',
-  },
-  {
-    slug: 'ai-integration-strategies',
-    title: 'AI Integration Strategies for Startups',
-    excerpt: '',
-    category: 'AI & Tech',
-    date: 'Jan 30, 2026',
-    readTime: '',
-    image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=800&q=80',
-    type: 'standard',
-  },
-  {
-    slug: 'startup-growth-hacking',
-    title: 'Startup Growth Hacking Techniques',
-    excerpt: '',
-    category: 'Category',
-    date: 'Dec 5, 2025',
-    readTime: '',
-    image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80',
-    type: 'standard',
-  },
-  {
-    slug: 'scalable-web-applications',
-    title: 'Building Scalable Web Apps with Next.js',
-    excerpt: 'Architecture decisions and deployment patterns that actually hold up at scale.',
-    category: 'Web Dev',
-    date: '',
-    readTime: '',
-    image: null,
-    type: 'cream',
-  },
-  {
-    slug: 'modern-web-development',
-    title: 'Modern Web Dev Best Practices',
-    excerpt: 'Essential patterns for building maintainable, performant web applications.',
-    category: '',
-    date: '',
-    readTime: '',
-    image: null,
-    type: 'navy',
-  },
-];
+import { posts as allPosts } from '@/data/blogData';
 
 export default function Blog() {
-  const featured = posts[0];
-  const mid1 = posts[1];
-  const mid2 = posts[2];
-  const cream = posts[3];
-  const navy = posts[4];
+  // Map the new blog structure to the format required by the homepage grid
+  const formattedPosts = allPosts.slice(0, 5).map((post, index) => {
+    // Format date string from YYYY-MM-DD to Month DD, YYYY
+    const d = new Date(post.date);
+    const dateFormatted = d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+
+    return {
+      slug: post.slug,
+      title: post.title,
+      excerpt: post.description.split('.')[0] + '.', // Get first sentence as excerpt
+      category: post.category,
+      date: dateFormatted,
+      readTime: post.readTime.replace(' read', ''),
+      image: post.image,
+      type: index === 0 ? 'featured' : index < 3 ? 'standard' : index === 3 ? 'cream' : 'navy'
+    };
+  });
+
+  const featured = formattedPosts[0];
+  const mid1 = formattedPosts[1];
+  const mid2 = formattedPosts[2];
+  const cream = formattedPosts[3];
+  const navy = formattedPosts[4];
 
   return (
     <section className="bb-section" aria-label="Blog posts">

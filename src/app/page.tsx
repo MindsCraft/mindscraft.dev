@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'MindsCraft - Premium Web Development & UX Design',
   description: 'Transform your digital presence with MindsCraft. We specialize in high-performance web development, modern UX/UI design, and scalable software solutions.',
   alternates: {
-    canonical: 'https://mindscraft.dev',
+    canonical: '/',
   },
 }
 

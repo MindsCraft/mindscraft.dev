@@ -73,7 +73,8 @@ export default function Work() {
                 transition={{ duration: 0.55, delay: index * 0.06 }}
                 className="border-b border-gray-100 last:border-b-0"
               >
-                <div
+                <Link
+                  href={`/work/${project.id}`}
                   className={`group flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-10 lg:gap-16 py-14 md:py-16`}
                 >
 
@@ -124,8 +125,16 @@ export default function Work() {
                       ))}
                     </div>
 
+                    {/* CTA */}
+                    <div className="flex items-center gap-2 mt-2">
+                      <span className="text-xs font-bold uppercase tracking-widest text-gray-900 group-hover:text-gray-600 transition-colors">
+                        View Project Details
+                      </span>
+                      <FiArrowUpRight className="w-4 h-4 text-gray-900 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </div>
+
                   </div>
-                </div>
+                </Link>
               </motion.div>
             );
           })}

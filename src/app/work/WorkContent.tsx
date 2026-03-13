@@ -200,7 +200,7 @@ interface ProjectCardProps {
 
 function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div className="group flex flex-col bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-black/[0.04]">
+    <Link href={`/work/${project.id}`} className="group flex flex-col bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-black/[0.04]">
       {/* Image Section */}
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#101828] border-b border-black/[0.04]">
         <Image
@@ -233,7 +233,7 @@ function ProjectCard({ project }: ProjectCardProps) {
         </p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mb-8">
           {project.technologies?.slice(0, 3).map((tech) => (
             <span key={tech} className="px-2.5 py-1 text-[11px] font-bold text-[#101828]/50 bg-black/[0.03] rounded-md uppercase tracking-wide">
               {tech}
@@ -245,7 +245,15 @@ function ProjectCard({ project }: ProjectCardProps) {
             </span>
           )}
         </div>
+
+        {/* Link Button */}
+        <div className="flex items-center gap-2 mt-auto text-[#101828] font-bold text-sm group/btn">
+          <div className="w-8 h-8 rounded-full bg-[#101828] text-white flex items-center justify-center transition-transform duration-300 group-hover:-rotate-45">
+            <FiArrowRight className="w-4 h-4" />
+          </div>
+          View Project Details
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
