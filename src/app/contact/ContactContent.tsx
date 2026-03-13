@@ -33,10 +33,10 @@ type FormData = z.infer<typeof formSchema>;
 const SERVICES = [
   'AI Product Development',
   'SaaS MVP Development',
+  'WordPress & CMS Web Development',
   'UX Design & Conversion Optimisation',
   'Full-Stack Web Development',
   'Performance Engineering',
-  'Headless E-commerce & CMS',
   'General Inquiry'
 ];
 
@@ -87,9 +87,9 @@ export default function ContactContent() {
     const isProjectService = [
       'AI Product Development',
       'SaaS MVP Development',
+      'WordPress & CMS Web Development',
       'UX Design & Conversion Optimisation',
-      'Full-Stack Web Development',
-      'Headless E-commerce & CMS'
+      'Full-Stack Web Development'
     ].includes(selectedService);
 
     setIsBudgetVisible(isProjectService);
@@ -280,7 +280,7 @@ export default function ContactContent() {
                     >
                       <Button
                         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                        className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 transition-all duration-300 px-6 py-3"
+                        variant="secondary"
                       >
                         Back to Top
                       </Button>
@@ -467,19 +467,18 @@ export default function ContactContent() {
                           size="xl"
                           fullWidth
                           disabled={isSubmitting}
-                          icon={!isSubmitting ? <FiSend className="h-5 w-5" /> : undefined}
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          icon={
+                            isSubmitting ? (
+                              <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                               </svg>
-                              Sending...
-                            </>
-                          ) : (
-                            'Send Inquiry'
-                          )}
+                            ) : (
+                              <FiSend className="h-5 w-5" />
+                            )
+                          }
+                        >
+                          {isSubmitting ? 'Sending...' : 'Send Inquiry'}
                         </Button>
                       </div>
                       <p className="text-center text-xs text-gray-500 mt-4">

@@ -55,6 +55,48 @@ export default function JsonLd() {
                 },
                 "query-input": "required name=search_term_string"
             }
+        },
+        // ── Site Navigation (encourages Google Sitelinks) ─────────
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [
+                {
+                    "@type": "SiteNavigationElement",
+                    "position": 1,
+                    "name": "Services",
+                    "description": "Explore our premium web development and UX design services.",
+                    "url": "https://mindscraft.dev/services"
+                },
+                {
+                    "@type": "SiteNavigationElement",
+                    "position": 2,
+                    "name": "Work",
+                    "description": "View our portfolio of scalable digital products.",
+                    "url": "https://mindscraft.dev/work"
+                },
+                {
+                    "@type": "SiteNavigationElement",
+                    "position": 3,
+                    "name": "About",
+                    "description": "Learn more about the MindsCraft team and our mission.",
+                    "url": "https://mindscraft.dev/about"
+                },
+                {
+                    "@type": "SiteNavigationElement",
+                    "position": 4,
+                    "name": "Blog",
+                    "description": "Insights on modern web development, UI/UX, and AI.",
+                    "url": "https://mindscraft.dev/blog"
+                },
+                {
+                    "@type": "SiteNavigationElement",
+                    "position": 5,
+                    "name": "Contact",
+                    "description": "Get in touch with us to start your next project.",
+                    "url": "https://mindscraft.dev/contact"
+                }
+            ]
         }
     ];
 

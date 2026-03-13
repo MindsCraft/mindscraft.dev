@@ -2,45 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import {
-  FiArrowUpRight, FiGlobe, FiSmartphone, FiLayout, FiTrendingUp,
-} from 'react-icons/fi';
+import { FiArrowUpRight } from 'react-icons/fi';
 import { Badge } from '@/components/ui/badge';
-
-const services = [
-  {
-    number: '01',
-    icon: FiGlobe,
-    title: 'Web Development',
-    description: 'Custom web applications built with modern technologies for optimal performance and scalability.',
-    link: '/services',
-    tags: ['Next.js', 'React', 'Node.js', 'TypeScript'],
-  },
-  {
-    number: '02',
-    icon: FiSmartphone,
-    title: 'Mobile Apps',
-    description: 'Native and cross-platform mobile applications that deliver seamless experiences across devices.',
-    link: '/services',
-    tags: ['React Native', 'Flutter', 'iOS', 'Android'],
-  },
-  {
-    number: '03',
-    icon: FiLayout,
-    title: 'UI/UX Design',
-    description: 'Beautiful, intuitive interfaces that prioritize user experience and drive real engagement.',
-    link: '/services',
-    tags: ['Figma', 'UX Research', 'Prototyping', 'Design Systems'],
-  },
-  {
-    number: '04',
-    icon: FiTrendingUp,
-    title: 'Digital Strategy',
-    description: 'Comprehensive digital strategies to help your business grow and succeed online.',
-    link: '/services',
-    tags: ['SEO', 'Analytics', 'Growth', 'Consulting'],
-  },
-];
+import { servicesData as services } from '@/data/servicesData';
 
 export default function Services() {
   return (
@@ -70,7 +34,7 @@ export default function Services() {
 
         {/* ── Service Rows ── */}
         <div>
-          {services.map((service, index) => {
+          {services.slice(0, 4).map((service, index) => {
             const Icon = service.icon;
             return (
               <motion.div
@@ -82,13 +46,15 @@ export default function Services() {
                 className="border-b border-gray-100 last:border-b-0"
               >
                 <Link
-                  href={service.link}
-                  className="group flex items-center gap-6 md:gap-12 py-9 md:py-11 px-6 -mx-6 rounded-2xl transition-all duration-300 hover:px-8"
+                  href={`/services#${service.id}`}
+                  className="group flex items-center gap-4 md:gap-12 py-6 md:py-11 px-2 md:px-6 md:-mx-6 rounded-2xl transition-all duration-300 md:hover:px-8"
                   style={{
                     '--hover-bg': 'var(--btn-navy-primary)',
                   } as React.CSSProperties}
                   onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--btn-navy-primary)';
+                    if (window.innerWidth >= 768) {
+                      (e.currentTarget as HTMLElement).style.backgroundColor = 'var(--btn-navy-primary)';
+                    }
                   }}
                   onMouseLeave={e => {
                     (e.currentTarget as HTMLElement).style.backgroundColor = '';
@@ -96,7 +62,7 @@ export default function Services() {
                 >
                   {/* Number */}
                   <span
-                    className="text-5xl md:text-6xl font-black select-none shrink-0 w-16 transition-colors duration-300 text-gray-150 group-hover:text-white/15"
+                    className="text-4xl md:text-6xl font-black select-none shrink-0 w-12 md:w-16 transition-colors duration-300 text-gray-150 md:group-hover:text-white/15"
                     style={{ color: '#e8e8e8' }}
                   >
                     {service.number}
@@ -105,12 +71,13 @@ export default function Services() {
                   {/* Title + Tags */}
                   <div className="flex-1 min-w-0">
                     <h3
-                      className="text-2xl md:text-3xl font-bold mb-2 transition-colors duration-300 text-gray-900 group-hover:text-[var(--btn-cream)]"
+                      className="text-xl md:text-3xl font-bold mb-1 md:mb-2 transition-colors duration-300 text-gray-900 md:group-hover:text-[var(--btn-cream)] text-balance pr-2"
                     >
                       {service.title}
                     </h3>
-                    <div className="flex flex-wrap gap-x-4 gap-y-1">
-                      {service.tags.map((tag) => (
+                    {/* Hide features on mobile for a much cleaner look */}
+                    <div className="hidden md:flex flex-wrap gap-x-4 gap-y-1">
+                      {service.features.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
                           className="text-xs font-medium text-gray-400 transition-colors duration-300 group-hover:text-white/50"
@@ -121,14 +88,14 @@ export default function Services() {
                     </div>
                   </div>
 
-                  {/* Description — desktop only */}
+                  {/* Description — desktop only & simplified */}
                   <p className="hidden xl:block text-sm text-gray-500 max-w-[260px] leading-relaxed transition-colors duration-300 group-hover:text-white/60 shrink-0">
-                    {service.description}
+                    {service.description.substring(0, 95)}...
                   </p>
 
                   {/* Icon + Arrow */}
                   <div className="flex items-center gap-3 shrink-0 ml-auto">
-                    <div className="w-12 h-12 rounded-full border border-gray-200 group-hover:border-white/25 flex items-center justify-center transition-all duration-300">
+                    <div className="hidden md:flex w-12 h-12 rounded-full border border-gray-200 group-hover:border-white/25 items-center justify-center transition-all duration-300">
                       <Icon className="w-5 h-5 text-gray-400 transition-colors duration-300 group-hover:text-[var(--btn-cream)]" />
                     </div>
                     <FiArrowUpRight className="w-6 h-6 text-gray-300 transition-all duration-300 group-hover:text-[var(--btn-cream)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

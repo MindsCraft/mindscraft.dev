@@ -128,7 +128,7 @@ export default function Work() {
                     {/* CTA */}
                     <div className="flex items-center gap-2 mt-2">
                       <span className="text-xs font-bold uppercase tracking-widest text-gray-900 group-hover:text-gray-600 transition-colors">
-                        View Case Study
+                        View Project Details
                       </span>
                       <FiArrowUpRight className="w-4 h-4 text-gray-900 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>

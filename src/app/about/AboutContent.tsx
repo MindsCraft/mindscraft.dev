@@ -10,7 +10,9 @@ import {
 } from 'react-icons/fi';
 import {
   SiReact, SiNextdotjs, SiNodedotjs, SiWordpress,
-  SiFigma, SiTypescript, SiMongodb, SiPostgresql
+  SiFigma, SiTypescript, SiPostgresql,
+  SiPython, SiPhp, SiMysql,
+  SiAmazonwebservices, SiDocker, SiVercel, SiCloudflare
 } from 'react-icons/si';
 import { Button } from '@/components/ui/button';
 
@@ -20,7 +22,7 @@ const team = [
   {
     name: 'Tawshif Ahsan Khan',
     photo: '/images/team/tawshif.png',
-    role: 'Founder & Web Developer',
+    role: 'Founder, UX Designer & Web Developer',
     tag: 'Founder',
     exp: '10+ yrs',
     skills: ['Next.js', 'React', 'UI/UX', 'AI Integration', 'Project Lead'],
@@ -28,10 +30,10 @@ const team = [
   {
     name: 'Mustafa Kamal Hossain',
     photo: '/images/team/mustofa.png',
-    role: 'WordPress & Backend Developer',
+    role: 'Backend, Infra & WordPress Expert',
     tag: 'Senior Dev',
     exp: '10+ yrs',
-    skills: ['PHP', 'WordPress', 'React', 'JavaScript', 'MySQL'],
+    skills: ['PHP', 'WordPress', 'MySQL', 'Docker', 'Linux/VPS'],
   },
   {
     name: 'Habibullah Nahid',
@@ -44,10 +46,10 @@ const team = [
   {
     name: 'Moin Uddin Ahmed',
     photo: '/images/team/moin.jpg',
-    role: 'AI & Backend Developer',
+    role: 'AI, Backend & Cloud Infra Engineer',
     tag: 'Senior Dev',
     exp: '12+ yrs',
-    skills: ['Python', 'AI/ML', 'LLMs', 'Node.js', 'PostgreSQL'],
+    skills: ['Python', 'AI/ML', 'Node.js', 'PostgreSQL', 'AWS'],
   },
 ];
 
@@ -79,10 +81,16 @@ const skills = [
   { name: 'Next.js', icon: SiNextdotjs, color: '#101828' },
   { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
   { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-  { name: 'Figma', icon: SiFigma, color: '#F24E1E' },
-  { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
+  { name: 'Python', icon: SiPython, color: '#3776AB' },
+  { name: 'PHP', icon: SiPhp, color: '#777BB4' },
   { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
+  { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
   { name: 'WordPress', icon: SiWordpress, color: '#21759B' },
+  { name: 'Figma', icon: SiFigma, color: '#F24E1E' },
+  { name: 'AWS', icon: SiAmazonwebservices, color: '#FF9900' },
+  { name: 'Docker', icon: SiDocker, color: '#2496ED' },
+  { name: 'Vercel', icon: SiVercel, color: '#000000' },
+  { name: 'Cloudflare', icon: SiCloudflare, color: '#F38020' },
 ];
 
 // ─── Animation variants ───────────────────────────────────────────────────────

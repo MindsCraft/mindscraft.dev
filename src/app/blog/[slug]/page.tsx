@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FiArrowLeft, FiClock, FiCalendar, FiUser } from 'react-icons/fi';
-import { posts as basePosts } from '../page';
+import { posts as basePosts } from '@/data/blogData';
 
 // Map of detailed content (HTML strings) for each slug
 const postContents: Record<string, string> = {
@@ -257,8 +257,22 @@ export default async function BlogPostPage({
 
             <div className="flex gap-4">
               <span className="text-[#101828]/50 font-medium">Share this article:</span>
-              <a href="#" className="font-bold text-[#101828] hover:text-[#101828]/70 transition-colors">Twitter</a>
-              <a href="#" className="font-bold text-[#101828] hover:text-[#101828]/70 transition-colors">LinkedIn</a>
+              <a
+                href={`https://twitter.com/intent/tweet?url=https://mindscraft.dev/blog/${post.slug}&text=${encodeURIComponent(post.title)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-[#101828] hover:text-[#101828]/70 transition-colors"
+              >
+                Twitter
+              </a>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=https://mindscraft.dev/blog/${post.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-bold text-[#101828] hover:text-[#101828]/70 transition-colors"
+              >
+                LinkedIn
+              </a>
             </div>
           </div>
         </div>
