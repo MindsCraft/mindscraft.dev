@@ -252,10 +252,10 @@ export default function PricingContent() {
                     </div>
                     <h3 className="text-3xl font-bold mb-4 text-white">Not sure which plan fits?</h3>
                     <p className="text-gray-400 mb-8 max-w-lg mx-auto text-lg">
-                        Every project is different. A 20-minute discovery call is always free — let&apos;s figure out the right approach together.
+                        Every project is different. Contact us with your requirements — let&apos;s figure out the right approach together.
                     </p>
                     <Button variant="accent" size="xl" href="/contact" icon={<FiArrowRight />}>
-                        Book a free call
+                        Contact Us
                     </Button>
                     <p className="text-gray-500 text-sm mt-6">No commitment required. We reply within 24 hours.</p>
                 </motion.div>

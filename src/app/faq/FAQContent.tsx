@@ -12,7 +12,7 @@ const faqs = [
         items: [
             {
                 q: 'How do I get started with MindsCraft?',
-                a: 'Simply fill out our contact form or email us at hello@mindscraft.dev with a brief description of your project. We\'ll reply within 24 hours to schedule a free discovery call where we learn about your goals, timeline, and budget.'
+                a: "Simply fill out our contact form or email us at hello@mindscraft.dev with a brief description of your project. We'll reply within 24 hours to learn more about your goals, timeline, and budget."
             },
             {
                 q: 'What information should I prepare before reaching out?',
