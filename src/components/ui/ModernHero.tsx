@@ -100,7 +100,7 @@ export default function ModernHero({
     );
 
     return (
-        <section className="aurora-mesh-bg relative overflow-hidden min-h-[100dvh] flex items-center pt-20">
+        <section className="aurora-mesh-bg relative overflow-hidden min-h-[80vh] flex items-center pt-20">
 
             <div className="container relative z-10">
                 <div className="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center min-h-[80vh]">

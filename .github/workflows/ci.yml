@@ -1,0 +1,44 @@
+name: CI / Quality Gate
+
+# This workflow acts as the "Bouncer" for your repository.
+# It runs automatically whenever you push code to "develop",
+# or when you create a Pull Request to merge into "main".
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build-and-test:
+    name: Build & Lint Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Branch
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # LTS version recommended for Next.js
+          cache: 'npm'
+
+      - name: 📦 Install Dependencies
+        # Using legacy-peer-deps to avoid any strict dependency conflicts with Next.js/React versions
+        run: npm install --legacy-peer-deps
+
+      - name: 🧹 Run Linter
+        run: npm run lint
+        
+      # If you need environment variables to build, you can mock them here:
+      # env:
+      #   NEXT_PUBLIC_API_URL: "...""
+
+      - name: 🏗️ Run Build (Next.js)
+        # This compiles the application and will fail if there are any TypeScript or Layout errors.
+        run: npm run build

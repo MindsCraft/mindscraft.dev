@@ -62,7 +62,7 @@ const MobileHeader = () => {
     <>
       {/* Mobile Header Bar */}
       <div
-        className="admin-mobile-header"
+        className="admin-mobile-header lg:hidden"
         style={{
           position: 'sticky',
           top: 0,
