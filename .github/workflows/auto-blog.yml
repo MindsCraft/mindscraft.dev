@@ -1,0 +1,36 @@
+name: Daily AI Blog Generation
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Every day at midnight UTC
+  workflow_dispatch: # Allows manual trigger from GH UI
+
+jobs:
+  generate-blog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Blog Scraper & Generator
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: npm run build:blog
+
+      - name: Commit & Push Changes
+        run: |
+          git config --global user.name "MindsCraft AI Writer"
+          git config --global user.email "ai-writer@mindscraft.dev"
+          git add src/data/posts.json
+          git commit -m "chore: auto-generate daily blog post [skip ci]" || echo "No changes to commit"
+          git push
