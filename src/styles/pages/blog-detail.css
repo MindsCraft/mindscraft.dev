@@ -1,0 +1,91 @@
+/* ============================================
+   BLOG DETAIL PAGE — TYPOGRAPHY OVERRIDES
+   3-weight system: --fw-regular | --fw-medium | --fw-bold (max 600)
+   Overrides Tailwind prose utility weights throughout the article reader.
+   ============================================ */
+
+/* ── Article header band ── */
+.blg-detail-header {
+    background: #101828;
+}
+
+.blg-detail-category {
+    font-size: 0.65rem;
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+}
+
+.blg-detail-title {
+    font-weight: var(--fw-bold);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.blg-detail-meta {
+    font-weight: var(--fw-regular);
+}
+
+/* ── Prose / article body ── */
+.blg-article-prose {
+    /* headings */
+    --tw-prose-headings: #101828;
+}
+
+/* Reset all prose heading weights to our bold token (600) */
+.blg-article-prose h1,
+.blg-article-prose h2,
+.blg-article-prose h3,
+.blg-article-prose h4,
+.blg-article-prose h5,
+.blg-article-prose h6 {
+    font-weight: var(--fw-bold);
+    letter-spacing: -0.02em;
+}
+
+/* body text */
+.blg-article-prose p,
+.blg-article-prose li {
+    font-weight: var(--fw-regular);
+    line-height: 1.8;
+}
+
+/* inline bold inside prose — keep at bold token, NOT higher */
+.blg-article-prose strong,
+.blg-article-prose b {
+    font-weight: var(--fw-bold);
+}
+
+/* lead / intro paragraph */
+.blg-article-prose p.lead {
+    font-weight: var(--fw-regular);
+    font-size: 1.15rem;
+    color: rgba(16, 24, 40, 0.75);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+}
+
+/* code blocks */
+.blg-article-prose code {
+    font-weight: var(--fw-regular);
+    font-size: 0.875em;
+}
+
+/* blockquote */
+.blg-article-prose blockquote {
+    font-weight: var(--fw-regular);
+    font-style: normal;
+}
+
+/* ── Article footer ── */
+.blg-detail-back-link {
+    font-weight: var(--fw-bold);
+}
+
+.blg-detail-share-label {
+    font-weight: var(--fw-medium);
+}
+
+.blg-detail-share-link {
+    font-weight: var(--fw-bold);
+}

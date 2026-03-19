@@ -58,7 +58,7 @@
 .svc-hero-eyebrow {
     display: inline-block;
     font-size: 0.72rem;
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     text-transform: uppercase;
     letter-spacing: 0.18em;
     color: rgba(243, 244, 192, 0.7);
@@ -67,7 +67,7 @@
 
 .svc-hero-heading {
     font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     color: #fff;
     line-height: 1.05;
     letter-spacing: -0.03em;
@@ -147,7 +147,7 @@
 
 .svc-card-number {
     font-size: 3rem;
-    font-weight: 900;
+    font-weight: var(--fw-bold);
     line-height: 1;
     letter-spacing: -0.04em;
     /* colour & opacity set inline */
@@ -155,7 +155,7 @@
 
 .svc-card-tag {
     font-size: 0.7rem;
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     text-transform: uppercase;
     letter-spacing: 0.14em;
     padding: 0.3rem 0.85rem;
@@ -179,7 +179,7 @@
 
 .svc-card-title {
     font-size: clamp(1.6rem, 2.5vw, 2.25rem);
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     line-height: 1.1;
     letter-spacing: -0.025em;
     margin: 0;
@@ -204,7 +204,7 @@
     align-items: center;
     gap: 0.45rem;
     font-size: 0.9rem;
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     padding: 0.85rem 1.75rem;
     border-radius: 999px;
     text-decoration: none;
@@ -333,7 +333,7 @@
 .svc-btm-eyebrow {
     display: inline-block;
     font-size: 0.7rem;
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     text-transform: uppercase;
     letter-spacing: 0.18em;
     color: rgba(243, 244, 192, 0.55);
@@ -341,7 +341,7 @@
 
 .svc-btm-title {
     font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     color: #fff;
     line-height: 1.05;
     letter-spacing: -0.03em;
@@ -374,7 +374,7 @@
     border-radius: 50%;
     border: 2px solid #101828;
     font-size: 0.65rem;
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     color: #fff;
     display: flex;
     align-items: center;
@@ -389,12 +389,12 @@
 .svc-btm-proof-text {
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.35);
-    font-weight: 500;
+    font-weight: var(--fw-medium);
 }
 
 .svc-btm-proof-text strong {
     color: rgba(255, 255, 255, 0.7);
-    font-weight: 700;
+    font-weight: var(--fw-bold);
 }
 
 /* Right — actions */
@@ -413,7 +413,7 @@
     gap: 0.5rem;
     background: #F3F4C0;
     color: #101828;
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     font-size: 1rem;
     padding: 1.1rem 2rem;
     border-radius: 999px;
@@ -459,7 +459,7 @@
     align-items: center;
     gap: 0.4rem;
     font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     color: rgba(255, 255, 255, 0.5);
     text-decoration: none;
     padding: 0.2rem 0;
@@ -485,7 +485,7 @@
 .svc-btm-micro {
     font-size: 0.72rem;
     color: rgba(255, 255, 255, 0.2);
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     margin: 0;
     letter-spacing: 0.01em;
 }

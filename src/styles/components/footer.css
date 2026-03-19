@@ -101,7 +101,7 @@
 
 .ft-col-title {
     font-size: 0.7rem;
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: #101828;
@@ -121,7 +121,7 @@
     font-size: 0.85rem;
     color: rgba(16, 24, 40, 0.55);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     transition: color 0.2s;
 }
 
@@ -145,7 +145,7 @@
 
 .ft-newsletter-title {
     font-size: 0.95rem;
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     color: #101828;
     margin: 0 0 0.25rem 0;
 }
@@ -174,7 +174,7 @@
     outline: none;
     min-width: 240px;
     border-radius: 999px 0 0 999px;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     transition: border-color 0.2s;
 }
 
@@ -189,7 +189,7 @@
 .ft-newsletter-btn {
     padding: 0.75rem 1.5rem;
     font-size: 0.82rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     border: none;
     background: #101828;
     color: #F3F4C0;
@@ -225,7 +225,7 @@
     font-size: 0.78rem;
     color: rgba(16, 24, 40, 0.35);
     margin: 0;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
 }
 
 .ft-legal {
@@ -237,7 +237,7 @@
     font-size: 0.78rem;
     color: rgba(16, 24, 40, 0.35);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     transition: color 0.2s;
 }
 

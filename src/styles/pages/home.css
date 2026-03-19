@@ -34,7 +34,7 @@
 
 .bb-eyebrow {
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #101828;
@@ -42,7 +42,7 @@
 
 .bb-title {
     font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     color: #101828;
     margin: 0;
     line-height: 1.1;
@@ -138,7 +138,7 @@
     padding: 0.35rem 0.8rem;
     border-radius: 999px;
     font-size: 0.7rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
@@ -185,7 +185,7 @@
     top: 1.2rem;
     right: 1.5rem;
     font-size: 4.5rem;
-    font-weight: 900;
+    font-weight: var(--fw-bold);
     color: rgba(16, 24, 40, 0.08);
     /* Light navy */
     line-height: 1;
@@ -214,7 +214,7 @@
 
 .bb-heading-lg {
     font-size: clamp(1.4rem, 2vw, 1.8rem);
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     color: #101828;
     line-height: 1.2;
     margin: 0 0 1rem 0;
@@ -223,7 +223,7 @@
 
 .bb-heading-md {
     font-size: clamp(1.1rem, 1.5vw, 1.35rem);
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     color: #101828;
     line-height: 1.25;
     margin: 0 0 0.8rem 0;
@@ -257,7 +257,7 @@
 
 .bb-cat {
     font-size: 0.7rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     text-transform: uppercase;
     color: rgba(16, 24, 40, 0.5);
     letter-spacing: 0.08em;
@@ -280,7 +280,7 @@
 
 .bb-read {
     font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     color: #101828;
     text-decoration: none;
 }

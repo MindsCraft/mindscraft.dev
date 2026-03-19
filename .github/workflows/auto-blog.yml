@@ -9,11 +9,16 @@ jobs:
   generate-blog:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+    
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+        with:
+          ref: feat/components # Temporarily targeting our feature branch for testing
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -35,4 +40,4 @@ jobs:
           git config --global user.email "ai-writer@mindscraft.dev"
           git add src/data/posts.json
           git commit -m "chore: auto-generate daily blog post [skip ci]" || echo "No changes to commit"
-          git push
+          git push origin HEAD:feat/components

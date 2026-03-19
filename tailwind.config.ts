@@ -38,6 +38,17 @@ const config: Config = {
           900: 'rgb(var(--accent-900) / <alpha-value>)',
         },
       },
+      fontWeight: {
+        thin: 'var(--fw-light)', // 200
+        extralight: 'var(--fw-light)', // 200
+        light: 'var(--fw-light)', // 200
+        normal: 'var(--fw-regular)', // 400
+        medium: 'var(--fw-medium)', // 500
+        semibold: 'var(--fw-bold)', // 600 max
+        bold: 'var(--fw-bold)', // 600 max
+        extrabold: 'var(--fw-bold)', // 600 max
+        black: 'var(--fw-bold)', // 600 max
+      },
 
       keyframes: {
         'fade-in': {

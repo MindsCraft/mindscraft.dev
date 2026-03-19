@@ -10,7 +10,9 @@
     "build:no-prisma": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:blog": "ts-node-esm scripts/auto-blog.ts",
+    "build:blog": "tsx scripts/auto-blog.ts",
+    "build:blog:all": "tsx scripts/rebuild-blogs.ts",
+    "blog:feature": "tsx scripts/blog-feature.ts",
     "prisma:seed": "node prisma/seed.mjs",
     "prisma:setup": "node scripts/setup-prisma.js",
     "prisma:setup:safe": "node scripts/setup-prisma-safe.js",
@@ -55,10 +57,12 @@
     "autoprefixer": "^10.4.21",
     "baseline-browser-mapping": "^2.10.0",
     "bcryptjs": "^3.0.2",
+    "dotenv": "^17.3.1",
     "postcss": "^8.5.3",
     "prisma": "^6.9.0",
     "tailwindcss": "^4.1.7",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

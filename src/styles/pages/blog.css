@@ -53,7 +53,7 @@
 .blg-eyebrow {
     display: inline-block;
     font-size: 0.7rem;
-    font-weight: 800;
+    font-weight: var(--fw-medium);
     text-transform: uppercase;
     letter-spacing: 0.18em;
     color: rgba(243, 244, 192, 0.6);
@@ -62,7 +62,7 @@
 
 .blg-hero-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     color: #fff;
     line-height: 1.05;
     letter-spacing: -0.03em;
@@ -92,7 +92,7 @@
     padding: 0.45rem 1rem;
     border-radius: 999px;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: var(--fw-medium);
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.5);
@@ -184,7 +184,7 @@
 
 .blg-featured-label {
     font-size: 0.65rem;
-    font-weight: 800;
+    font-weight: var(--fw-medium);
     text-transform: uppercase;
     letter-spacing: 0.16em;
     color: rgba(255, 255, 255, 0.3);
@@ -192,14 +192,14 @@
 
 .blg-cat-tag {
     font-size: 0.7rem;
-    font-weight: 700;
+    font-weight: var(--fw-medium);
     padding: 0.25rem 0.7rem;
     border-radius: 999px;
 }
 
 .blg-featured-title {
     font-size: clamp(1.4rem, 2vw, 1.9rem);
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     color: #fff;
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -227,7 +227,7 @@
     gap: 0.4rem;
     font-size: 0.78rem;
     color: rgba(255, 255, 255, 0.3);
-    font-weight: 500;
+    font-weight: var(--fw-regular);
 }
 
 .blg-meta-icon {
@@ -244,7 +244,7 @@
     align-items: center;
     gap: 0.3rem;
     font-size: 0.82rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     color: #F3F4C0;
     white-space: nowrap;
 }
@@ -317,7 +317,7 @@
 .blg-card-cat {
     display: inline-block;
     font-size: 0.68rem;
-    font-weight: 800;
+    font-weight: var(--fw-medium);
     padding: 0.25rem 0.65rem;
     border-radius: 999px;
     align-self: flex-start;
@@ -325,7 +325,7 @@
 
 .blg-card-title {
     font-size: 1rem;
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     color: #101828;
     line-height: 1.35;
     letter-spacing: -0.015em;
@@ -360,7 +360,7 @@
     gap: 0.4rem;
     font-size: 0.74rem;
     color: rgba(16, 24, 40, 0.38);
-    font-weight: 500;
+    font-weight: var(--fw-regular);
 }
 
 .blg-meta-icon--dark {
@@ -377,7 +377,7 @@
     align-items: center;
     gap: 0.25rem;
     font-size: 0.78rem;
-    font-weight: 700;
+    font-weight: var(--fw-bold);
     color: #101828;
     white-space: nowrap;
 }
@@ -440,7 +440,7 @@
 .blg-nl-eyebrow {
     display: inline-block;
     font-size: 0.68rem;
-    font-weight: 800;
+    font-weight: var(--fw-medium);
     text-transform: uppercase;
     letter-spacing: 0.16em;
     color: rgba(243, 244, 192, 0.5);
@@ -449,7 +449,7 @@
 
 .blg-nl-title {
     font-size: clamp(1.3rem, 2vw, 1.75rem);
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     color: #fff;
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -496,7 +496,7 @@
     gap: 0.45rem;
     background: #F3F4C0;
     color: #101828;
-    font-weight: 800;
+    font-weight: var(--fw-bold);
     font-size: 0.88rem;
     padding: 0.9rem 1.5rem;
     border-radius: 999px;
