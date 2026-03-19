@@ -10,10 +10,12 @@ const __dirname = path.dirname(__filename);
 // ── CONFIGURATION ──
 const RSS_FEEDS = [
     'https://vercel.com/blog/feed',
-    'https://stripe.com/blog/feed.xml',
     'https://web.dev/feed.xml',
     'https://dev.to/feed',
-    'https://stackoverflow.blog/feed'
+    'https://simonwillison.net/atom/entries/tag/ai/',
+    'https://deepmind.google/blog/rss.xml',
+    'https://openai.com/news/rss.xml',
+    'https://anthropic.com/news'
 ];
 
 const DATA_FILE = path.join(__dirname, '../src/data/posts.json');
@@ -41,37 +43,38 @@ async function generateBlogPost() {
         }
     }
 
-    // Pick top 5 items for context
-    const context = allItems.slice(0, 10).map(i => `- ${i.title}: ${i.snippet}`).join('\n');
+    // Pick top 15 items for context
+    const context = allItems.slice(0, 15).map(i => `- ${i.title}: ${i.snippet}`).join('\n');
 
     // 2. Call Gemini
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
     const prompt = `
-    You are the Head of Content at "MindsCraft", a premium software development agency specializing in AI SaaS, Web Development, and UX/CRO.
+    You are the Head of Content at "MindsCraft", a premium software development agency.
+    Your CURRENT FOCUS is on **AI-Driven Development in 2026**.
     
-    Today's trending topics in the industry are:
+    Industry news and trending papers/articles:
     ${context}
 
-    Based on these trends, write a NEW, ORIGINAL, and HIGHLY ENGAGING blog post for the MindsCraft website.
-    The goal is to provide value to startup founders and CTOs while improving our SEO.
+    Write a NEW, ORIGINAL blog post for the MindsCraft website. 
+    Focus on how AI is fundamentally changing software development in 2026 (e.g., Agentic Workflows, AI-first coding patterns, LLM-integrated UX, self-healing infrastructure).
 
     REQUIREMENTS:
-    - Tone: Expert, Premium, Minimalist, Opinionated.
-    - Title: Catchy and SEO-optimized.
+    - Tone: Visionary but highly technical, Premium, Minimalist.
+    - Title: Catchy, SEO-optimized, focused on 2026 AI trends.
     - Structure: Use HTML tags (h2, p, ul, li, blockquote). Avoid h1.
-    - Content: At least 1500 words. Include actionable advice, code examples (if relevant), and a section on why "MindsCraft" is the perfect partner for this specific topic.
-    - Output: Return ONLY a JSON object with the following fields:
+    - Content: At least 1500 words. Provide deep technical insights and "MindsCraft" internal perspectives.
+    - Output: Return ONLY a JSON object:
       {
         "title": "...",
         "slug": "...",
         "description": "...",
-        "category": "...",
+        "category": "AI & SaaS",
         "content": "HTML_STRING",
         "readTime": "X min read",
         "imageAlt": "..."
       }
-    - Category must be one of: "AI & SaaS", "Web Development", "UX & CRO", "Performance".
+    - Category should almost always be "AI & SaaS" for this campaign.
     - Date: Use today's date (${new Date().toISOString().split('T')[0]}).
     `;
 
