@@ -1,7 +1,7 @@
 'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { BarChart, Clock, FileText, Users, Briefcase } from '@/components/ui/icons'
+import Link from 'next/link'
+import { BarChart, Clock, FileText, Users, Briefcase, PlusCircle, Server, MailIcon } from '@/components/ui/icons'
 import styles from '@/styles/admin/pages/dashboard.module.css'
 
 export default function DashboardPage() {
@@ -9,7 +9,14 @@ export default function DashboardPage() {
     { name: 'Total Posts', value: '24', icon: FileText, change: '+12%', changeType: 'positive' },
     { name: 'Active Projects', value: '8', icon: Briefcase, change: '+2', changeType: 'positive' },
     { name: 'Team Members', value: '5', icon: Users, change: '+1', changeType: 'positive' },
-    { name: 'Avg. Response Time', value: '2.4h', icon: Clock, change: '-15%', changeType: 'negative' },
+    { name: 'Unread Leads', value: '14', icon: MailIcon, change: '+5', changeType: 'positive' },
+  ]
+
+  const quickActions = [
+    { title: 'New Post', icon: PlusCircle, href: '/admin/posts/new' },
+    { title: 'Add Project', icon: Briefcase, href: '/admin/projects/new' },
+    { title: 'View Leads', icon: MailIcon, href: '/admin/leads' },
+    { title: 'Site Analytics', icon: BarChart, href: '/admin/marketing' },
   ]
 
   return (
@@ -22,19 +29,38 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      {/* Stats Grid - Using design system spacing */}
+      {/* Quick Actions Grid */}
       <div className="section">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <h2 className={`heading-3 ${styles.cardTitleBase}`}>Quick Actions</h2>
+        <div className={styles.quickActionsGrid}>
+          {quickActions.map((action) => (
+            <Link key={action.title} href={action.href} className={styles.actionCard}>
+              <action.icon className={styles.actionIcon} />
+              <span className={styles.actionText}>{action.title}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Stats Grid */}
+      <div className="section">
+        <h2 className={`heading-3 ${styles.cardTitleBase}`}>Overview Metrics</h2>
+        <div className={styles.statsGrid}>
           {stats.map((stat) => (
-            <div key={stat.name} className="stat-card">
-              <div className={styles.statRow}>
-                <span className="stat-label">{stat.name}</span>
-                <stat.icon className={styles.statIcon} />
+            <div key={stat.name} className="card">
+              <div className="card-body">
+                <div className={styles.statRow}>
+                  <span className="caption">{stat.name}</span>
+                  <stat.icon className={styles.statIcon} />
+                </div>
+                <div className="heading-2">{stat.value}</div>
+                <p className="caption">
+                  <span style={{ color: stat.changeType === 'positive' ? 'var(--color-success)' : 'var(--color-error)' }}>
+                    {stat.change}
+                  </span>{' '}
+                  from last month
+                </p>
               </div>
-              <div className="stat-value">{stat.value}</div>
-              <p className="stat-change">
-                {stat.change} from last month
-              </p>
             </div>
           ))}
         </div>
@@ -44,13 +70,13 @@ export default function DashboardPage() {
       <div className="section">
         <div className="card">
           <div className="card-header">
-            <h2 className="heading-3" style={{ marginBottom: 'var(--space-1)' }}>Analytics Overview</h2>
+            <h2 className={`heading-3 ${styles.cardTitleBase}`}>Analytics Overview</h2>
             <p className="caption">Performance metrics and insights</p>
           </div>
           <div className="card-body">
             <div className={styles.chartPlaceholder}>
-              <p className={`body-sm ${styles.chartText}`}>
-                Analytics chart will be displayed here
+              <p className={styles.chartText}>
+                Analytics chart will be displayed here (Integrate Google Analytics or Plausible)
               </p>
             </div>
           </div>
@@ -62,43 +88,77 @@ export default function DashboardPage() {
         {/* Recent Posts */}
         <div className="card">
           <div className="card-header">
-            <h3 className="heading-4" style={{ marginBottom: 'var(--space-1)' }}>Recent Posts</h3>
-            <p className="caption">Latest published blog posts</p>
+            <div className={styles.cardHeaderFlex}>
+              <div>
+                <h3 className={`heading-4 ${styles.cardTitleBase}`}>Recent Posts</h3>
+                <p className="caption">Latest published blog posts</p>
+              </div>
+              <Link href="/admin/posts" className="button-outline button-sm">View All</Link>
+            </div>
           </div>
           <div className="card-body">
             <div className="stack-sm">
-              {[1, 2, 3, 4].map((i) => (
+              {[1, 2, 3].map((i) => (
                 <div key={i} className={styles.listItem}>
-                  <p className={`body-base font-medium ${styles.listTitle}`}>
-                    Sample Blog Post Title {i}
-                  </p>
-                  <p className="caption">Published 2 days ago</p>
+                  <div>
+                    <p className={styles.listTitle}>
+                      Sample Blog Post Title {i}
+                    </p>
+                    <p className="caption">Published 2 days ago</p>
+                  </div>
+                  <span className={`${styles.badge} ${styles.badgeNew}`}>Published</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Recent Projects */}
+        {/* Recent Enquiries */}
         <div className="card">
           <div className="card-header">
-            <h3 className="heading-4" style={{ marginBottom: 'var(--space-1)' }}>Recent Projects</h3>
-            <p className="caption">Latest portfolio work</p>
+            <div className={styles.cardHeaderFlex}>
+              <div>
+                <h3 className={`heading-4 ${styles.cardTitleBase}`}>Recent Enquiries</h3>
+                <p className="caption">Latest leads from contact form</p>
+              </div>
+              <Link href="/admin/leads" className="button-outline button-sm">View All</Link>
+            </div>
           </div>
           <div className="card-body">
             <div className="stack-sm">
-              {[1, 2, 3, 4].map((i) => (
+              {[1, 2, 3].map((i) => (
                 <div key={i} className={styles.listItem}>
-                  <p className={`body-base font-medium ${styles.listTitle}`}>
-                    Sample Project {i}
-                  </p>
-                  <p className="caption">Updated last week</p>
+                  <div>
+                    <p className={styles.listTitle}>
+                      New Project Inquiry - Client {i}
+                    </p>
+                    <p className="caption">Received {i} hours ago</p>
+                  </div>
+                  <span className={`${styles.badge} ${styles.badgePending}`}>Pending</span>
                 </div>
               ))}
             </div>
           </div>
         </div>
       </div>
+      
+      {/* System Status */}
+      <div className={`${styles.systemStatusCard} section`}>
+        <div className="card">
+          <div className="card-body">
+             <div className={styles.statRow}>
+                <div className={styles.systemStatusInfo}>
+                  <Server className={styles.systemStatusIcon} />
+                  <span className={styles.listTitleNoMargin}>System Status</span>
+                </div>
+                <div>
+                  <span className={`${styles.badge} ${styles.badgeNew}`}>All Systems Operational</span>
+                </div>
+             </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
   )
 }
