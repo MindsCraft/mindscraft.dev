@@ -14,8 +14,9 @@ const blogPostSchema: Schema = {
     category: { type: SchemaType.STRING, description: "Category string, matching one of: AI & SaaS, Web Development, Performance, UX & CRO, Future" },
     content: { type: SchemaType.STRING, description: "Full HTML string of the blog post body. Use semantic tags (<h2>, <p>, <ul>, <blockquote>)." },
     readTime: { type: SchemaType.STRING, description: "e.g. '5 min read'" },
+    imageSearchTerm: { type: SchemaType.STRING, description: "3-4 highly descriptive, unique keywords for Unsplash images related specifically to this blog topic. (e.g., 'cybernetic-brain-neon-circuits')" },
   },
-  required: ["title", "slug", "description", "category", "content", "readTime"]
+  required: ["title", "slug", "description", "category", "content", "readTime", "imageSearchTerm"]
 };
 
 export async function POST(req: Request) {
@@ -89,7 +90,7 @@ export async function POST(req: Request) {
       status: 'Draft', // AI always writes to Draft first!
       featured: false,
       author: { name: 'MindsCraft AI', avatar: 'MA' },
-      image: `https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000&seed=${Date.now()}`
+      image: `https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000&${generatedPost.imageSearchTerm || 'tech'}`
     };
 
     // Save to our static JSON DB

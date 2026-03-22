@@ -4,7 +4,7 @@ import { useState, useEffect, use } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { ArrowLeft, Save, Eye, CheckCircle, Star, Tag, FileText, Globe } from 'lucide-react'
+import { ArrowLeft, Save, Eye, CheckCircle, Star, Tag, FileText, Globe, Sparkle, Loader2 } from 'lucide-react'
 import styles from '@/styles/admin/pages/posts.module.css'
 import Loading from '../../new/loading'
 
@@ -105,7 +105,7 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
         body: JSON.stringify(formData),
       })
       if (!response.ok) throw new Error('Failed to update post')
-      setSaveSuccess(true)
+        setSaveSuccess(true)
       setTimeout(() => setSaveSuccess(false), 3000)
       router.refresh()
     } catch (error) {
@@ -113,6 +113,38 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
       alert('Failed to save changes')
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  // ── AI REFINEMENT LOGIC ──
+  const [aiInstruction, setAiInstruction] = useState('')
+  const [isAiRefining, setIsAiRefining] = useState(false)
+
+  const handleAiRefine = async () => {
+    if (!aiInstruction.trim()) return
+    setIsAiRefining(true)
+    try {
+      const res = await fetch('/api/admin/edit-post-ai', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          content: formData.content,
+          title: formData.title,
+          instruction: aiInstruction
+        })
+      })
+      const data = await res.json()
+      if (data.success) {
+        setFormData(prev => ({ ...prev, content: data.refinedContent }))
+        setAiInstruction('')
+      } else {
+        alert(data.error || 'Failed to refine content')
+      }
+    } catch (err) {
+      console.error(err)
+      alert('AI refinement failed')
+    } finally {
+      setIsAiRefining(false)
     }
   }
 
@@ -148,6 +180,28 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
           <div className={styles.editMainCol}>
             <div className={styles.editCard} style={{ padding: 'var(--space-6)' }}>
               <input type="text" name="title" placeholder="Post title..." required value={formData.title} onChange={handleChange} style={{ width: '100%', fontSize: 'var(--text-2xl)', fontWeight: 'var(--font-bold)', border: 'none', outline: 'none', color: 'var(--color-text-primary)', backgroundColor: 'transparent', lineHeight: 'var(--leading-tight)' }} />
+            </div>
+
+            {/* AI COMMANDS DOCK */}
+            <div style={{ backgroundColor: 'var(--color-background)', border: '1px solid var(--color-primary)', borderRadius: 'var(--radius-lg)', padding: '12px 16px', marginBottom: 'var(--space-4)', display: 'flex', gap: 'var(--space-3)', alignItems: 'center', boxShadow: '0 4px 20px rgba(16, 24, 40, 0.08)' }}>
+              <div style={{ backgroundColor: 'var(--color-primary)', color: 'white', padding: '6px', borderRadius: '8px', display: 'flex' }}><Sparkle size={16} /></div>
+              <input 
+                type="text" 
+                value={aiInstruction} 
+                onChange={(e) => setAiInstruction(e.target.value)}
+                onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAiRefine(); }}}
+                placeholder="AI: 'Make it more professional', 'Add a key takeaways section', 'Shorten the introduction'..." 
+                style={{ flex: 1, border: 'none', background: 'transparent', outline: 'none', fontSize: 'var(--text-sm)', color: 'var(--color-text-primary)' }} 
+              />
+              <button 
+                type="button" 
+                onClick={handleAiRefine}
+                disabled={isAiRefining || !aiInstruction.trim()}
+                className={styles.btnSecondary} 
+                style={{ padding: '6px 16px', fontSize: 'var(--text-xs)', borderColor: 'var(--color-primary)', color: 'var(--color-primary)', fontWeight: 600 }}
+              >
+                {isAiRefining ? <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><Loader2 size={12} className={styles.spin} /> Refining...</span> : 'Apply Changes'}
+              </button>
             </div>
 
             <div style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-xs)', overflow: 'hidden' }}>
