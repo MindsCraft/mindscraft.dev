@@ -12,22 +12,20 @@ jobs:
     permissions:
       contents: write
     
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
         with:
-          ref: feat/components # Temporarily targeting our feature branch for testing
+          ref: develop # Always target develop directly
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '20' # Match your CI environment
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Run Blog Scraper & Generator
         env:
@@ -39,5 +37,5 @@ jobs:
           git config --global user.name "MindsCraft AI Writer"
           git config --global user.email "ai-writer@mindscraft.dev"
           git add src/data/posts.json
-          git commit -m "chore: auto-generate daily blog post [skip ci]" || echo "No changes to commit"
-          git push origin HEAD:feat/components
+          git commit -m "chore(blog): auto-generate daily AI post [skip ci]" || echo "No changes to commit"
+          git push origin HEAD:develop

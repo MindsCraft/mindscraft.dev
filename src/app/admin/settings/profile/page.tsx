@@ -2,6 +2,7 @@
 
 import { User, Envelope, Lock, Upload } from 'phosphor-react'
 import { useState } from 'react'
+import styles from '@/styles/admin/pages/profile.module.css'
 
 export default function ProfilePage() {
     const [isSaving, setIsSaving] = useState(false)
@@ -12,215 +13,102 @@ export default function ProfilePage() {
     }
 
     return (
-        <div style={{
-            padding: 'var(--space-8)',
-            maxWidth: '1000px',
-            margin: '0 auto'
-        }}>
-            <h1 style={{
-                fontSize: '24px',
-                fontWeight: '600',
-                color: '#171717',
-                marginBottom: 'var(--space-2)'
-            }}>
-                Profile Settings
-            </h1>
-            <p style={{ fontSize: '14px', color: '#525252', marginBottom: 'var(--space-8)' }}>
-                Manage your account profile
-            </p>
+        <div className="admin-container">
+            <div className="admin-page-header">
+                <h1 className="admin-page-title">Profile Settings</h1>
+                <p className="admin-page-desc">Manage your account profile</p>
+            </div>
 
-            <div style={{
-                backgroundColor: '#ffffff',
-                borderRadius: '12px',
-                border: '1px solid #e5e5e5',
-                padding: 'var(--space-6)',
-                marginBottom: 'var(--space-6)'
-            }}>
-                <h2 style={{ fontSize: '18px', fontWeight: '600', color: '#171717', marginBottom: 'var(--space-5)' }}>
-                    Personal Information
-                </h2>
+            <div className={styles.sectionCard}>
+                <h2 className={styles.sectionTitle}>Personal Information</h2>
 
                 <div style={{ marginBottom: 'var(--space-6)' }}>
-                    <label style={{ fontSize: '13px', fontWeight: '500', color: '#525252', display: 'block', marginBottom: 'var(--space-3)' }}>
-                        Profile Photo
-                    </label>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
-                        <div style={{
-                            width: '80px',
-                            height: '80px',
-                            borderRadius: '50%',
-                            backgroundColor: '#171717',
-                            color: '#ffffff',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontSize: '32px',
-                            fontWeight: '600'
-                        }}>
+                    <label className={styles.label}>Profile Photo</label>
+                    <div className={styles.photoWrap}>
+                        <div className={styles.photoAvatar}>
                             AU
                         </div>
-                        <button style={{
-                            padding: '10px 20px',
-                            borderRadius: '8px',
-                            border: '1px solid #e5e5e5',
-                            backgroundColor: '#ffffff',
-                            color: '#171717',
-                            fontSize: '14px',
-                            fontWeight: '500',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: 'var(--space-2)'
-                        }}>
+                        <button className={styles.uploadBtn}>
                             <Upload size={16} />
                             Upload Photo
                         </button>
                     </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
+                <div className={styles.gridTwoCol}>
                     <div>
-                        <label style={{ fontSize: '13px', fontWeight: '500', color: '#525252', display: 'block', marginBottom: 'var(--space-2)' }}>
-                            Full Name
-                        </label>
-                        <div style={{ position: 'relative' }}>
-                            <User size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#a3a3a3' }} />
+                        <label className={styles.label}>Full Name</label>
+                        <div className={styles.inputGroup}>
+                            <User size={18} className={styles.inputIcon} />
                             <input
                                 type="text"
                                 defaultValue="Admin User"
-                                style={{
-                                    width: '100%',
-                                    padding: '12px 12px 12px 40px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #e5e5e5',
-                                    fontSize: '14px'
-                                }}
+                                className={styles.inputBox}
                             />
                         </div>
                     </div>
 
                     <div>
-                        <label style={{ fontSize: '13px', fontWeight: '500', color: '#525252', display: 'block', marginBottom: 'var(--space-2)' }}>
-                            Email Address
-                        </label>
-                        <div style={{ position: 'relative' }}>
-                            <Envelope size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#a3a3a3' }} />
+                        <label className={styles.label}>Email Address</label>
+                        <div className={styles.inputGroup}>
+                            <Envelope size={18} className={styles.inputIcon} />
                             <input
                                 type="email"
                                 defaultValue="admin@mindscraft.dev"
-                                style={{
-                                    width: '100%',
-                                    padding: '12px 12px 12px 40px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #e5e5e5',
-                                    fontSize: '14px'
-                                }}
+                                className={styles.inputBox}
                             />
                         </div>
                     </div>
                 </div>
 
                 <div style={{ marginTop: 'var(--space-5)' }}>
-                    <label style={{ fontSize: '13px', fontWeight: '500', color: '#525252', display: 'block', marginBottom: 'var(--space-2)' }}>
-                        Bio
-                    </label>
+                    <label className={styles.label}>Bio</label>
                     <textarea
                         rows={4}
                         placeholder="Tell us about yourself..."
-                        style={{
-                            width: '100%',
-                            padding: '12px',
-                            borderRadius: '8px',
-                            border: '1px solid #e5e5e5',
-                            fontSize: '14px',
-                            resize: 'vertical',
-                            fontFamily: 'inherit'
-                        }}
+                        className={styles.textareaBox}
                     />
                 </div>
             </div>
 
-            <div style={{
-                backgroundColor: '#ffffff',
-                borderRadius: '12px',
-                border: '1px solid #e5e5e5',
-                padding: 'var(--space-6)',
-                marginBottom: 'var(--space-6)'
-            }}>
-                <h2 style={{ fontSize: '18px', fontWeight: '600', color: '#171717', marginBottom: 'var(--space-5)' }}>
-                    Security
-                </h2>
+            <div className={styles.sectionCard}>
+                <h2 className={styles.sectionTitle}>Security</h2>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-5)' }}>
+                <div className={styles.gridTwoCol}>
                     <div>
-                        <label style={{ fontSize: '13px', fontWeight: '500', color: '#525252', display: 'block', marginBottom: 'var(--space-2)' }}>
-                            Current Password
-                        </label>
-                        <div style={{ position: 'relative' }}>
-                            <Lock size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#a3a3a3' }} />
+                        <label className={styles.label}>Current Password</label>
+                        <div className={styles.inputGroup}>
+                            <Lock size={18} className={styles.inputIcon} />
                             <input
                                 type="password"
                                 placeholder="••••••••"
-                                style={{
-                                    width: '100%',
-                                    padding: '12px 12px 12px 40px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #e5e5e5',
-                                    fontSize: '14px'
-                                }}
+                                className={styles.inputBox}
                             />
                         </div>
                     </div>
 
                     <div>
-                        <label style={{ fontSize: '13px', fontWeight: '500', color: '#525252', display: 'block', marginBottom: 'var(--space-2)' }}>
-                            New Password
-                        </label>
-                        <div style={{ position: 'relative' }}>
-                            <Lock size={18} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: '#a3a3a3' }} />
+                        <label className={styles.label}>New Password</label>
+                        <div className={styles.inputGroup}>
+                            <Lock size={18} className={styles.inputIcon} />
                             <input
                                 type="password"
                                 placeholder="••••••••"
-                                style={{
-                                    width: '100%',
-                                    padding: '12px 12px 12px 40px',
-                                    borderRadius: '8px',
-                                    border: '1px solid #e5e5e5',
-                                    fontSize: '14px'
-                                }}
+                                className={styles.inputBox}
                             />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div style={{ display: 'flex', gap: 'var(--space-3)', justifyContent: 'flex-end' }}>
-                <button style={{
-                    padding: '12px 24px',
-                    borderRadius: '8px',
-                    border: '1px solid #e5e5e5',
-                    backgroundColor: '#ffffff',
-                    color: '#171717',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    cursor: 'pointer'
-                }}>
+            <div className={styles.actionFooter}>
+                <button className={styles.btnSecondary}>
                     Cancel
                 </button>
                 <button
                     onClick={handleSave}
                     disabled={isSaving}
-                    style={{
-                        padding: '12px 24px',
-                        borderRadius: '8px',
-                        border: 'none',
-                        backgroundColor: '#171717',
-                        color: '#ffffff',
-                        fontSize: '14px',
-                        fontWeight: '500',
-                        cursor: isSaving ? 'not-allowed' : 'pointer',
-                        opacity: isSaving ? 0.6 : 1
-                    }}
+                    className={styles.btnPrimary}
                 >
                     {isSaving ? 'Saving...' : 'Save Changes'}
                 </button>

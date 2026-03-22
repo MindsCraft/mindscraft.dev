@@ -19,9 +19,9 @@ export function AdminLayout({ children }: AdminLayoutProps) {
       {/* Sidebar - only shown on desktop, starts from top */}
       <Sidebar />
 
-      {/* Main content area with left margin on desktop to account for sidebar */}
-      <div className="flex flex-col lg:ml-64" style={{ minHeight: '100vh' }}>
-        <main className="flex-1">
+      {/* Main content area dynamically accounting for sidebar offset via native CSS */}
+      <div className="admin-content-area">
+        <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           {children}
         </main>
         <AdminFooter />

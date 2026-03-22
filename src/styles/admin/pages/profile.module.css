@@ -1,0 +1,148 @@
+.sectionCard {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #171717;
+  margin-bottom: var(--space-5);
+  margin-top: 0;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #525252;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.photoWrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.photoAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #171717;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.uploadBtn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  background-color: #ffffff;
+  color: #171717;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: all 150ms ease;
+}
+.uploadBtn:hover {
+  background-color: #f5f5f5;
+}
+
+.gridTwoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.inputGroup {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a3a3a3;
+}
+
+.inputBox {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  font-size: 14px;
+  color: #171717;
+  outline: none;
+  transition: border-color 150ms ease;
+}
+.inputBox:focus {
+  border-color: #171717;
+}
+
+.textareaBox {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  font-size: 14px;
+  color: #171717;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  transition: border-color 150ms ease;
+}
+.textareaBox:focus {
+  border-color: #171717;
+}
+
+.actionFooter {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: flex-end;
+}
+
+.btnSecondary {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  background-color: #ffffff;
+  color: #171717;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+.btnSecondary:hover {
+  background-color: #f5f5f5;
+}
+
+.btnPrimary {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  background-color: #171717;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+.btnPrimary:hover {
+  background-color: #000000;
+}
+.btnPrimary:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}

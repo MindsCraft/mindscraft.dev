@@ -13,6 +13,7 @@ import {
   Code2,
   ChevronRight,
   ExternalLink,
+  Megaphone,
 } from 'lucide-react'
 
 const navigationItems = [
@@ -25,7 +26,8 @@ const navigationItems = [
   {
     category: 'Content',
     items: [
-      { name: 'Posts',    href: '/admin/posts',    icon: FileText      },
+      { name: 'Blog Posts', href: '/admin/posts',    icon: FileText      },
+      { name: 'Marketing',href: '/admin/marketing',icon: Megaphone     },
       { name: 'Projects', href: '/admin/projects', icon: FolderKanban  },
       { name: 'Team',     href: '/admin/team',     icon: Users         },
       { name: 'Media',    href: '/admin/media',    icon: ImageIcon     },

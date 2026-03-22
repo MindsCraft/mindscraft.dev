@@ -1,0 +1,143 @@
+.headerBtn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  background-color: #171717;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  transition: all 150ms ease;
+}
+.headerBtn:hover {
+  background-color: #000000;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--space-5);
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  padding: var(--space-5);
+  transition: all 150ms ease;
+}
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #171717;
+  margin-bottom: var(--space-1);
+}
+
+.client {
+  font-size: 13px;
+  color: #a3a3a3;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.progressWrap {
+  margin-bottom: var(--space-4);
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.progressLabel {
+  font-size: 12px;
+  color: #525252;
+  font-weight: 500;
+}
+
+.progressValue {
+  font-size: 12px;
+  color: #171717;
+  font-weight: 600;
+}
+
+.progressBarBg {
+  width: 100%;
+  height: 6px;
+  background-color: #f5f5f5;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  transition: width 300ms ease;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dueDate {
+  font-size: 13px;
+  color: #a3a3a3;
+}
+
+.actionWrap {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.actionBtn {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #e5e5e5;
+  background-color: #ffffff;
+  color: #525252;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 150ms ease;
+}
+.actionBtn:hover {
+  background-color: #f5f5f5;
+  color: #171717;
+}
+
+.actionBtnDanger {
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #fee2e2;
+  background-color: #ffffff;
+  color: #ef4444;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 150ms ease;
+}
+.actionBtnDanger:hover {
+  background-color: #fef2f2;
+}

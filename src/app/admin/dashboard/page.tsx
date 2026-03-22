@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { BarChart, Clock, FileText, Users, Briefcase } from '@/components/ui/icons'
+import styles from '@/styles/admin/pages/dashboard.module.css'
 
 export default function DashboardPage() {
   const stats = [
@@ -12,11 +13,11 @@ export default function DashboardPage() {
   ]
 
   return (
-    <div className="container" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-12)' }}>
-      {/* Page Header - Proper spacing and typography */}
-      <div style={{ marginBottom: 'var(--space-8)' }}>
-        <h1 className="heading-1">Dashboard</h1>
-        <p className="body-base" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--space-2)' }}>
+    <div className="admin-container">
+      {/* Page Header */}
+      <div className="admin-page-header">
+        <h1 className="admin-page-title">Dashboard</h1>
+        <p className="admin-page-desc">
           Welcome to the admin dashboard! Here's what's happening with your agency.
         </p>
       </div>
@@ -26,9 +27,9 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
             <div key={stat.name} className="stat-card">
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div className={styles.statRow}>
                 <span className="stat-label">{stat.name}</span>
-                <stat.icon style={{ width: '18px', height: '18px', color: 'var(--color-text-tertiary)' }} />
+                <stat.icon className={styles.statIcon} />
               </div>
               <div className="stat-value">{stat.value}</div>
               <p className="stat-change">
@@ -47,16 +48,8 @@ export default function DashboardPage() {
             <p className="caption">Performance metrics and insights</p>
           </div>
           <div className="card-body">
-            <div style={{
-              height: '320px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: 'var(--color-surface)',
-              borderRadius: 'var(--radius-md)',
-              border: '1px dashed var(--color-border)'
-            }}>
-              <p className="body-sm" style={{ color: 'var(--color-text-tertiary)' }}>
+            <div className={styles.chartPlaceholder}>
+              <p className={`body-sm ${styles.chartText}`}>
                 Analytics chart will be displayed here
               </p>
             </div>
@@ -65,7 +58,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Two Column Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--space-6)' }} className="lg:grid-cols-2">
+      <div className={styles.gridTwoCol}>
         {/* Recent Posts */}
         <div className="card">
           <div className="card-header">
@@ -75,24 +68,8 @@ export default function DashboardPage() {
           <div className="card-body">
             <div className="stack-sm">
               {[1, 2, 3, 4].map((i) => (
-                <div
-                  key={i}
-                  style={{
-                    padding: 'var(--space-4)',
-                    border: '1px solid var(--color-border)',
-                    borderRadius: 'var(--radius-md)',
-                    transition: 'all var(--transition-base)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--color-border-hover)'
-                    e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--color-border)'
-                    e.currentTarget.style.boxShadow = 'none'
-                  }}
-                >
-                  <p className="body-base font-medium" style={{ marginBottom: 'var(--space-1)' }}>
+                <div key={i} className={styles.listItem}>
+                  <p className={`body-base font-medium ${styles.listTitle}`}>
                     Sample Blog Post Title {i}
                   </p>
                   <p className="caption">Published 2 days ago</p>
@@ -111,24 +88,8 @@ export default function DashboardPage() {
           <div className="card-body">
             <div className="stack-sm">
               {[1, 2, 3, 4].map((i) => (
-                <div
-                  key={i}
-                  style={{
-                    padding: 'var(--space-4)',
-                    border: '1px solid var(--color-border)',
-                    borderRadius: 'var(--radius-md)',
-                    transition: 'all var(--transition-base)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--color-border-hover)'
-                    e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--color-border)'
-                    e.currentTarget.style.boxShadow = 'none'
-                  }}
-                >
-                  <p className="body-base font-medium" style={{ marginBottom: 'var(--space-1)' }}>
+                <div key={i} className={styles.listItem}>
+                  <p className={`body-base font-medium ${styles.listTitle}`}>
                     Sample Project {i}
                   </p>
                   <p className="caption">Updated last week</p>
