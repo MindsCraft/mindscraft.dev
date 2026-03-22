@@ -4,22 +4,53 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { ArrowLeft, PlusCircle, Save, XCircle } from 'lucide-react'
+import { ArrowLeft, Save, CheckCircle, Star, Tag, FileText, Globe } from 'lucide-react'
 import styles from '@/styles/admin/pages/posts.module.css'
-
-// Import the loading component
-import Loading from './loading'
 
 // Dynamically import the BlogEditor with SSR disabled
 const BlogEditor = dynamic(
   () => import('@/components/admin/BlogEditor'),
   { 
     ssr: false,
-    loading: () => <div className="h-[400px] w-full rounded-xl bg-gray-50 animate-pulse border border-gray-100 flex items-center justify-center text-gray-400 text-sm">Loading premium editor...</div>
+    loading: () => (
+      <div style={{ height: '400px', width: '100%', borderRadius: 'var(--radius-lg)', backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-tertiary)', fontSize: 'var(--text-sm)'}}>
+        Loading editor...
+      </div>
+    )
   }
 )
 
-const PostForm = () => {
+const CATEGORIES = ['AI & SaaS', 'Web Development', 'Performance', 'UX & CRO', 'Future']
+
+function ToggleRow({
+  name, checked, onChange, label, description, activeColor, icon
+}: {
+  name: string; checked: boolean; onChange: any; label: string; description: string; activeColor: string; icon?: React.ReactNode
+}) {
+  return (
+    <label className={styles.toggleRow}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+        {icon && <span style={{ color: checked ? activeColor : 'var(--color-text-disabled)' }}>{icon}</span>}
+        <div>
+          <div style={{ fontSize: 'var(--text-sm)', fontWeight: 'var(--font-medium)', color: 'var(--color-text-primary)' }}>{label}</div>
+          <div style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-tertiary)' }}>{description}</div>
+        </div>
+      </div>
+      <div style={{ position: 'relative', flexShrink: 0 }}>
+        <input type="checkbox" name={name} checked={checked} onChange={onChange} style={{ position: 'absolute', opacity: 0, width: 0, height: 0 }} />
+        <div
+          onClick={() => onChange({ target: { name, type: 'checkbox', checked: !checked } } as any)}
+          className={styles.toggleSwitch}
+          style={{ backgroundColor: checked ? activeColor : 'var(--color-border)' }}
+        >
+          <div className={styles.toggleThumb} style={{ left: checked ? '18px' : '2px' }} />
+        </div>
+      </div>
+    </label>
+  )
+}
+
+export default function NewPostPage() {
   const [formData, setFormData] = useState({
     title: '',
     slug: '',
@@ -30,16 +61,18 @@ const PostForm = () => {
     featured: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
   const router = useRouter();
 
   const generateSlug = () => {
+    if (formData.slug || !formData.title) return;
     const slug = formData.title
       .toLowerCase()
       .trim()
       .replace(/[^\w\s-]/g, '')
       .replace(/[\s_]+/g, '-')
       .replace(/^-+|-+$/g, '');
-
+    
     setFormData(prev => ({ ...prev, slug }))
   }
 
@@ -61,6 +94,7 @@ const PostForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSaveSuccess(false)
 
     try {
       const response = await fetch('/api/posts', {
@@ -68,118 +102,122 @@ const PostForm = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          id: Date.now(),
+          id: Date.now(), // Fallback if API needs it
           date: new Date().toISOString().split('T')[0],
-          readTime: `${Math.ceil(formData.content.length / 1000)} min read`
+          readTime: `${Math.ceil(formData.content.length / 1000) || 1} min read`
         }),
       })
 
       if (!response.ok) throw new Error('Failed to create post')
 
-      router.push('/admin/posts')
-      router.refresh()
+      setSaveSuccess(true)
+      setTimeout(() => {
+        router.push('/admin/posts')
+        router.refresh()
+      }, 1000)
     } catch (error) {
       console.error('Error creating post:', error)
       alert('Failed to create post. Please try again.')
-    } finally {
       setIsSubmitting(false)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-8)' }}>
-      {/* Premium Header Segment */}
-      <div className={styles.editorHeader}>
-        <Link href="/admin/posts" style={{ display: 'inline-flex', alignItems: 'center', color: 'var(--color-text-secondary)', textDecoration: 'none', marginBottom: 'var(--space-4)', fontSize: 'var(--text-sm)', fontWeight: 'var(--font-medium)'}}>
-          <ArrowLeft size={16} style={{ marginRight: '8px' }} />
-          Back to Blog Posts
+    <div style={{ minHeight: '100vh', backgroundColor: 'var(--color-surface)' }}>
+      {/* Top Bar */}
+      <div className={styles.editTopBar}>
+        <Link href="/admin/posts" style={{ display: 'inline-flex', alignItems: 'center', gap: 'var(--space-2)', color: 'var(--color-text-secondary)', textDecoration: 'none', fontSize: 'var(--text-sm)', fontWeight: 'var(--font-medium)'}}>
+          <ArrowLeft size={15} /> Blog Posts
         </Link>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <div>
-            <h1 className="heading-1" style={{ marginBottom: 'var(--space-2)' }}>New Publication</h1>
-            <p className="body-sm">Craft a premium article for the MindsCraft audience.</p>
-          </div>
-          <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
-            <Link href="/admin/posts" className={styles.btnSecondary}><XCircle size={16} /> Discard</Link>
-            <button type="submit" disabled={isSubmitting} className={styles.btnPrimary}>
-              <Save size={16} /> {isSubmitting ? 'Saving...' : 'Save Draft'}
-            </button>
-          </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
+          <span className={styles.badge} style={{ backgroundColor: formData.published ? '#dcfce7' : 'var(--color-surface)', color: formData.published ? '#16a34a' : 'var(--color-text-tertiary)', border: `1px solid ${formData.published ? '#bbf7d0' : 'var(--color-border)'}`}}>
+            <span className={styles.badgeDot} style={{ backgroundColor: formData.published ? '#16a34a' : 'var(--color-text-disabled)' }} />
+            {formData.published ? 'Published' : 'Draft'}
+          </span>
+          <button type="button" onClick={handleSubmit} disabled={isSubmitting || saveSuccess} className={styles.btnPrimary} style={{ backgroundColor: saveSuccess ? '#16a34a' : 'var(--color-primary)' }}>
+            {saveSuccess ? <CheckCircle size={15} /> : <Save size={15} />}
+            {isSubmitting ? 'Creating...' : saveSuccess ? 'Created!' : 'Create Post'}
+          </button>
         </div>
       </div>
 
-      {/* Main Canvas Segment */}
-      <div className={styles.editorMain}>
-        
-        {/* Editor Card */}
-        <div className="card" style={{ padding: 'var(--space-8)', border: 'none', boxShadow: 'var(--shadow-md)' }}>
-          <input
-            type="text" name="title" placeholder="Document Title" required
-            value={formData.title} onChange={handleChange}
-            onBlur={() => !formData.slug && generateSlug()}
-            className={styles.titleInput}
-          />
-          <div style={{ margin: '0 -2rem' }}>
-            <BlogEditor content={formData.content} onChange={handleEditorChange} placeholder="Start writing your masterpiece..." />
-          </div>
-        </div>
-
-        {/* Post Settings Card */}
-        <div className="card" style={{ overflow: 'visible' }}>
-          <div className="card-header"><h3 className="heading-4" style={{ margin: 0 }}>Publication Settings</h3></div>
-          <div className="card-body" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: 'var(--space-6)' }}>
-            
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-              <div>
-                <label className="label" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>URL Slug</label>
-                <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
-                  <input type="text" name="slug" required value={formData.slug} onChange={handleChange} className={styles.inputBox} style={{ flex: 1 }} />
-                  <button type="button" onClick={generateSlug} className={styles.iconBtn}><PlusCircle size={16} color="var(--color-text-secondary)" /></button>
-                </div>
-              </div>
-              
-              <div>
-                <label className="label" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Category</label>
-                <select name="category" value={formData.category} onChange={handleChange} className={styles.inputBox}>
-                  <option value="AI & SaaS">AI & SaaS</option>
-                  <option value="Web Development">Web Development</option>
-                  <option value="Performance">Performance</option>
-                  <option value="UX & CRO">UX & CRO</option>
-                  <option value="Future">Future</option>
-                </select>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)', marginTop: 'var(--space-2)', padding: 'var(--space-4)', backgroundColor: 'var(--color-surface)', borderRadius: 'var(--radius-md)' }}>
-                <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', cursor: 'pointer' }}>
-                  <input type="checkbox" name="published" checked={formData.published} onChange={handleChange} style={{ width: '16px', height: '16px' }} />
-                  <span className="body-sm" style={{ fontWeight: 'var(--font-medium)', color: 'var(--color-text-primary)' }}>Publish Object Immediately</span>
-                </label>
-                <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', cursor: 'pointer' }}>
-                  <input type="checkbox" name="featured" checked={formData.featured} onChange={handleChange} style={{ width: '16px', height: '16px' }} />
-                  <span className="body-sm" style={{ fontWeight: 'var(--font-medium)', color: 'var(--color-text-primary)' }}>Mark as Featured Content</span>
-                </label>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <label className="label" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Brief Excerpt</label>
-              <textarea
-                name="excerpt" rows={6} value={formData.excerpt} onChange={handleChange}
-                placeholder="A compelling summary for blog cards and SEO."
-                className={styles.inputBox} style={{ resize: 'vertical' }}
+      <form onSubmit={handleSubmit}>
+        <div className={styles.editGrid}>
+          {/* Main Editor */}
+          <div className={styles.editMainCol}>
+            <div className={styles.editCard} style={{ padding: 'var(--space-6)' }}>
+              <input 
+                type="text" name="title" placeholder="Post title..." required 
+                value={formData.title} onChange={handleChange} onBlur={generateSlug}
+                style={{ width: '100%', fontSize: 'var(--text-2xl)', fontWeight: 'var(--font-bold)', border: 'none', outline: 'none', color: 'var(--color-text-primary)', backgroundColor: 'transparent', lineHeight: 'var(--leading-tight)' }} 
               />
             </div>
+
+            <div style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-xs)', overflow: 'hidden' }}>
+              <BlogEditor content={formData.content} onChange={handleEditorChange} placeholder="Write your article content here..." />
+            </div>
+
+            <div className={styles.editCard}>
+              <div className={styles.editCardHeader}>
+                <FileText size={14} color="var(--color-text-tertiary)" />
+                <span className="label" style={{ margin: 0 }}>Excerpt</span>
+              </div>
+              <div className={styles.editCardBody}>
+                <textarea 
+                  name="excerpt" rows={3} value={formData.excerpt} onChange={handleChange} 
+                  placeholder="A short summary shown on blog cards and in search results..." 
+                  style={{ width: '100%', border: 'none', outline: 'none', fontSize: 'var(--text-sm)', lineHeight: 'var(--leading-relaxed)', color: 'var(--color-text-primary)', backgroundColor: 'transparent', resize: 'none', fontFamily: 'inherit' }} 
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Right Sidebar */}
+          <div className={styles.editSidebarCol}>
+            <div className={styles.editCard}>
+              <div className={styles.editCardHeader}>
+                <Globe size={14} color="var(--color-text-tertiary)" />
+                <span className="label" style={{ margin: 0 }}>Publish</span>
+              </div>
+              <div className={styles.editCardBody} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+                <ToggleRow name="published" checked={formData.published} onChange={handleChange} label="Published" description="Visible to the public" activeColor="#16a34a" />
+                <div style={{ height: '1px', backgroundColor: 'var(--color-border)' }} />
+                <ToggleRow name="featured" checked={formData.featured} onChange={handleChange} label="Featured" description="Highlighted on homepage" activeColor="#d97706" icon={<Star size={13} />} />
+              </div>
+            </div>
+
+            <div className={styles.editCard}>
+              <div className={styles.editCardHeader}>
+                <Tag size={14} color="var(--color-text-tertiary)" />
+                <span className="label" style={{ margin: 0 }}>Category</span>
+              </div>
+              <div className={styles.editCardBody}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-1)' }}>
+                  {CATEGORIES.map(cat => (
+                    <label key={cat} style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', padding: 'var(--space-2) var(--space-3)', borderRadius: 'var(--radius-md)', cursor: 'pointer', backgroundColor: formData.category === cat ? 'var(--color-surface)' : 'transparent', transition: 'background-color var(--transition-fast)' }}>
+                      <input type="radio" name="category" value={cat} checked={formData.category === cat} onChange={handleChange} style={{ accentColor: 'var(--color-primary)', width: '14px', height: '14px' }} />
+                      <span style={{ fontSize: 'var(--text-sm)', fontWeight: formData.category === cat ? 'var(--font-medium)' : 'var(--font-normal)', color: formData.category === cat ? 'var(--color-text-primary)' : 'var(--color-text-secondary)' }}>{cat}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.editCard}>
+              <div className={styles.editCardHeader}>
+                <Globe size={14} color="var(--color-text-tertiary)" />
+                <span className="label" style={{ margin: 0 }}>URL Slug</span>
+              </div>
+              <div className={styles.editCardBody}>
+                <div className={styles.slugInputWrap}>
+                  <span className={styles.slugPrefix}>/blog/</span>
+                  <input type="text" name="slug" value={formData.slug} onChange={handleChange} placeholder="post-slug" style={{ flex: 1, border: 'none', outline: 'none', padding: 'var(--space-2) var(--space-3)', fontSize: 'var(--text-sm)', color: 'var(--color-text-primary)', backgroundColor: 'transparent', minWidth: 0 }} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </form>
-  )
-}
-
-export default function NewPostPage() {
-  return (
-    <div style={{ paddingBottom: 'var(--space-12)' }}>
-      <PostForm />
+      </form>
     </div>
-  );
+  )
 }
