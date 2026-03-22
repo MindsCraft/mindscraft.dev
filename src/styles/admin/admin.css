@@ -95,9 +95,9 @@
   --color-text-tertiary: var(--gray-500);
   --color-text-disabled: var(--gray-400);
 
-  /* Interactive */
-  --color-primary: #0070f3;
-  --color-primary-hover: #0060df;
+  /* Interactive - Using Brand Navy #101828 */
+  --color-primary: #101828;
+  --color-primary-hover: #1c2536;
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
