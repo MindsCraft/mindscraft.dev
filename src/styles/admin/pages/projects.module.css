@@ -1,19 +1,26 @@
+.headerFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .headerBtn {
-  padding: 12px 24px;
-  border-radius: 8px;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
   border: none;
-  background-color: #171717;
+  background-color: var(--color-primary);
   color: #ffffff;
-  font-size: 14px;
+  font-size: var(--text-sm);
   font-weight: 500;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  transition: all 150ms ease;
+  transition: all var(--transition-fast);
 }
 .headerBtn:hover {
-  background-color: #000000;
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
 }
 
 .grid {
@@ -23,45 +30,67 @@
 }
 
 .card {
-  background-color: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e5e5e5;
-  padding: var(--space-5);
-  transition: all 150ms ease;
+  background-color: var(--color-background);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  padding: var(--space-6);
+  transition: all var(--transition-fast);
 }
 .card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-hover);
 }
 
 .cardHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 
 .title {
-  font-size: 16px;
+  font-size: var(--text-base);
   font-weight: 600;
-  color: #171717;
+  color: var(--color-text-primary);
   margin-bottom: var(--space-1);
 }
 
 .client {
-  font-size: 13px;
-  color: #a3a3a3;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
 }
 
 .statusBadge {
   display: inline-block;
   padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 12px;
-  font-weight: 500;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.statusActive {
+  background-color: rgba(16, 24, 40, 0.1);
+  color: var(--color-primary);
+}
+
+.statusCompleted {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--color-success);
+}
+
+.statusOnHold {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--color-warning);
+}
+
+.statusDefault {
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
 }
 
 .progressWrap {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 
 .progressHeader {
@@ -71,21 +100,23 @@
 }
 
 .progressLabel {
-  font-size: 12px;
-  color: #525252;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
 }
 
 .progressValue {
-  font-size: 12px;
-  color: #171717;
+  font-size: var(--text-xs);
+  color: var(--color-text-primary);
   font-weight: 600;
 }
 
 .progressBarBg {
   width: 100%;
   height: 6px;
-  background-color: #f5f5f5;
+  background-color: var(--color-surface);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -95,15 +126,22 @@
   transition: width 300ms ease;
 }
 
+.progressColorActive { background-color: var(--color-primary); }
+.progressColorCompleted { background-color: var(--color-success); }
+.progressColorOnHold { background-color: var(--color-warning); }
+.progressColorDefault { background-color: var(--color-text-secondary); }
+
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
 }
 
 .dueDate {
-  font-size: 13px;
-  color: #a3a3a3;
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
 }
 
 .actionWrap {
@@ -113,31 +151,33 @@
 
 .actionBtn {
   padding: 6px;
-  border-radius: 6px;
-  border: 1px solid #e5e5e5;
-  background-color: #ffffff;
-  color: #525252;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  color: var(--color-text-secondary);
   cursor: pointer;
   display: flex;
   align-items: center;
-  transition: all 150ms ease;
+  transition: all var(--transition-fast);
 }
 .actionBtn:hover {
-  background-color: #f5f5f5;
-  color: #171717;
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-hover);
 }
 
 .actionBtnDanger {
   padding: 6px;
-  border-radius: 6px;
-  border: 1px solid #fee2e2;
-  background-color: #ffffff;
-  color: #ef4444;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  color: var(--color-error);
   cursor: pointer;
   display: flex;
   align-items: center;
-  transition: all 150ms ease;
+  transition: all var(--transition-fast);
 }
 .actionBtnDanger:hover {
-  background-color: #fef2f2;
+  background-color: rgba(239, 68, 68, 0.05);
+  border-color: var(--color-error);
 }

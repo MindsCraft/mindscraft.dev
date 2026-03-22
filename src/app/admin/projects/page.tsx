@@ -13,24 +13,33 @@ export default function ProjectsPage() {
     { id: 5, name: 'Marketing Campaign', client: 'BizCorp', status: 'Active', progress: 45, dueDate: 'Jan 25, 2025' },
   ]
 
-  const getStatusColor = (status: string) => {
+  const getStatusClass = (status: string) => {
     switch (status) {
-      case 'Active': return '#06b6d4'
-      case 'Completed': return '#10b981'
-      case 'On Hold': return '#f59e0b'
-      default: return '#525252'
+      case 'Active': return styles.statusActive
+      case 'Completed': return styles.statusCompleted
+      case 'On Hold': return styles.statusOnHold
+      default: return styles.statusDefault
+    }
+  }
+
+  const getProgressColorClass = (status: string) => {
+    switch (status) {
+      case 'Active': return styles.progressColorActive
+      case 'Completed': return styles.progressColorCompleted
+      case 'On Hold': return styles.progressColorOnHold
+      default: return styles.progressColorDefault
     }
   }
 
   return (
     <div className="admin-container">
       {/* Page Header */}
-      <div className="admin-page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <div className={`admin-page-header ${styles.headerFlex}`}>
         <div>
           <h1 className="admin-page-title">Projects</h1>
           <p className="admin-page-desc">Manage your portfolio projects and client work</p>
         </div>
-        <Link href="/admin/projects/new">
+        <Link href="/admin/projects/new" style={{ textDecoration: 'none' }}>
           <button className={styles.headerBtn}>
             <Plus size={18} weight="bold" />
             New Project
@@ -48,7 +57,7 @@ export default function ProjectsPage() {
                 <h3 className={styles.title}>{project.name}</h3>
                 <p className={styles.client}>{project.client}</p>
               </div>
-              <span className={styles.statusBadge} style={{ color: getStatusColor(project.status), backgroundColor: `${getStatusColor(project.status)}15` }}>
+              <span className={`${styles.statusBadge} ${getStatusClass(project.status)}`}>
                 {project.status}
               </span>
             </div>
@@ -60,7 +69,10 @@ export default function ProjectsPage() {
                 <span className={styles.progressValue}>{project.progress}%</span>
               </div>
               <div className={styles.progressBarBg}>
-                <div className={styles.progressBarFill} style={{ width: `${project.progress}%`, backgroundColor: getStatusColor(project.status) }} />
+                <div 
+                  className={`${styles.progressBarFill} ${getProgressColorClass(project.status)}`} 
+                  style={{ width: `${project.progress}%` }} 
+                />
               </div>
             </div>
 
