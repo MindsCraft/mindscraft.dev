@@ -15,7 +15,7 @@ export default function SettingsPage() {
       {/* General Settings */}
       <div className={styles.sectionCard}>
         <div className={styles.sectionHeader}>
-          <Globe size={24} weight="duotone" style={{ color: '#525252' }} />
+          <Globe size={24} weight="duotone" className={styles.sectionIcon} />
           <h2 className={styles.sectionTitle}>General</h2>
         </div>
 
@@ -43,7 +43,7 @@ export default function SettingsPage() {
       {/* Appearance Settings */}
       <div className={styles.sectionCard}>
         <div className={styles.sectionHeader}>
-          <Palette size={24} weight="duotone" style={{ color: '#525252' }} />
+          <Palette size={24} weight="duotone" className={styles.sectionIcon} />
           <h2 className={styles.sectionTitle}>Appearance</h2>
         </div>
 
@@ -65,7 +65,7 @@ export default function SettingsPage() {
       {/* Notifications Settings */}
       <div className={styles.sectionCard}>
         <div className={styles.sectionHeader}>
-          <Bell size={24} weight="duotone" style={{ color: '#525252' }} />
+          <Bell size={24} weight="duotone" className={styles.sectionIcon} />
           <h2 className={styles.sectionTitle}>Notifications</h2>
         </div>
 
@@ -94,11 +94,11 @@ export default function SettingsPage() {
       {/* Security Settings */}
       <div className={styles.sectionCard}>
         <div className={styles.sectionHeader}>
-          <Lock size={24} weight="duotone" style={{ color: '#525252' }} />
+          <Lock size={24} weight="duotone" className={styles.sectionIcon} />
           <h2 className={styles.sectionTitle}>Security</h2>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className={styles.securityList}>
           <button className={styles.securityBtn}>
             Enable two-factor authentication
           </button>
