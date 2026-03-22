@@ -12,10 +12,18 @@ export default function TeamPage() {
     { id: 5, name: 'Tom Brown', role: 'Marketing', email: 'tom@mindscraft.dev', status: 'Active', avatar: 'TB' },
   ]
 
+  const getStatusClass = (status: string) => {
+    switch(status) {
+      case 'Active': return styles.statusActive;
+      case 'Away': return styles.statusAway;
+      default: return styles.statusDefault;
+    }
+  }
+
   return (
     <div className="admin-container">
       {/* Page Header */}
-      <div className="admin-page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <div className={`admin-page-header ${styles.headerFlex}`}>
         <div>
           <h1 className="admin-page-title">Team</h1>
           <p className="admin-page-desc">Manage team members and permissions</p>
@@ -51,13 +59,7 @@ export default function TeamPage() {
             </div>
 
             <div className={styles.footer}>
-              <span 
-                className={styles.statusBadge}
-                style={{
-                  color: member.status === 'Active' ? '#10b981' : '#f59e0b',
-                  backgroundColor: member.status === 'Active' ? '#10b98115' : '#f59e0b15'
-                }}
-              >
+              <span className={`${styles.statusBadge} ${getStatusClass(member.status)}`}>
                 {member.status}
               </span>
             </div>
