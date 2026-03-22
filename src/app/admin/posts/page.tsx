@@ -27,10 +27,10 @@ function ToastContainer({ toasts, onRemove }: { toasts: Toast[]; onRemove: (id: 
       {toasts.map(t => (
         <div key={t.id} className={`${styles.toast} ${t.type === 'success' ? styles.toastSuccess : styles.toastError}`}>
           {t.type === 'success'
-            ? <CheckCircle size={15} color="#16a34a" style={{ flexShrink: 0 }} />
-            : <AlertCircle size={15} color="#dc2626" style={{ flexShrink: 0 }} />}
+            ? <CheckCircle size={15} className={styles.primaryIcon} />
+            : <AlertCircle size={15} color="var(--color-error)" />}
           <span style={{ flex: 1 }}>{t.message}</span>
-          <button type="button" onClick={() => onRemove(t.id)} className={styles.iconBtn} style={{border: 'none', background: 'none', padding: 0}}>
+          <button type="button" onClick={() => onRemove(t.id)} className={styles.iconBtn} style={{ border: 'none', background: 'none' }}>
             <X size={13} />
           </button>
         </div>
@@ -41,25 +41,39 @@ function ToastContainer({ toasts, onRemove }: { toasts: Toast[]; onRemove: (id: 
 
 function DeleteConfirm({ onConfirm, onCancel }: { onConfirm: () => void; onCancel: () => void }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-      <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-secondary)' }}>Delete?</span>
-      <button type="button" onClick={onConfirm} className={styles.btnPrimary} style={{ padding: '4px 10px', backgroundColor: '#dc2626' }}>Yes</button>
-      <button type="button" onClick={onCancel} className={styles.btnSecondary} style={{ padding: '4px 10px' }}>No</button>
+    <div className={styles.deleteConfirmWrap}>
+      <span className={styles.deleteConfirmLabel}>Delete?</span>
+      <button 
+        type="button" 
+        onClick={onConfirm} 
+        className={styles.btnPrimary} 
+        style={{ padding: '4px 10px', backgroundColor: 'var(--color-error)' }}
+      >
+        Yes
+      </button>
+      <button 
+        type="button" 
+        onClick={onCancel} 
+        className={styles.btnSecondary} 
+        style={{ padding: '4px 10px' }}
+      >
+        No
+      </button>
     </div>
   )
 }
 
-const STATUS_STYLES: Record<string, { color: string; bg: string; border: string; dot: string }> = {
+const STATUS_CONFIG: Record<string, { color: string; bg: string; border: string; dot: string }> = {
   Published: { color: '#15803d', bg: '#f0fdf4', border: '#bbf7d0', dot: '#16a34a' },
   Draft:     { color: '#525252', bg: '#fafafa', border: '#e5e5e5', dot: '#a3a3a3' },
   Scheduled: { color: '#92400e', bg: '#fffbeb', border: '#fde68a', dot: '#d97706' },
 }
 
 function StatusBadge({ status }: { status: string }) {
-  const s = STATUS_STYLES[status] ?? STATUS_STYLES.Draft
+  const config = STATUS_CONFIG[status] ?? STATUS_CONFIG.Draft
   return (
-    <span className={styles.badge} style={{ color: s.color, backgroundColor: s.bg, border: `1px solid ${s.border}`}}>
-      <span className={styles.badgeDot} style={{ backgroundColor: s.dot }} />
+    <span className={styles.badge} style={{ color: config.color, backgroundColor: config.bg, border: `1px solid ${config.border}` }}>
+      <span className={styles.badgeDot} style={{ backgroundColor: config.dot }} />
       {status}
     </span>
   )
@@ -156,7 +170,7 @@ export default function PostsPage() {
 
   return (
     <div className="admin-container">
-      <div className="admin-page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+      <div className={`admin-page-header ${styles.headerFlex}`}>
         <div>
           <h1 className="admin-page-title">Blog Posts</h1>
           <p className="admin-page-desc">
@@ -164,10 +178,10 @@ export default function PostsPage() {
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+        <div className={styles.actionsWrap}>
           <button type="button" onClick={handleGenerateAI} disabled={isGenerating} className={styles.btnSecondary}>
-            {isGenerating ? <Loader2 size={15} style={{ animation: 'spin 1s linear infinite' }} /> : <Sparkle size={15} />}
-            {isGenerating ? 'Generating...' : 'Generate with AI'}
+            {isGenerating ? <Loader2 size={15} className={styles.spin} /> : <Sparkle size={15} />}
+            {isGenerating ? 'Generating...' : 'AI Writer'}
           </button>
           <Link href="/admin/posts/new" className={styles.btnPrimary}>
             <Plus size={15} strokeWidth={2.5} />
@@ -184,20 +198,20 @@ export default function PostsPage() {
               onClick={() => setStatusFilter(s)}
               className={`${styles.tabBtn} ${statusFilter === s ? styles.tabBtnActive : ''}`}
             >
-              {s} <span style={{ opacity: 0.6 }}>({counts[s]})</span>
+              {s} <span className={styles.tabCount}>({counts[s]})</span>
             </button>
           ))}
         </div>
 
         <div className={styles.searchWrap}>
-          <Search size={13} color="var(--color-text-tertiary)" style={{ flexShrink: 0 }} />
+          <Search size={13} color="var(--color-text-tertiary)" />
           <input
             type="text" value={search} onChange={e => setSearch(e.target.value)}
             placeholder="Search blog posts..."
             className={styles.searchInput}
           />
           {search && (
-            <button type="button" onClick={() => setSearch('')} style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', color: 'var(--color-text-tertiary)', padding: 0 }}>
+            <button type="button" onClick={() => setSearch('')} className={styles.iconBtn} style={{ border: 'none', background: 'none' }}>
               <X size={13} />
             </button>
           )}
@@ -206,18 +220,18 @@ export default function PostsPage() {
 
       <div className={styles.tableWrap}>
         {isLoading ? (
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', height: '200px', color: 'var(--color-text-tertiary)', fontSize: 'var(--text-sm)' }}>
-            <Loader2 size={18} style={{ animation: 'spin 1s linear infinite' }} />
+          <div className={styles.loadingContainer}>
+            <Loader2 size={18} className={styles.spin} />
             Loading blog posts...
           </div>
         ) : filtered.length === 0 ? (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px', padding: 'var(--space-16)', color: 'var(--color-text-tertiary)' }}>
+          <div className={styles.emptyStateContainer}>
             <FileText size={32} strokeWidth={1.5} />
-            <div style={{ textAlign: 'center' }}>
-              <p style={{ fontSize: 'var(--text-sm)', fontWeight: 'var(--font-semibold)', color: 'var(--color-text-secondary)', marginBottom: '4px' }}>
+            <div>
+              <p className={styles.emptyStateTitle}>
                 {search || statusFilter !== 'All' ? 'No posts match your filters' : 'No posts yet'}
               </p>
-              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-tertiary)' }}>
+              <p className={styles.emptyStateDesc}>
                 {search || statusFilter !== 'All' ? 'Try adjusting your search or filter' : 'Create your first post to get started'}
               </p>
             </div>
@@ -226,36 +240,37 @@ export default function PostsPage() {
           <table className={styles.table}>
             <thead>
               <tr>
-                {['Title', 'Status', 'Category', 'Author', 'Date', ''].map((h, i) => (
-                  <th key={i} className={styles.th} style={{ textAlign: i === 5 ? 'right' : 'left' }}>
-                    {h}
-                  </th>
-                ))}
+                <th className={styles.th}>Title</th>
+                <th className={styles.th}>Status</th>
+                <th className={styles.th}>Category</th>
+                <th className={styles.th}>Author</th>
+                <th className={styles.th}>Date</th>
+                <th className={`${styles.th} ${styles.thRight}`}>Actions</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((post) => (
                 <tr key={post.id} className={styles.tr}>
-                  <td className={styles.td} style={{ maxWidth: '320px' }}>
-                    <Link href={`/admin/posts/edit/${post.id}`} style={{ textDecoration: 'none' }}>
-                      <p style={{ fontSize: 'var(--text-sm)', fontWeight: 'var(--font-semibold)', color: 'var(--color-text-primary)', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        {post.title}
-                      </p>
-                      {post.readTime && <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-tertiary)', margin: '2px 0 0' }}>{post.readTime}</p>}
-                    </Link>
-                  </td>
-                  <td className={styles.td} style={{ whiteSpace: 'nowrap' }}><StatusBadge status={post.status} /></td>
-                  <td className={styles.td} style={{ whiteSpace: 'nowrap' }}><span className={styles.categoryPill}>{post.category || '—'}</span></td>
-                  <td className={styles.td} style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', whiteSpace: 'nowrap' }}>{post.author?.name || '—'}</td>
-                  <td className={styles.td} style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-tertiary)', whiteSpace: 'nowrap' }}>{post.date}</td>
                   <td className={styles.td}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'flex-end' }}>
+                    <div className={styles.postTitleWrap}>
+                      <Link href={`/admin/posts/edit/${post.id}`} className={styles.postTitleLink}>
+                        <p className={styles.postTitleText}>{post.title}</p>
+                        {post.readTime && <p className={styles.postSubText}>{post.readTime}</p>}
+                      </Link>
+                    </div>
+                  </td>
+                  <td className={styles.td}><StatusBadge status={post.status} /></td>
+                  <td className={styles.td}><span className={styles.categoryPill}>{post.category || '—'}</span></td>
+                  <td className={`${styles.td} ${styles.cellTextSecondary}`}>{post.author?.name || '—'}</td>
+                  <td className={`${styles.td} ${styles.cellTextTertiary}`}>{post.date}</td>
+                  <td className={styles.td}>
+                    <div className={styles.actionsCell}>
                       {confirmDeleteId === post.id ? (
                         <DeleteConfirm onConfirm={() => handleDelete(post.id)} onCancel={() => setConfirmDeleteId(null)} />
                       ) : (
                         <>
-                          {post.slug && <Link href={`/blog/${post.slug}`} target="_blank" style={{ display: 'flex' }}><IconBtn title="View"><Eye size={13} /></IconBtn></Link>}
-                          <Link href={`/admin/posts/edit/${post.id}`} style={{ display: 'flex' }}><IconBtn title="Edit"><Pencil size={13} /></IconBtn></Link>
+                          {post.slug && <Link href={`/blog/${post.slug}`} target="_blank"><IconBtn title="View"><Eye size={13} /></IconBtn></Link>}
+                          <Link href={`/admin/posts/edit/${post.id}`}><IconBtn title="Edit"><Pencil size={13} /></IconBtn></Link>
                           <IconBtn danger title="Delete" onClick={() => setConfirmDeleteId(post.id)}><Trash size={13} /></IconBtn>
                         </>
                       )}
@@ -268,7 +283,6 @@ export default function PostsPage() {
         )}
       </div>
       <ToastContainer toasts={toasts} onRemove={id => setToasts(prev => prev.filter(t => t.id !== id))} />
-      <style>{`@keyframes spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }`}</style>
     </div>
   )
 }

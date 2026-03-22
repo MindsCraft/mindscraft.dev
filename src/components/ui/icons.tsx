@@ -2,7 +2,7 @@
 
 import { LucideProps } from 'lucide-react'
 import { IconType } from 'react-icons'
-import { ArrowLeft as LucideArrowLeft, PlusCircle as LucidePlusCircle, Upload as LucideUpload, FolderOpen as LucideFolderOpen, Edit as LucideEdit, Trash as LucideTrash, BarChart as LucideBarChart, Clock as LucideClock, FileText as LucideFileText, Users as LucideUsers, Briefcase as LucideBriefcase, Key as LucideKey, Lock as LucideLock, Globe as LucideGlobe, Code as LucideCode, Server as LucideServer, ExternalLink as LucideExternalLink } from 'lucide-react'
+import { ArrowLeft as LucideArrowLeft, PlusCircle as LucidePlusCircle, Upload as LucideUpload, FolderOpen as LucideFolderOpen, Edit as LucideEdit, Trash as LucideTrash, BarChart as LucideBarChart, Clock as LucideClock, FileText as LucideFileText, Users as LucideUsers, Briefcase as LucideBriefcase, Key as LucideKey, Lock as LucideLock, Globe as LucideGlobe, Code as LucideCode, Server as LucideServer, ExternalLink as LucideExternalLink, Filter as LucideFilter, Eye as LucideEye } from 'lucide-react'
 import { FiArrowRight, FiCalendar, FiMail, FiCheck, FiAlertCircle, FiSearch, FiClock, FiTag, FiUsers, FiTarget, FiAward, FiHeart } from 'react-icons/fi'
 import { FaGithub, FaTwitter, FaLinkedin, FaYoutube } from 'react-icons/fa'
 import { BellIcon, UserCircleIcon, Cog6ToothIcon, HomeIcon, DocumentTextIcon, BriefcaseIcon, UserGroupIcon, CogIcon, ChartBarIcon, ServerIcon, PhotoIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -32,6 +32,8 @@ export const Globe = (props: LucideProps) => <LucideGlobe {...props} />
 export const Code = (props: LucideProps) => <LucideCode {...props} />
 export const Server = (props: LucideProps) => <LucideServer {...props} />
 export const ExternalLink = (props: LucideProps) => <LucideExternalLink {...props} />
+export const Filter = (props: LucideProps) => <LucideFilter {...props} />
+export const Eye = (props: LucideProps) => <LucideEye {...props} />
 
 // Feather icons
 export const ArrowRightIcon = (props: IconProps) => <FiArrowRight {...props} />
