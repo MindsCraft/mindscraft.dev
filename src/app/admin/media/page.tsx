@@ -1,6 +1,6 @@
 'use client'
 
-import { UploadSimple, File, Trash, MagnifyingGlass } from 'phosphor-react'
+import { UploadSimple, Trash, MagnifyingGlass } from 'phosphor-react'
 import styles from '@/styles/admin/pages/media.module.css'
 
 export default function MediaPage() {
@@ -27,7 +27,7 @@ export default function MediaPage() {
 
       {/* Upload Area */}
       <div className={styles.uploadArea}>
-        <UploadSimple size={48} style={{ color: '#a3a3a3', margin: '0 auto var(--space-3)' }} />
+        <UploadSimple size={48} className={styles.uploadIcon} />
         <h3 className={styles.uploadTitle}>
           Drop files to upload
         </h3>
