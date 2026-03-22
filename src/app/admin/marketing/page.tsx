@@ -65,8 +65,8 @@ export default function AIMarketingHub() {
       {/* Header */}
       <div className="admin-page-header">
         <div className={styles.headerIconWrap}>
-          <Sparkle size={24} weight="duotone" style={{ color: 'var(--color-primary)' }} />
-          <h1 className="admin-page-title" style={{ margin: 0 }}>AI Marketing Hub</h1>
+          <Sparkle size={24} weight="duotone" className={styles.primaryIcon} />
+          <h1 className={`admin-page-title ${styles.pageTitleNoMargin}`}>AI Marketing Hub</h1>
         </div>
         <p className="admin-page-desc">
           Take absolute control of your content. Generate hyper-targeted assets to convert new clients.
@@ -86,9 +86,14 @@ export default function AIMarketingHub() {
                 key={tab.id}
                 onClick={() => { setActiveTab(tab.id); setResult(null); setGeneratedPostId(null); }}
                 className={`${styles.tabBtn} ${isActive ? styles.tabBtnActive : ''}`}
+                aria-current={isActive ? 'page' : undefined}
               >
                 <div className={styles.tabBtnIconWrap}>
-                  <Icon size={20} weight={isActive ? 'fill' : 'regular'} style={{ color: isActive ? 'var(--color-text-primary)' : 'var(--color-text-secondary)' }} />
+                  <Icon 
+                    size={20} 
+                    weight={isActive ? 'fill' : 'regular'} 
+                    style={{ color: isActive ? 'var(--color-text-primary)' : 'var(--color-text-secondary)' }} 
+                  />
                   <span className={styles.tabBtnLabel}>{tab.label}</span>
                 </div>
                 <p className={styles.tabBtnDesc}>
@@ -101,18 +106,18 @@ export default function AIMarketingHub() {
 
         {/* Right Column: AI Input Form */}
         <div>
-          <div className="card" style={{ padding: '0' }}>
+          <div className={`card ${styles.formCard}`}>
             <div className={`card-header ${styles.formCardHeader}`}>
-              <h2 className="heading-3" style={{ margin: 0, display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-                <Sparkle size={20} weight="fill" style={{ color: 'var(--color-primary)' }} />
+              <h2 className={`heading-3 ${styles.cardTitleNoMargin}`}>
+                <Sparkle size={20} weight="fill" className={styles.primaryIcon} />
                 Configure your {activeTab === 'blog' ? 'Blog Post' : activeTab === 'social' ? 'Social Post' : 'Email Pitch'}
               </h2>
             </div>
 
             <div className="card-body">
               <form onSubmit={handleSubmit} className={styles.formCol}>
-                <div>
-                  <label className="label" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>
+                <div className={styles.formField}>
+                  <label className={`label ${styles.formLabel}`}>
                     {activeTab === 'blog' ? 'Core Topic / Keyword' : activeTab === 'social' ? 'What are we sharing?' : 'What core service are we pitching?'}
                   </label>
                   <input
@@ -129,8 +134,8 @@ export default function AIMarketingHub() {
                   />
                 </div>
 
-                <div>
-                  <label className="label" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Target Audience</label>
+                <div className={styles.formField}>
+                  <label className={`label ${styles.formLabel}`}>Target Audience</label>
                   <input
                     type="text"
                     required
@@ -145,8 +150,8 @@ export default function AIMarketingHub() {
                   />
                 </div>
 
-                <div>
-                  <label className="label" style={{ display: 'block', marginBottom: 'var(--space-2)' }}>Voice / Tone</label>
+                <div className={styles.formField}>
+                  <label className={`label ${styles.formLabel}`}>Voice / Tone</label>
                   <select
                     value={tone}
                     onChange={(e) => setTone(e.target.value)}
@@ -186,8 +191,8 @@ export default function AIMarketingHub() {
               <div className={`card-body ${styles.successCardBody}`}>
                 <CheckCircle size={28} weight="fill" color="var(--color-success)" style={{ flexShrink: 0 }} />
                 <div>
-                  <h3 className="heading-3" style={{ color: 'var(--color-success)', marginBottom: 'var(--space-1)' }}>Blog Post Generated Successfully!</h3>
-                  <p className="body-sm" style={{ color: 'var(--color-text-secondary)', marginBottom: 'var(--space-6)' }}>Your new article has been written, formatted, and saved as a Draft.</p>
+                  <h3 className={`heading-3 ${styles.successHeading}`}>Blog Post Generated Successfully!</h3>
+                  <p className={`body-sm ${styles.successDesc}`}>Your new article has been written, formatted, and saved as a Draft.</p>
                   <Link 
                     href={`/admin/posts/edit/${generatedPostId}`}
                     className={styles.successBtn}
@@ -202,11 +207,10 @@ export default function AIMarketingHub() {
           {result && activeTab !== 'blog' && (
              <div className={`card ${styles.resultCard}`}>
                 <div className={`card-header ${styles.resultHeader}`}>
-                    <h3 className="heading-4" style={{ margin: 0 }}>Generated Text</h3>
+                    <h3 className="heading-4">Generated Text</h3>
                     <button 
                       onClick={handleCopy}
-                      className={styles.copyBtn}
-                      style={{ color: copied ? 'var(--color-success)' : 'var(--color-text-secondary)' }}
+                      className={`${styles.copyBtn} ${copied ? styles.copyBtnSuccess : ''}`}
                     >
                       {copied ? <CheckCircle size={14} weight="fill" /> : <Copy size={14} />}
                       {copied ? 'Copied!' : 'Copy'}
