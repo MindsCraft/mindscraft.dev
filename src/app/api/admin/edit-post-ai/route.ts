@@ -11,7 +11,20 @@ export async function POST(req: Request) {
     const { content, title, instruction } = await req.json();
 
     const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+    const model = genAI.getGenerativeModel({ 
+      model: 'gemini-2.5-flash',
+      generationConfig: {
+        responseMimeType: "application/json",
+        responseSchema: {
+          type: "object",
+          properties: {
+            refinedContent: { type: "string" },
+            explanation: { type: "string" }
+          },
+          required: ["refinedContent", "explanation"]
+        } as any
+      }
+    });
 
     const prompt = `
     You are an expert editor at "MindsCraft", a top-tier software agency.
@@ -26,16 +39,19 @@ export async function POST(req: Request) {
     Action: Refine the content based on the instruction. Keep the same structure and tone unless asked otherwise. 
     Ensure the HTML remains clean and high-quality.
     
-    Output: Return ONLY the raw HTML content string with NO triple backticks or conversational text.
+    Output Format:
+    1. refinedContent: The full, revised HTML for the article.
+    2. explanation: A friendly, premium conversational response to the user explaining what you did or confirming their request.
     `;
 
     const result = await model.generateContent(prompt);
     const response = await result.response;
-    const refinedHtml = response.text().trim();
+    const { refinedContent, explanation } = JSON.parse(response.text());
 
     return NextResponse.json({ 
       success: true, 
-      refinedContent: refinedHtml 
+      refinedContent,
+      explanation 
     });
 
   } catch (error: any) {

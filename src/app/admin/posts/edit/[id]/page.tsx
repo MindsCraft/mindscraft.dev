@@ -4,7 +4,7 @@ import { useState, useEffect, use } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { ArrowLeft, Save, Eye, CheckCircle, Star, Tag, FileText, Globe, Sparkle, Loader2 } from 'lucide-react'
+import { ArrowLeft, Save, Eye, CheckCircle, Star, Tag, FileText, Globe, Sparkle, Loader2, X } from 'lucide-react'
 import styles from '@/styles/admin/pages/posts.module.css'
 import Loading from '../../new/loading'
 
@@ -119,10 +119,12 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
   // ── AI REFINEMENT LOGIC ──
   const [aiInstruction, setAiInstruction] = useState('')
   const [isAiRefining, setIsAiRefining] = useState(false)
+  const [aiResponse, setAiResponse] = useState<string | null>(null)
 
   const handleAiRefine = async () => {
     if (!aiInstruction.trim()) return
     setIsAiRefining(true)
+    setAiResponse(null)
     try {
       const res = await fetch('/api/admin/edit-post-ai', {
         method: 'POST',
@@ -136,6 +138,7 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
       const data = await res.json()
       if (data.success) {
         setFormData(prev => ({ ...prev, content: data.refinedContent }))
+        setAiResponse(data.explanation || "Changes applied!")
         setAiInstruction('')
       } else {
         alert(data.error || 'Failed to refine content')
@@ -183,25 +186,41 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
             </div>
 
             {/* AI COMMANDS DOCK */}
-            <div style={{ backgroundColor: 'var(--color-background)', border: '1px solid var(--color-primary)', borderRadius: 'var(--radius-lg)', padding: '12px 16px', marginBottom: 'var(--space-4)', display: 'flex', gap: 'var(--space-3)', alignItems: 'center', boxShadow: '0 4px 20px rgba(16, 24, 40, 0.08)' }}>
-              <div style={{ backgroundColor: 'var(--color-primary)', color: 'white', padding: '6px', borderRadius: '8px', display: 'flex' }}><Sparkle size={16} /></div>
-              <input 
-                type="text" 
-                value={aiInstruction} 
-                onChange={(e) => setAiInstruction(e.target.value)}
-                onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAiRefine(); }}}
-                placeholder="AI: 'Make it more professional', 'Add a key takeaways section', 'Shorten the introduction'..." 
-                style={{ flex: 1, border: 'none', background: 'transparent', outline: 'none', fontSize: 'var(--text-sm)', color: 'var(--color-text-primary)' }} 
-              />
-              <button 
-                type="button" 
-                onClick={handleAiRefine}
-                disabled={isAiRefining || !aiInstruction.trim()}
-                className={styles.btnSecondary} 
-                style={{ padding: '6px 16px', fontSize: 'var(--text-xs)', borderColor: 'var(--color-primary)', color: 'var(--color-primary)', fontWeight: 600 }}
-              >
-                {isAiRefining ? <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><Loader2 size={12} className={styles.spin} /> Refining...</span> : 'Apply Changes'}
-              </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)', marginBottom: 'var(--space-4)' }}>
+              <div style={{ backgroundColor: 'var(--color-background)', border: '1px solid var(--color-primary)', borderRadius: 'var(--radius-lg)', padding: '12px 16px', display: 'flex', gap: 'var(--space-3)', alignItems: 'center', boxShadow: '0 4px 20px rgba(16, 24, 40, 0.08)' }}>
+                <div style={{ backgroundColor: 'var(--color-primary)', color: 'white', padding: '6px', borderRadius: '8px', display: 'flex' }}><Sparkle size={16} /></div>
+                <input 
+                  type="text" 
+                  value={aiInstruction} 
+                  onChange={(e) => setAiInstruction(e.target.value)}
+                  onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAiRefine(); }}}
+                  placeholder="AI conversation: 'Translate to French', 'Add a comparison chart', 'Fix my tone'..." 
+                  style={{ flex: 1, border: 'none', background: 'transparent', outline: 'none', fontSize: 'var(--text-sm)', color: 'var(--color-text-primary)' }} 
+                />
+                <button 
+                  type="button" 
+                  onClick={handleAiRefine}
+                  disabled={isAiRefining || !aiInstruction.trim()}
+                  className={styles.btnSecondary} 
+                  style={{ padding: '6px 16px', fontSize: 'var(--text-xs)', borderColor: 'var(--color-primary)', color: 'var(--color-primary)', fontWeight: 600 }}
+                >
+                  {isAiRefining ? <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><Loader2 size={12} className={styles.spin} /> Processing...</span> : 'Send Command'}
+                </button>
+              </div>
+
+              {aiResponse && (
+                <div style={{ backgroundColor: 'var(--color-surface)', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', padding: '12px 16px', display: 'flex', gap: 'var(--space-3)', animation: 'slideIn 0.3s ease-out' }}>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                      <span style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', color: 'var(--color-primary)' }}>AI Assistant Reply</span>
+                    </div>
+                    <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', margin: 0, fontStyle: 'italic', lineHeight: 1.5 }}>
+                      "{aiResponse}"
+                    </p>
+                  </div>
+                  <button type="button" onClick={() => setAiResponse(null)} style={{ border: 'none', background: 'none', cursor: 'pointer', color: 'var(--color-text-tertiary)' }}><X size={14} /></button>
+                </div>
+              )}
             </div>
 
             <div style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-xs)', overflow: 'hidden' }}>
