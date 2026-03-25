@@ -12,6 +12,15 @@ export function proxy(request: NextRequest) {
   
   // We don't want to protect the login API itself if we decide to move it under /api/admin in the future
   const isAuthApi = pathname.startsWith('/api/auth')
+
+  // Option 3 Implementation: Local-Only Admin block
+  // If this code is running in production, instantly return 404 for any admin route
+  if (isProtectedPath && process.env.NODE_ENV !== 'development') {
+    return new NextResponse(
+      JSON.stringify({ error: 'This route is disabled in production.' }),
+      { status: 404, headers: { 'content-type': 'application/json' } }
+    )
+  }
   
   if (isProtectedPath && !isAuthApi) {
     // Check for our secure, HTTP-only cookie

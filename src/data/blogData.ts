@@ -13,13 +13,13 @@ export const posts = postsData
     .map(post => ({
     id: post.id,
     title: post.title,
-    description: post.description,
+    description: post.description || post.excerpt || '',
     category: post.category,
     date: post.date,
     readTime: post.readTime,
     slug: post.slug,
-    image: post.image,
-    imageAlt: post.imageAlt,
-    featured: post.featured,
+    image: post.image || '',
+    imageAlt: post.imageAlt || post.title || '',
+    featured: post.featured || false,
 }));
 
