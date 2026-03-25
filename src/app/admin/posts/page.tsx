@@ -247,6 +247,7 @@ export default function PostsPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('All')
+  const [categoryFilter, setCategoryFilter] = useState<string>('All')
   const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null)
   const [toasts, setToasts] = useState<Toast[]>([])
   const toastId = useRef(0)
@@ -291,13 +292,37 @@ export default function PostsPage() {
     }
   }
 
+  const handleTogglePublish = async (post: Post) => {
+    try {
+      const isPublishing = post.status !== 'Published'
+      const res = await fetch(`/api/posts`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: post.id, published: isPublishing })
+      })
+      if (res.ok) {
+        setPosts(prev => prev.map(p => p.id === post.id ? { ...p, status: isPublishing ? 'Published' : 'Draft' } : p))
+        addToast(isPublishing ? 'Post published' : 'Post moved to draft')
+      } else {
+        addToast('Failed to change status', 'error')
+      }
+    } catch {
+      addToast('Failed to change status', 'error')
+    }
+  }
+
   const filtered = posts.filter(p => {
     const matchSearch = p.title.toLowerCase().includes(search.toLowerCase()) ||
       p.author?.name?.toLowerCase().includes(search.toLowerCase()) ||
       p.category?.toLowerCase().includes(search.toLowerCase())
     const matchStatus = statusFilter === 'All' || p.status === statusFilter
-    return matchSearch && matchStatus
+    const matchCategory = categoryFilter === 'All' || p.category === categoryFilter
+    return matchSearch && matchStatus && matchCategory
   })
+
+  // Derive unique categories from available posts
+  const availableCategories = ['All', ...Array.from(new Set(posts.map(p => p.category).filter(Boolean)))] as string[]
+
 
   const counts = {
     All: posts.length,
@@ -340,7 +365,25 @@ export default function PostsPage() {
           ))}
         </div>
 
-        <div className={styles.searchWrap}>
+        <div className={styles.searchWrap} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+          <select 
+            value={categoryFilter}
+            onChange={e => setCategoryFilter(e.target.value)}
+            style={{ 
+              padding: '6px 10px', 
+              borderRadius: 'var(--radius-md)', 
+              border: '1px solid var(--color-border)', 
+              backgroundColor: 'var(--color-surface)', 
+              color: 'var(--color-text-primary)',
+              fontSize: 'var(--text-sm)',
+              outline: 'none',
+              cursor: 'pointer'
+            }}
+          >
+            {availableCategories.map(c => <option key={c} value={c}>{c}</option>)}
+          </select>
+
+          <div className={styles.searchWrap} style={{ margin: 0 }}>
           <Search size={13} color="var(--color-text-tertiary)" />
           <input
             type="text" value={search} onChange={e => setSearch(e.target.value)}
@@ -352,6 +395,7 @@ export default function PostsPage() {
               <X size={13} />
             </button>
           )}
+          </div>
         </div>
       </div>
 
@@ -417,6 +461,12 @@ export default function PostsPage() {
                       ) : (
                         <>
                           {post.slug && <Link href={`/blog/${post.slug}`} target="_blank"><IconBtn title="View"><Eye size={13} /></IconBtn></Link>}
+                          <IconBtn 
+                            title={post.status === 'Published' ? "Move to Draft" : "Publish"} 
+                            onClick={() => handleTogglePublish(post)}
+                          >
+                            {post.status === 'Published' ? <X size={13} /> : <CheckCircle size={13} />}
+                          </IconBtn>
                           <Link href={`/admin/posts/edit/${post.id}`}><IconBtn title="Edit"><Pencil size={13} /></IconBtn></Link>
                           <IconBtn danger title="Delete" onClick={() => setConfirmDeleteId(post.id)}><Trash size={13} /></IconBtn>
                         </>
