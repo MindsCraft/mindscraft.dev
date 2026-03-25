@@ -30,48 +30,40 @@ type Props = {
 
 export default function BlogDetailClient({ post, headings, relatedPosts, serviceLink, wordCount }: Props) {
 
-  const [activeHeading, setActiveHeading] = useState('');
+  const [activeHeading, setActiveHeading] = useState(headings[0]?.id ?? '');
   const [showToc, setShowToc] = useState(false);
+  const [readProgress, setReadProgress] = useState(0);
   const [copied, setCopied] = useState(false);
   const articleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const el = articleRef.current;
-      if (!el) return;
+    const updateActive = () => {
+      const scrollY = window.scrollY;
 
+      // Show TOC after scrolling past hero
+      setShowToc(scrollY > 500);
 
-      // Show TOC after scrolling past the hero
-      setShowToc(window.scrollY > 600);
-    };
+      // Calculate overall read progress
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setReadProgress(docHeight > 0 ? Math.min(100, (scrollY / docHeight) * 100) : 0);
 
-    const observeHeadings = () => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveHeading(entry.target.id);
-            }
-          });
-        },
-        { rootMargin: '-20% 0px -60% 0px' }
-      );
-
-      headings.forEach(({ id }) => {
+      // Scroll-position-based active heading detection
+      // Walk headings in reverse; first one whose top edge is above 140px wins
+      let current = headings[0]?.id ?? '';
+      for (const { id } of headings) {
         const el = document.getElementById(id);
-        if (el) observer.observe(el);
-      });
-
-      return () => observer.disconnect();
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= 140) {
+          current = id;
+        }
+      }
+      setActiveHeading(current);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    const cleanup = observeHeadings();
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive(); // run once on mount
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      cleanup();
-    };
+    return () => window.removeEventListener('scroll', updateActive);
   }, [headings]);
 
   const handleCopyLink = () => {
@@ -86,35 +78,96 @@ export default function BlogDetailClient({ post, headings, relatedPosts, service
     day: 'numeric',
   });
 
+  const activeIndex = Math.max(0, headings.findIndex(h => h.id === activeHeading));
+
   return (
     <>
 
-
-      {/* ── FLOATING TOC (Desktop) ── */}
+      {/* ── FLOATING TOC SIDEBAR (Desktop xl+) ── */}
       <div
         className={`fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden xl:block transition-all duration-500 ${
-          showToc ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8 pointer-events-none'
+          showToc ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 pointer-events-none'
         }`}
       >
-        <div className="w-56 bg-white/80 backdrop-blur-xl rounded-2xl border border-black/[0.06] shadow-[0_8px_40px_rgba(0,0,0,0.06)] p-5">
-          <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#101828]/30 mb-4 flex items-center gap-1.5">
-            <FiBookOpen className="w-3 h-3" /> Contents
-          </p>
-          <nav className="space-y-0.5">
-            {headings.map(({ id, text }) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                className={`block text-[12px] font-semibold py-1.5 px-3 rounded-lg transition-all duration-200 leading-snug ${
-                  activeHeading === id
-                    ? 'text-[#101828] bg-[#F3F4C0]/40 border-l-2 border-[#101828]'
-                    : 'text-[#101828]/40 hover:text-[#101828]/70 hover:bg-black/[0.02] border-l-2 border-transparent'
-                }`}
-              >
-                {text.length > 32 ? text.substring(0, 32) + '…' : text}
-              </a>
-            ))}
+        <div className="w-60 bg-white/90 backdrop-blur-2xl rounded-2xl border border-black/[0.07] shadow-[0_24px_64px_rgba(0,0,0,0.1)] overflow-hidden">
+
+          {/* ─ Header with progress bar ─ */}
+          <div className="px-5 pt-5 pb-4 border-b border-black/[0.05]">
+            <div className="flex items-center justify-between mb-2.5">
+              <p className="text-[9px] font-black uppercase tracking-[0.22em] text-[#101828]/35 flex items-center gap-1.5">
+                <FiBookOpen className="w-3 h-3" /> On This Page
+              </p>
+              <span className="text-[9px] font-black text-[#101828]/25 tabular-nums">
+                {activeIndex + 1} / {headings.length}
+              </span>
+            </div>
+            {/* Read progress bar */}
+            <div className="h-[2px] w-full bg-black/[0.06] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-[#101828] rounded-full transition-all duration-300 ease-out"
+                style={{ width: `${readProgress}%` }}
+              />
+            </div>
+          </div>
+
+          {/* ─ Navigation items ─ */}
+          <nav className="p-3 space-y-0.5 max-h-[55vh] overflow-y-auto">
+            {headings.map(({ id, text }, i) => {
+              const isActive = activeHeading === id;
+              const isPast = i < activeIndex;
+              return (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const el = document.getElementById(id);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }}
+                  className={`group flex items-center gap-2.5 py-2 px-3 rounded-xl transition-all duration-200 ${
+                    isActive
+                      ? 'bg-[#101828] text-white shadow-[0_4px_16px_rgba(16,24,40,0.18)]'
+                      : isPast
+                        ? 'text-[#101828]/35 hover:text-[#101828] hover:bg-black/[0.04]'
+                        : 'text-[#101828]/50 hover:text-[#101828] hover:bg-black/[0.04]'
+                  }`}
+                >
+                  {/* Step number badge */}
+                  <span className={`flex-shrink-0 w-5 h-5 rounded-md text-[9px] font-black flex items-center justify-center transition-all duration-200 ${
+                    isActive
+                      ? 'bg-[#F3F4C0] text-[#101828]'
+                      : isPast
+                        ? 'bg-black/[0.08] text-[#101828]/30'
+                        : 'bg-black/[0.06] text-[#101828]/40 group-hover:bg-black/[0.1]'
+                  }`}>
+                    {isPast && !isActive ? '✓' : String(i + 1).padStart(2, '0')}
+                  </span>
+
+                  {/* Heading text */}
+                  <span className={`text-[11px] font-semibold leading-snug flex-1 ${
+                    isActive ? 'font-bold' : ''
+                  }`}>
+                    {text.length > 32 ? text.substring(0, 32) + '…' : text}
+                  </span>
+
+                  {/* Active pulse dot */}
+                  {isActive && (
+                    <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#F3F4C0] animate-pulse" />
+                  )}
+                </a>
+              );
+            })}
           </nav>
+
+          {/* ─ Footer CTA ─ */}
+          <div className="px-4 pb-4 pt-1">
+            <Link
+              href="/contact"
+              className="block w-full text-center py-2.5 text-[10px] font-black uppercase tracking-[0.12em] bg-[#101828] text-[#F3F4C0] rounded-xl hover:bg-[#1d2a3a] transition-colors"
+            >
+              Work With Us →
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -248,7 +301,7 @@ export default function BlogDetailClient({ post, headings, relatedPosts, service
                 <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#101828]/30 mb-1.5">Written By</p>
                 <h4 className="text-lg font-black text-[#101828] mb-1.5">{post.author || 'The MindsCraft Team'}</h4>
                 <p className="text-sm text-[#101828]/50 font-medium leading-relaxed max-w-md">
-                  Engineering & AI specialists building premium digital products for founders and enterprises. We write about what we actually build.
+                  Engineering &amp; AI specialists building premium digital products for founders and enterprises. We write about what we actually build.
                 </p>
               </div>
             </div>
@@ -371,7 +424,7 @@ export default function BlogDetailClient({ post, headings, relatedPosts, service
           margin-bottom: 1rem;
           letter-spacing: -0.035em;
           line-height: 1.15;
-          scroll-margin-top: 2rem;
+          scroll-margin-top: 6rem;
         }
 
         .prose-blog h3 {
@@ -381,6 +434,7 @@ export default function BlogDetailClient({ post, headings, relatedPosts, service
           margin-top: 2.5rem;
           margin-bottom: 0.75rem;
           letter-spacing: -0.02em;
+          scroll-margin-top: 6rem;
         }
 
         .prose-blog p {
@@ -404,9 +458,7 @@ export default function BlogDetailClient({ post, headings, relatedPosts, service
           padding-left: 0.5rem;
         }
 
-        .prose-blog li p {
-          margin-bottom: 0 !important;
-        }
+        .prose-blog li p { margin-bottom: 0 !important; }
 
         .prose-blog ul li::marker {
           color: #101828;
@@ -526,7 +578,6 @@ export default function BlogDetailClient({ post, headings, relatedPosts, service
           font-size: 0.875rem;
         }
 
-        /* Smooth entrance for images */
         .prose-blog img {
           animation: fadeUp 0.6s ease-out both;
         }
