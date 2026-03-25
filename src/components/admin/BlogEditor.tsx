@@ -166,10 +166,7 @@ function ImagePanel({ onInsert, onClose }: {
                 style={{ flex: 1, border: 'none', outline: 'none', fontSize: '13px', backgroundColor: 'transparent', color: '#171717' }}
               />
             </div>
-            {urlValue && (urlValue.startsWith('http') || urlValue.startsWith('/')) && (
-              <img src={urlValue} alt="preview" onError={e => (e.currentTarget.style.display = 'none')}
-                style={{ maxHeight: '100px', maxWidth: '100%', borderRadius: '6px', marginTop: '8px', display: 'block' }} />
-            )}
+            <ImagePreview url={urlValue} />
           </div>
         )}
 
@@ -201,6 +198,25 @@ function ImagePanel({ onInsert, onClose }: {
       </div>
     </div>
   )
+}
+
+function ImagePreview({ url }: { url: string }) {
+  const [hasError, setHasError] = useState(false);
+  if (hasError || !url || (!url.startsWith('http') && !url.startsWith('/'))) return null;
+  return (
+    <img
+      src={url}
+      alt="preview"
+      onError={() => setHasError(true)}
+      style={{
+        maxHeight: '100px',
+        maxWidth: '100%',
+        borderRadius: '6px',
+        marginTop: '8px',
+        display: 'block'
+      }}
+    />
+  );
 }
 
 // ── Toolbar ───────────────────────────────────────────────────────────────────

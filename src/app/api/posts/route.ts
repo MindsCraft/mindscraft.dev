@@ -18,6 +18,12 @@ function savePosts(posts: any[]) {
   fs.writeFileSync(postsFilePath, JSON.stringify(posts, null, 2), 'utf8');
 }
 
+// Secure HTML stripping utility to prevent ReDoS (Polynomial Regex)
+async function stripTags(html: string) {
+  const DOMPurify = (await import('isomorphic-dompurify')).default;
+  return html ? DOMPurify.sanitize(html, { ALLOWED_TAGS: [] }) : '';
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -47,7 +53,7 @@ export async function POST(request: Request) {
       id: posts.length > 0 ? Math.max(...posts.map((p: any) => p.id)) + 1 : 1,
       title: body.title,
       slug: body.slug || body.title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
-      excerpt: body.excerpt || body.content.substring(0, 150).replace(/<[^>]+>/g, ' ') + '...',
+      excerpt: body.excerpt || (await stripTags(body.content)).substring(0, 150) + '...',
       content: body.content,
       date: new Date().toISOString().split('T')[0],
       category: body.category || 'AI & SaaS',
@@ -63,7 +69,7 @@ export async function POST(request: Request) {
       imageSearchTerm: body.imageSearchTerm || '',
       metadata: {
         title: body.title,
-        description: body.excerpt || body.content.substring(0, 160).replace(/<[^>]+>/g, ' ')
+        description: body.excerpt || (await stripTags(body.content)).substring(0, 160)
       }
     };
 
@@ -96,8 +102,8 @@ export async function PUT(request: Request) {
     // Merge updates
     const newContent = updates.content ?? posts[index].content;
     
-    // Safer HTML stripping for word count to avoid ReDoS high severity alert
-    const plainText = newContent ? newContent.replace(/<[^>]+>/g, ' ') : '';
+    // Use safe stripTags utility to avoid ReDoS high severity alert
+    const plainText = newContent ? await stripTags(newContent) : '';
     const wordCount = plainText.trim().split(/\s+/).filter(Boolean).length;
     const newReadTime = Math.max(1, Math.ceil(wordCount / 200)) + ' min read';
 
