@@ -1,50 +1,49 @@
 'use client';
 
 import Script from 'next/script';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 
-// Get GA_MEASUREMENT_ID from environment variable or use a default value
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-YVGX6Q8GXE';
+// Default fallback ID - can be overridden by prop
+const DEFAULT_GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-YVGX6Q8GXE';
 
-export default function GoogleAnalytics() {
-  // Only check if measurement ID is provided
-  if (!GA_MEASUREMENT_ID) {
+export default function GoogleAnalytics({ gaId }: { gaId?: string }) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const activeId = gaId || DEFAULT_GA_ID;
+
+  useEffect(() => {
+    if (activeId && window.gtag) {
+      window.gtag('config', activeId, {
+        page_path: pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : ''),
+      });
+    }
+  }, [pathname, searchParams, activeId]);
+
+  if (!activeId) {
     return null;
   }
 
   return (
     <>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        strategy="lazyOnload"
-        onError={(e) => {
-          console.error('Google Analytics script failed to load', e);
-        }}
+        src={`https://www.googletagmanager.com/gtag/js?id=${activeId}`}
+        strategy="afterInteractive"
       />
       <Script
         id="google-analytics-init"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            // Initialize GA for all environments
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              page_title: document.title,
-              page_location: window.location.href,
+            gtag('config', '${activeId}', {
+              page_path: window.location.pathname,
               send_page_view: true,
               anonymize_ip: true
             });
-
-            // Add error handler for gtag calls
-            window.gtag = function() {
-              try {
-                dataLayer.push(arguments);
-              } catch (e) {
-                console.warn('GTAG Error:', e);
-              }
-            };
           `,
         }}
       />

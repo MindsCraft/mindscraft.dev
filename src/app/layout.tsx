@@ -5,6 +5,8 @@ import "@/styles/globals.css";
 import { ThemeProvider } from "@/components/theme-context";
 import ConditionalLayout from "@/components/layout/ConditionalLayout";
 import JsonLd from "@/components/seo/JsonLd";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import { Suspense } from 'react';
 
 const FALLBACK_TITLE = 'MindsCraft - Expert UX Design & AI-Powered Web Development';
 const FALLBACK_DESCRIPTION = 'Leading agency in Bangladesh delivering scalable solutions for global enterprises and local businesses, blending intuitive UX engineering with cutting-edge AI integrations to drive measurable results.';
@@ -23,6 +25,7 @@ async function getSeoSettings() {
       ogImage: string;
       ogImageAlt: string;
       keywords: string;
+      googleAnalyticsId?: string;
     };
   } catch {
     return null;
@@ -107,11 +110,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const seo = await getSeoSettings();
+
   return (
     <html suppressHydrationWarning
       lang="en"
@@ -119,6 +124,9 @@ export default function RootLayout({
     >
       <body className="antialiased h-full bg-background text-foreground selection:bg-primary-100 selection:text-primary-900">
         <JsonLd />
+        <Suspense fallback={null}>
+          <GoogleAnalytics gaId={seo?.googleAnalyticsId} />
+        </Suspense>
         <ThemeProvider>
           <ConditionalLayout>
             {children}
