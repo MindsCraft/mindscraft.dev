@@ -85,36 +85,23 @@ export default function BlogDetailClient({ post, headings, relatedPosts, service
 
       {/* ── FLOATING TOC SIDEBAR (Desktop xl+) ── */}
       <div
-        className={`fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden xl:block transition-all duration-500 ${
+        className={`fixed left-8 top-1/2 -translate-y-1/2 z-50 hidden xl:block transition-all duration-500 ${
           showToc ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 pointer-events-none'
         }`}
       >
-        <div className="w-60 bg-white/90 backdrop-blur-2xl rounded-2xl border border-black/[0.07] shadow-[0_24px_64px_rgba(0,0,0,0.1)] overflow-hidden">
-
-          {/* ─ Header with progress bar ─ */}
-          <div className="px-5 pt-5 pb-4 border-b border-black/[0.05]">
-            <div className="flex items-center justify-between mb-2.5">
-              <p className="text-[9px] font-black uppercase tracking-[0.22em] text-[#101828]/35 flex items-center gap-1.5">
-                <FiBookOpen className="w-3 h-3" /> On This Page
-              </p>
-              <span className="text-[9px] font-black text-[#101828]/25 tabular-nums">
-                {activeIndex + 1} / {headings.length}
-              </span>
-            </div>
-            {/* Read progress bar */}
-            <div className="h-[2px] w-full bg-black/[0.06] rounded-full overflow-hidden">
-              <div
-                className="h-full bg-[#101828] rounded-full transition-all duration-300 ease-out"
-                style={{ width: `${readProgress}%` }}
-              />
-            </div>
+        <div className="w-56 p-2">
+          <div className="flex items-center justify-between mb-4 px-3">
+            <p className="text-[9px] font-black uppercase tracking-[0.25em] text-[#101828]/30 flex items-center gap-2">
+              <FiBookOpen className="w-3 h-3" /> Contents
+            </p>
+            <span className="text-[9px] font-black text-[#101828]/20 tabular-nums lowercase italic">
+               {activeIndex + 1} of {headings.length}
+            </span>
           </div>
 
-          {/* ─ Navigation items ─ */}
-          <nav className="p-3 space-y-0.5 max-h-[55vh] overflow-y-auto">
+          <nav className="space-y-1 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
             {headings.map(({ id, text }, i) => {
               const isActive = activeHeading === id;
-              const isPast = i < activeIndex;
               return (
                 <a
                   key={id}
@@ -122,52 +109,28 @@ export default function BlogDetailClient({ post, headings, relatedPosts, service
                   onClick={(e) => {
                     e.preventDefault();
                     const el = document.getElementById(id);
-                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (el) {
+                      const offset = 100;
+                      const bodyRect = document.body.getBoundingClientRect().top;
+                      const elementRect = el.getBoundingClientRect().top;
+                      const elementPosition = elementRect - bodyRect;
+                      const offsetPosition = elementPosition - offset;
+                      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    }
                   }}
-                  className={`group flex items-center gap-2.5 py-2 px-3 rounded-xl transition-all duration-200 ${
+                  className={`group block py-2 px-3 border-l-2 transition-all duration-300 ${
                     isActive
-                      ? 'bg-[#101828] text-white shadow-[0_4px_16px_rgba(16,24,40,0.18)]'
-                      : isPast
-                        ? 'text-[#101828]/35 hover:text-[#101828] hover:bg-black/[0.04]'
-                        : 'text-[#101828]/50 hover:text-[#101828] hover:bg-black/[0.04]'
+                      ? 'border-[#101828] text-[#101828] font-black translate-x-1'
+                      : 'border-black/[0.05] text-[#101828]/40 hover:text-[#101828]/70 hover:border-black/20 hover:translate-x-0.5'
                   }`}
                 >
-                  {/* Step number badge */}
-                  <span className={`flex-shrink-0 w-5 h-5 rounded-md text-[9px] font-black flex items-center justify-center transition-all duration-200 ${
-                    isActive
-                      ? 'bg-[#F3F4C0] text-[#101828]'
-                      : isPast
-                        ? 'bg-black/[0.08] text-[#101828]/30'
-                        : 'bg-black/[0.06] text-[#101828]/40 group-hover:bg-black/[0.1]'
-                  }`}>
-                    {isPast && !isActive ? '✓' : String(i + 1).padStart(2, '0')}
+                  <span className="text-[13px] leading-relaxed">
+                    {text}
                   </span>
-
-                  {/* Heading text */}
-                  <span className={`text-[11px] font-semibold leading-snug flex-1 ${
-                    isActive ? 'font-bold' : ''
-                  }`}>
-                    {text.length > 32 ? text.substring(0, 32) + '…' : text}
-                  </span>
-
-                  {/* Active pulse dot */}
-                  {isActive && (
-                    <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#F3F4C0] animate-pulse" />
-                  )}
                 </a>
               );
             })}
           </nav>
-
-          {/* ─ Footer CTA ─ */}
-          <div className="px-4 pb-4 pt-1">
-            <Link
-              href="/contact"
-              className="block w-full text-center py-2.5 text-[10px] font-black uppercase tracking-[0.12em] bg-[#101828] text-[#F3F4C0] rounded-xl hover:bg-[#1d2a3a] transition-colors"
-            >
-              Work With Us →
-            </Link>
-          </div>
         </div>
       </div>
 
