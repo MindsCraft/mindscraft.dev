@@ -229,14 +229,65 @@ export default function BlogDetailClient({ post, headings, relatedPosts, wordCou
               </Link>
             </div>
 
-            <div className="related-grid">
-              {relatedPosts.map((rp, idx) => (
-                <BlogCard key={rp.slug} post={rp} index={idx} />
-              ))}
+            <div className="related-slider-wrap">
+              <RelatedSlider relatedPosts={relatedPosts} />
             </div>
           </div>
         </section>
       )}
+    </div>
+  );
+}
+function RelatedSlider({ relatedPosts }: { relatedPosts: BlogPost[] }) {
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const { scrollLeft, scrollWidth, clientWidth } = e.currentTarget;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+  };
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (!scrollRef.current) return;
+    const { clientWidth } = scrollRef.current;
+    const offset = direction === 'left' ? -clientWidth : clientWidth;
+    scrollRef.current.scrollBy({ left: offset, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="discovery-slider-container">
+      {canScrollLeft && (
+        <button 
+          className="slider-nav-btn slider-nav-btn--prev" 
+          onClick={() => scroll('left')}
+          aria-label="Previous posts"
+        >
+          <FiArrowRight style={{ transform: 'rotate(180deg)' }} />
+        </button>
+      )}
+      {canScrollRight && (
+        <button 
+          className="slider-nav-btn slider-nav-btn--next" 
+          onClick={() => scroll('right')}
+          aria-label="Next posts"
+        >
+          <FiArrowRight />
+        </button>
+      )}
+      
+      <div 
+        ref={scrollRef} 
+        className="slider-track"
+        onScroll={handleScroll}
+      >
+        {relatedPosts.map((rp, idx) => (
+          <div key={rp.slug} className="slider-item">
+            <BlogCard post={rp} index={idx} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
