@@ -386,9 +386,16 @@
     margin-bottom: 64px;
 }
 
+.related-section-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #000;
+    margin: 8px 0 0 0;
+}
+
 .related-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 48px;
 }
 
@@ -446,4 +453,117 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     color: rgb(var(--primary-900) / 0.3);
+}
+
+/* ──────────────────────────────────────────
+   7. RESPONSIVENESS (MOBILE & TABLET)
+   ────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+    .blog-detail-page {
+        padding: 0 20px;
+    }
+
+    .article-grid {
+        flex-direction: column;
+        gap: 60px;
+        margin-bottom: 80px;
+    }
+
+    .sidebar-left {
+        display: none;
+    }
+
+    .main-content {
+        width: 100%;
+    }
+
+    .prose-section h2 {
+        font-size: 2rem;
+    }
+
+    .prose-section h3 {
+        font-size: 1.6rem;
+        margin-top: 3rem;
+    }
+
+    .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-section {
+        padding-top: 40px;
+    }
+
+    .post-title {
+        font-size: 1.85rem;
+        margin-bottom: 1.5rem;
+        word-break: break-word;
+    }
+
+    .post-lead {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .meta-row {
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 12px;
+    }
+
+    .meta-row .dot {
+        display: none;
+    }
+
+    .featured-image-container {
+        aspect-ratio: 16 / 9;
+        margin-bottom: 32px;
+        border-radius: 4px;
+    }
+
+    .prose-section p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .prose-section h2 {
+        font-size: 1.65rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .prose-section h3 {
+        font-size: 1.45rem;
+    }
+
+    .related-posts-section {
+        padding: 60px 0;
+        margin-top: 60px;
+    }
+
+    .related-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 40px;
+    }
+
+    .related-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .article-footer-meta {
+        margin-top: 80px;
+        padding: 40px 0;
+    }
+
+    .round-share-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
+    }
 }

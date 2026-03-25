@@ -222,14 +222,14 @@ export default function BlogDetailClient({ post, headings, relatedPosts, wordCou
             <div className="related-header">
               <div>
                 <p className="sidebar-label">Read next</p>
-                <h2 className="related-section-title" style={{ fontSize: '32px', fontWeight: 600 }}>More insights</h2>
+                <h2 className="related-section-title">More insights</h2>
               </div>
               <Link href="/blog" className="view-all-link">
                 View all stories
               </Link>
             </div>
 
-            <div className="related-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+            <div className="related-grid">
               {relatedPosts.map((rp, idx) => (
                 <BlogCard key={rp.slug} post={rp} index={idx} />
               ))}
