@@ -94,17 +94,22 @@ export async function PUT(request: Request) {
     }
 
     // Merge updates
+    const newContent = updates.content ?? posts[index].content;
+    const wordCount = newContent ? newContent.replace(/<[^>]*>/g, '').split(/\s+/).length : 0;
+    const newReadTime = Math.max(1, Math.ceil(wordCount / 200)) + ' min read';
+
     posts[index] = {
       ...posts[index],
       title: updates.title ?? posts[index].title,
       slug: updates.slug ?? posts[index].slug,
-      content: updates.content ?? posts[index].content,
+      content: newContent,
       excerpt: updates.excerpt ?? posts[index].excerpt,
       category: updates.category ?? posts[index].category,
       image: updates.image !== undefined ? updates.image : posts[index].image,
       imageSearchTerm: updates.imageSearchTerm !== undefined ? updates.imageSearchTerm : posts[index].imageSearchTerm,
       status: updates.published !== undefined ? (updates.published ? 'Published' : 'Draft') : posts[index].status,
       featured: updates.featured !== undefined ? updates.featured : posts[index].featured,
+      readTime: newReadTime,
     };
 
     savePosts(posts);
