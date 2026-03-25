@@ -31,7 +31,6 @@ yarn-error.log*
 .pnpm-debug.log*
 generation_debug.log
 /tmp/
-/public/uploads/
 
 # env files
 .env
