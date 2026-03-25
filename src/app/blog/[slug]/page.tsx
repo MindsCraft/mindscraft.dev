@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import DOMPurify from 'isomorphic-dompurify';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -94,7 +95,8 @@ function extractHeadings(html: string): { id: string; text: string }[] {
   const headings: { id: string; text: string }[] = [];
   let match;
   while ((match = regex.exec(html)) !== null) {
-    const text = match[1].replace(/<[^>]*>/g, '').trim();
+    // Professional sanitization to strip all tags safely
+    const text = DOMPurify.sanitize(match[1], { ALLOWED_TAGS: [] }).trim();
     const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     headings.push({ id, text });
   }
@@ -104,7 +106,7 @@ function extractHeadings(html: string): { id: string; text: string }[] {
 // Add IDs to h2 tags in the HTML content
 function addHeadingIds(html: string): string {
   return html.replace(/<h2([^>]*)>(.*?)<\/h2>/gi, (_, attrs, content) => {
-    const text = content.replace(/<[^>]*>/g, '').trim();
+    const text = DOMPurify.sanitize(content, { ALLOWED_TAGS: [] }).trim();
     const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
     return `<h2${attrs} id="${id}">${content}</h2>`;
   });
@@ -124,7 +126,10 @@ export default async function BlogPostPage({
   const serviceLink = categoryServiceMap[post.category];
   const headings = extractHeadings(post.content);
   const processedContent = addHeadingIds(post.content);
-  const wordCount = post.content.replace(/<[^>]*>/g, '').split(/\s+/).filter(Boolean).length;
+  
+  // Safe text extraction for word count
+  const plainText = DOMPurify.sanitize(post.content, { ALLOWED_TAGS: [] });
+  const wordCount = plainText.split(/\s+/).filter(Boolean).length;
   const readTime = Math.ceil(wordCount / 225);
 
   // JSON-LD
