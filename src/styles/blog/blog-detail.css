@@ -485,9 +485,9 @@
     }
 
     .meta-row {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 16px 20px !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 10px 16px !important;
         font-size: 11px !important;
         letter-spacing: 0.5px !important;
     }

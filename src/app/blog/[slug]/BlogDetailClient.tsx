@@ -141,10 +141,6 @@ export default function BlogDetailClient({ post, headings, relatedPosts, wordCou
             </div>
             <div className="dot" />
             <div>
-              Review by <strong>MindsCraft Engineering</strong>
-            </div>
-            <div className="dot" />
-            <div>
               {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             </div>
             <div className="dot" />
