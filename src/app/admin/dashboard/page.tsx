@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { BarChart, Clock, FileText, Users, Briefcase, PlusCircle, Server, MailIcon } from '@/components/ui/icons'
+import { BarChart, FileText, Users, Briefcase, PlusCircle, Server, MailIcon } from '@/components/ui/icons'
 import styles from '@/styles/admin/pages/dashboard.module.css'
 
 export default function DashboardPage() {
@@ -16,7 +16,7 @@ export default function DashboardPage() {
     { title: 'New Post', icon: PlusCircle, href: '/admin/posts/new' },
     { title: 'Add Project', icon: Briefcase, href: '/admin/projects/new' },
     { title: 'View Leads', icon: MailIcon, href: '/admin/leads' },
-    { title: 'Site Analytics', icon: BarChart, href: '/admin/marketing' },
+    { title: 'AI Marketing', icon: BarChart, href: '/admin/marketing' },
   ]
 
   return (
@@ -25,7 +25,7 @@ export default function DashboardPage() {
       <div className="admin-page-header">
         <h1 className="admin-page-title">Dashboard</h1>
         <p className="admin-page-desc">
-          Welcome to the admin dashboard! Here's what's happening with your agency.
+          Welcome to the admin dashboard! Here&apos;s what&apos;s happening with your agency.
         </p>
       </div>
 
@@ -66,21 +66,9 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Analytics Chart Card */}
+      {/* Google Analytics Widget */}
       <div className="section">
-        <div className="card">
-          <div className="card-header">
-            <h2 className={`heading-3 ${styles.cardTitleBase}`}>Analytics Overview</h2>
-            <p className="caption">Performance metrics and insights</p>
-          </div>
-          <div className="card-body">
-            <div className={styles.chartPlaceholder}>
-              <p className={styles.chartText}>
-                Analytics chart will be displayed here (Integrate Google Analytics or Plausible)
-              </p>
-            </div>
-          </div>
-        </div>
+        <GAAnalyticsWidget />
       </div>
 
       {/* Two Column Grid */}
@@ -101,9 +89,7 @@ export default function DashboardPage() {
               {[1, 2, 3].map((i) => (
                 <div key={i} className={styles.listItem}>
                   <div>
-                    <p className={styles.listTitle}>
-                      Sample Blog Post Title {i}
-                    </p>
+                    <p className={styles.listTitle}>Sample Blog Post Title {i}</p>
                     <p className="caption">Published 2 days ago</p>
                   </div>
                   <span className={`${styles.badge} ${styles.badgeNew}`}>Published</span>
@@ -129,9 +115,7 @@ export default function DashboardPage() {
               {[1, 2, 3].map((i) => (
                 <div key={i} className={styles.listItem}>
                   <div>
-                    <p className={styles.listTitle}>
-                      New Project Inquiry - Client {i}
-                    </p>
+                    <p className={styles.listTitle}>New Project Inquiry - Client {i}</p>
                     <p className="caption">Received {i} hours ago</p>
                   </div>
                   <span className={`${styles.badge} ${styles.badgePending}`}>Pending</span>
@@ -141,24 +125,104 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
-      
+
       {/* System Status */}
       <div className={`${styles.systemStatusCard} section`}>
         <div className="card">
           <div className="card-body">
-             <div className={styles.statRow}>
-                <div className={styles.systemStatusInfo}>
-                  <Server className={styles.systemStatusIcon} />
-                  <span className={styles.listTitleNoMargin}>System Status</span>
-                </div>
-                <div>
-                  <span className={`${styles.badge} ${styles.badgeNew}`}>All Systems Operational</span>
-                </div>
-             </div>
+            <div className={styles.statRow}>
+              <div className={styles.systemStatusInfo}>
+                <Server className={styles.systemStatusIcon} />
+                <span className={styles.listTitleNoMargin}>System Status</span>
+              </div>
+              <div>
+                <span className={`${styles.badge} ${styles.badgeNew}`}>All Systems Operational</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
+
+    </div>
+  )
+}
+
+// ─── Google Analytics Widget ──────────────────────────────────────────────────
+function GAAnalyticsWidget() {
+  const reports = [
+    { label: 'Realtime', desc: 'Users active right now', icon: '🟢', href: 'https://analytics.google.com/analytics/web/#/realtime' },
+    { label: 'Audience', desc: 'Users, sessions & demographics', icon: '👥', href: 'https://analytics.google.com/analytics/web/' },
+    { label: 'Acquisition', desc: 'Traffic sources & channels', icon: '📈', href: 'https://analytics.google.com/analytics/web/' },
+    { label: 'Top Pages', desc: 'Most visited content', icon: '📄', href: 'https://analytics.google.com/analytics/web/' },
+  ]
+
+  return (
+    <div className={`card ${styles.gaCard}`}>
+      <div className="card-header">
+        <div className={styles.cardHeaderFlex}>
+          <div>
+            <h2 className={`heading-3 ${styles.cardTitleBase}`}>
+              <span className={styles.gaIconDot} />
+              Google Analytics
+            </h2>
+            <p className="caption">View traffic and performance data for your site</p>
+          </div>
+          <a
+            href="https://analytics.google.com/analytics/web/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.gaOpenBtn}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+            Open GA4
+          </a>
+        </div>
+      </div>
+      <div className="card-body">
+        <div className={styles.gaGrid}>
+          {reports.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.gaReportCard}
+            >
+              <span className={styles.gaReportIcon}>{item.icon}</span>
+              <div>
+                <p className={styles.gaReportLabel}>{item.label}</p>
+                <p className="caption">{item.desc}</p>
+              </div>
+              <svg className={styles.gaReportArrow} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+          ))}
+        </div>
+
+        <div className={styles.gaSetupNote}>
+          <div className={styles.gaSetupIcon}>
+            <BarChart className={styles.gaSetupBarIcon} />
+          </div>
+          <div>
+            <p className={styles.gaSetupTitle}>Connect Google Analytics 4</p>
+            <p className="caption">
+              Add your GA4 Measurement ID in{' '}
+              <Link href="/admin/seo" className={styles.gaSetupLink}>
+                SEO &amp; Sharing settings
+              </Link>{' '}
+              to enable full analytics tracking on your site.
+            </p>
+          </div>
+          <Link href="/admin/seo" className={styles.gaSetupBtn}>
+            Configure →
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }

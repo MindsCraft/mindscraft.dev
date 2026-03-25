@@ -113,6 +113,15 @@ export async function POST(req: Request) {
 
   } catch (error: any) {
     console.error('AI Editing Error:', error);
+    
+    // ── GRACEFUL QUOTA HANDLING (HTTP 429) ──
+    if (error.status === 429 || error.message?.includes('429')) {
+      return NextResponse.json({ 
+        error: 'Gemini API Quota Exceeded', 
+        details: 'You have reached the daily 20-request limit for the Gemini Free Tier. Please wait 24 hours or upgrade to a pay-as-you-go plan.' 
+      }, { status: 429 });
+    }
+
     return NextResponse.json({ 
       error: 'Failed to refine content', 
       details: error.message 

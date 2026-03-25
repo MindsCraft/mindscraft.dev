@@ -173,3 +173,156 @@
   height: 20px;
   color: var(--color-text-secondary);
 }
+
+/* ── Google Analytics Widget ─────────────────────────────── */
+
+.gaIconDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e37400; /* GA orange */
+  margin-right: var(--space-2);
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.gaOpenBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 6px 14px;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.gaOpenBtn:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-border-hover);
+  background: var(--color-surface);
+}
+
+.gaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .gaGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.gaReportCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.gaReportCard:hover {
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+  background: var(--color-background);
+}
+
+.gaReportIcon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.gaReportLabel {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.gaReportArrow {
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+  margin-left: auto;
+  transition: transform var(--transition-fast);
+}
+
+.gaReportCard:hover .gaReportArrow {
+  transform: translateX(3px);
+  color: var(--color-text-secondary);
+}
+
+.gaSetupNote {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  flex-wrap: wrap;
+}
+
+.gaSetupIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: rgba(227, 116, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gaSetupBarIcon {
+  width: 18px;
+  height: 18px;
+  color: #e37400;
+}
+
+.gaSetupTitle {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.gaSetupLink {
+  color: var(--color-text-primary);
+  font-weight: var(--font-medium);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.gaSetupBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-background);
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-base);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.gaSetupBtn:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}

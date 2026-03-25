@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiClock, FiArrowUpRight } from 'react-icons/fi';
+import BlogCard from './BlogCard';
 
 interface Post {
   id: number;
@@ -153,57 +154,9 @@ export default function BlogList({ posts, categories }: BlogListProps) {
           {/* ── Grid of remaining posts ── */}
           {rest.length > 0 && (
             <div className="blg-grid">
-              {rest.map((post, i) => {
-                const lc = lightCategoryColors[post.category] ?? { bg: 'rgba(16,24,40,0.06)', text: '#101828' };
-                return (
-                  <motion.div
-                    key={post.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: i * 0.06 }}
-                  >
-                    <Link href={`/blog/${post.slug}`} className="blg-card">
-                      {/* Image */}
-                      <div className="blg-card-image">
-                        {post.image ? (
-                          <Image
-                            src={post.image}
-                            alt={post.imageAlt || post.title}
-                            fill
-                            className="blg-card-img-el"
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                          />
-                        ) : (
-                          <div className="blg-card-img-placeholder" />
-                        )}
-                      </div>
-
-                      {/* Body */}
-                      <div className="blg-card-body">
-                        <span
-                          className="blg-card-cat"
-                          style={{ background: lc.bg, color: lc.text }}
-                        >
-                          {post.category}
-                        </span>
-                        <h3 className="blg-card-title">{post.title}</h3>
-                        <p className="blg-card-desc">{post.description}</p>
-                        <div className="blg-card-footer">
-                          <div className="blg-card-meta">
-                            <FiClock className="blg-meta-icon blg-meta-icon--dark" />
-                            <span>{post.readTime}</span>
-                            <span className="blg-meta-sep blg-meta-sep--dark">·</span>
-                            <span>{formatDate(post.date)}</span>
-                          </div>
-                          <span className="blg-card-read">
-                            Read <FiArrowRight className="blg-card-arrow" />
-                          </span>
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-                );
-              })}
+              {rest.map((post, i) => (
+                <BlogCard key={post.id} post={post} index={i} />
+              ))}
             </div>
           )}
 

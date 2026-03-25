@@ -22,10 +22,12 @@ type BlogPost = {
   status?: string;
 };
 
-const fullPosts: BlogPost[] = (postsData as any[]).map(post => ({
-  ...post,
-  author: 'The MindsCraft Team',
-}));
+const fullPosts: BlogPost[] = (postsData as any[])
+  .filter(post => post.status === 'Published')
+  .map(post => ({
+    ...post,
+    author: 'The MindsCraft Team',
+  }));
 
 const categoryServiceMap: Record<string, { label: string; href: string }> = {
   'AI & SaaS': { label: 'AI & SaaS Development', href: '/services' },
