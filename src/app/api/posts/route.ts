@@ -46,8 +46,8 @@ export async function POST(request: Request) {
     const newPost = {
       id: posts.length > 0 ? Math.max(...posts.map((p: any) => p.id)) + 1 : 1,
       title: body.title,
-      slug: body.slug || body.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
-      excerpt: body.excerpt || body.content.substring(0, 150).replace(/<[^>]*>/g, '') + '...',
+      slug: body.slug || body.title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+      excerpt: body.excerpt || body.content.substring(0, 150).replace(/<[^>]+>/g, ' ') + '...',
       content: body.content,
       date: new Date().toISOString().split('T')[0],
       category: body.category || 'AI & SaaS',
@@ -63,7 +63,7 @@ export async function POST(request: Request) {
       imageSearchTerm: body.imageSearchTerm || '',
       metadata: {
         title: body.title,
-        description: body.excerpt || body.content.substring(0, 160).replace(/<[^>]*>/g, '')
+        description: body.excerpt || body.content.substring(0, 160).replace(/<[^>]+>/g, ' ')
       }
     };
 
@@ -95,7 +95,10 @@ export async function PUT(request: Request) {
 
     // Merge updates
     const newContent = updates.content ?? posts[index].content;
-    const wordCount = newContent ? newContent.replace(/<[^>]*>/g, '').split(/\s+/).length : 0;
+    
+    // Safer HTML stripping for word count to avoid ReDoS high severity alert
+    const plainText = newContent ? newContent.replace(/<[^>]+>/g, ' ') : '';
+    const wordCount = plainText.trim().split(/\s+/).filter(Boolean).length;
     const newReadTime = Math.max(1, Math.ceil(wordCount / 200)) + ' min read';
 
     posts[index] = {

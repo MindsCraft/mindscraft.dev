@@ -15,6 +15,7 @@ import {
 } from 'react-icons/fi';
 
 import BlogCard from '@/components/blog/BlogCard';
+import DOMPurify from 'isomorphic-dompurify';
 import '@/styles/blog/blog-detail.css';
 import '@/styles/pages/blog.css';
 
@@ -193,7 +194,7 @@ export default function BlogDetailClient({ post, headings, relatedPosts, wordCou
             <div
               ref={proseRef}
               className="prose-section"
-              dangerouslySetInnerHTML={{ __html: post.content }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
             />
 
             {/* ── MINIMALIST SOCIAL FOOTER ── */}

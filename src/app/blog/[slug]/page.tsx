@@ -169,7 +169,12 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')
+        }}
+      />
       <BlogDetailClient
         post={{ ...post, content: processedContent }}
         headings={headings}

@@ -41,10 +41,12 @@ export async function POST(req: Request) {
             
             if (part?.inlineData?.data) {
                 const buffer = Buffer.from(part.inlineData.data, 'base64');
-                const fileName = `${slug}.png`;
+                const safeSlug = path.basename(slug.replace(/[^a-z0-9-]/gi, '-'));
+                const fileName = `${safeSlug}.png`;
                 const imagesDir = path.join(process.cwd(), 'public', 'images', 'blog');
                 if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir, { recursive: true });
-                fs.writeFileSync(path.join(imagesDir, fileName), buffer);
+                const finalPath = path.join(imagesDir, fileName);
+                fs.writeFileSync(finalPath, buffer);
                 imageUrl = `/images/blog/${fileName}`;
                 success = true;
             }
@@ -73,10 +75,12 @@ export async function POST(req: Request) {
           const data = await res.json();
           if (data.data && data.data[0] && data.data[0].b64_json) {
               const buffer = Buffer.from(data.data[0].b64_json, 'base64');
-              const fileName = `${slug}.png`;
+              const safeSlug = path.basename(slug.replace(/[^a-z0-9-]/gi, '-'));
+              const fileName = `${safeSlug}.png`;
               const imagesDir = path.join(process.cwd(), 'public', 'images', 'blog');
               if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir, { recursive: true });
-              fs.writeFileSync(path.join(imagesDir, fileName), buffer);
+              const finalPath = path.join(imagesDir, fileName);
+              fs.writeFileSync(finalPath, buffer);
               imageUrl = `/images/blog/${fileName}`;
               success = true;
           }

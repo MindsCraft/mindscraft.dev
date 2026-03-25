@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import fs from 'fs';
+import path from 'path';
 
 export async function POST(req: Request) {
   try {
@@ -74,20 +76,20 @@ export async function POST(req: Request) {
                 
                 const data = await res.json();
                 if (data.data && data.data[0] && data.data[0].b64_json) {
-                    const FS = require('fs');
-                    const PATH = require('path');
                     const buffer = Buffer.from(data.data[0].b64_json, 'base64');
                     
-                    // Simple slugify for the title to use in filename
-                    const titleSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 30);
-                    const fileName = `${titleSlug}-inline-${Math.floor(Math.random()*10000)}.png`;
+                    // ── STRICT FILENAME SANITIZATION (PATH TRAVERSAL GUARD) ──
+                    const safeTitle = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 30);
+                    const safeFileName = path.basename(`${safeTitle}-inline-${Math.floor(Math.random()*10000)}.png`);
                     
-                    const imagesDir = PATH.join(process.cwd(), 'public', 'images', 'blog');
-                    if (!FS.existsSync(imagesDir)) FS.mkdirSync(imagesDir, { recursive: true });
-                    FS.writeFileSync(PATH.join(imagesDir, fileName), buffer);
+                    const imagesDir = path.join(process.cwd(), 'public', 'images', 'blog');
+                    if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir, { recursive: true });
                     
-                    const inlineUrl = `/images/blog/${fileName}`;
-                    const imgTag = `<img src="${inlineUrl}" alt="${rawPrompt}" style="width:100%; border-radius:12px; margin: 24px 0;" />`;
+                    const finalPath = path.join(imagesDir, safeFileName);
+                    fs.writeFileSync(finalPath, buffer);
+                    
+                    const inlineUrl = `/images/blog/${safeFileName}`;
+                    const imgTag = `<img src="${inlineUrl}" alt="${rawPrompt.replace(/"/g, '&quot;')}" style="width:100%; border-radius:12px; margin: 24px 0;" />`;
                     return { match: match[0], imgTag };
                 }
             } catch (err) {

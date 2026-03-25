@@ -166,7 +166,7 @@ function ImagePanel({ onInsert, onClose }: {
                 style={{ flex: 1, border: 'none', outline: 'none', fontSize: '13px', backgroundColor: 'transparent', color: '#171717' }}
               />
             </div>
-            {urlValue && (
+            {urlValue && (urlValue.startsWith('http') || urlValue.startsWith('/')) && (
               <img src={urlValue} alt="preview" onError={e => (e.currentTarget.style.display = 'none')}
                 style={{ maxHeight: '100px', maxWidth: '100%', borderRadius: '6px', marginTop: '8px', display: 'block' }} />
             )}
