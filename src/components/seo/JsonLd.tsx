@@ -33,7 +33,9 @@ export default function JsonLd() {
             "serviceType": ["Web Development", "UX Design", "Mobile App Development", "AI Integration"],
             "sameAs": [
                 "https://twitter.com/mindscraft",
-                "https://linkedin.com/company/mindscraft"
+                "https://linkedin.com/company/mindscraft",
+                "https://github.com/mindscraft-dev",
+                "https://www.youtube.com/@mindscraft"
             ]
         },
         // ── WebSite (enables Google's Sitelinks search box) ───────

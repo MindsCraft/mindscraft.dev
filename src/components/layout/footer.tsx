@@ -83,16 +83,16 @@ export default function Footer() {
 
             {/* Social icons */}
             <div className="ft-socials">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="ft-social-icon" aria-label="GitHub">
+              <a href="https://github.com/mindscraft-dev" target="_blank" rel="noopener noreferrer" className="ft-social-icon" aria-label="GitHub">
                 <GithubIcon className="h-5 w-5" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="ft-social-icon" aria-label="Twitter">
+              <a href="https://twitter.com/mindscraft" target="_blank" rel="noopener noreferrer" className="ft-social-icon" aria-label="Twitter">
                 <TwitterIcon className="h-5 w-5" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="ft-social-icon" aria-label="LinkedIn">
+              <a href="https://linkedin.com/company/mindscraft" target="_blank" rel="noopener noreferrer" className="ft-social-icon" aria-label="LinkedIn">
                 <LinkedInIcon className="h-5 w-5" />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="ft-social-icon" aria-label="YouTube">
+              <a href="https://www.youtube.com/@mindscraft" target="_blank" rel="noopener noreferrer" className="ft-social-icon" aria-label="YouTube">
                 <YoutubeIcon className="h-5 w-5" />
               </a>
             </div>

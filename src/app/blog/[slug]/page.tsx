@@ -125,6 +125,7 @@ export default async function BlogPostPage({
   const headings = extractHeadings(post.content);
   const processedContent = addHeadingIds(post.content);
   const wordCount = post.content.replace(/<[^>]*>/g, '').split(/\s+/).filter(Boolean).length;
+  const readTime = Math.ceil(wordCount / 225);
 
   // JSON-LD
   const jsonLd = {
@@ -140,6 +141,8 @@ export default async function BlogPostPage({
         dateModified: post.date,
         articleSection: post.category,
         wordCount,
+        timeRequired: `PT${readTime}M`,
+        isAccessibleForFree: "true",
         author: {
           '@type': 'Organization',
           name: 'MindsCraft',
