@@ -22,7 +22,6 @@
     "seed": "node prisma/seed.mjs"
   },
   "dependencies": {
-    "-": "^0.0.1",
     "@google/generative-ai": "^0.24.1",
     "@heroicons/react": "^2.2.0",
     "@hookform/resolvers": "^5.1.1",
