@@ -214,6 +214,26 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
 
             {/* AI COMMANDS DOCK */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)', marginBottom: 'var(--space-4)' }}>
+              
+              <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAiInstruction('Write a comprehensive, highly technical, and completely fleshed out 1200+ word article based on the title. Format it beautifully with HTML headings, bullet points, and code snippets if relevant. Replace all current placeholder text.');
+                    // We can't automatically call handleAiRefine immediately because state needs to settle,
+                    // but we can just pre-fill the box for them, or wrap it in a micro-timeout.
+                    setTimeout(() => {
+                      document.getElementById('ai-send-btn')?.click()
+                    }, 50)
+                  }}
+                  className={styles.btnSecondary}
+                  style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-primary)', borderColor: 'var(--color-primary)' }}
+                >
+                  <Sparkle size={12} style={{ marginRight: '4px' }} />
+                  Quick Action: Write Full SEO Article
+                </button>
+              </div>
+
               <div style={{ backgroundColor: 'var(--color-background)', border: '1px solid var(--color-primary)', borderRadius: 'var(--radius-lg)', padding: '12px 16px', display: 'flex', gap: 'var(--space-3)', alignItems: 'center', boxShadow: '0 4px 20px rgba(16, 24, 40, 0.08)' }}>
                 <div style={{ backgroundColor: 'var(--color-primary)', color: 'white', padding: '6px', borderRadius: '8px', display: 'flex' }}><Sparkle size={16} /></div>
                 <input 
@@ -221,11 +241,12 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
                   value={aiInstruction} 
                   onChange={(e) => setAiInstruction(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAiRefine(); }}}
-                  placeholder="AI conversation: 'Translate to French', 'Add a comparison chart', 'Fix my tone'..." 
+                  placeholder="AI conversation: 'Translate to French', 'Add a comparison chart', 'Write full article'..." 
                   style={{ flex: 1, border: 'none', background: 'transparent', outline: 'none', fontSize: 'var(--text-sm)', color: 'var(--color-text-primary)' }} 
                 />
                 <button 
                   type="button" 
+                  id="ai-send-btn"
                   onClick={handleAiRefine}
                   disabled={isAiRefining || !aiInstruction.trim()}
                   className={styles.btnSecondary} 
