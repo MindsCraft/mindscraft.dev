@@ -484,6 +484,16 @@
         word-break: break-word !important;
     }
 
+    .meta-row {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 16px 20px !important;
+        font-size: 11px !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .meta-row .dot { display: none !important; }
+
     .featured-image-container {
         aspect-ratio: 16 / 9 !important;
         border-radius: 0 !important;
