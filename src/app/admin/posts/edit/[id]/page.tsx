@@ -4,7 +4,7 @@ import { useState, useEffect, use } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { ArrowLeft, Save, Eye, CheckCircle, Star, Tag, FileText, Globe, Sparkle, Loader2, X } from 'lucide-react'
+import { ArrowLeft, Save, Eye, CheckCircle, Star, Tag, FileText, Globe, Sparkle, Loader2, X, Image as ImageIcon, RefreshCcw } from 'lucide-react'
 import styles from '@/styles/admin/pages/posts.module.css'
 import Loading from '../../new/loading'
 
@@ -55,7 +55,7 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
   const id = resolvedParams.id
 
   const [formData, setFormData] = useState({
-    id: 0, title: '', slug: '', content: '', excerpt: '', category: 'AI & SaaS', published: false, featured: false,
+    id: 0, title: '', slug: '', content: '', excerpt: '', category: 'AI & SaaS', published: false, featured: false, image: '', imageSearchTerm: ''
   })
   const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -148,6 +148,33 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
       alert('AI refinement failed')
     } finally {
       setIsAiRefining(false)
+    }
+  }
+
+  // ── AI IMAGE REGENERATION ──
+  const [isRegeneratingImage, setIsRegeneratingImage] = useState(false)
+  const handleRegenerateImage = async () => {
+    setIsRegeneratingImage(true)
+    try {
+      const res = await fetch('/api/admin/regenerate-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          postId: formData.id,
+          imageSearchTerm: formData.imageSearchTerm,
+          slug: formData.slug
+        })
+      })
+      const data = await res.json()
+      if (data.success) {
+        setFormData(prev => ({ ...prev, image: data.imageUrl }))
+      } else {
+        alert('Image generation failed')
+      }
+    } catch (err) {
+      console.error(err); alert('Failed to regenerate image')
+    } finally {
+      setIsRegeneratingImage(false)
     }
   }
 
@@ -265,6 +292,63 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
                       <span style={{ fontSize: 'var(--text-sm)', fontWeight: formData.category === cat ? 'var(--font-medium)' : 'var(--font-normal)', color: formData.category === cat ? 'var(--color-text-primary)' : 'var(--color-text-secondary)' }}>{cat}</span>
                     </label>
                   ))}
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.editCard}>
+              <div className={styles.editCardHeader}>
+                <ImageIcon size={14} color="var(--color-text-tertiary)" />
+                <span className="label" style={{ margin: 0 }}>Featured Image</span>
+              </div>
+              <div className={styles.editCardBody}>
+                <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: 'var(--radius-md)', overflow: 'hidden', marginBottom: 'var(--space-3)', border: '1px solid var(--color-border)', backgroundColor: '#101828', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {isRegeneratingImage && (
+                    <div style={{ position: 'absolute', inset: 0, zIndex: 10, backgroundColor: 'rgba(0,0,0,0.6)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
+                       <Loader2 size={24} className={styles.spin} />
+                       <span style={{ fontSize: '10px', marginTop: '8px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Generating Art...</span>
+                    </div>
+                  )}
+                  {formData.image ? (
+                    <img src={formData.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : (
+                    <div style={{ color: 'var(--color-text-tertiary)', fontSize: '10px' }}>No Image Set</div>
+                  )}
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+                  <div>
+                    <p style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', color: 'var(--color-text-tertiary)', marginBottom: '6px' }}>Image URL</p>
+                    <input 
+                      type="text" name="image" value={formData.image || ''} onChange={handleChange} 
+                      placeholder="https://... or /uploads/..." 
+                      style={{ width: '100%', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: 'var(--space-2) var(--space-3)', fontSize: 'var(--text-xs)', color: 'var(--color-text-primary)' }} 
+                    />
+                  </div>
+                  
+                  <div style={{ backgroundColor: 'var(--color-surface)', padding: '12px', borderRadius: '12px', border: '1px solid var(--color-border)' }}>
+                     <p style={{ fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', color: 'var(--color-primary)', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <Sparkle size={10} /> AI Image Prompt
+                     </p>
+                     <textarea 
+                        name="imageSearchTerm" 
+                        value={formData.imageSearchTerm || ''} 
+                        onChange={handleChange} 
+                        rows={3}
+                        placeholder="Describe the image you want..." 
+                        style={{ width: '100%', border: 'none', background: 'transparent', outline: 'none', fontSize: 'var(--text-xs)', color: 'var(--color-text-secondary)', lineHeight: 1.4, resize: 'none' }} 
+                     />
+                     <button 
+                        type="button" 
+                        onClick={handleRegenerateImage}
+                        disabled={isRegeneratingImage || !formData.imageSearchTerm}
+                        className={styles.btnSecondary} 
+                        style={{ width: '100%', marginTop: '8px', padding: '6px', fontSize: '10px', fontWeight: 700, borderColor: 'var(--color-primary)', color: 'var(--color-primary)' }}
+                     >
+                        {isRegeneratingImage ? <Loader2 size={12} className={styles.spin} /> : <RefreshCcw size={12} />}
+                        {isRegeneratingImage ? 'Painting...' : 'Regenerate Art'}
+                     </button>
+                  </div>
                 </div>
               </div>
             </div>

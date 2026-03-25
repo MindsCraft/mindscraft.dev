@@ -40,13 +40,66 @@ export async function POST(req: Request) {
     Ensure the HTML remains clean and high-quality.
     
     Output Format:
-    1. refinedContent: The full, revised HTML for the article.
+    1. refinedContent: The full, revised HTML for the article. (If the user asks to add images, insert placeholders exactly like this: [IMAGE_PROMPT: 5-word visual description])
     2. explanation: A friendly, premium conversational response to the user explaining what you did or confirming their request.
     `;
 
     const result = await model.generateContent(prompt);
     const response = await result.response;
-    const { refinedContent, explanation } = JSON.parse(response.text());
+    let { refinedContent, explanation } = JSON.parse(response.text());
+
+    // ── INLINE IMAGE GENERATION (POLLINATIONS FLUX) ──
+    const promptRegex = /\[IMAGE_PROMPT:\s*([^\]]+)\]/g;
+    const matches = [...refinedContent.matchAll(promptRegex)];
+    
+    if (matches.length > 0 && process.env.POLLINATIONS_API_KEY) {
+        const inlineImagePromises = matches.map(async (match) => {
+            const rawPrompt = match[1];
+            const fullPrompt = rawPrompt + ", minimalist 3D render, high-tech, cinematic lighting, premium software agency style, 8k";
+            try {
+                const res = await fetch('https://gen.pollinations.ai/v1/images/generations', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${process.env.POLLINATIONS_API_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        prompt: fullPrompt,
+                        model: 'flux',
+                        width: 1000,
+                        height: 500,
+                        response_format: 'b64_json'
+                    })
+                });
+                
+                const data = await res.json();
+                if (data.data && data.data[0] && data.data[0].b64_json) {
+                    const FS = require('fs');
+                    const PATH = require('path');
+                    const buffer = Buffer.from(data.data[0].b64_json, 'base64');
+                    const fileName = `inline-edit-${Date.now()}-${Math.floor(Math.random()*1000)}.png`;
+                    const uploadsDir = PATH.join(process.cwd(), 'public', 'uploads', 'blog');
+                    if (!FS.existsSync(uploadsDir)) FS.mkdirSync(uploadsDir, { recursive: true });
+                    FS.writeFileSync(PATH.join(uploadsDir, fileName), buffer);
+                    
+                    const inlineUrl = `/uploads/blog/${fileName}`;
+                    const imgTag = `<img src="${inlineUrl}" alt="${rawPrompt}" style="width:100%; border-radius:12px; margin: 24px 0;" />`;
+                    return { match: match[0], imgTag };
+                }
+            } catch (err) {
+                console.error(`Failed inline image: ${err}`);
+            }
+            return null;
+        });
+
+        const results = await Promise.all(inlineImagePromises);
+        results.forEach(result => {
+            if (result) refinedContent = refinedContent.replace(result.match, result.imgTag);
+            else refinedContent = refinedContent.replace(promptRegex, '');
+        });
+    } else if (matches.length > 0) {
+        refinedContent = refinedContent.replace(promptRegex, '');
+    }
 
     return NextResponse.json({ 
       success: true, 

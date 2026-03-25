@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { ArrowLeft, Save, CheckCircle, Star, Tag, FileText, Globe } from 'lucide-react'
+import { ArrowLeft, Save, CheckCircle, Star, Tag, FileText, Globe, Image as ImageIcon } from 'lucide-react'
 import styles from '@/styles/admin/pages/posts.module.css'
 
 // Dynamically import the BlogEditor with SSR disabled
@@ -58,7 +58,9 @@ export default function NewPostPage() {
     excerpt: '',
     category: 'AI & SaaS',
     published: false,
-    featured: false
+    featured: false,
+    image: '',
+    imageSearchTerm: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -199,6 +201,39 @@ export default function NewPostPage() {
                       <span style={{ fontSize: 'var(--text-sm)', fontWeight: formData.category === cat ? 'var(--font-medium)' : 'var(--font-normal)', color: formData.category === cat ? 'var(--color-text-primary)' : 'var(--color-text-secondary)' }}>{cat}</span>
                     </label>
                   ))}
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.editCard}>
+              <div className={styles.editCardHeader}>
+                <ImageIcon size={14} color="var(--color-text-tertiary)" />
+                <span className="label" style={{ margin: 0 }}>Featured Image</span>
+              </div>
+              <div className={styles.editCardBody}>
+                {formData.image && (
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', borderRadius: 'var(--radius-md)', overflow: 'hidden', marginBottom: 'var(--space-3)', border: '1px solid var(--color-border)', backgroundColor: '#101828' }}>
+                    <img src={formData.image} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                )}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2)' }}>
+                  <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-tertiary)', margin: '0 0 4px 0' }}>Image URL / Local Path</p>
+                  <input 
+                    type="text" 
+                    name="image" 
+                    value={formData.image} 
+                    onChange={handleChange} 
+                    placeholder="https://... or /uploads/..." 
+                    style={{ width: '100%', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: 'var(--space-2) var(--space-3)', fontSize: 'var(--text-xs)', color: 'var(--color-text-primary)', backgroundColor: 'transparent' }} 
+                  />
+                  <input 
+                    type="text" 
+                    name="imageSearchTerm" 
+                    value={formData.imageSearchTerm} 
+                    onChange={handleChange} 
+                    placeholder="Refine AI prompt (optional)..." 
+                    style={{ width: '100%', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: 'var(--space-2) var(--space-3)', fontSize: 'var(--text-xs)', color: 'var(--color-text-primary)', backgroundColor: 'transparent', marginTop: '8px' }} 
+                  />
                 </div>
               </div>
             </div>

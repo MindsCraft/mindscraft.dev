@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Plus, Pencil, Trash, Eye, Sparkle, Loader2, Search, X, FileText, CheckCircle, AlertCircle } from 'lucide-react'
+import { Plus, Pencil, Trash, Eye, Sparkle, Loader2, Search, X, FileText, CheckCircle, AlertCircle, Link as LinkIcon } from 'lucide-react'
 import Link from 'next/link'
 import styles from '@/styles/admin/pages/posts.module.css'
 
@@ -16,6 +16,14 @@ interface Post {
   views: string
   readTime: string
   featured?: boolean
+}
+
+interface Topic {
+  title: string
+  link: string
+  snippet: string
+  source: string
+  date: string
 }
 
 type ToastType = 'success' | 'error'
@@ -89,15 +97,162 @@ function IconBtn({ onClick, danger, title, children }: {
   )
 }
 
+// -------------------------------------------------------------
+// The AI Content Engine Modal
+// -------------------------------------------------------------
+function AiEngineModal({ 
+  onClose, 
+  onSuccess, 
+  addToast 
+}: { 
+  onClose: () => void; 
+  onSuccess: () => void;
+  addToast: (msg: string, type?: ToastType) => void;
+}) {
+  const [topics, setTopics] = useState<Topic[]>([])
+  const [loadingTopics, setLoadingTopics] = useState(true)
+  const [generatingId, setGeneratingId] = useState<string | null>(null)
+  
+  // Custom URL rewrite state
+  const [customUrl, setCustomUrl] = useState('')
+
+  useEffect(() => {
+    fetch('/api/admin/trending-topics')
+      .then(res => res.json())
+      .then(data => {
+        if (data.topics) setTopics(data.topics)
+      })
+      .catch(() => addToast('Failed to load trending topics', 'error'))
+      .finally(() => setLoadingTopics(false))
+  }, [])
+
+  const handleGenerate = async (payload: any, uiId: string) => {
+    setGeneratingId(uiId)
+    try {
+      const res = await fetch('/api/admin/generate-post', { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      const data = await res.json()
+      if (data.success) {
+        addToast('Draft created successfully!')
+        onSuccess()
+      } else {
+        addToast(data.error || 'Generation failed', 'error')
+      }
+    } catch {
+      addToast('AI generation failed', 'error')
+    } finally {
+      setGeneratingId(null)
+    }
+  }
+
+  return (
+    <div style={{ position: 'fixed', inset: 0, zIndex: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)', padding: 'var(--space-4)' }}>
+      <div style={{ backgroundColor: 'var(--color-background)', width: '100%', maxWidth: '800px', borderRadius: 'var(--radius-xl)', boxShadow: 'var(--shadow-xl)', overflow: 'hidden', display: 'flex', flexDirection: 'column', maxHeight: '90vh' }}>
+        
+        {/* Modal Header */}
+        <div style={{ padding: 'var(--space-5)', borderBottom: '1px solid var(--color-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'var(--color-surface)' }}>
+          <div>
+            <h2 style={{ fontSize: 'var(--text-lg)', fontWeight: 600, color: 'var(--color-text-primary)', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Sparkle size={18} color="var(--color-primary)" /> AI Content Engine
+            </h2>
+            <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', margin: '4px 0 0 0' }}>Review global trends or rewrite a specific article into a premium draft.</p>
+          </div>
+          <button type="button" onClick={onClose} className={styles.iconBtn} style={{ border: 'none' }}><X size={20} /></button>
+        </div>
+
+        {/* Modal Body */}
+        <div style={{ overflowY: 'auto', padding: 'var(--space-6)', display: 'flex', flexDirection: 'column', gap: 'var(--space-8)' }}>
+          
+          {/* Clone & Own Section */}
+          <div>
+            <h3 style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 'var(--space-3)' }}>Clone & Own</h3>
+            <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-4)' }}>Paste a link to any technical article. The AI will completely rewrite it in the MindsCraft agency voice, preventing plagiarism.</p>
+            <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
+              <div style={{ flex: 1, display: 'flex', alignItems: 'center', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: '0 12px', backgroundColor: 'var(--color-surface)' }}>
+                <LinkIcon size={16} color="var(--color-text-tertiary)" />
+                <input 
+                  type="url" 
+                  value={customUrl} 
+                  onChange={(e) => setCustomUrl(e.target.value)} 
+                  placeholder="https://example.com/interesting-article" 
+                  style={{ width: '100%', border: 'none', background: 'transparent', padding: '10px', fontSize: 'var(--text-sm)', outline: 'none' }} 
+                />
+              </div>
+              <button 
+                type="button" 
+                onClick={() => handleGenerate({ topicUrl: customUrl, isRewrite: true }, 'custom-url')}
+                disabled={!customUrl || generatingId !== null} 
+                className={styles.btnPrimary}
+              >
+                {generatingId === 'custom-url' ? <Loader2 size={16} className={styles.spin} /> : <Sparkle size={16} />}
+                Rewrite Link
+              </button>
+            </div>
+          </div>
+
+          <div style={{ height: '1px', backgroundColor: 'var(--color-border)' }} />
+
+          {/* Trending Topics Section */}
+          <div>
+            <h3 style={{ fontSize: 'var(--text-base)', fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 'var(--space-3)' }}>Today's Trending Topics</h3>
+            <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-4)' }}>Scraped live from trusted development and AI feeds. Pick a topic to generate a comprehensive draft.</p>
+            
+            {loadingTopics ? (
+              <div style={{ padding: 'var(--space-8)', textAlign: 'center', color: 'var(--color-text-tertiary)' }}>
+                <Loader2 size={24} className={styles.spin} style={{ margin: '0 auto var(--space-4)' }} />
+                Fetching latest engineering news...
+              </div>
+            ) : topics.length === 0 ? (
+              <div style={{ padding: 'var(--space-6)', textAlign: 'center', color: 'var(--color-text-tertiary)', backgroundColor: 'var(--color-surface)', borderRadius: 'var(--radius-md)' }}>
+                No topics found at the moment.
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
+                {topics.map((topic, i) => (
+                  <div key={i} style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: 'var(--space-4)', display: 'flex', gap: 'var(--space-4)', justifyContent: 'space-between', alignItems: 'center', backgroundColor: 'var(--color-background)' }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                        <span style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', color: 'var(--color-primary)', backgroundColor: 'rgba(16, 24, 40, 0.05)', padding: '2px 8px', borderRadius: '12px' }}>{topic.source}</span>
+                        <a href={topic.link} target="_blank" style={{ fontSize: 'var(--text-sm)', fontWeight: 600, color: 'var(--color-text-primary)', textDecoration: 'none', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{topic.title}</a>
+                      </div>
+                      <p style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-secondary)', margin: 0, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{topic.snippet}</p>
+                    </div>
+                    <button 
+                      type="button" 
+                      onClick={() => handleGenerate({ topicTitle: topic.title, topicSnippet: topic.snippet }, `topic-${i}`)}
+                      disabled={generatingId !== null}
+                      className={styles.btnSecondary} 
+                      style={{ flexShrink: 0, padding: '6px 12px', fontSize: 'var(--text-xs)' }}
+                    >
+                      {generatingId === `topic-${i}` ? <Loader2 size={14} className={styles.spin} /> : <Plus size={14} />}
+                      {generatingId === `topic-${i}` ? 'Drafting...' : 'Draft Post'}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function PostsPage() {
   const [posts, setPosts] = useState<Post[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [isGenerating, setIsGenerating] = useState(false)
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<string>('All')
   const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null)
   const [toasts, setToasts] = useState<Toast[]>([])
   const toastId = useRef(0)
+  
+  // AI Engine State
+  const [showAiEngine, setShowAiEngine] = useState(false)
 
   const addToast = (message: string, type: ToastType = 'success') => {
     const id = ++toastId.current
@@ -136,24 +291,6 @@ export default function PostsPage() {
     }
   }
 
-  const handleGenerateAI = async () => {
-    setIsGenerating(true)
-    try {
-      const res = await fetch('/api/admin/generate-post', { method: 'POST' })
-      const data = await res.json()
-      if (data.success) {
-        addToast('AI post generated successfully')
-        fetchPosts()
-      } else {
-        addToast(data.error || 'Generation failed', 'error')
-      }
-    } catch {
-      addToast('AI generation failed', 'error')
-    } finally {
-      setIsGenerating(false)
-    }
-  }
-
   const filtered = posts.filter(p => {
     const matchSearch = p.title.toLowerCase().includes(search.toLowerCase()) ||
       p.author?.name?.toLowerCase().includes(search.toLowerCase()) ||
@@ -179,9 +316,9 @@ export default function PostsPage() {
         </div>
 
         <div className={styles.actionsWrap}>
-          <button type="button" onClick={handleGenerateAI} disabled={isGenerating} className={styles.btnSecondary}>
-            {isGenerating ? <Loader2 size={15} className={styles.spin} /> : <Sparkle size={15} />}
-            {isGenerating ? 'Generating...' : 'AI Writer'}
+          <button type="button" onClick={() => setShowAiEngine(true)} className={styles.btnSecondary} style={{ borderColor: 'var(--color-primary)', color: 'var(--color-primary)' }}>
+            <Sparkle size={15} />
+            AI Content Engine
           </button>
           <Link href="/admin/posts/new" className={styles.btnPrimary}>
             <Plus size={15} strokeWidth={2.5} />
@@ -240,6 +377,7 @@ export default function PostsPage() {
           <table className={styles.table}>
             <thead>
               <tr>
+                <th className={styles.th} style={{ width: '80px' }}>Preview</th>
                 <th className={styles.th}>Title</th>
                 <th className={styles.th}>Status</th>
                 <th className={styles.th}>Category</th>
@@ -249,8 +387,17 @@ export default function PostsPage() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((post) => (
+              {filtered.map((post: any) => (
                 <tr key={post.id} className={styles.tr}>
+                  <td className={styles.td}>
+                    {post.image ? (
+                      <div style={{ width: '60px', height: '40px', borderRadius: '4px', overflow: 'hidden', border: '1px solid var(--color-border)', backgroundColor: '#101828' }}>
+                         <img src={post.image} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                      </div>
+                    ) : (
+                      <div style={{ width: '60px', height: '40px', borderRadius: '4px', backgroundColor: '#f0f0f0', border: '1px border dashed #ccc' }} />
+                    )}
+                  </td>
                   <td className={styles.td}>
                     <div className={styles.postTitleWrap}>
                       <Link href={`/admin/posts/edit/${post.id}`} className={styles.postTitleLink}>
@@ -282,6 +429,18 @@ export default function PostsPage() {
           </table>
         )}
       </div>
+
+      {showAiEngine && (
+        <AiEngineModal 
+          onClose={() => setShowAiEngine(false)} 
+          onSuccess={() => {
+            setShowAiEngine(false)
+            fetchPosts()
+          }} 
+          addToast={addToast} 
+        />
+      )}
+
       <ToastContainer toasts={toasts} onRemove={id => setToasts(prev => prev.filter(t => t.id !== id))} />
     </div>
   )

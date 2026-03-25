@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       slug: body.slug || body.title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
       excerpt: body.excerpt || body.content.substring(0, 150).replace(/<[^>]*>/g, '') + '...',
       content: body.content,
-      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      date: new Date().toISOString().split('T')[0],
       category: body.category || 'AI & SaaS',
       author: {
         name: 'MindsCraft AI',
@@ -59,6 +59,8 @@ export async function POST(request: Request) {
       readTime: Math.ceil(body.content.split(' ').length / 200) + ' min read',
       views: '0',
       status: body.published ? 'Published' : 'Draft',
+      image: body.image || '',
+      imageSearchTerm: body.imageSearchTerm || '',
       metadata: {
         title: body.title,
         description: body.excerpt || body.content.substring(0, 160).replace(/<[^>]*>/g, '')
@@ -99,6 +101,8 @@ export async function PUT(request: Request) {
       content: updates.content ?? posts[index].content,
       excerpt: updates.excerpt ?? posts[index].excerpt,
       category: updates.category ?? posts[index].category,
+      image: updates.image !== undefined ? updates.image : posts[index].image,
+      imageSearchTerm: updates.imageSearchTerm !== undefined ? updates.imageSearchTerm : posts[index].imageSearchTerm,
       status: updates.published !== undefined ? (updates.published ? 'Published' : 'Draft') : posts[index].status,
       featured: updates.featured !== undefined ? updates.featured : posts[index].featured,
     };

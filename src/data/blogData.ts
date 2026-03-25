@@ -8,7 +8,9 @@ export const categories = [
     'Performance',
 ];
 
-export const posts = postsData.map(post => ({
+export const posts = postsData
+    .filter((post: any) => post.status === 'Published')
+    .map(post => ({
     id: post.id,
     title: post.title,
     description: post.description,
