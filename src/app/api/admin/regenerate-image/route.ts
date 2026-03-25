@@ -41,11 +41,11 @@ export async function POST(req: Request) {
             
             if (part?.inlineData?.data) {
                 const buffer = Buffer.from(part.inlineData.data, 'base64');
-                const fileName = `${slug}-${Date.now()}.png`;
-                const uploadsDir = path.join(process.cwd(), 'public', 'uploads', 'blog');
-                if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
-                fs.writeFileSync(path.join(uploadsDir, fileName), buffer);
-                imageUrl = `/uploads/blog/${fileName}`;
+                const fileName = `${slug}.png`;
+                const imagesDir = path.join(process.cwd(), 'public', 'images', 'blog');
+                if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir, { recursive: true });
+                fs.writeFileSync(path.join(imagesDir, fileName), buffer);
+                imageUrl = `/images/blog/${fileName}`;
                 success = true;
             }
         } catch (err: any) {
@@ -73,11 +73,11 @@ export async function POST(req: Request) {
           const data = await res.json();
           if (data.data && data.data[0] && data.data[0].b64_json) {
               const buffer = Buffer.from(data.data[0].b64_json, 'base64');
-              const fileName = `pollinations-${slug}-${Date.now()}.png`;
-              const uploadsDir = path.join(process.cwd(), 'public', 'uploads', 'blog');
-              if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
-              fs.writeFileSync(path.join(uploadsDir, fileName), buffer);
-              imageUrl = `/uploads/blog/${fileName}`;
+              const fileName = `${slug}.png`;
+              const imagesDir = path.join(process.cwd(), 'public', 'images', 'blog');
+              if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir, { recursive: true });
+              fs.writeFileSync(path.join(imagesDir, fileName), buffer);
+              imageUrl = `/images/blog/${fileName}`;
               success = true;
           }
       }

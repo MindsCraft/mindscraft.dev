@@ -124,11 +124,11 @@ export async function POST(req: Request) {
             
             if (part?.inlineData?.data) {
                 const buffer = Buffer.from(part.inlineData.data, 'base64');
-                const fileName = `${generatedPost.slug}-${Date.now()}.png`;
-                const uploadsDir = path.join(process.cwd(), 'public', 'uploads', 'blog');
-                if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
-                fs.writeFileSync(path.join(uploadsDir, fileName), buffer);
-                imageUrl = `/uploads/blog/${fileName}`;
+                const fileName = `${generatedPost.slug}.png`;
+                const imagesDir = path.join(process.cwd(), 'public', 'images', 'blog');
+                if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir, { recursive: true });
+                fs.writeFileSync(path.join(imagesDir, fileName), buffer);
+                imageUrl = `/images/blog/${fileName}`;
                 log(`✅ Success with ${modelName}: ${imageUrl}`);
                 success = true;
             } else {
@@ -164,11 +164,11 @@ export async function POST(req: Request) {
             const data = await res.json();
             if (data.data && data.data[0] && data.data[0].b64_json) {
                 const buffer = Buffer.from(data.data[0].b64_json, 'base64');
-                const fileName = `pollinations-${generatedPost.slug}-${Date.now()}.png`;
-                const uploadsDir = path.join(process.cwd(), 'public', 'uploads', 'blog');
-                if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
-                fs.writeFileSync(path.join(uploadsDir, fileName), buffer);
-                imageUrl = `/uploads/blog/${fileName}`;
+                const fileName = `${generatedPost.slug}.png`;
+                const imagesDir = path.join(process.cwd(), 'public', 'images', 'blog');
+                if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir, { recursive: true });
+                fs.writeFileSync(path.join(imagesDir, fileName), buffer);
+                imageUrl = `/images/blog/${fileName}`;
                 log(`✅ Success with Pollinations: ${imageUrl}`);
             } else {
                 log(`❌ Pollinations API failed: ${JSON.stringify(data)}`);
@@ -190,7 +190,7 @@ export async function POST(req: Request) {
     
     if (matches.length > 0 && process.env.POLLINATIONS_API_KEY) {
         log(`Found ${matches.length} inline image prompts. Generating concurrently with Pollinations Flux...`);
-        const inlineImagePromises = matches.map(async (match) => {
+        const inlineImagePromises = matches.map(async (match, index) => {
             const rawPrompt = match[1];
             const fullPrompt = rawPrompt + ", minimalist 3D render, high-tech, cinematic lighting, premium software agency style, 8k";
             try {
@@ -212,11 +212,11 @@ export async function POST(req: Request) {
                 const data = await res.json();
                 if (data.data && data.data[0] && data.data[0].b64_json) {
                     const buffer = Buffer.from(data.data[0].b64_json, 'base64');
-                    const fileName = `inline-${generatedPost.slug}-${Date.now()}-${Math.floor(Math.random()*1000)}.png`;
-                    const uploadsDir = path.join(process.cwd(), 'public', 'uploads', 'blog');
-                    if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
-                    fs.writeFileSync(path.join(uploadsDir, fileName), buffer);
-                    const inlineUrl = `/uploads/blog/${fileName}`;
+                    const fileName = `${generatedPost.slug}-inline-${index + 1}.png`;
+                    const imagesDir = path.join(process.cwd(), 'public', 'images', 'blog');
+                    if (!fs.existsSync(imagesDir)) fs.mkdirSync(imagesDir, { recursive: true });
+                    fs.writeFileSync(path.join(imagesDir, fileName), buffer);
+                    const inlineUrl = `/images/blog/${fileName}`;
                     
                     // Format into proper HTML img tag
                     const imgTag = `<img src="${inlineUrl}" alt="${rawPrompt}" style="width:100%; border-radius:12px; margin: 24px 0;" />`;

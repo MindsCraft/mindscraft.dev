@@ -77,12 +77,16 @@ export async function POST(req: Request) {
                     const FS = require('fs');
                     const PATH = require('path');
                     const buffer = Buffer.from(data.data[0].b64_json, 'base64');
-                    const fileName = `inline-edit-${Date.now()}-${Math.floor(Math.random()*1000)}.png`;
-                    const uploadsDir = PATH.join(process.cwd(), 'public', 'uploads', 'blog');
-                    if (!FS.existsSync(uploadsDir)) FS.mkdirSync(uploadsDir, { recursive: true });
-                    FS.writeFileSync(PATH.join(uploadsDir, fileName), buffer);
                     
-                    const inlineUrl = `/uploads/blog/${fileName}`;
+                    // Simple slugify for the title to use in filename
+                    const titleSlug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 30);
+                    const fileName = `${titleSlug}-inline-${Math.floor(Math.random()*10000)}.png`;
+                    
+                    const imagesDir = PATH.join(process.cwd(), 'public', 'images', 'blog');
+                    if (!FS.existsSync(imagesDir)) FS.mkdirSync(imagesDir, { recursive: true });
+                    FS.writeFileSync(PATH.join(imagesDir, fileName), buffer);
+                    
+                    const inlineUrl = `/images/blog/${fileName}`;
                     const imgTag = `<img src="${inlineUrl}" alt="${rawPrompt}" style="width:100%; border-radius:12px; margin: 24px 0;" />`;
                     return { match: match[0], imgTag };
                 }
