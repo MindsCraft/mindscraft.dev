@@ -200,12 +200,23 @@ function ImagePanel({ onInsert, onClose }: {
   )
 }
 
+// ── Security Helpers ──────────────────────────────────────────────────────────
+const getSafeUrl = (url: string): string => {
+  if (!url) return ''
+  const trimmed = url.trim()
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('/')) {
+    return trimmed
+  }
+  return ''
+}
+
 function ImagePreview({ url }: { url: string }) {
-  const [hasError, setHasError] = useState(false);
-  if (hasError || !url || (!url.startsWith('http') && !url.startsWith('/'))) return null;
+  const [hasError, setHasError] = useState(false)
+  const safeUrl = getSafeUrl(url)
+  if (hasError || !safeUrl) return null
   return (
     <img
-      src={url}
+      src={safeUrl}
       alt="preview"
       onError={() => setHasError(true)}
       style={{
@@ -216,7 +227,7 @@ function ImagePreview({ url }: { url: string }) {
         display: 'block'
       }}
     />
-  );
+  )
 }
 
 // ── Toolbar ───────────────────────────────────────────────────────────────────
@@ -227,10 +238,12 @@ const Toolbar = ({ editor }: { editor: ReturnType<typeof useEditor> | null }) =>
 
   const setLink = () => {
     const prev = editor.getAttributes('link').href
-    const url = window.prompt('Link URL', prev)
-    if (url === null) return
-    if (url === '') { editor.chain().focus().extendMarkRange('link').unsetLink().run(); return }
-    editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
+    const rawUrl = window.prompt('Link URL', prev)
+    if (rawUrl === null) return
+    if (rawUrl === '') { editor.chain().focus().extendMarkRange('link').unsetLink().run(); return }
+    const safeUrl = getSafeUrl(rawUrl)
+    if (!safeUrl) { alert('Invalid URL protocol. Use http:// or https://'); return }
+    editor.chain().focus().extendMarkRange('link').setLink({ href: safeUrl }).run()
   }
 
   const insertImage = (src: string, alt?: string) => {
