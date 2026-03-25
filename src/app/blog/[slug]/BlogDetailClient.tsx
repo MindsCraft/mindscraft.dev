@@ -85,21 +85,17 @@ export default function BlogDetailClient({ post, headings, relatedPosts, service
 
       {/* ── FLOATING TOC SIDEBAR (Desktop xl+) ── */}
       <div
-        className={`fixed left-8 top-1/2 -translate-y-1/2 z-50 hidden xl:block transition-all duration-500 ${
+        className={`fixed left-12 top-1/2 -translate-y-1/2 z-50 hidden xl:block transition-all duration-500 ${
           showToc ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10 pointer-events-none'
         }`}
       >
-        <div className="w-56 p-2">
-          <div className="flex items-center justify-between mb-4 px-3">
-            <p className="text-[9px] font-black uppercase tracking-[0.25em] text-[#101828]/30 flex items-center gap-2">
-              <FiBookOpen className="w-3 h-3" /> Contents
-            </p>
-            <span className="text-[9px] font-black text-[#101828]/20 tabular-nums lowercase italic">
-               {activeIndex + 1} of {headings.length}
-            </span>
+        <div className="w-48">
+          <div className="mb-8 px-0">
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#101828]/20 mb-1">Contents</p>
+            <div className="h-px w-8 bg-[#101828]/10" />
           </div>
 
-          <nav className="space-y-1 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+          <nav className="space-y-5">
             {headings.map(({ id, text }, i) => {
               const isActive = activeHeading === id;
               return (
@@ -110,7 +106,7 @@ export default function BlogDetailClient({ post, headings, relatedPosts, service
                     e.preventDefault();
                     const el = document.getElementById(id);
                     if (el) {
-                      const offset = 100;
+                      const offset = 120;
                       const bodyRect = document.body.getBoundingClientRect().top;
                       const elementRect = el.getBoundingClientRect().top;
                       const elementPosition = elementRect - bodyRect;
@@ -118,15 +114,18 @@ export default function BlogDetailClient({ post, headings, relatedPosts, service
                       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                     }
                   }}
-                  className={`group block py-2 px-3 border-l-2 transition-all duration-300 ${
-                    isActive
-                      ? 'border-[#101828] text-[#101828] font-black translate-x-1'
-                      : 'border-black/[0.05] text-[#101828]/40 hover:text-[#101828]/70 hover:border-black/20 hover:translate-x-0.5'
-                  }`}
+                  className="block group"
                 >
-                  <span className="text-[13px] leading-relaxed">
+                  <span className={`block text-[13px] leading-tight transition-all duration-300 ${
+                    isActive
+                      ? 'text-[#101828] font-black translate-x-1.5'
+                      : 'text-[#101828]/35 hover:text-[#101828] font-semibold'
+                  }`}>
                     {text}
                   </span>
+                  {isActive && (
+                    <div className="h-0.5 w-6 bg-[#101828] mt-1.5 rounded-full" />
+                  )}
                 </a>
               );
             })}
@@ -203,7 +202,7 @@ export default function BlogDetailClient({ post, headings, relatedPosts, service
               <div className="h-3 w-px bg-white/[0.08]" />
               <div className="flex items-center gap-1.5 text-[#F3F4C0]/70">
                 <FiClock className="w-3 h-3" />
-                <span>{post.readTime}</span>
+                <span>{Math.ceil(wordCount / 225)} min read</span>
               </div>
               <div className="h-3 w-px bg-white/[0.08]" />
               <div className="flex items-center gap-1.5">
