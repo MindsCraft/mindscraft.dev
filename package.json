@@ -43,7 +43,7 @@
     "isomorphic-dompurify": "^3.7.1",
     "lowlight": "^3.3.0",
     "lucide-react": "^0.511.0",
-    "next": "^16.0.10",
+    "next": "^16.2.3",
     "phosphor-react": "^1.4.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
