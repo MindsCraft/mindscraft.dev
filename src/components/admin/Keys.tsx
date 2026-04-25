@@ -4,7 +4,7 @@ import { Plus, Key, Copy, Trash, Eye, EyeSlash } from 'phosphor-react'
 import { useState } from 'react'
 import styles from '@/styles/admin/pages/api.module.css'
 
-export default function APIPage() {
+export function AdminKeys() {
   const [showKey, setShowKey] = useState<{ [key: number]: boolean }>({})
 
   const apiKeys = [

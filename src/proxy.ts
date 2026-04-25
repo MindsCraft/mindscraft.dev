@@ -4,7 +4,11 @@ import type { NextRequest } from 'next/server'
 // These are the paths that require authentication
 const protectedPaths = ['/admin', '/api/admin']
 
-export function proxy(request: NextRequest) {
+export const config = {
+  matcher: ['/admin/:path*', '/api/admin/:path*'],
+};
+
+export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   
   // Check if the current path requires protection
@@ -14,7 +18,8 @@ export function proxy(request: NextRequest) {
   const isAuthApi = pathname.startsWith('/api/auth')
 
   // Option 3 Implementation: Local-Only Admin block
-  // If this code is running in production, instantly return 404 for any admin route
+  // If this code is running in production, instantly return 404 for any admin route.
+  // Note: proxy.ts runs in the Node.js runtime in Next.js 16.
   if (isProtectedPath && process.env.NODE_ENV !== 'development') {
     return new NextResponse(
       JSON.stringify({ error: 'This route is disabled in production.' }),
@@ -42,7 +47,3 @@ export function proxy(request: NextRequest) {
   return NextResponse.next()
 }
 
-// Optimization: Only run proxy on /admin and /api paths to save edge execution limits
-export const config = {
-  matcher: ['/admin/:path*', '/api/:path*'],
-}

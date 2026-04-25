@@ -39,7 +39,7 @@ const navigationItems = [
     category: 'System',
     items: [
       { name: 'Settings', href: '/admin/settings', icon: Settings },
-      { name: 'API',      href: '/admin/api',      icon: Code2    },
+      { name: 'API',      href: '/admin/keys', icon: Code2    },
     ],
   },
 ]

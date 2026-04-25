@@ -400,6 +400,46 @@
     font-size: 0.95rem;
 }
 
+/* Load More */
+.blg-load-more {
+    display: flex;
+    justify-content: center;
+    margin: 4rem 0 2rem;
+}
+
+.blg-load-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background: #101828;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    font-weight: var(--fw-bold);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.blg-load-more-btn:hover {
+    background: #1a2540;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border-color: rgba(243, 244, 192, 0.3);
+}
+
+.blg-load-more-btn svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s;
+}
+
+.blg-load-more-btn:hover svg {
+    transform: translateX(4px);
+}
+
 /* ============================================
    NEWSLETTER STRIP
    ============================================ */

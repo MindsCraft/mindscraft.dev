@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import Hero from './home/Hero'
 import Clients from './home/Clients'
 import Work from './home/Work'
