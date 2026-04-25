@@ -251,6 +251,10 @@ export default function PostsPage() {
   const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null)
   const [toasts, setToasts] = useState<Toast[]>([])
   const toastId = useRef(0)
+
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage, setItemsPerPage] = useState(10)
   
   // AI Engine State
   const [showAiEngine, setShowAiEngine] = useState(false)
@@ -261,7 +265,14 @@ export default function PostsPage() {
     setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 4000)
   }
 
-  useEffect(() => { fetchPosts() }, [])
+  useEffect(() => { 
+    fetchPosts() 
+  }, [])
+
+  // Reset to page 1 on filter/search change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [search, statusFilter, categoryFilter])
 
   const fetchPosts = async () => {
     setIsLoading(true)
@@ -365,36 +376,27 @@ export default function PostsPage() {
           ))}
         </div>
 
-        <div className={styles.searchWrap} style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
           <select 
             value={categoryFilter}
             onChange={e => setCategoryFilter(e.target.value)}
-            style={{ 
-              padding: '6px 10px', 
-              borderRadius: 'var(--radius-md)', 
-              border: '1px solid var(--color-border)', 
-              backgroundColor: 'var(--color-surface)', 
-              color: 'var(--color-text-primary)',
-              fontSize: 'var(--text-sm)',
-              outline: 'none',
-              cursor: 'pointer'
-            }}
+            className={styles.filterSelect}
           >
             {availableCategories.map(c => <option key={c} value={c}>{c}</option>)}
           </select>
 
-          <div className={styles.searchWrap} style={{ margin: 0 }}>
-          <Search size={13} color="var(--color-text-tertiary)" />
-          <input
-            type="text" value={search} onChange={e => setSearch(e.target.value)}
-            placeholder="Search blog posts..."
-            className={styles.searchInput}
-          />
-          {search && (
-            <button type="button" onClick={() => setSearch('')} className={styles.iconBtn} style={{ border: 'none', background: 'none' }}>
-              <X size={13} />
-            </button>
-          )}
+          <div className={styles.searchWrap} style={{ margin: 0, height: '34px' }}>
+            <Search size={13} color="var(--color-text-tertiary)" />
+            <input
+              type="text" value={search} onChange={e => setSearch(e.target.value)}
+              placeholder="Search blog posts..."
+              className={styles.searchInput}
+            />
+            {search && (
+              <button type="button" onClick={() => setSearch('')} className={styles.iconBtn} style={{ border: 'none', background: 'none' }}>
+                <X size={13} />
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -431,7 +433,7 @@ export default function PostsPage() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((post: any) => (
+              {filtered.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((post: any) => (
                 <tr key={post.id} className={styles.tr}>
                   <td className={styles.td}>
                     {post.image ? (
@@ -477,6 +479,93 @@ export default function PostsPage() {
               ))}
             </tbody>
           </table>
+        )}
+
+        {/* ── Pagination ── */}
+        {!isLoading && filtered.length > 0 && (
+          <div className={styles.pagination}>
+            <div className={styles.paginationLeft}>
+              <div className={styles.pageInfo}>
+                Showing <strong>{(currentPage - 1) * itemsPerPage + 1}</strong> to <strong>{Math.min(currentPage * itemsPerPage, filtered.length)}</strong> of <strong>{filtered.length}</strong> posts
+              </div>
+              
+              <div className={styles.pageSizeSelector}>
+                <span className={styles.pageInfo}>Show</span>
+                <select 
+                  value={itemsPerPage} 
+                  onChange={(e) => {
+                    setItemsPerPage(Number(e.target.value))
+                    setCurrentPage(1)
+                  }}
+                  className={styles.pageSizeSelect}
+                >
+                  {[10, 25, 50, 100].map(val => (
+                    <option key={val} value={val}>{val}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className={styles.paginationActions}>
+              <button 
+                type="button"
+                className={styles.pageBtn}
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(1)}
+                title="First Page"
+              >
+                «
+              </button>
+              <button 
+                type="button"
+                className={styles.pageBtn}
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage(prev => prev - 1)}
+              >
+                Prev
+              </button>
+              
+              <div className={styles.pageNumbers}>
+                {Array.from({ length: Math.ceil(filtered.length / itemsPerPage) }, (_, i) => i + 1)
+                  .filter(p => p === 1 || p === Math.ceil(filtered.length / itemsPerPage) || Math.abs(p - currentPage) <= 1)
+                  .map((p, i, arr) => {
+                    const elements = [];
+                    if (i > 0 && p - arr[i-1] > 1) {
+                      elements.push(<span key={`sep-${p}`} className={styles.pageEllipsis}>...</span>);
+                    }
+                    elements.push(
+                      <button
+                        key={p}
+                        type="button"
+                        onClick={() => setCurrentPage(p)}
+                        className={`${styles.pageNumberBtn} ${currentPage === p ? styles.pageNumberBtnActive : ''}`}
+                      >
+                        {p}
+                      </button>
+                    );
+                    return elements;
+                  })}
+              </div>
+
+              <button 
+                type="button"
+                className={styles.pageBtn}
+                disabled={currentPage === Math.ceil(filtered.length / itemsPerPage)}
+                onClick={() => setCurrentPage(prev => prev + 1)}
+              >
+                Next
+              </button>
+              <button 
+                type="button"
+                className={styles.pageBtn}
+                disabled={currentPage === Math.ceil(filtered.length / itemsPerPage)}
+                onClick={() => setCurrentPage(Math.ceil(filtered.length / itemsPerPage))}
+                title="Last Page"
+              >
+                »
+              </button>
+            </div>
+          </div>
         )}
       </div>
 

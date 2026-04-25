@@ -49,6 +49,7 @@ function formatDate(dateStr: string) {
 
 export default function BlogList({ posts, categories }: BlogListProps) {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [displayLimit, setDisplayLimit] = useState(15);
 
   const filtered =
     activeCategory === 'All'
@@ -153,11 +154,26 @@ export default function BlogList({ posts, categories }: BlogListProps) {
 
           {/* ── Grid of remaining posts ── */}
           {rest.length > 0 && (
-            <div className="blg-grid">
-              {rest.map((post, i) => (
-                <BlogCard key={post.id} post={post} index={i} />
-              ))}
-            </div>
+            <>
+              <div className="blg-grid">
+                {rest.slice(0, displayLimit - 1).map((post, i) => (
+                  <BlogCard key={post.id} post={post} index={i} />
+                ))}
+              </div>
+
+              {/* ── Load More Button ── */}
+              {filtered.length > displayLimit && (
+                <div className="blg-load-more">
+                  <button 
+                    onClick={() => setDisplayLimit(prev => prev + 12)}
+                    className="blg-load-more-btn"
+                  >
+                    Load more articles
+                    <FiArrowRight />
+                  </button>
+                </div>
+              )}
+            </>
           )}
 
           {filtered.length === 0 && (
