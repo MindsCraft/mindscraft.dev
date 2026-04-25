@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server'
 // These are the paths that require authentication
 const protectedPaths = ['/admin', '/api/admin']
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   
   // Check if the current path requires protection
