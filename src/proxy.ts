@@ -4,7 +4,11 @@ import type { NextRequest } from 'next/server'
 // These are the paths that require authentication
 const protectedPaths = ['/admin', '/api/admin']
 
-export function proxy(request: NextRequest) {
+export const config = {
+  matcher: ['/admin/:path*', '/api/admin/:path*'],
+};
+
+export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
   
   // Check if the current path requires protection
@@ -43,7 +47,3 @@ export function proxy(request: NextRequest) {
   return NextResponse.next()
 }
 
-// Optimization: Only run proxy on /admin and /api paths to maintain performance
-export const config = {
-  matcher: ['/admin/:path*', '/api/:path*'],
-}
