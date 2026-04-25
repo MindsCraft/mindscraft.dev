@@ -16,7 +16,7 @@ export const posts = postsData
     description: post.description || post.excerpt || '',
     category: post.category,
     date: post.date,
-    readTime: post.readTime,
+    readTime: post.readTime || '5 min read',
     slug: post.slug,
     image: post.image || '',
     imageAlt: post.imageAlt || post.title || '',
