@@ -11,7 +11,7 @@ export default function WorkHero() {
     const showcaseProjects = workItems.slice(0, 3);
 
     return (
-        <section className="relative min-h-[90vh] flex items-center overflow-hidden" style={{ backgroundColor: 'rgb(var(--primary-900))' }}>
+        <section className="relative pt-32 pb-28 px-6 overflow-hidden" style={{ backgroundColor: 'rgb(var(--primary-900))' }}>
             {/* 2026 Aurora Mesh Background */}
             <div className="aurora-bg">
                 <motion.div
@@ -34,7 +34,7 @@ export default function WorkHero() {
                 />
             </div>
 
-            <div className="container relative z-10 mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center pt-32 pb-24">
+            <div className="container relative z-10 mx-auto max-w-6xl grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
                 {/* Left Side: Dramatic Typography */}
                 <motion.div
@@ -51,9 +51,9 @@ export default function WorkHero() {
                         </span>
                     </div>
 
-                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+                    <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-4">
                         Transforming Ideas into <br />
-                        <span className="gradient-text-mask mt-2">Digital Excellence</span>
+                        <span className="gradient-text-mask">Digital Excellence</span>
                     </h1>
 
                     <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-light max-w-xl">
@@ -83,17 +83,13 @@ export default function WorkHero() {
                     initial={{ opacity: 0, x: 60 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="hidden lg:flex relative h-[650px] w-full mt-10 lg:mt-0 items-center justify-center"
+                    className="hidden lg:flex relative h-[500px] w-full items-center justify-center"
                 >
                     <div className="relative w-full max-w-[500px] aspect-square bento-showcase">
 
                         {/* Central Hub */}
                         <motion.div
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center z-20 shadow-[0_0_40px_rgba(243,244,192,0.1)]"
-                            animate={{
-                                boxShadow: ['0 0 20px rgba(243,244,192,0.05)', '0 0 60px rgba(243,244,192,0.15)', '0 0 20px rgba(243,244,192,0.05)']
-                            }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white/5 backdrop-blur-md flex items-center justify-center z-20"
                         >
                             <div className="text-center">
                                 <div className="text-4xl font-bold text-white mb-1">98<span className="text-accent-brand">%</span></div>
@@ -102,12 +98,12 @@ export default function WorkHero() {
 
                             {/* Rotating Ring */}
                             <motion.div
-                                className="absolute inset-0 rounded-full border border-r-transparent border-b-transparent border-t-white/30 border-l-white/10"
+                                className="absolute inset-0 border-r-transparent border-b-transparent border-t-white/30 border-l-white/10"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.div
-                                className="absolute inset-[-10px] rounded-full border border-l-transparent border-t-transparent border-b-accent-brand/40 border-r-accent-brand/10"
+                                className="absolute inset-[-10px] border-l-transparent border-t-transparent border-b-accent-brand/40 border-r-accent-brand/10"
                                 animate={{ rotate: -360 }}
                                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                             />
@@ -120,12 +116,12 @@ export default function WorkHero() {
                             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0 }}
                         >
                             <div className="flex items-center gap-3 mb-2">
-                                <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-accent-brand text-xs">01</span>
+                                <span className="w-8 h-8 bg-white/10 flex items-center justify-center text-accent-brand text-xs">01</span>
                                 <div className="text-xs font-bold text-white tracking-widest uppercase">Speed</div>
                             </div>
-                            <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                            <div className="w-full bg-white/10 h-1.5 overflow-hidden">
                                 <motion.div
-                                    className="bg-accent-brand h-full rounded-full"
+                                    className="bg-accent-brand h-full"
                                     initial={{ width: 0 }}
                                     animate={{ width: '85%' }}
                                     transition={{ duration: 1.5, delay: 1 }}
@@ -166,8 +162,8 @@ export default function WorkHero() {
                             animate={{ y: [0, 10, 0] }}
                             transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                         >
-                            <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center shrink-0">
-                                <div className="w-2 h-2 rounded-full bg-accent-brand animate-pulse" />
+                            <div className="w-10 h-10 flex items-center justify-center shrink-0">
+                                <div className="w-2 h-2 bg-accent-brand animate-pulse" />
                             </div>
                             <div>
                                 <div className="text-xs font-bold text-white mb-0.5">Global Reach</div>

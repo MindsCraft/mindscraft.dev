@@ -46,11 +46,8 @@
     letter-spacing: 0.15em;
     color: white;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border-radius: 9999px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
     text-transform: uppercase;
 }
 
@@ -72,12 +69,9 @@
 
 .glass-panel {
     background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-radius: 28px;
     padding: 8px;
-    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
 }
 
 .bento-card {
