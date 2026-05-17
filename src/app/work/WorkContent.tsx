@@ -123,8 +123,8 @@ export default function WorkContent() {
                 desc: "No black-box development. We work in strict weekly sprints with transparent tracking, so you always know what we're building."
               }
             ].map((feature, i) => (
-              <div key={i} className="p-8 rounded-[32px] bg-[#f0f0ee] border border-black/[0.04] transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                <div className="w-12 h-12 rounded-2xl bg-[#101828] text-[#F3F4C0] flex items-center justify-center mb-6 shadow-md">
+              <div key={i} className="p-8 bg-[#f0f0ee] transition-all duration-300">
+                <div className="w-12 h-12 bg-[#101828] text-[#F3F4C0] flex items-center justify-center mb-6">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-bold text-[#101828] mb-4">{feature.title}</h3>
@@ -200,24 +200,24 @@ interface ProjectCardProps {
 
 function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Link href={`/work/${project.id}`} className="group flex flex-col bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-black/[0.04]">
+    <Link href={`/work/${project.id}`} className="group flex flex-col bg-white transition-all duration-300">
       {/* Image Section */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#101828] border-b border-black/[0.04]">
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#101828]">
         <Image
           src={project.images?.[0] || project.image}
           alt={project.title}
           fill
-          className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+          className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-        <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-300" />
+        <div className="absolute inset-0 bg-black/5" />
       </div>
 
       {/* Content Section */}
       <div className="flex flex-col flex-1 p-8">
         {/* Category */}
         <div className="mb-4">
-          <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#101828] bg-[#F3F4C0] rounded-full">
+          <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#101828] bg-[#F3F4C0]">
             {project.category}
           </span>
         </div>
@@ -235,7 +235,7 @@ function ProjectCard({ project }: ProjectCardProps) {
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-8">
           {project.technologies?.slice(0, 3).map((tech) => (
-            <span key={tech} className="px-2.5 py-1 text-[11px] font-bold text-[#101828]/50 bg-black/[0.03] rounded-md uppercase tracking-wide">
+            <span key={tech} className="px-2.5 py-1 text-[11px] font-bold text-[#101828]/50 bg-black/[0.03] uppercase tracking-wide">
               {tech}
             </span>
           ))}
@@ -247,11 +247,9 @@ function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Link Button */}
-        <div className="flex items-center gap-2 mt-auto text-[#101828] font-bold text-sm group/btn">
-          <div className="w-8 h-8 rounded-full bg-[#101828] text-white flex items-center justify-center transition-transform duration-300 group-hover:-rotate-45">
-            <FiArrowRight className="w-4 h-4" />
-          </div>
-          View Project Details
+        <div className="flex items-center gap-1 mt-auto text-[#101828] font-bold text-xs uppercase tracking-wider group-hover:opacity-70 transition-opacity">
+          Details
+          <FiArrowRight className="w-3.5 h-3.5" />
         </div>
       </div>
     </Link>

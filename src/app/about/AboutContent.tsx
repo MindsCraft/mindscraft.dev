@@ -51,6 +51,14 @@ const team = [
     exp: '12+ yrs',
     skills: ['Python', 'AI/ML', 'Node.js', 'PostgreSQL', 'AWS'],
   },
+  {
+    name: 'Iftekhar Prantic',
+    photo: '/images/team/Iftekhar.jpeg',
+    role: 'Bringing 10+ years of experience in design, I create intuitive, high-impact digital products that blend usability, strategy, and emerging AI technologies.',
+    tag: 'Senior Designer',
+    exp: '10+ yrs',
+    skills: ['UI/UX Design', 'Experience Design', 'Product Strategy', 'AI Technologies', 'Usability'],
+  },
 ];
 
 const values = [
@@ -154,7 +162,7 @@ export default function AboutContent() {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-400">
                   <FiUsers className="w-4 h-4" style={{ color: 'var(--btn-cream)' }} />
-                  <span>Team of 4 senior specialists</span>
+                  <span>Team of 5 senior specialists</span>
                 </div>
               </div>
             </AnimatedDiv>
@@ -289,7 +297,7 @@ export default function AboutContent() {
         <div className="container mx-auto max-w-6xl px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { num: '40+', label: 'Years combined experience' },
+              { num: '50+', label: 'Years combined experience' },
               { num: '50+', label: 'Projects delivered' },
               { num: '14+', label: 'Countries served' },
               { num: '100%', label: 'Client code ownership' },
