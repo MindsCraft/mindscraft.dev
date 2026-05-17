@@ -120,6 +120,7 @@ export default async function RootLayout({
     <html suppressHydrationWarning
       lang="en"
       className="h-full scroll-smooth"
+      data-scroll-behavior="smooth"
     >
       <body className="antialiased h-full bg-background text-foreground selection:bg-primary-100 selection:text-primary-900">
         <JsonLd />
