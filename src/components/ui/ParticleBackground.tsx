@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import '@/styles/components/backgrounds.css';
 
 interface Particle {
   id: number;
@@ -63,11 +64,11 @@ export default function ParticleBackground({
   if (!mounted) return null;
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div className={`bgx-shell ${className}`}>
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
-          className="absolute rounded-full"
+          className="bgx-anchor-blob"
           style={{
             width: `${particle.size}px`,
             height: `${particle.size}px`,

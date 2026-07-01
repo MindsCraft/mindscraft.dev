@@ -65,22 +65,22 @@ const values = [
   {
     title: 'Craft over quantity',
     description: 'We take on projects we can do exceptionally well. Every client gets the team\'s full attention — not a rushed handover to a junior.',
-    icon: <FiCode className="w-5 h-5" />,
+    icon: <FiCode />,
   },
   {
     title: 'Design that works',
     description: 'Good UI isn\'t decoration — it\'s function. Every design decision is tied to how real users interact with your product.',
-    icon: <FiLayout className="w-5 h-5" />,
+    icon: <FiLayout />,
   },
   {
     title: 'AI where it counts',
     description: 'We integrate AI tools where they genuinely improve your product — not as a buzzword, but as a practical force multiplier.',
-    icon: <FiCpu className="w-5 h-5" />,
+    icon: <FiCpu />,
   },
   {
     title: 'No black boxes',
     description: 'You\'ll always know what\'s being built and why. Clear communication, documented code, and full ownership handed to you on delivery.',
-    icon: <FiDatabase className="w-5 h-5" />,
+    icon: <FiDatabase />,
   },
 ];
 
@@ -112,56 +112,51 @@ const fadeIn: Variants = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
 
 export default function AboutContent() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="about-page">
 
       {/* ── HERO — Company identity ──────────────────────────────────────────── */}
       <section
-        className="text-white pt-32 pb-28 px-4 overflow-hidden relative"
+        className="about-hero"
         style={{ backgroundColor: 'var(--btn-navy-primary)' }}
       >
-        {/* Subtle grain/texture overlay */}
-        <div className="absolute inset-0 opacity-5 pointer-events-none"
-          style={{ backgroundImage: 'radial-gradient(circle at 80% 20%, #F3F4C0 0%, transparent 60%)' }} />
+        <div className="about-hero-overlay" />
 
-        <div className="container mx-auto max-w-6xl relative">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="about-container">
+          <div className="about-hero-grid">
 
             {/* Left — company story */}
             <AnimatedDiv
               initial="hidden" whileInView="visible" viewport={{ once: true }}
               variants={fadeInLeft} transition={{ duration: 0.7 }}
             >
-              <span
-                className="inline-block text-xs font-bold uppercase tracking-widest mb-6 px-3 py-1 rounded-full border"
-                style={{ color: 'var(--btn-cream)', borderColor: 'rgba(243,244,192,0.3)' }}
-              >
+              <span className="about-hero-eyebrow">
                 About MindsCraft
               </span>
 
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
+              <h1 className="about-hero-title">
                 A team that builds{' '}
-                <span style={{ color: 'var(--btn-cream)' }}>what matters.</span>
+                <span className="about-hero-title-accent">what matters.</span>
               </h1>
 
-              <p className="text-lg text-gray-300 leading-relaxed mb-5 max-w-xl">
+              <p className="about-hero-text-primary">
                 MindsCraft is a digital product studio based in Dhaka, Bangladesh. We partner with founders, product teams, and businesses worldwide to design and build web products that are fast, purposeful, and built to last.
               </p>
 
-              <p className="text-base text-gray-400 leading-relaxed max-w-xl">
+              <p className="about-hero-text-secondary">
                 We started because we saw a gap: too many agencies hand great clients to junior developers and produce average work. We do the opposite — every project is led by a senior specialist with 10+ years of real-world experience.
               </p>
 
-              <div className="flex flex-wrap items-center gap-5 mt-10">
-                <div className="flex items-center gap-2 text-sm text-gray-400">
-                  <FiMapPin className="w-4 h-4" style={{ color: 'var(--btn-cream)' }} />
+              <div className="about-hero-meta">
+                <div className="about-meta-chip">
+                  <FiMapPin />
                   <span>Dhaka, Bangladesh</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-400">
-                  <FiGlobe className="w-4 h-4" style={{ color: 'var(--btn-cream)' }} />
+                <div className="about-meta-chip">
+                  <FiGlobe />
                   <span>Clients across 14+ countries</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-400">
-                  <FiUsers className="w-4 h-4" style={{ color: 'var(--btn-cream)' }} />
+                <div className="about-meta-chip">
+                  <FiUsers />
                   <span>Team of 5 senior specialists</span>
                 </div>
               </div>
@@ -171,13 +166,12 @@ export default function AboutContent() {
             <AnimatedDiv
               initial="hidden" whileInView="visible" viewport={{ once: true }}
               variants={fadeInRight} transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex items-center justify-center lg:justify-end w-full"
             >
-              <div className="relative w-full max-w-[540px]">
+              <div className="about-map-wrap">
 
                 <svg
                   viewBox="0 0 1000 500"
-                  className="w-full"
+                  className="about-map-svg"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <defs>
@@ -262,22 +256,13 @@ export default function AboutContent() {
                 </svg>
 
                 {/* ── Floating stat chips ── */}
-                <div
-                  className="absolute top-3 left-3 text-xs font-bold px-3 py-2 rounded-lg"
-                  style={{ backgroundColor: 'rgba(243,244,192,0.12)', border: '1px solid rgba(243,244,192,0.22)', color: '#F3F4C0', backdropFilter: 'blur(6px)' }}
-                >
+                <div className="about-map-stat-chip">
                   🌍 14+ Countries
                 </div>
-                <div
-                  className="absolute top-3 right-3 text-xs font-bold px-3 py-2 rounded-lg"
-                  style={{ backgroundColor: 'rgba(243,244,192,0.12)', border: '1px solid rgba(243,244,192,0.22)', color: '#F3F4C0', backdropFilter: 'blur(6px)' }}
-                >
+                <div className="about-map-stat-chip-right">
                   🚀 50+ Projects
                 </div>
-                <div
-                  className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs font-bold px-3 py-2 rounded-lg whitespace-nowrap"
-                  style={{ backgroundColor: 'rgba(243,244,192,0.12)', border: '1px solid rgba(243,244,192,0.22)', color: '#F3F4C0', backdropFilter: 'blur(6px)' }}
-                >
+                <div className="about-map-stat-chip-bottom">
                   📍 Based in Dhaka · Serving worldwide
                 </div>
 
@@ -292,10 +277,10 @@ export default function AboutContent() {
       <AnimatedSection
         initial="hidden" whileInView="visible" viewport={{ once: true }}
         variants={fadeIn}
-        className="py-14 border-b border-gray-100 bg-white"
+        className="about-stats-section"
       >
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="about-container">
+          <div className="about-stats-grid">
             {[
               { num: '50+', label: 'Years combined experience' },
               { num: '50+', label: 'Projects delivered' },
@@ -307,10 +292,10 @@ export default function AboutContent() {
                 initial="hidden" whileInView="visible" viewport={{ once: true }}
                 variants={fadeInUp} transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <p className="text-4xl font-bold mb-1" style={{ color: 'var(--btn-navy-primary)' }}>
+                <p className="about-stat-num">
                   {stat.num}
                 </p>
-                <p className="text-sm text-gray-500">{stat.label}</p>
+                <p className="about-stat-label">{stat.label}</p>
               </AnimatedDiv>
             ))}
           </div>
@@ -321,79 +306,69 @@ export default function AboutContent() {
       <AnimatedSection
         initial="hidden" whileInView="visible" viewport={{ once: true }}
         variants={fadeIn}
-        className="py-24 bg-white"
+        className="about-team-section"
       >
-        <div className="container mx-auto max-w-6xl px-4">
+        <div className="about-container">
           <AnimatedDiv
             initial="hidden" whileInView="visible" viewport={{ once: true }}
             variants={fadeInUp} transition={{ duration: 0.6 }}
-            className="text-center mb-14"
+            className="about-section-heading"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--btn-navy-primary)' }}>
-              Meet the team
-            </h2>
-            <p className="text-gray-500 max-w-xl mx-auto">
-              Every project is led by a senior specialist — no hand-offs to juniors, no surprises.
-            </p>
+            <h2>Meet the team</h2>
+            <p>Every project is led by a senior specialist — no hand-offs to juniors, no surprises.</p>
           </AnimatedDiv>
 
-          <div className="flex flex-col">
+          <div className="about-team-list">
             {team.map((member, i) => (
               <AnimatedDiv
                 key={member.name}
                 initial="hidden" whileInView="visible" viewport={{ once: true }}
                 variants={fadeInUp} transition={{ duration: 0.55, delay: i * 0.1 }}
-                className={`flex flex-col sm:flex-row gap-10 py-12 ${i < team.length - 1 ? 'border-b border-gray-200' : ''}`}
+                className={`about-team-member${i < team.length - 1 ? ' about-team-member--bordered' : ''}`}
               >
                 {/* Left — square photo, no border radius */}
                 <div
-                  className="relative sm:w-[380px] w-full shrink-0 overflow-hidden bg-gray-100"
+                  className="about-team-photo-wrap"
                   style={{ aspectRatio: '4/5' }}
                 >
                   <Image
                     src={member.photo}
                     alt={member.name}
                     fill
-                    className="object-cover object-top"
                     sizes="(max-width: 640px) 100vw, 256px"
+                    style={{ objectFit: 'cover', objectPosition: 'top' }}
                   />
                 </div>
 
                 {/* Right — info */}
-                <div className="flex flex-col justify-center">
+                <div className="about-team-info">
                   {/* Eyebrow */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-xs font-bold tracking-widest uppercase text-gray-400">
+                  <div className="about-team-eyebrow-row">
+                    <span className="about-team-eyebrow">
                       {member.exp}
                     </span>
-                    <span className="w-px h-3 bg-gray-300" />
-                    <span
-                      className="text-xs font-bold tracking-widest uppercase"
-                      style={{ color: 'var(--btn-navy-primary)' }}
-                    >
+                    <span className="about-team-divider" />
+                    <span className="about-team-tag">
                       {member.tag}
                     </span>
                   </div>
 
                   {/* Name */}
-                  <h3
-                    className="text-2xl font-bold leading-tight mb-2"
-                    style={{ color: 'var(--btn-navy-primary)' }}
-                  >
+                  <h3 className="about-team-name">
                     {member.name}
                   </h3>
 
                   {/* Role */}
-                  <p className="text-sm text-gray-500 mb-6 leading-relaxed">
+                  <p className="about-team-role">
                     {member.role}
                   </p>
 
                   {/* Skills */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="about-team-skills">
                     {member.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="text-xs font-medium px-3 py-1 border border-gray-300 text-gray-600 tracking-wide"
+                        className="about-team-skill"
                       >
                         {skill}
                       </span>
@@ -408,19 +383,16 @@ export default function AboutContent() {
           <AnimatedDiv
             initial="hidden" whileInView="visible" viewport={{ once: true }}
             variants={fadeInUp} transition={{ duration: 0.5, delay: 0.45 }}
-            className="mt-8 rounded-2xl border border-dashed border-gray-200 p-6 flex items-start gap-5 bg-white"
+            className="about-network-note"
           >
-            <div
-              className="w-11 h-11 rounded-xl shrink-0 flex items-center justify-center text-lg font-bold mt-0.5"
-              style={{ backgroundColor: 'var(--btn-cream)', color: 'var(--btn-navy-primary)' }}
-            >
+            <div className="about-network-icon">
               +
             </div>
             <div>
-              <p className="font-semibold text-sm mb-1" style={{ color: 'var(--btn-navy-primary)' }}>
+              <p className="about-network-title">
                 Extended network of specialists
               </p>
-              <p className="text-sm text-gray-500 leading-relaxed">
+              <p className="about-network-text">
                 For larger projects, we bring in trusted mid-level UX designers, frontend developers, and QA specialists — scaling the right talent to your project&apos;s scope without compromising on quality.
               </p>
             </div>
@@ -432,20 +404,19 @@ export default function AboutContent() {
       <AnimatedSection
         initial="hidden" whileInView="visible" viewport={{ once: true }}
         variants={fadeIn}
-        className="py-24"
+        className="about-how-section"
       >
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="about-container">
+          <div className="about-how-grid">
 
             {/* Left — heading */}
             <AnimatedDiv
               initial="hidden" whileInView="visible" viewport={{ once: true }}
               variants={fadeInLeft} transition={{ duration: 0.6 }}
+              className="about-how-heading"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-5" style={{ color: 'var(--btn-navy-primary)' }}>
-                How we work
-              </h2>
-              <p className="text-gray-500 leading-relaxed mb-8">
+              <h2>How we work</h2>
+              <p>
                 We&apos;ve worked inside agencies, startups, and product companies. We know what makes projects succeed — and what kills them. These are the principles we bring to every engagement.
               </p>
               <Button variant="primary" size="md" href="/contact" icon={<FiArrowRight />}>
@@ -454,24 +425,21 @@ export default function AboutContent() {
             </AnimatedDiv>
 
             {/* Right — values grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="about-how-values">
               {values.map((value, i) => (
                 <AnimatedDiv
                   key={i}
                   initial="hidden" whileInView="visible" viewport={{ once: true }}
                   variants={fadeInUp} transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-all duration-200"
+                  className="about-value-card"
                 >
-                  <div
-                    className="w-9 h-9 rounded-xl flex items-center justify-center mb-4"
-                    style={{ backgroundColor: 'var(--btn-cream)', color: 'var(--btn-navy-primary)' }}
-                  >
+                  <div className="about-value-icon">
                     {value.icon}
                   </div>
-                  <h3 className="text-sm font-bold mb-2" style={{ color: 'var(--btn-navy-primary)' }}>
+                  <h3 className="about-value-title">
                     {value.title}
                   </h3>
-                  <p className="text-xs text-gray-500 leading-relaxed">{value.description}</p>
+                  <p className="about-value-text">{value.description}</p>
                 </AnimatedDiv>
               ))}
             </div>
@@ -484,23 +452,19 @@ export default function AboutContent() {
       <AnimatedSection
         initial="hidden" whileInView="visible" viewport={{ once: true }}
         variants={fadeIn}
-        className="py-24 bg-gray-50"
+        className="about-tech-section"
       >
-        <div className="container mx-auto max-w-6xl px-4">
+        <div className="about-container">
           <AnimatedDiv
             initial="hidden" whileInView="visible" viewport={{ once: true }}
             variants={fadeInUp} transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="about-tech-heading"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--btn-navy-primary)' }}>
-              Our tech stack
-            </h2>
-            <p className="text-gray-500 max-w-xl mx-auto">
-              Chosen for reliability and performance — the tools our team uses to ship great products.
-            </p>
+            <h2>Our tech stack</h2>
+            <p>Chosen for reliability and performance — the tools our team uses to ship great products.</p>
           </AnimatedDiv>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="about-tech-grid">
             {skills.map((skill, i) => {
               const Icon = skill.icon;
               return (
@@ -508,10 +472,10 @@ export default function AboutContent() {
                   key={skill.name}
                   initial="hidden" whileInView="visible" viewport={{ once: true }}
                   variants={fadeInUp} transition={{ duration: 0.4, delay: i * 0.06 }}
-                  className="bg-white rounded-2xl p-5 flex items-center gap-4 border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                  className="about-tech-card"
                 >
-                  <Icon className="w-7 h-7 shrink-0" style={{ color: skill.color }} />
-                  <span className="font-semibold text-sm" style={{ color: 'var(--btn-navy-primary)' }}>
+                  <Icon style={{ color: skill.color }} />
+                  <span className="about-tech-name">
                     {skill.name}
                   </span>
                 </AnimatedDiv>
@@ -520,18 +484,18 @@ export default function AboutContent() {
             <AnimatedDiv
               initial="hidden" whileInView="visible" viewport={{ once: true }}
               variants={fadeInUp} transition={{ duration: 0.4, delay: skills.length * 0.06 }}
-              className="bg-white rounded-2xl p-5 flex items-center gap-4 border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+              className="about-tech-card about-tech-card--ai"
             >
-              <FiCpu className="w-7 h-7 shrink-0 text-purple-500" />
-              <span className="font-semibold text-sm" style={{ color: 'var(--btn-navy-primary)' }}>AI Integration</span>
+              <FiCpu />
+              <span className="about-tech-name">AI Integration</span>
             </AnimatedDiv>
             <AnimatedDiv
               initial="hidden" whileInView="visible" viewport={{ once: true }}
               variants={fadeInUp} transition={{ duration: 0.4, delay: (skills.length + 1) * 0.06 }}
-              className="bg-white rounded-2xl p-5 flex items-center gap-4 border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+              className="about-tech-card about-tech-card--api"
             >
-              <FiGlobe className="w-7 h-7 shrink-0 text-indigo-500" />
-              <span className="font-semibold text-sm" style={{ color: 'var(--btn-navy-primary)' }}>REST APIs</span>
+              <FiGlobe />
+              <span className="about-tech-name">REST APIs</span>
             </AnimatedDiv>
           </div>
         </div>
@@ -541,21 +505,18 @@ export default function AboutContent() {
       <AnimatedSection
         initial="hidden" whileInView="visible" viewport={{ once: true }}
         variants={fadeIn}
-        className="py-24 text-white"
-        style={{ backgroundColor: 'var(--btn-navy-primary)' }}
+        className="about-cta-section"
       >
-        <div className="container mx-auto max-w-4xl px-4 text-center">
+        <div className="about-container-narrow">
           <AnimatedDiv
             initial="hidden" whileInView="visible" viewport={{ once: true }}
             variants={fadeInUp} transition={{ duration: 0.7 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-5">
-              Ready to work with us?
-            </h2>
-            <p className="text-xl text-gray-400 mb-10 max-w-xl mx-auto leading-relaxed">
+            <h2>Ready to work with us?</h2>
+            <p>
               We take on a limited number of new projects each quarter. If you have something in mind, let&apos;s talk — no commitment required.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="about-cta-actions">
               <Button variant="accent" size="lg" href="/contact" icon={<FiArrowRight />}>
                 Start a project
               </Button>

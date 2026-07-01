@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { BellIconOutline, UserCircleIconOutline, Cog6ToothIconOutline } from '@/components/ui/icons';
+import '@/styles/components/admin-surfaces.css';
 import { usePathname } from 'next/navigation';
 
 export default function AdminHeader() {
@@ -101,7 +102,7 @@ export default function AdminHeader() {
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
             >
               <UserCircleIconOutline style={{ width: '28px', height: '28px', color: 'var(--color-text-tertiary)' }} aria-hidden="true" />
-              <span className="body-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>Admin User</span>
+              <span className="body-sm admin-font-medium" style={{ color: 'var(--color-text-primary)' }}>Admin User</span>
             </button>
             {isProfileMenuOpen && (
               <div

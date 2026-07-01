@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 interface LogoProps {
   variant?: 'full' | 'icon' | 'text' | 'horizontal';
@@ -9,66 +10,57 @@ interface LogoProps {
   height?: number;
 }
 
+const SIZE_ICON: Record<NonNullable<LogoProps['size']>, string> = {
+  sm: 'logo-icon-sm',
+  md: 'logo-icon-md',
+  lg: 'logo-icon-lg',
+  xl: 'logo-icon-xl',
+};
+
+const SIZE_TEXT: Record<NonNullable<LogoProps['size']>, string> = {
+  sm: 'logo-text-sm',
+  md: 'logo-text-md',
+  lg: 'logo-text-lg',
+  xl: 'logo-text-xl',
+};
+
 const Logo: React.FC<LogoProps> = ({
   variant = 'full',
   theme = 'dark',
   size = 'lg',
-  className = '',
+  className,
   width,
-  height
+  height,
 }) => {
-  const sizeClasses = {
-    sm: 'h-8',
-    md: 'h-12',
-    lg: 'h-16',
-    xl: 'h-24'
-  };
+  const logoSrc = '/logo/logo-black.svg';
+  const iconClass = cn(
+    'logo-icon',
+    !width && !height ? SIZE_ICON[size] : undefined
+  );
+  const textClass = cn('logo-text', SIZE_TEXT[size]);
 
-  const textSizeClasses = {
-    sm: 'text-xl',
-    md: 'text-2xl',
-    lg: 'text-3xl',
-    xl: 'text-4xl'
-  };
-
-  const logoSrc = '/logo/new-logo.svg';
-
-  // If only icon variant is requested
   if (variant === 'icon') {
-    const baseClasses = 'object-contain';
-    const finalClasses = `${baseClasses} ${!width && !height ? sizeClasses[size] : ''} ${className}`;
-
     return (
       <img
         src={logoSrc}
         alt="Mindscraft Icon"
-        className={finalClasses}
+        className={cn(iconClass, theme === 'light' && 'logo-icon-light', className)}
         width={width}
         height={height}
       />
     );
   }
 
-  // Default: icon + text
-  const iconClasses = `object-contain ${!width && !height ? sizeClasses[size] : ''}`;
-
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div className={cn('logo-shell', className)}>
       <img
         src={logoSrc}
         alt="Mindscraft"
-        className={iconClasses}
+        className={cn(iconClass, theme === 'light' && 'logo-icon-light')}
         width={width}
         height={height}
       />
-      <span
-        className="text-gray-800"
-        style={{
-          fontSize: '24px',
-          letterSpacing: '-0.02em',
-          fontWeight: 500
-        }}
-      >
+      <span className={cn(textClass, theme === 'light' && 'logo-text-light')}>
         MindsCraft.
       </span>
     </div>

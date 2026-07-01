@@ -27,43 +27,31 @@ export const metadata: Metadata = {
 
 export default function CaseStudiesPage() {
     return (
-        <div className="min-h-screen bg-white">
+        <div className="case-studies-page">
             {/* Header */}
-            <div className="bg-gray-900 text-white py-20 px-4">
-                <div className="max-w-4xl mx-auto text-center">
-                    <p className="text-sm font-semibold text-blue-400 uppercase tracking-widest mb-4">Case Studies</p>
-                    <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                        Behind the work
-                    </h1>
-                    <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <div className="case-studies-hero">
+                <div className="case-studies-hero-inner">
+                    <p className="case-studies-eyebrow">Case Studies</p>
+                    <h1 className="case-studies-title">Behind the work</h1>
+                    <p className="case-studies-subtitle">
                         Not just what we built — but why, how, and what difference it made. Detailed breakdowns of real projects, coming soon.
                     </p>
                 </div>
             </div>
 
             {/* Coming Soon State */}
-            <div className="max-w-3xl mx-auto px-4 py-24 text-center">
-                <div className="bg-gray-50 border border-gray-100 rounded-3xl p-14">
-                    <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 text-3xl">
-                        📋
-                    </div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                        Case studies are on their way
-                    </h2>
-                    <p className="text-gray-500 leading-relaxed max-w-lg mx-auto mb-8">
+            <div className="case-studies-empty">
+                <div className="case-studies-card">
+                    <div className="case-studies-emoji">📋</div>
+                    <h2>Case studies are on their way</h2>
+                    <p>
                         We&apos;re documenting the real stories behind our recent projects — the problems clients faced, the solutions we built, and the measurable impact. Check back soon, or browse our portfolio in the meantime.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link
-                            href="/work"
-                            className="inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-7 py-3.5 rounded-2xl font-semibold hover:bg-blue-600 transition-colors duration-300"
-                        >
-                            View our portfolio <FiArrowRight className="w-4 h-4" />
+                    <div className="case-studies-actions">
+                        <Link href="/work" className="cs-cta-primary">
+                            View our portfolio <FiArrowRight />
                         </Link>
-                        <Link
-                            href="/contact"
-                            className="inline-flex items-center justify-center gap-2 border border-gray-200 text-gray-700 px-7 py-3.5 rounded-2xl font-semibold hover:border-gray-900 hover:text-gray-900 transition-colors duration-300"
-                        >
+                        <Link href="/contact" className="cs-cta-secondary">
                             Start a project
                         </Link>
                     </div>

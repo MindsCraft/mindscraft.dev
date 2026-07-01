@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import '@/styles/components/admin-surfaces.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -62,7 +63,7 @@ const MobileHeader = () => {
     <>
       {/* Mobile Header Bar */}
       <div
-        className="admin-mobile-header lg:hidden"
+        className="admin-mobile-header am-root"
         style={{
           position: 'sticky',
           top: 0,
@@ -172,7 +173,7 @@ const MobileHeader = () => {
 
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 50 }} className="lg:hidden">
+        <div style={{ position: 'fixed', inset: 0, zIndex: 50 }} className="am-mobile-only">
           {/* Backdrop */}
           <div
             style={{
@@ -201,7 +202,7 @@ const MobileHeader = () => {
             <div style={{ display: 'flex', flexGrow: 1, flexDirection: 'column', gap: 'var(--space-5)', padding: 'var(--space-6)', paddingBottom: 'var(--space-4)' }}>
               {/* Logo Header */}
               <div style={{ display: 'flex', height: '64px', flexShrink: 0, alignItems: 'center', borderBottom: '1px solid var(--color-border)', paddingBottom: 'var(--space-4)', marginBottom: 'var(--space-4)' }}>
-                <Image src="/logo/new-logo.svg" alt="Mindscraft" width={140} height={40} className="h-8 w-auto" />
+                <Image src="/logo/logo-black.svg" alt="Mindscraft" width={140} height={40} className="as-logo--header" />
                 <button
                   type="button"
                   style={{
@@ -301,7 +302,7 @@ const MobileHeader = () => {
                     {getUserInitials()}
                   </div>
                   <div style={{ marginLeft: 'var(--space-3)' }}>
-                    <p className="body-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>
+                    <p className="body-sm admin-font-medium" style={{ color: 'var(--color-text-primary)' }}>
                       Admin User
                     </p>
                     <p className="caption">View profile</p>

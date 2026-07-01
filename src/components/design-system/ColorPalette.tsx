@@ -32,7 +32,7 @@ const ColorPalette = () => {
         { name: 'gray-50', value: '#F9FAFB', rgb: '249 250 251' },
         { name: 'gray-100', value: '#F3F4F6', rgb: '243 244 246' },
         { name: 'gray-200', value: '#E5E7EB', rgb: '229 231 235' },
-        { name: 'gray-300', value: '#D1D5DB', rgb: '209 213 219' },
+        { name: 'gray-300', value: '#D1D5DB', rgb: '209 213 218' },
         { name: 'gray-400', value: '#9CA3AF', rgb: '156 163 175' },
         { name: 'gray-500', value: '#6B7280', rgb: '107 114 128' },
         { name: 'gray-600', value: '#4B5563', rgb: '75 85 99' },
@@ -42,42 +42,38 @@ const ColorPalette = () => {
     ];
 
     const ColorSwatch = ({ color }: { color: typeof primaryColors[0] }) => (
-        <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+        <div className="ds-color-swatch-row">
             <div
-                className="w-12 h-12 rounded-md flex-shrink-0 relative shadow-sm"
+                className="ds-color-swatch-tile"
                 style={{ backgroundColor: color.value }}
             >
                 {color.isLogo && (
-                    <div className="absolute -top-1 -right-1 bg-primary-900 text-white text-[10px] px-1.5 py-0.5 rounded-full font-semibold">
-                        LOGO
-                    </div>
+                    <div className="ds-color-logo-pill">LOGO</div>
                 )}
             </div>
-            <div className="flex-1 min-w-0">
-                <div className="font-mono text-sm font-semibold text-text-primary">{color.name}</div>
-                <div className="font-mono text-xs text-text-tertiary">{color.value}</div>
-                <div className="font-mono text-xs text-text-tertiary">rgb({color.rgb})</div>
+            <div className="ds-color-swatch-info">
+                <div className="ds-color-swatch-name">{color.name}</div>
+                <div className="ds-color-swatch-hex">{color.value}</div>
+                <div className="ds-color-swatch-rgb">rgb({color.rgb})</div>
             </div>
         </div>
     );
 
     return (
         <section>
-            <div className="mb-8 pb-4 border-b border-border">
-                <h2 className="text-2xl font-bold text-text-primary">2. Color Palette</h2>
-                <p className="text-text-secondary">Logo-based color system featuring Navy and Cream</p>
+            <div className="ds-color-section-header">
+                <h2>2. Color Palette</h2>
+                <p>Logo-based color system featuring Navy and Cream</p>
             </div>
 
-            <div className="space-y-12">
+            <div className="ds-color-blocks">
                 {/* Primary - Navy/Black */}
                 <div>
-                    <div className="mb-4">
-                        <h3 className="text-xl font-semibold text-text-primary mb-1">Primary - Navy/Black</h3>
-                        <p className="text-sm text-text-secondary">
-                            Main brand color from logo. Use for headings, primary actions, and key UI elements.
-                        </p>
+                    <div className="ds-color-block-header">
+                        <h3>Primary - Navy/Black</h3>
+                        <p>Main brand color from logo. Use for headings, primary actions, and key UI elements.</p>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div className="ds-color-row">
                         {primaryColors.map((color) => (
                             <ColorSwatch key={color.name} color={color} />
                         ))}
@@ -86,13 +82,11 @@ const ColorPalette = () => {
 
                 {/* Accent - Cream */}
                 <div>
-                    <div className="mb-4">
-                        <h3 className="text-xl font-semibold text-text-primary mb-1">Accent - Cream</h3>
-                        <p className="text-sm text-text-secondary">
-                            Warm accent color from logo. Use for highlights, backgrounds, and friendly touches.
-                        </p>
+                    <div className="ds-color-block-header">
+                        <h3>Accent - Cream</h3>
+                        <p>Warm accent color from logo. Use for highlights, backgrounds, and friendly touches.</p>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div className="ds-color-row">
                         {accentColors.map((color) => (
                             <ColorSwatch key={color.name} color={color} />
                         ))}
@@ -101,13 +95,11 @@ const ColorPalette = () => {
 
                 {/* Neutral Grays */}
                 <div>
-                    <div className="mb-4">
-                        <h3 className="text-xl font-semibold text-text-primary mb-1">Neutral - Grays</h3>
-                        <p className="text-sm text-text-secondary">
-                            Neutral colors for text, borders, and backgrounds.
-                        </p>
+                    <div className="ds-color-block-header">
+                        <h3>Neutral - Grays</h3>
+                        <p>Neutral colors for text, borders, and backgrounds.</p>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div className="ds-color-row">
                         {grayColors.map((color) => (
                             <ColorSwatch key={color.name} color={color} />
                         ))}

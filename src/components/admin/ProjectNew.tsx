@@ -1,9 +1,10 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+import '@/styles/components/admin.css';
 
 // Define interface for project form data
 interface ProjectFormData {
@@ -19,8 +20,8 @@ interface ProjectFormData {
 }
 
 export function AdminProjectNew() {
-  const router = useRouter()
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<ProjectFormData>({
     title: '',
     slug: '',
@@ -30,50 +31,50 @@ export function AdminProjectNew() {
     url: '',
     githubUrl: '',
     tags: [],
-    featured: false
-  })
-  const [tagInput, setTagInput] = useState('')
+    featured: false,
+  });
+  const [tagInput, setTagInput] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target
+    const { name, value, type } = e.target;
 
     if (type === 'checkbox') {
-      const checked = (e.target as HTMLInputElement).checked
-      setFormData(prev => ({ ...prev, [name]: checked }))
+      const checked = (e.target as HTMLInputElement).checked;
+      setFormData((prev) => ({ ...prev, [name]: checked }));
     } else {
-      setFormData(prev => ({ ...prev, [name]: value }))
+      setFormData((prev) => ({ ...prev, [name]: value }));
     }
-  }
+  };
 
   const generateSlug = () => {
     const slug = formData.title
       .toLowerCase()
       .replace(/[^\w\s]/gi, '')
-      .replace(/\s+/g, '-')
+      .replace(/\s+/g, '-');
 
-    setFormData(prev => ({ ...prev, slug }))
-  }
+    setFormData((prev) => ({ ...prev, slug }));
+  };
 
   const addTag = () => {
     if (tagInput.trim() && Array.isArray(formData.tags) && !formData.tags.includes(tagInput.trim())) {
-      setFormData(prev => ({
+      setFormData((prev) => ({
         ...prev,
-        tags: Array.isArray(prev.tags) ? [...prev.tags, tagInput.trim()] : [tagInput.trim()]
-      }))
-      setTagInput('')
+        tags: Array.isArray(prev.tags) ? [...prev.tags, tagInput.trim()] : [tagInput.trim()],
+      }));
+      setTagInput('');
     }
-  }
+  };
 
   const removeTag = (tagToRemove: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      tags: Array.isArray(prev.tags) ? prev.tags.filter(tag => tag !== tagToRemove) : []
-    }))
-  }
+      tags: Array.isArray(prev.tags) ? prev.tags.filter((tag) => tag !== tagToRemove) : [],
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const response = await fetch('/api/projects', {
@@ -82,40 +83,35 @@ export function AdminProjectNew() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-      })
+      });
 
       if (!response.ok) {
-        throw new Error('Failed to create project')
+        throw new Error('Failed to create project');
       }
 
-      router.push('/admin/projects')
-      router.refresh()
+      router.push('/admin/projects');
+      router.refresh();
     } catch (error) {
-      console.error('Error creating project:', error)
-      alert('Failed to create project. Please try again.')
+      console.error('Error creating project:', error);
+      alert('Failed to create project. Please try again.');
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
-      <div className="mb-8">
-        <Link
-          href="/admin/projects"
-          className="inline-flex items-center text-sm text-blue-600 hover:text-blue-500"
-        >
-          <ArrowLeft className="mr-1 h-4 w-4" />
+    <div className="prn-page">
+      <div className="prn-page-header">
+        <Link href="/admin/projects" className="prn-back-link">
+          <ArrowLeft />
           Back to projects
         </Link>
-        <h1 className="mt-2 text-2xl font-bold text-gray-900">Create New Project</h1>
+        <h1 className="prn-page-title">Create New Project</h1>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl">
-        <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-            Title
-          </label>
+      <form onSubmit={handleSubmit} className="prn-form">
+        <div className="prn-field">
+          <label htmlFor="title" className="prn-label">Title</label>
           <input
             type="text"
             name="title"
@@ -124,15 +120,13 @@ export function AdminProjectNew() {
             value={formData.title}
             onChange={handleChange}
             onBlur={() => !formData.slug && generateSlug()}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            className="prn-input"
           />
         </div>
 
-        <div>
-          <label htmlFor="slug" className="block text-sm font-medium text-gray-700">
-            Slug
-          </label>
-          <div className="mt-1 flex rounded-md shadow-sm">
+        <div className="prn-field">
+          <label htmlFor="slug" className="prn-label">Slug</label>
+          <div className="prn-input-group">
             <input
               type="text"
               name="slug"
@@ -140,22 +134,16 @@ export function AdminProjectNew() {
               required
               value={formData.slug}
               onChange={handleChange}
-              className="block w-full flex-1 rounded-none rounded-l-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+              className="prn-input"
             />
-            <button
-              type="button"
-              onClick={generateSlug}
-              className="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500 hover:bg-gray-100"
-            >
+            <button type="button" onClick={generateSlug} className="prn-input-action">
               Generate
             </button>
           </div>
         </div>
 
-        <div>
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-            Description
-          </label>
+        <div className="prn-field">
+          <label htmlFor="description" className="prn-label">Description</label>
           <textarea
             name="description"
             id="description"
@@ -163,14 +151,12 @@ export function AdminProjectNew() {
             required
             value={formData.description}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            className="prn-textarea"
           />
         </div>
 
-        <div>
-          <label htmlFor="content" className="block text-sm font-medium text-gray-700">
-            Content
-          </label>
+        <div className="prn-field">
+          <label htmlFor="content" className="prn-label">Content</label>
           <textarea
             name="content"
             id="content"
@@ -178,87 +164,72 @@ export function AdminProjectNew() {
             required
             value={formData.content}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            className="prn-textarea prn-textarea--tall"
           />
         </div>
 
-        <div>
-          <label htmlFor="image" className="block text-sm font-medium text-gray-700">
-            Image URL
-          </label>
+        <div className="prn-field">
+          <label htmlFor="image" className="prn-label">Image URL</label>
           <input
             type="url"
             name="image"
             id="image"
             value={formData.image}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            className="prn-input"
           />
         </div>
 
-        <div>
-          <label htmlFor="url" className="block text-sm font-medium text-gray-700">
-            Project URL
-          </label>
+        <div className="prn-field">
+          <label htmlFor="url" className="prn-label">Project URL</label>
           <input
             type="url"
             name="url"
             id="url"
             value={formData.url}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            className="prn-input"
           />
         </div>
 
-        <div>
-          <label htmlFor="githubUrl" className="block text-sm font-medium text-gray-700">
-            GitHub URL
-          </label>
+        <div className="prn-field">
+          <label htmlFor="githubUrl" className="prn-label">GitHub URL</label>
           <input
             type="url"
             name="githubUrl"
             id="githubUrl"
             value={formData.githubUrl}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+            className="prn-input"
           />
         </div>
 
-        <div>
-          <label htmlFor="tags" className="block text-sm font-medium text-gray-700">
-            Tags
-          </label>
-          <div className="mt-1 flex rounded-md shadow-sm">
+        <div className="prn-field">
+          <label htmlFor="tags" className="prn-label">Tags</label>
+          <div className="prn-input-group">
             <input
               type="text"
               id="tags"
               value={tagInput}
               onChange={(e) => setTagInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
-              className="block w-full flex-1 rounded-none rounded-l-md border-gray-300 focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+              className="prn-input"
               placeholder="Add a tag"
             />
-            <button
-              type="button"
-              onClick={addTag}
-              className="inline-flex items-center rounded-r-md border border-l-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500 hover:bg-gray-100"
-            >
+            <button type="button" onClick={addTag} className="prn-input-action">
               Add
             </button>
           </div>
-          <div className="mt-2 flex flex-wrap gap-2">
+          <div className="prn-tag-row">
             {Array.isArray(formData.tags) && formData.tags.map((tag, index) => (
-              <span
-                key={index}
-                className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800"
-              >
+              <span key={index} className="prn-tag">
                 {tag}
                 <button
                   type="button"
                   onClick={() => removeTag(tag)}
-                  className="ml-1 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-500 focus:bg-blue-500 focus:text-white focus:outline-none"
+                  className="prn-tag-remove"
+                  aria-label={`Remove ${tag}`}
                 >
-                  <span className="sr-only">Remove {tag}</span>
                   &times;
                 </button>
               </span>
@@ -266,36 +237,33 @@ export function AdminProjectNew() {
           </div>
         </div>
 
-        <div className="flex items-center">
+        <div className="prn-checkbox-row">
           <input
             id="featured"
             name="featured"
             type="checkbox"
             checked={formData.featured}
             onChange={handleChange}
-            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+            className="prn-checkbox"
           />
-          <label htmlFor="featured" className="ml-2 block text-sm text-gray-900">
+          <label htmlFor="featured" className="prn-checkbox-label">
             Featured project
           </label>
         </div>
 
-        <div className="flex justify-end space-x-3">
-          <Link
-            href="/admin/projects"
-            className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          >
+        <div className="prn-actions">
+          <Link href="/admin/projects" className="prn-button prn-button--cancel">
             Cancel
           </Link>
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+            className="prn-button prn-button--primary"
           >
             {isSubmitting ? 'Saving...' : 'Save'}
           </button>
         </div>
       </form>
     </div>
-  )
+  );
 }

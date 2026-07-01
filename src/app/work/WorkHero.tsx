@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { workItems } from '@/data/workData';
 import '@/styles/components/work-hero.css';
 
@@ -11,7 +10,7 @@ export default function WorkHero() {
     const showcaseProjects = workItems.slice(0, 3);
 
     return (
-        <section className="relative pt-32 pb-28 px-6 overflow-hidden" style={{ backgroundColor: 'rgb(var(--primary-900))' }}>
+        <section className="work-hero-shell">
             {/* 2026 Aurora Mesh Background */}
             <div className="aurora-bg">
                 <motion.div
@@ -34,43 +33,42 @@ export default function WorkHero() {
                 />
             </div>
 
-            <div className="container relative z-10 mx-auto max-w-6xl grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
+            <div className="work-hero-grid">
                 {/* Left Side: Dramatic Typography */}
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex flex-col gap-8 max-w-2xl text-white"
+                    className="work-hero-left"
                 >
                     {/* True Glassmorphic Badge */}
-                    <div className="inline-flex">
+                    <div className="work-hero-eyebrow">
                         <span className="glass-badge">
-                            <span className="w-2.5 h-2.5 rounded-full mr-3 shadow-[0_0_10px_rgba(243,244,192,0.8)] animate-pulse" style={{ backgroundColor: 'rgb(var(--accent-400))' }} />
+                            <span className="glass-badge-pulse" />
                             PORTFOLIO
                         </span>
                     </div>
 
-                    <h1 className="text-5xl md:text-6xl font-bold tracking-tight leading-[1.1] mb-4">
+                    <h1 className="work-hero-title">
                         Transforming Ideas into <br />
                         <span className="gradient-text-mask">Digital Excellence</span>
                     </h1>
 
-                    <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-light max-w-xl">
-                        We don't just build websites. We architect <strong className="text-white font-medium">digital experiences</strong> that convert.
+                    <p className="work-hero-sub">
+                        We don&rsquo;t just build websites. We architect <strong>digital experiences</strong> that convert.
                     </p>
 
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.6, duration: 1 }}
-                        className="flex flex-wrap gap-4 mt-4"
+                        className="work-hero-bullets"
                     >
-                        <div className="flex items-center gap-2 text-sm text-gray-400 font-medium tracking-wide">
+                        <div className="work-hero-bullet">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent-brand"><path d="M22 11.08V12a10 10 10 0 1 1-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"></path></svg>
                             AI-POWERED
                         </div>
-                        <div className="flex items-center gap-2 text-sm text-gray-400 font-medium tracking-wide">
+                        <div className="work-hero-bullet">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent-brand"><path d="M22 11.08V12a10 10 10 0 1 1-5.93-9.14"></path><path d="M22 4L12 14.01l-3-3"></path></svg>
                             HUMAN-CENTRIC UX
                         </div>
@@ -83,27 +81,24 @@ export default function WorkHero() {
                     initial={{ opacity: 0, x: 60 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="hidden lg:flex relative h-[500px] w-full items-center justify-center"
+                    className="work-hero-right"
                 >
-                    <div className="relative w-full max-w-[500px] aspect-square bento-showcase">
-
+                    <div className="work-hero-bento">
                         {/* Central Hub */}
-                        <motion.div
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white/5 backdrop-blur-md flex items-center justify-center z-20"
-                        >
-                            <div className="text-center">
-                                <div className="text-4xl font-bold text-white mb-1">98<span className="text-accent-brand">%</span></div>
-                                <div className="text-[10px] tracking-widest text-gray-400 uppercase">Success Rate</div>
+                        <motion.div className="work-hero-hub">
+                            <div className="work-hero-hub-inner">
+                                <div className="work-hero-hub-num">98<span className="text-accent-brand">%</span></div>
+                                <div className="work-hero-hub-label">Success Rate</div>
                             </div>
 
                             {/* Rotating Ring */}
                             <motion.div
-                                className="absolute inset-0 border-r-transparent border-b-transparent border-t-white/30 border-l-white/10"
+                                className="work-hero-hub-ring-a"
                                 animate={{ rotate: 360 }}
                                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                             />
                             <motion.div
-                                className="absolute inset-[-10px] border-l-transparent border-t-transparent border-b-accent-brand/40 border-r-accent-brand/10"
+                                className="work-hero-hub-ring-b"
                                 animate={{ rotate: -360 }}
                                 transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                             />
@@ -111,17 +106,18 @@ export default function WorkHero() {
 
                         {/* Satellite Nodes */}
                         <motion.div
-                            className="absolute top-[10%] left-[15%] w-32 glass-panel p-4 z-30"
+                            className="work-hero-node"
+                            style={{ top: '10%', left: '15%', width: '8rem', zIndex: 30 }}
                             animate={{ y: [0, -15, 0] }}
                             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0 }}
                         >
-                            <div className="flex items-center gap-3 mb-2">
-                                <span className="w-8 h-8 bg-white/10 flex items-center justify-center text-accent-brand text-xs">01</span>
-                                <div className="text-xs font-bold text-white tracking-widest uppercase">Speed</div>
+                            <div className="work-hero-node-row">
+                                <span className="work-hero-node-chip">01</span>
+                                <div className="work-hero-node-title">Speed</div>
                             </div>
-                            <div className="w-full bg-white/10 h-1.5 overflow-hidden">
+                            <div className="work-hero-bar-track">
                                 <motion.div
-                                    className="bg-accent-brand h-full"
+                                    className="work-hero-bar-fill"
                                     initial={{ width: 0 }}
                                     animate={{ width: '85%' }}
                                     transition={{ duration: 1.5, delay: 1 }}
@@ -130,26 +126,28 @@ export default function WorkHero() {
                         </motion.div>
 
                         <motion.div
-                            className="absolute top-[20%] right-[0%] w-40 glass-panel p-4 z-10"
+                            className="work-hero-node"
+                            style={{ top: '20%', right: '0%', width: '10rem' }}
                             animate={{ y: [0, -10, 0] }}
                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                         >
-                            <div className="text-[10px] text-gray-400 uppercase tracking-wider mb-1">Projects Delivered</div>
-                            <div className="text-3xl font-bold text-white">200+</div>
+                            <div className="work-hero-node-eyebrow">Projects Delivered</div>
+                            <div className="work-hero-node-value">200+</div>
                         </motion.div>
 
                         <motion.div
-                            className="absolute bottom-[20%] left-[5%] w-36 glass-panel p-4 z-10"
+                            className="work-hero-node"
+                            style={{ bottom: '20%', left: '5%', width: '9rem' }}
                             animate={{ y: [0, 15, 0] }}
                             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
                         >
-                            <div className="text-[10px] text-gray-400 uppercase tracking-wider mb-2">Client ROI</div>
-                            <div className="flex items-end gap-1 h-10">
-                                <div className="w-1/4 bg-white/20 rounded-t-sm h-[30%]" />
-                                <div className="w-1/4 bg-white/40 rounded-t-sm h-[50%]" />
-                                <div className="w-1/4 bg-white/60 rounded-t-sm h-[75%]" />
+                            <div className="work-hero-node-eyebrow">Client ROI</div>
+                            <div className="work-hero-bar-chart">
+                                <div style={{ height: '30%' }} />
+                                <div style={{ height: '50%' }} />
+                                <div style={{ height: '75%' }} />
                                 <motion.div
-                                    className="w-1/4 bg-accent-brand rounded-t-sm"
+                                    className="accent"
                                     initial={{ height: '0%' }}
                                     animate={{ height: '100%' }}
                                     transition={{ duration: 2, delay: 1.2 }}
@@ -158,21 +156,22 @@ export default function WorkHero() {
                         </motion.div>
 
                         <motion.div
-                            className="absolute bottom-[10%] right-[10%] w-48 glass-panel p-4 z-30 flex gap-4 items-center"
+                            className="work-hero-node"
+                            style={{ bottom: '10%', right: '10%', width: '12rem', display: 'flex', gap: '1rem', alignItems: 'center', zIndex: 30 }}
                             animate={{ y: [0, 10, 0] }}
                             transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                         >
-                            <div className="w-10 h-10 flex items-center justify-center shrink-0">
-                                <div className="w-2 h-2 bg-accent-brand animate-pulse" />
+                            <div style={{ width: '2.5rem', height: '2.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                <div className="work-hero-dot" />
                             </div>
                             <div>
-                                <div className="text-xs font-bold text-white mb-0.5">Global Reach</div>
-                                <div className="text-[10px] text-gray-400">14+ Countries</div>
+                                <div className="work-hero-node-title">Global Reach</div>
+                                <div className="work-hero-node-eyebrow">14+ Countries</div>
                             </div>
                         </motion.div>
 
                         {/* Connecting Lines (Decorative) */}
-                        <svg className="absolute inset-0 w-full h-full z-0 opacity-20 pointer-events-none" viewBox="0 0 500 500">
+                        <svg className="work-hero-connector" viewBox="0 0 500 500">
                             <motion.path
                                 d="M 120 120 L 250 250 M 400 150 L 250 250 M 100 350 L 250 250 M 350 400 L 250 250"
                                 stroke="#F3F4C0"

@@ -19,7 +19,7 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(
     return (
       <form
         ref={ref}
-        className={cn("space-y-6", className)}
+        className={cn("form-stack", className)}
         {...props}
       >
         {children}

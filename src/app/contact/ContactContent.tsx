@@ -177,71 +177,64 @@ export default function ContactContent() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="contact-page">
       {/* Contact Form Section */}
-      <section className="py-16 md:py-24">
+      <section className="contact-section">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="contact-grid">
             {/* Left Content */}
-            <div className="flex flex-col pr-0 lg:pr-12">
-
-              <h2 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-none">
-                Let’s Talk
+            <div className="contact-left">
+              <h2 className="contact-title">
+                Let&rsquo;s Talk
               </h2>
-              <p className="text-xl md:text-2xl text-gray-700 mb-28 max-w-xl leading-relaxed">
-                We’d love to learn more about you and what we can design and build together.
+              <p className="contact-subtitle">
+                We&rsquo;d love to learn more about you and what we can design and build together.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-12 mb-40">
+              <div className="contact-links">
                 <div>
-                  <p className="font-medium text-gray-500 mb-2 text-lg">Become a Client</p>
-                  <a
-                    href="mailto:hello@mindscraft.dev"
-                    className="text-2xl font-normal text-gray-900 border-b-2 border-gray-300 hover:border-gray-900 transition-colors inline-block"
-                  >
+                  <p className="contact-link-label">Become a Client</p>
+                  <a href="mailto:hello@mindscraft.dev" className="contact-link-value">
                     hello@mindscraft.dev
                   </a>
                 </div>
                 <div>
-                  <p className="font-medium text-gray-500 mb-2 text-lg">Join Us</p>
-                  <a
-                    href="/about"
-                    className="text-2xl font-normal text-gray-900 border-b-2 border-gray-300 hover:border-gray-900 transition-colors inline-block"
-                  >
+                  <p className="contact-link-label">Join Us</p>
+                  <a href="/about" className="contact-link-value">
                     See Our Culture
                   </a>
                 </div>
               </div>
 
               {/* Trust Signals replacing Location */}
-              <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why founders choose us</h3>
-                <div className="space-y-6">
-                  <div className="flex gap-4 items-start">
-                    <div className="bg-gray-100 p-2 rounded-full mt-1">
-                      <FiFastForward className="w-5 h-5 text-gray-700" />
+              <div className="contact-trust">
+                <h3>Why founders choose us</h3>
+                <div className="contact-trust-list">
+                  <div className="contact-trust-item">
+                    <div className="contact-trust-icon">
+                      <FiFastForward />
                     </div>
                     <div>
-                      <p className="font-bold text-gray-900">Shipping Velocity</p>
-                      <p className="text-gray-600 mt-1 leading-relaxed">We optimize for time-to-market. Average MVP launch is under 6 weeks.</p>
+                      <h4>Shipping Velocity</h4>
+                      <p>We optimize for time-to-market. Average MVP launch is under 6 weeks.</p>
                     </div>
                   </div>
-                  <div className="flex gap-4 items-start">
-                    <div className="bg-gray-100 p-2 rounded-full mt-1">
-                      <FiUsers className="w-5 h-5 text-gray-700" />
+                  <div className="contact-trust-item">
+                    <div className="contact-trust-icon">
+                      <FiUsers />
                     </div>
                     <div>
-                      <p className="font-bold text-gray-900">Senior Talent Only</p>
-                      <p className="text-gray-600 mt-1 leading-relaxed">No juniors learning on your dime. You work directly with veterans.</p>
+                      <h4>Senior Talent Only</h4>
+                      <p>No juniors learning on your dime. You work directly with veterans.</p>
                     </div>
                   </div>
-                  <div className="flex gap-4 items-start">
-                    <div className="bg-green-50 p-2 rounded-full mt-1">
-                      <FiClock className="w-5 h-5 text-green-600" />
+                  <div className="contact-trust-item">
+                    <div className="contact-trust-icon is-green">
+                      <FiClock />
                     </div>
                     <div>
-                      <p className="font-bold text-gray-900">24-Hour Response</p>
-                      <p className="text-gray-600 mt-1 leading-relaxed">All inquiries are reviewed and answered by a partner within 24 hours.</p>
+                      <h4>24-Hour Response</h4>
+                      <p>All inquiries are reviewed and answered by a partner within 24 hours.</p>
                     </div>
                   </div>
                 </div>
@@ -249,30 +242,30 @@ export default function ContactContent() {
             </div>
 
             {/* Right Form */}
-            <div className="bg-gray-50 p-6 md:p-10 relative">
+            <div className="contact-form-shell">
               {isSubmitSuccessful ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, type: "spring" }}
-                  className="text-center py-12"
+                  className="contact-success"
                 >
                   <motion.div
                     initial={{ scale: 0.5, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ delay: 0.2, duration: 0.5, type: "spring" }}
-                    className="mx-auto flex items-center justify-center h-24 w-24 rounded-full bg-gradient-to-r from-green-100 to-green-200 mb-6"
+                    className="contact-success-icon"
                   >
-                    <FiCheck className="h-12 w-12 text-green-600" />
+                    <FiCheck />
                   </motion.div>
                   <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.5 }}
                   >
-                    <h2 className="text-2xl font-bold text-gray-900 mb-3">Thank You!</h2>
-                    <p className="text-gray-600 mb-8 max-w-md mx-auto">
-                      Your message has been sent successfully. We'll review your inquiry and get back to you within 24-48 hours.
+                    <h2>Thank You!</h2>
+                    <p>
+                      Your message has been sent successfully. We&rsquo;ll review your inquiry and get back to you within 24-48 hours.
                     </p>
                     <motion.div
                       whileHover={{ scale: 1.05 }}
@@ -289,138 +282,142 @@ export default function ContactContent() {
                 </motion.div>
               ) : (
                 <FormProvider {...methods}>
-                  <Form onSubmit={methods.handleSubmit(onSubmit)} className="">
+                  <Form onSubmit={methods.handleSubmit(onSubmit)}>
                     {/* Form Header */}
-                    <div className="mb-8">
-                      <h3 className="text-2xl font-bold text-back mb-2">Tell us about your project</h3>
-                      <p className="text-sm text-gray-600">Share your vision and we'll get back to you within 24 hours.</p>
+                    <div className="contact-form-header">
+                      <h3>Tell us about your project</h3>
+                      <p>Share your vision and we&rsquo;ll get back to you within 24 hours.</p>
                     </div>
 
                     {/* Honeypot Field */}
-                    <div className="hidden">
+                    <div className="contact-honeypot">
                       <Label htmlFor="website">Leave this field empty</Label>
                       <Input id="website" {...register('website')} />
                       {errors.website && (
-                        <p className="mt-1 text-sm text-red-400">{errors.website.message}</p>
+                        <p className="form-error">{errors.website.message}</p>
                       )}
                     </div>
 
                     {/* Form Fields */}
-                    <div className="grid grid-cols-1 gap-6">
+                    <div className="contact-fieldset">
                       {/* Name / Company Name */}
-                      <div className="md:col-span-2">
-                        <FormField name="nameOrCompany">
-                          <Label htmlFor="nameOrCompany" required className="text-gray-700 font-semibold mb-2 block">
-                            Name / Company Name
-                          </Label>
-                          <Input
-                            id="nameOrCompany"
-                            placeholder="John Doe or Acme Inc."
-                            className={`h-12 transition-all duration-200 ${errors.nameOrCompany ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-500 focus:ring-blue-500'}`}
-                            {...register('nameOrCompany')}
-                            required
-                            minLength={2}
-                            aria-invalid={errors.nameOrCompany ? 'true' : 'false'}
-                            aria-describedby={errors.nameOrCompany ? 'nameOrCompany-error' : undefined}
-                          />
-                        </FormField>
-                      </div>
+                      <FormField name="nameOrCompany">
+                        <Label htmlFor="nameOrCompany" required>
+                          Name / Company Name
+                        </Label>
+                        <Input
+                          id="nameOrCompany"
+                          placeholder="John Doe or Acme Inc."
+                          className={errors.nameOrCompany ? 'is-error' : 'is-valid'}
+                          {...register('nameOrCompany')}
+                          required
+                          minLength={2}
+                          aria-invalid={errors.nameOrCompany ? 'true' : 'false'}
+                          aria-describedby={errors.nameOrCompany ? 'nameOrCompany-error' : undefined}
+                        />
+                        {errors.nameOrCompany && (
+                          <p id="nameOrCompany-error" className="form-field-error">
+                            {errors.nameOrCompany.message}
+                          </p>
+                        )}
+                      </FormField>
 
                       {/* Email */}
-                      <div className="md:col-span-2">
-                        <FormField name="email">
-                          <Label htmlFor="email" required className="text-gray-700 font-semibold mb-2 block">
-                            Work Email
-                          </Label>
-                          <Input
-                            type="email"
-                            id="email"
-                            placeholder="you@company.com"
-                            className={`h-12 transition-all duration-200 ${errors.email ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-500 focus:ring-blue-500'}`}
-                            {...register('email')}
-                            required
-                            aria-invalid={errors.email ? 'true' : 'false'}
-                            aria-describedby={errors.email ? 'email-error' : undefined}
-                          />
-                        </FormField>
-                      </div>
+                      <FormField name="email">
+                        <Label htmlFor="email" required>
+                          Work Email
+                        </Label>
+                        <Input
+                          type="email"
+                          id="email"
+                          placeholder="you@company.com"
+                          className={errors.email ? 'is-error' : 'is-valid'}
+                          {...register('email')}
+                          required
+                          aria-invalid={errors.email ? 'true' : 'false'}
+                          aria-describedby={errors.email ? 'email-error' : undefined}
+                        />
+                        {errors.email && (
+                          <p id="email-error" className="form-field-error">
+                            {errors.email.message}
+                          </p>
+                        )}
+                      </FormField>
 
                       {/* Service Dropdown */}
-                      <div className="md:col-span-2">
-                        <FormField name="service">
-                          <Label htmlFor="service" required className="text-gray-700 font-semibold mb-2 block">
-                            Service of Interest
-                          </Label>
-                          <Select
-                            id="service"
-                            className={`h-12 transition-all duration-200 ${errors.service ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-500 focus:ring-blue-500'}`}
-                            {...register('service')}
-                            required
-                            aria-invalid={errors.service ? 'true' : 'false'}
-                            aria-describedby={errors.service ? 'service-error' : undefined}
-                          >
-                            <SelectOption value="">Select a service</SelectOption>
-                            {SERVICES.map((service) => (
-                              <SelectOption key={service} value={service}>
-                                {service}
-                              </SelectOption>
-                            ))}
-                          </Select>
-                        </FormField>
-                      </div>
+                      <FormField name="service">
+                        <Label htmlFor="service" required>
+                          Service of Interest
+                        </Label>
+                        <Select
+                          id="service"
+                          className={errors.service ? 'is-error' : 'is-valid'}
+                          {...register('service')}
+                          required
+                          aria-invalid={errors.service ? 'true' : 'false'}
+                          aria-describedby={errors.service ? 'service-error' : undefined}
+                        >
+                          <SelectOption value="">Select a service</SelectOption>
+                          {SERVICES.map((service) => (
+                            <SelectOption key={service} value={service}>
+                              {service}
+                            </SelectOption>
+                          ))}
+                        </Select>
+                        {errors.service && (
+                          <p id="service-error" className="form-field-error">
+                            {errors.service.message}
+                          </p>
+                        )}
+                      </FormField>
 
                       {/* Conditional Budget Dropdown */}
                       {isBudgetVisible && (
-                        <div className="md:col-span-2">
-                          <div>
-                            <Label htmlFor="budget" className="text-gray-700 font-semibold mb-2 block">
-                              Project Budget
-                            </Label>
-                            <Select
-                              id="budget"
-                              className="h-12"
-                              {...register('budget')}
-                            >
-                              {BUDGET_RANGES.map((range) => (
-                                <SelectOption key={range} value={range}>
-                                  {range}
-                                </SelectOption>
-                              ))}
-                            </Select>
-                          </div>
+                        <div>
+                          <Label htmlFor="budget">
+                            Project Budget
+                          </Label>
+                          <Select id="budget" {...register('budget')}>
+                            {BUDGET_RANGES.map((range) => (
+                              <SelectOption key={range} value={range}>
+                                {range}
+                              </SelectOption>
+                            ))}
+                          </Select>
                         </div>
                       )}
                     </div>
 
                     {/* Message */}
-                    <div className="mt-6">
-                      <FormField name="message">
-                        <Label htmlFor="message" required className="text-gray-700 font-semibold mb-2 block">
-                          Your Message
-                        </Label>
-                        <Textarea
-                          id="message"
-                          rows={6}
-                          placeholder="Describe your project, goals, and any key features you have in mind..."
-                          className={`resize-none transition-all duration-200 ${errors.message ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-500 focus:ring-blue-500'}`}
-                          {...register('message')}
-                          required
-                          minLength={10}
-                          aria-invalid={errors.message ? 'true' : 'false'}
-                          aria-describedby={errors.message ? 'message-error' : undefined}
-                        />
-                        <p className="mt-2 text-xs text-gray-500">
-                          Provide details about your project requirements, timeline, and any specific technologies you're interested in.
+                    <FormField name="message">
+                      <Label htmlFor="message" required>
+                        Your Message
+                      </Label>
+                      <Textarea
+                        id="message"
+                        rows={6}
+                        placeholder="Describe your project, goals, and any key features you have in mind..."
+                        className={errors.message ? 'is-error' : 'is-valid'}
+                        {...register('message')}
+                        required
+                        minLength={10}
+                        aria-invalid={errors.message ? 'true' : 'false'}
+                        aria-describedby={errors.message ? 'message-error' : undefined}
+                      />
+                      {errors.message && (
+                        <p id="message-error" className="form-field-error">
+                          {errors.message.message}
                         </p>
-                      </FormField>
-                    </div>
+                      )}
+                      <p className="form-field-help">
+                        Provide details about your project requirements, timeline, and any specific technologies you&rsquo;re interested in.
+                      </p>
+                    </FormField>
 
                     {/* File Upload */}
-                    <div className="mt-6 bg-white p-4 border border-gray-100">
-                      <Label className="text-gray-700 font-semibold mb-2 block">
-                        Attach a file (PDF, DOCX up to 5MB)
-                      </Label>
-                      <div className="mt-1">
+                    <div className="contact-file-card">
+                      <Label>Attach a file (PDF, DOCX up to 5MB)</Label>
+                      <div>
                         <FileInput
                           id="attachment"
                           acceptedFileTypes=".pdf,.doc,.docx"
@@ -433,7 +430,7 @@ export default function ContactContent() {
                           error={fileError}
                           {...register('attachment')}
                         />
-                        <p className="text-xs text-gray-500 mt-2">
+                        <p className="form-field-help">
                           Optional: Attach a project brief, RFP, or any relevant documents
                         </p>
                       </div>
@@ -441,48 +438,40 @@ export default function ContactContent() {
 
                     {/* Form Errors */}
                     {errors.root && (
-                      <div className="mt-6 rounded-lg bg-red-50 pt-2 border border-red-100">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0 bg-red-100 rounded-full p-2">
-                            <FiAlertCircle className="h-5 w-5 text-red-500" aria-hidden="true" />
-                          </div>
-                          <div className="ml-3">
-                            <h3 className="text-sm font-medium text-red-800">
-                              {errors.root.message}
-                            </h3>
-                            <p className="mt-1 text-xs text-red-700">
-                              Please try again or contact us directly via email if the problem persists.
-                            </p>
-                          </div>
+                      <div className="contact-error-banner">
+                        <div className="error-icon">
+                          <FiAlertCircle aria-hidden="true" />
+                        </div>
+                        <div className="error-text">
+                          <h4>{errors.root.message}</h4>
+                          <p>Please try again or contact us directly via email if the problem persists.</p>
                         </div>
                       </div>
                     )}
 
                     {/* Submit Button */}
-                    <div className="pt-8">
-                      <div>
-                        <Button
-                          type="submit"
-                          variant="primary"
-                          size="xl"
-                          fullWidth
-                          disabled={isSubmitting}
-                          icon={
-                            isSubmitting ? (
-                              <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                              </svg>
-                            ) : (
-                              <FiSend className="h-5 w-5" />
-                            )
-                          }
-                        >
-                          {isSubmitting ? 'Sending...' : 'Send Inquiry'}
-                        </Button>
-                      </div>
-                      <p className="text-center text-xs text-gray-500 mt-4">
-                        By submitting this form, you agree to our <a href="/privacy-policy" className="text-gray-900 underline hover:text-gray-700">Privacy Policy</a>
+                    <div className="contact-submit">
+                      <Button
+                        type="submit"
+                        variant="primary"
+                        size="xl"
+                        fullWidth
+                        disabled={isSubmitting}
+                        icon={
+                          isSubmitting ? (
+                            <svg className="contact-spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                          ) : (
+                            <FiSend />
+                          )
+                        }
+                      >
+                        {isSubmitting ? 'Sending...' : 'Send Inquiry'}
+                      </Button>
+                      <p>
+                        By submitting this form, you agree to our <a href="/privacy-policy">Privacy Policy</a>
                       </p>
                     </div>
                   </Form>

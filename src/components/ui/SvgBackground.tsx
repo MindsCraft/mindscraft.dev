@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import '@/styles/components/backgrounds.css';
 
 interface SvgBackgroundProps {
     /**
@@ -47,7 +48,7 @@ const SvgBackground: React.FC<SvgBackgroundProps> = ({
 }) => {
     return (
         <div
-            className="absolute inset-0 overflow-hidden pointer-events-none"
+            className="bgx-shell"
             style={{
                 backgroundColor,
                 opacity,
@@ -57,7 +58,7 @@ const SvgBackground: React.FC<SvgBackgroundProps> = ({
             {children || (
                 // Digital Data Streams / Fiber Optic Effect
                 <svg
-                    className="absolute inset-0 w-full h-full"
+                    className="bgx-anchor-full"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 1440 800"
                     preserveAspectRatio="xMidYMid slice"

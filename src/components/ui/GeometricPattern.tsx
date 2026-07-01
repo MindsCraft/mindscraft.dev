@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import '@/styles/components/backgrounds.css';
 
 interface GridPosition {
   id: string;
@@ -60,11 +61,11 @@ export default function GeometricPattern({
 
   // During SSR or before client hydration, return a simple div
   if (!mounted) {
-    return <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`} />;
+    return <div className={`bgx-shell ${className}`} />;
   }
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div className={`bgx-shell ${className}`}>
       {gridPositions.map((item) => {
         // Skip items that shouldn't be rendered
         if (!item.shouldRender) return null;
@@ -75,7 +76,7 @@ export default function GeometricPattern({
             shape = (
               <motion.div
                 key={item.id}
-                className="absolute rounded-full"
+                className="bgx-anchor-blob"
                 style={{
                   width: `${item.size}px`,
                   height: `${item.size}px`,
@@ -102,7 +103,7 @@ export default function GeometricPattern({
             shape = (
               <motion.div
                 key={item.id}
-                className="absolute"
+                className="bgx-square"
                 style={{
                   width: `${item.size}px`,
                   height: `${item.size}px`,
@@ -130,7 +131,7 @@ export default function GeometricPattern({
             shape = (
               <motion.div
                 key={item.id}
-                className="absolute"
+                className="bgx-anchor"
                 style={{
                   width: 0,
                   height: 0,

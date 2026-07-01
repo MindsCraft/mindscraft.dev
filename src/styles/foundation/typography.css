@@ -1,38 +1,37 @@
 /* =========================================
    TYPOGRAPHY SYSTEM
-   Font: Altone (All weights: 100-900)
+   Font: LeniaSans (4-weight system: 200/400/500/600)
    ========================================= */
 
 /* Font Face Declarations */
 
 @font-face {
-    font-family: 'Altone';
-    src: url('/font/Altone-ExtraLight.ttf') format('truetype');
+    font-family: 'LeniaSans';
+    src: url('/font/LeniaSans-ExtraLight.ttf') format('truetype');
     font-weight: 200;
     font-style: normal;
     font-display: swap;
 }
 
-
 @font-face {
-    font-family: 'Altone';
-    src: url('/font/Altone-Regular.ttf') format('truetype');
+    font-family: 'LeniaSans';
+    src: url('/font/LeniaSans-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Altone';
-    src: url('/font/Altone-Medium.ttf') format('truetype');
+    font-family: 'LeniaSans';
+    src: url('/font/LeniaSans-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Altone';
-    src: url('/font/Altone-SemiBold.ttf') format('truetype');
+    font-family: 'LeniaSans';
+    src: url('/font/LeniaSans-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -41,7 +40,7 @@
 
 /* Typography Scale */
 :root {
-    --font-sans: 'Altone', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-sans: 'LeniaSans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', Consolas, Monaco, 'Courier New', monospace;
 
     /* ── 4-weight system ──────────────────────────
@@ -67,8 +66,6 @@ body {
 }
 
 /* Headings */
-
-
 
 h1 {
     font-weight: var(--fw-bold);

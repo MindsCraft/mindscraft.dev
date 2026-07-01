@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import '@/styles/components/backgrounds.css';
 
 interface DottedBackgroundProps {
     /**
@@ -50,9 +51,9 @@ export default function DottedBackground({
     const patternId = 'dotted-pattern';
 
     return (
-        <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+        <div className={`bgx-shell ${className}`}>
             <svg
-                className="w-full h-full"
+                className="bgx-anchor-full"
                 xmlns="http://www.w3.org/2000/svg"
             >
                 <defs>

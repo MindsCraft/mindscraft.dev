@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiArrowRight, FiDownload, FiTrash2, FiPlus, FiCheck } from 'react-icons/fi';
+import '@/styles/pages/design-system.css';
 
 export default function ButtonsDemo() {
     // Logo colors
@@ -79,25 +80,23 @@ export default function ButtonsDemo() {
 
     return (
         <section>
-            <div className="mb-8 pb-4 border-b border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-900">3. Components</h2>
-                <p className="text-gray-600">Premium button variations with glossy effects.</p>
-            </div>
+            <h2 className="ds-buttons-section-title">3. Components</h2>
+            <p className="ds-buttons-section-desc">Premium button variations with glossy effects.</p>
 
-            <div className="space-y-12">
+            <div className="ds-bd-section">
                 {/* Primary Buttons - Navy */}
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Primary (Navy)</h3>
-                        <p className="text-sm text-gray-600">Main call-to-action buttons with premium glossy effect.</p>
+                <div>
+                    <div className="ds-bd-heading-block">
+                        <h3>Primary (Navy)</h3>
+                        <p>Main call-to-action buttons with premium glossy effect.</p>
                     </div>
-                    <div className="p-8 border border-gray-200 rounded-xl bg-white space-y-6">
+                    <div className="ds-buttons-card">
                         {/* Default Size */}
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Default</h4>
-                            <div className="flex flex-wrap items-center gap-4">
+                        <div className="ds-bd-subgroup">
+                            <div className="ds-buttons-label">Default</div>
+                            <div className="ds-buttons-row">
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+                                    className="ds-btn-base ds-btn-default"
                                     style={navyStyle}
                                     onMouseEnter={(e) => Object.assign(e.currentTarget.style, navyHoverStyle)}
                                     onMouseLeave={(e) => Object.assign(e.currentTarget.style, navyStyle)}
@@ -105,15 +104,15 @@ export default function ButtonsDemo() {
                                     Primary Button
                                 </button>
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+                                    className="ds-btn-base ds-btn-default"
                                     style={navyStyle}
                                     onMouseEnter={(e) => Object.assign(e.currentTarget.style, navyHoverStyle)}
                                     onMouseLeave={(e) => Object.assign(e.currentTarget.style, navyStyle)}
                                 >
-                                    Get Started <FiArrowRight className="ml-2" />
+                                    Get Started <FiArrowRight className="ds-btn-icon-trailing" />
                                 </button>
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white rounded-lg opacity-50 cursor-not-allowed"
+                                    className="ds-btn-base ds-btn-default ds-btn-disabled"
                                     style={{ backgroundColor: NAVY }}
                                     disabled
                                 >
@@ -123,26 +122,26 @@ export default function ButtonsDemo() {
                         </div>
 
                         {/* Large Size */}
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Large</h4>
-                            <div className="flex flex-wrap items-center gap-4">
+                        <div className="ds-bd-subgroup">
+                            <div className="ds-buttons-label">Large</div>
+                            <div className="ds-buttons-row">
                                 <button
-                                    className="inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white rounded-lg"
+                                    className="ds-btn-base ds-btn-large"
                                     style={navyStyle}
                                     onMouseEnter={(e) => Object.assign(e.currentTarget.style, navyHoverStyle)}
                                     onMouseLeave={(e) => Object.assign(e.currentTarget.style, navyStyle)}
                                 >
-                                    <FiPlus className="mr-2" /> Create New
+                                    <FiPlus className="ds-btn-icon-leading" /> Create New
                                 </button>
                             </div>
                         </div>
 
                         {/* Small Size */}
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Small</h4>
-                            <div className="flex flex-wrap items-center gap-4">
+                        <div className="ds-bd-subgroup">
+                            <div className="ds-buttons-label">Small</div>
+                            <div className="ds-buttons-row">
                                 <button
-                                    className="inline-flex items-center justify-center px-3 py-1.5 text-xs font-semibold text-white rounded-md"
+                                    className="ds-btn-base ds-btn-small"
                                     style={navyStyle}
                                     onMouseEnter={(e) => Object.assign(e.currentTarget.style, navyHoverStyle)}
                                     onMouseLeave={(e) => Object.assign(e.currentTarget.style, navyStyle)}
@@ -153,19 +152,21 @@ export default function ButtonsDemo() {
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div className="ds-bd-section">
                 {/* Secondary Buttons - Outline */}
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Secondary (Outline)</h3>
-                        <p className="text-sm text-gray-600">Subtle buttons with soft shadows.</p>
+                <div>
+                    <div className="ds-bd-heading-block">
+                        <h3>Secondary (Outline)</h3>
+                        <p>Subtle buttons with soft shadows.</p>
                     </div>
-                    <div className="p-8 border border-gray-200 rounded-xl bg-white space-y-6">
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Default</h4>
-                            <div className="flex flex-wrap items-center gap-4">
+                    <div className="ds-buttons-card">
+                        <div className="ds-bd-subgroup">
+                            <div className="ds-buttons-label">Default</div>
+                            <div className="ds-buttons-row">
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200"
+                                    className="ds-btn-base ds-btn-default ds-btn-secondary"
                                     style={outlineStyle}
                                     onMouseEnter={(e) => Object.assign(e.currentTarget.style, outlineHoverStyle)}
                                     onMouseLeave={(e) => Object.assign(e.currentTarget.style, outlineStyle)}
@@ -173,22 +174,22 @@ export default function ButtonsDemo() {
                                     Secondary Action
                                 </button>
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium text-gray-900 rounded-lg"
+                                    className="ds-btn-base ds-btn-default ds-btn-secondary"
                                     style={outlineStyle}
                                     onMouseEnter={(e) => Object.assign(e.currentTarget.style, outlineHoverStyle)}
                                     onMouseLeave={(e) => Object.assign(e.currentTarget.style, outlineStyle)}
                                 >
-                                    <FiDownload className="mr-2" /> Download
+                                    <FiDownload className="ds-btn-icon-leading" /> Download
                                 </button>
                             </div>
                         </div>
 
                         {/* Navy Outline */}
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Navy Outline</h4>
-                            <div className="flex flex-wrap items-center gap-4">
+                        <div className="ds-bd-subgroup">
+                            <div className="ds-buttons-label">Navy Outline</div>
+                            <div className="ds-buttons-row">
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                    className="ds-btn-base ds-btn-default ds-btn-navy-outline"
                                     style={{
                                         backgroundColor: 'white',
                                         color: NAVY,
@@ -224,19 +225,21 @@ export default function ButtonsDemo() {
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div className="ds-bd-section">
                 {/* Accent Buttons - Cream */}
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Accent (Cream)</h3>
-                        <p className="text-sm text-gray-600">Highlight buttons with warm glossy effect.</p>
+                <div>
+                    <div className="ds-bd-heading-block">
+                        <h3>Accent (Cream)</h3>
+                        <p>Highlight buttons with warm glossy effect.</p>
                     </div>
-                    <div className="p-8 border border-gray-200 rounded-xl bg-white space-y-6">
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Default</h4>
-                            <div className="flex flex-wrap items-center gap-4">
+                    <div className="ds-buttons-card">
+                        <div className="ds-bd-subgroup">
+                            <div className="ds-buttons-label">Default</div>
+                            <div className="ds-buttons-row">
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-bold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                    className="ds-btn-base ds-btn-default ds-btn-accent"
                                     style={creamStyle}
                                     onMouseEnter={(e) => Object.assign(e.currentTarget.style, creamHoverStyle)}
                                     onMouseLeave={(e) => Object.assign(e.currentTarget.style, creamStyle)}
@@ -244,22 +247,22 @@ export default function ButtonsDemo() {
                                     Accent Button
                                 </button>
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-bold rounded-lg"
+                                    className="ds-btn-base ds-btn-default ds-btn-accent"
                                     style={creamStyle}
                                     onMouseEnter={(e) => Object.assign(e.currentTarget.style, creamHoverStyle)}
                                     onMouseLeave={(e) => Object.assign(e.currentTarget.style, creamStyle)}
                                 >
-                                    <FiCheck className="mr-2" /> Success
+                                    <FiCheck className="ds-btn-icon-leading" /> Success
                                 </button>
                             </div>
                         </div>
 
                         {/* Subtle Cream */}
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Subtle</h4>
-                            <div className="flex flex-wrap items-center gap-4">
+                        <div className="ds-bd-subgroup">
+                            <div className="ds-buttons-label">Subtle</div>
+                            <div className="ds-buttons-row">
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg"
+                                    className="ds-btn-base ds-btn-default ds-btn-subtle"
                                     style={{
                                         backgroundColor: '#FCFCF0',
                                         color: NAVY,
@@ -292,19 +295,21 @@ export default function ButtonsDemo() {
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div className="ds-bd-section">
                 {/* Ghost & Destructive */}
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Ghost & Destructive</h3>
-                        <p className="text-sm text-gray-600">Minimal buttons with subtle hover effects.</p>
+                <div>
+                    <div className="ds-bd-heading-block">
+                        <h3>Ghost &amp; Destructive</h3>
+                        <p>Minimal buttons with subtle hover effects.</p>
                     </div>
-                    <div className="p-8 border border-gray-200 rounded-xl bg-white space-y-6">
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Ghost</h4>
-                            <div className="flex flex-wrap items-center gap-4">
+                    <div className="ds-buttons-card">
+                        <div className="ds-bd-subgroup">
+                            <div className="ds-buttons-label">Ghost</div>
+                            <div className="ds-buttons-row">
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium text-gray-700 rounded-lg"
+                                    className="ds-btn-base ds-btn-default ds-btn-ghost"
                                     style={{ transition: 'all 0.2s ease' }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.backgroundColor = '#F3F4F6';
@@ -318,7 +323,7 @@ export default function ButtonsDemo() {
                                     Ghost Button
                                 </button>
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium rounded-lg"
+                                    className="ds-btn-base ds-btn-default ds-btn-ghost-navy"
                                     style={{ color: NAVY, transition: 'all 0.2s ease' }}
                                     onMouseEnter={(e) => {
                                         e.currentTarget.style.backgroundColor = '#F8F9FA';
@@ -334,11 +339,11 @@ export default function ButtonsDemo() {
                             </div>
                         </div>
 
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Destructive</h4>
-                            <div className="flex flex-wrap items-center gap-4">
+                        <div className="ds-bd-subgroup">
+                            <div className="ds-buttons-label">Destructive</div>
+                            <div className="ds-buttons-row">
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-medium text-red-600 bg-white rounded-lg"
+                                    className="ds-btn-base ds-btn-default ds-btn-destructive-outline"
                                     style={{
                                         borderWidth: '1.5px',
                                         borderStyle: 'solid',
@@ -357,10 +362,10 @@ export default function ButtonsDemo() {
                                         e.currentTarget.style.boxShadow = '0px 1px 2px 0px rgba(220, 38, 38, 0.08)';
                                     }}
                                 >
-                                    <FiTrash2 className="mr-2" /> Delete
+                                    <FiTrash2 className="ds-btn-icon-leading" /> Delete
                                 </button>
                                 <button
-                                    className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white bg-red-600 rounded-lg"
+                                    className="ds-btn-base ds-btn-default ds-btn-destructive-solid"
                                     style={{
                                         boxShadow: `
                       0px 1px 1px 0px rgba(255, 255, 255, 0.15) inset,
@@ -388,25 +393,27 @@ export default function ButtonsDemo() {
                     `;
                                     }}
                                 >
-                                    <FiTrash2 className="mr-2" /> Delete Forever
+                                    <FiTrash2 className="ds-btn-icon-leading" /> Delete Forever
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div className="ds-bd-section">
                 {/* Full-Width Card Buttons */}
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Full-Width Card Buttons</h3>
-                        <p className="text-sm text-gray-600">Full-width buttons for forms and cards.</p>
+                <div>
+                    <div className="ds-bd-heading-block">
+                        <h3>Full-Width Card Buttons</h3>
+                        <p>Full-width buttons for forms and cards.</p>
                     </div>
-                    <div className="p-8 border border-gray-200 rounded-xl bg-white space-y-6">
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Primary Full-Width</h4>
-                            <div className="space-y-4">
+                    <div className="ds-buttons-card">
+                        <div className="ds-bd-fullwidth-block">
+                            <div className="ds-buttons-label">Primary Full-Width</div>
+                            <div className="ds-bd-subgroup-stack">
                                 <button
-                                    className="w-full inline-flex items-center justify-center px-6 py-4 text-base font-semibold text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+                                    className="ds-btn-base ds-btn-fullwidth"
                                     style={navyStyle}
                                     onMouseEnter={(e) => Object.assign(e.currentTarget.style, navyHoverStyle)}
                                     onMouseLeave={(e) => Object.assign(e.currentTarget.style, navyStyle)}
@@ -414,21 +421,21 @@ export default function ButtonsDemo() {
                                     Send Message
                                 </button>
                                 <button
-                                    className="w-full inline-flex items-center justify-center px-6 py-4 text-base font-semibold text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
+                                    className="ds-btn-base ds-btn-fullwidth"
                                     style={navyStyle}
                                     onMouseEnter={(e) => Object.assign(e.currentTarget.style, navyHoverStyle)}
                                     onMouseLeave={(e) => Object.assign(e.currentTarget.style, navyStyle)}
                                 >
-                                    <FiArrowRight className="mr-2" /> Get Started
+                                    <FiArrowRight className="ds-btn-icon-leading" /> Get Started
                                 </button>
                             </div>
                         </div>
 
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Secondary Full-Width</h4>
-                            <div className="space-y-4">
+                        <div className="ds-bd-fullwidth-block">
+                            <div className="ds-buttons-label">Secondary Full-Width</div>
+                            <div className="ds-bd-subgroup-stack">
                                 <button
-                                    className="w-full inline-flex items-center justify-center px-6 py-4 text-base font-medium text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200"
+                                    className="ds-btn-base ds-btn-fullwidth ds-btn-secondary"
                                     style={outlineStyle}
                                     onMouseEnter={(e) => Object.assign(e.currentTarget.style, outlineHoverStyle)}
                                     onMouseLeave={(e) => Object.assign(e.currentTarget.style, outlineStyle)}
@@ -438,16 +445,16 @@ export default function ButtonsDemo() {
                             </div>
                         </div>
 
-                        <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider">Accent Full-Width</h4>
-                            <div className="space-y-4">
+                        <div className="ds-bd-fullwidth-block">
+                            <div className="ds-buttons-label">Accent Full-Width</div>
+                            <div className="ds-bd-subgroup-stack">
                                 <button
-                                    className="w-full inline-flex items-center justify-center px-6 py-4 text-base font-bold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                    className="ds-btn-base ds-btn-fullwidth ds-btn-accent"
                                     style={creamStyle}
                                     onMouseEnter={(e) => Object.assign(e.currentTarget.style, creamHoverStyle)}
                                     onMouseLeave={(e) => Object.assign(e.currentTarget.style, creamStyle)}
                                 >
-                                    <FiCheck className="mr-2" /> Confirm Action
+                                    <FiCheck className="ds-btn-icon-leading" /> Confirm Action
                                 </button>
                             </div>
                         </div>

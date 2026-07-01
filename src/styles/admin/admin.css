@@ -27,8 +27,7 @@
   /* 10 units */
 
   /* === TYPOGRAPHY SCALE === */
-  /* Font Families */
-  --font-sans: 'Altone', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Font Families — inherit --font-sans from foundation/typography.css (NaruSans) */
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Monaco', Consolas, monospace;
 
   /* Font Sizes (Type Scale Ratio: 1.25 - Major Third) */

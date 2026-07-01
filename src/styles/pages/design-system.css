@@ -2,24 +2,888 @@
    DESIGN SYSTEM PAGE STYLES
    ============================================ */
 
-/* Design System Layout */
-.design-system-layout {
-    /* Add design system layout styles here */
+.ds-page {
+    min-height: 100vh;
+    background-color: #f9fafb;
 }
 
-/* Component Showcase */
-.component-showcase {
-    /* Add component showcase styles here */
+/* Header */
+.ds-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-/* Color Palette Display */
-.color-palette-display {
-    /* Add color palette display styles here */
+.ds-header-inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
 }
 
-/* Typography Showcase */
-.typography-showcase {
-    /* Add typography showcase styles here */
+.ds-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
 }
 
-/* Add other design system page specific styles below */
+.ds-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ds-brand-logo {
+    height: 2.25rem;
+    width: auto;
+}
+
+.ds-brand-divider {
+    height: 1.75rem;
+    width: 1px;
+    background-color: #e5e7eb;
+}
+
+.ds-brand-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.2;
+}
+
+.ds-brand-sub {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.125rem;
+}
+
+.ds-version-pill {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: #F3F4C0;
+    color: #101828;
+    box-shadow:
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.3),
+        0 1px 2px 0 rgba(16, 24, 40, 0.08);
+}
+
+/* Tabs */
+.ds-tabs {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.ds-tab {
+    position: relative;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: 1.5px solid transparent;
+    background: transparent;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 200ms ease;
+    font-family: inherit;
+}
+
+.ds-tab:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #d1d5db;
+}
+
+.ds-tab--active {
+    background-color: #101828;
+    color: #ffffff;
+    border-color: #101828;
+    box-shadow:
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 4px 8px 0 rgba(255, 255, 255, 0.08),
+        0 1px 3px 0 rgba(0, 0, 0, 0.3),
+        0 3px 6px 0 rgba(0, 0, 0, 0.15);
+}
+
+.ds-tab--inactive {
+    background-color: #ffffff;
+    color: #6b7280;
+    border-color: #e5e7eb;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.ds-tab--inactive:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+    color: #374151;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+/* Main content */
+.ds-main {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+/* Typography */
+.ds-typo-section-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #111827;
+}
+
+.ds-typo-card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid #e5e7eb;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.ds-typo-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.ds-typo-row:last-child {
+    border-bottom: none;
+}
+
+.ds-typo-meta {
+    flex-shrink: 0;
+    width: 12rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.ds-typo-sample {
+    color: #111827;
+}
+
+/* Color palette */
+.ds-color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.ds-color-card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    transition: all 200ms ease;
+}
+
+.ds-color-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+}
+
+.ds-color-swatch {
+    height: 7rem;
+    width: 100%;
+}
+
+.ds-color-info {
+    padding: 1rem;
+}
+
+.ds-color-name {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.25rem;
+}
+
+.ds-color-hex {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+}
+
+.ds-color-bar {
+    display: flex;
+    height: 1.5rem;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+}
+
+.ds-color-bar-tile {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ds-color-rgb {
+    font-family: ui-monospace, monospace;
+    font-size: 0.6875rem;
+    color: #6b7280;
+}
+
+/* Buttons / Components tab */
+.ds-buttons-section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #111827;
+    margin-top: 2rem;
+}
+
+.ds-buttons-section-title:first-child {
+    margin-top: 0;
+}
+
+.ds-buttons-section-desc {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+}
+
+.ds-buttons-card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid #e5e7eb;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.ds-buttons-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.ds-buttons-row:last-child {
+    margin-bottom: 0;
+}
+
+.ds-buttons-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    min-width: 7rem;
+}
+
+.ds-component-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+/* ── ButtonsDemo (components/design-system/ButtonsDemo.tsx) ───────────────── */
+.ds-bd-section {
+    margin-bottom: 3rem;
+}
+
+.ds-bd-section:last-child {
+    margin-bottom: 0;
+}
+
+.ds-bd-heading-block {
+    margin-bottom: 1.5rem;
+}
+
+.ds-bd-heading-block h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 0 0.5rem 0;
+}
+
+.ds-bd-heading-block p {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.ds-bd-subgroup {
+    margin-bottom: 1.5rem;
+}
+
+.ds-bd-subgroup:last-child {
+    margin-bottom: 0;
+}
+
+.ds-bd-subgroup-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.ds-bd-fullwidth-block {
+    margin-bottom: 1.5rem;
+}
+
+.ds-bd-fullwidth-block:last-child {
+    margin-bottom: 0;
+}
+
+/* ── Button primitives (used by ButtonsDemo) ────────────────────────────── */
+.ds-btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.ds-btn-base:focus-visible {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 0 4px rgba(16, 24, 40, 0.5);
+}
+
+/* Sizes */
+.ds-btn-default {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+}
+
+.ds-btn-large {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+}
+
+.ds-btn-small {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 0.375rem;
+}
+
+.ds-btn-fullwidth {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+}
+
+/* Variants — inherit color from inline style */
+.ds-btn-default          { color: #ffffff; }
+.ds-btn-large            { color: #ffffff; }
+.ds-btn-small            { color: #ffffff; }
+.ds-btn-secondary        { color: #111827; font-weight: 500; }
+.ds-btn-navy-outline     { font-weight: 600; }
+.ds-btn-accent           { color: #101828; font-weight: 700; }
+.ds-btn-subtle           { color: #101828; font-weight: 500; }
+.ds-btn-ghost            { color: #374151; font-weight: 500; background: transparent; }
+.ds-btn-ghost-navy       { color: #101828; font-weight: 500; background: transparent; }
+.ds-btn-destructive-outline { color: #dc2626; background: #ffffff; font-weight: 500; }
+.ds-btn-destructive-solid   { color: #ffffff; background: #ef4444; font-weight: 600; }
+.ds-btn-disabled         { opacity: 0.5; cursor: not-allowed; }
+
+/* Icon helpers */
+.ds-btn-icon-leading    { margin-right: 0.5rem; }
+.ds-btn-icon-trailing   { margin-left: 0.5rem; }
+
+/* ── Not Found ───────────────────────────────────────────────────────────── */
+
+.nf-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f9fafb;
+}
+
+.nf-card {
+    text-align: center;
+    padding: 0 1.5rem;
+}
+
+.nf-logo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    opacity: 0.5;
+}
+
+.nf-code {
+    font-size: 3.75rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+
+.nf-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 1rem;
+}
+
+.nf-text {
+    color: #4b5563;
+    margin-bottom: 2rem;
+}
+
+.nf-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    color: #ffffff;
+    background-color: #2382fc;
+    text-decoration: none;
+    transition: background-color 200ms ease;
+}
+
+.nf-button:hover {
+    background-color: #2563eb;
+}
+
+/* ── Typography Showcase ──────────────────────────────────────────────────── */
+
+.ds-typo-section-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.ds-typo-section-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.ds-typo-section-header p {
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+}
+
+.ds-typo-weights {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+}
+
+.ds-typo-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+@media (min-width: 768px) {
+    .ds-typo-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.ds-typo-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.ds-typo-heading {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.ds-typo-heading--no-border {
+    border-bottom: none;
+}
+
+.ds-typo-display {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #101828;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+.ds-typo-h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #101828;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.ds-typo-h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #101828;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.ds-typo-h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #101828;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.ds-typo-h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #101828;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.ds-typo-meta {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-family: ui-monospace, monospace;
+}
+
+.ds-typo-lead-card {
+    padding: 1.5rem;
+    background-color: #f9fafb;
+    border-radius: 0.75rem;
+    border: 1px solid #f3f4f6;
+}
+
+.ds-typo-lead {
+    font-size: 1.125rem;
+    color: #4b5563;
+    line-height: 1.625;
+    margin-bottom: 1rem;
+}
+
+.ds-typo-body {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.625;
+    margin-bottom: 0.5rem;
+}
+
+.ds-typo-small {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.625;
+    margin-bottom: 0.5rem;
+}
+
+.ds-typo-strong {
+    font-weight: 700;
+    color: #101828;
+}
+
+.ds-typo-strong-medium {
+    font-weight: 600;
+    color: #101828;
+}
+
+.ds-typo-strong-light {
+    font-weight: 500;
+    color: #101828;
+}
+
+.ds-typo-weights-block {
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.ds-typo-weights-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #101828;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ds-typo-weights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.ds-typo-weight-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ds-typo-weight-sample {
+    font-size: 1.5rem;
+    color: #101828;
+}
+
+.ds-typo-weight-sample--regular { font-weight: 400; }
+.ds-typo-weight-sample--medium { font-weight: 500; }
+.ds-typo-weight-sample--semibold { font-weight: 600; }
+.ds-typo-weight-sample--bold { font-weight: 700; }
+.ds-typo-weight-sample--extrabold { font-weight: 800; }
+
+.ds-typo-weight-name {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* ── Color Palette Showcase ────────────────────────────────────────────────── */
+
+.ds-color-section-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.ds-color-section-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.ds-color-section-header p {
+    color: #4b5563;
+}
+
+.ds-color-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.ds-color-block-header {
+    margin-bottom: 1rem;
+}
+
+.ds-color-block-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.25rem;
+}
+
+.ds-color-block-header p {
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+.ds-color-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+    .ds-color-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .ds-color-row {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.ds-color-swatch-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    transition: background-color 200ms ease;
+}
+
+.ds-color-swatch-row:hover {
+    background-color: #f9fafb;
+}
+
+.ds-color-swatch-tile {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.375rem;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.ds-color-logo-pill {
+    position: absolute;
+    top: -0.25rem;
+    right: -0.25rem;
+    background-color: #101828;
+    color: #ffffff;
+    font-size: 0.625rem;
+    padding: 0.125rem 0.375rem;
+    border-radius: 9999px;
+    font-weight: 600;
+}
+
+.ds-color-swatch-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.ds-color-swatch-name {
+    font-family: ui-monospace, monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.ds-color-swatch-hex,
+.ds-color-swatch-rgb {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* ── PageHeader Showcase ──────────────────────────────────────────────────── */
+
+.phs-page {
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+.phs-section {
+    margin-top: 4rem;
+}
+
+.phs-section:first-of-type {
+    margin-top: 0;
+}
+
+.phs-section--gray {
+    background-color: #f9fafb;
+    padding: 5rem 0;
+}
+
+.phs-section--white {
+    padding: 5rem 0;
+}
+
+.phs-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.phs-section-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #111827;
+}
+
+.phs-example-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .phs-example-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.phs-example-card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+}
+
+.phs-example-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #111827;
+}
+
+.phs-example-card pre {
+    background-color: #111827;
+    color: #f3f4f6;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    overflow-x: auto;
+    font-family: ui-monospace, monospace;
+    line-height: 1.5;
+}
+
+.phs-table-wrap {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.phs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.phs-table thead {
+    background-color: #f9fafb;
+}
+
+.phs-table th,
+.phs-table td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 0.875rem;
+}
+
+.phs-table th {
+    font-weight: 600;
+    color: #111827;
+}
+
+.phs-table td {
+    color: #4b5563;
+    border-top: 1px solid #e5e7eb;
+}
+
+.phs-table tr.divide-y td {
+    border-top: 1px solid #e5e7eb;
+}
+
+.phs-table-mono {
+    font-family: ui-monospace, monospace;
+    color: #101828;
+}
+
+.phs-table-required {
+    color: #dc2626;
+}
+
+.phs-table-optional {
+    color: #9ca3af;
+}

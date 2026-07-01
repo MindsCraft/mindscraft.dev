@@ -5,12 +5,26 @@
 
 :root {
    /* =========================================
-     LOGO-BASED COLOR PALETTE
-     Primary: Navy/Black (#101828)
-     Accent: Cream (#F3F4C0)
+     BRAND PALETTE — locked to live logo (logo-black.svg)
+
+     Logo primary:        #2E3543  slate-blue dark (extracted from SVG)
+     Hero / dark ink:     #101828  deeper navy (used on dark sections)
+     Accent (cream):      #F3F4C0  highlight only — chips, badges, hover
+
+     The slate #2E3543 is the single brand color for the wordmark.
+     #101828 is reserved for dark hero overlays and dark-surface sections.
+     #F3F4C0 is never used as a primary fill — only as accent on dark BG.
      ========================================= */
 
-   /* Primary - Navy/Black (from logo) */
+   /* Brand Slate — derived from logo-black.svg */
+   --brand-slate: 46 53 67;
+   /* #2E3543 — live logo color */
+   --brand-slate-light: 78 86 102;
+   /* #4E5666 — hover/secondary */
+   --brand-slate-dark: 28 33 43;
+   /* #1C212B — pressed/active */
+
+   /* Hero Ink — deeper navy for dark sections */
    --primary-50: 248 249 250;
    /* #F8F9FA */
    --primary-100: 233 236 239;
@@ -27,14 +41,14 @@
    /* #495057 */
    --primary-700: 52 58 64;
    /* #343A40 */
-   --primary-800: 33 37 41;
-   /* #212529 */
+   --primary-800: 16 24 40;
+   /* #101828 — hero/dark-overlay ink */
    --primary-900: 16 24 40;
-   /* #101828 - Logo color */
+   /* #101828 — kept for legacy components referencing hero ink */
    --primary-950: 10 15 26;
    /* #0A0F1A */
 
-   /* Accent - Cream (from logo) */
+   /* Accent — Cream (highlight only) */
    --accent-50: 254 254 248;
    /* #FEFEF8 */
    --accent-100: 252 252 240;
@@ -44,7 +58,7 @@
    --accent-300: 246 247 212;
    /* #F6F7D4 */
    --accent-400: 243 244 192;
-   /* #F3F4C0 - Logo color */
+   /* #F3F4C0 — accent on dark BG */
    --accent-500: 234 235 172;
    /* #EAEBAC */
    --accent-600: 212 214 138;
@@ -208,4 +222,21 @@
    --color-blue-900: #1e3072;
    /* Blue disabled backgrounds, button text */
    --color-blue-950: #172554;
+}
+
+/* =========================================
+   SEMANTIC TOKENS — 2026 nav/footer rebuild
+   ========================================= */
+:root {
+   --ink-900: #0F172A;
+   --ink-800: #1E293B;
+   --ink-700: #334155;
+   --ink-600: #475569;
+   --ink-500: #64748B;
+   --ink-400: #94A3B8;
+
+   --bg-page:    #FFFFFF;
+   --surface-1:  #F8FAFC;
+   --surface-2:  #F1F5F9;
+   --color-border: rgba(15, 23, 42, 0.08);
 }

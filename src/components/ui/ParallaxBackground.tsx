@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import '@/styles/components/backgrounds.css';
 
 interface ParallaxLayerData {
   id: number;
@@ -24,7 +25,7 @@ function ParallaxLayerComponent({ layer, scrollY }: ParallaxLayerProps) {
   return (
     <motion.div
       key={layer.id}
-      className="absolute inset-0"
+      className="bgx-anchor-pane"
       style={{
         backgroundImage: `url("${layer.image}")`,
         backgroundRepeat: 'repeat',
@@ -77,7 +78,7 @@ export default function ParallaxBackground({
   if (!mounted) return null;
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div className={`bgx-shell ${className}`}>
       {layers.map((layer) => (
         <ParallaxLayerComponent
           key={layer.id}

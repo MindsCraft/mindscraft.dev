@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import '@/styles/components/backgrounds.css';
 
 interface BlobBackgroundProps {
   className?: string;
@@ -68,11 +69,11 @@ export default function BlobBackground({
   if (!mounted || blobs.length === 0) return null;
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div className={`bgx-shell ${className}`}>
       {blobs.map((blob) => (
         <motion.div
           key={blob.id}
-          className="absolute rounded-full"
+          className="bgx-anchor-blob"
           style={{
             width: `${blobSize}px`,
             height: `${blobSize}px`,

@@ -17,9 +17,9 @@ export default function ConditionalLayout({
     }
 
     return (
-        <div className="flex min-h-screen flex-col">
+        <div className="layout-shell">
             <Header />
-            <main className="flex-1 w-full pt-[80px]">
+            <main className="layout-main">
                 {children}
             </main>
             <Footer />

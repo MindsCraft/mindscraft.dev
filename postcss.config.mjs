@@ -1,6 +1,7 @@
+// PostCSS config — Tailwind removed; pure CSS pipeline.
 const config = {
   plugins: {
-    "@tailwindcss/postcss": {},
+    autoprefixer: {},
   },
 };
 export default config;

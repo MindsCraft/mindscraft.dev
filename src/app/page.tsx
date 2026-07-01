@@ -1,44 +1,29 @@
-export const dynamic = 'force-dynamic'
-import Hero from './home/Hero'
-import Clients from './home/Clients'
-import Work from './home/Work'
-import Services from './home/Services'
-import Blog from './home/Blog'
-import Cta from './home/Cta'
-
-import { Metadata } from 'next'
+import type { Metadata } from 'next';
+import Hero from '@/components/home/Hero';
+import ClientsGrid from '@/components/home/ClientsGrid';
+import Services from '@/components/home/Services';
+import FeaturedWork from '@/components/home/FeaturedWork';
+import Process from '@/components/home/Process';
+import Testimonials from '@/components/home/Testimonials';
+import CtaBand from '@/components/home/CtaBand';
 
 export const metadata: Metadata = {
-  title: 'MindsCraft - Premium Web Development & UX Design',
-  description: 'Transform your digital presence with MindsCraft. We specialize in high-performance web development, modern UX/UI design, and scalable software solutions.',
-  alternates: {
-    canonical: 'https://mindscraft.dev',
-  },
-  openGraph: {
-    title: 'MindsCraft - Premium Web Development & UX Design',
-    description: 'Transform your digital presence with MindsCraft. We specialize in high-performance web development, modern UX/UI design, and scalable software solutions.',
-    url: 'https://mindscraft.dev',
-    siteName: 'MindsCraft',
-    type: 'website',
-    images: [{ url: 'https://mindscraft.dev/images/og-image.png', width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'MindsCraft - Premium Web Development & UX Design',
-    description: 'Transform your digital presence with MindsCraft. We specialize in high-performance web development, modern UX/UI design, and scalable software solutions.',
-    images: ['https://mindscraft.dev/images/og-image.png'],
-  },
-}
+  title: 'MindsCraft — AI-First Product Studio',
+  description:
+    'Senior-led AI studio shipping AI integrations, AI-augmented SaaS, and AI MVPs for funded founders. Fixed scope. Fixed price. 2–8 weeks. From $5,000.',
+  alternates: { canonical: 'https://mindscraft.dev' },
+};
 
 export default function Home() {
   return (
-    <main>
+    <main className="ph-shell">
       <Hero />
-      <Clients />
-      <Work />
+      <ClientsGrid />
       <Services />
-      <Blog />
-      <Cta />
+      <FeaturedWork />
+      <Process />
+      <Testimonials />
+      <CtaBand />
     </main>
-  )
+  );
 }

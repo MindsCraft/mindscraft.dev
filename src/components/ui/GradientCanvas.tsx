@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import '@/styles/components/backgrounds.css';
 
 interface GradientCanvasProps {
   className?: string;
@@ -107,10 +108,10 @@ export default function GradientCanvas({
   if (!mounted) return null;
 
   return (
-    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+    <div className={`bgx-shell ${className}`}>
       <canvas
         ref={canvasRef}
-        className="absolute inset-0"
+        className="bgx-anchor-pane"
         style={{ filter: `blur(${blur}px)` }}
       />
     </div>

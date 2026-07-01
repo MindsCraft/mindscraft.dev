@@ -7,9 +7,15 @@
 @import './about.css';
 @import './services.css';
 @import './work.css';
+@import './work-detail.css';
 @import './contact.css';
+@import './pricing.css';
+@import './faq.css';
 @import './blog.css';
 @import './blog-detail.css';
 @import './design-system.css';
 @import './privacy-policy.css';
 @import './terms-and-conditions.css';
+@import './legal.css';
+@import './custom.css';
+@import './sandbox.css';

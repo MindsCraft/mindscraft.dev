@@ -53,28 +53,41 @@ To democratize AI-powered development for startups, making cutting-edge technolo
 - **Text Only**: For text-heavy layouts, footers
 - **Horizontal**: For navigation bars, compact spaces
 
-#### Logo Colors
-- **Primary Dark**: `#101828` - Professional, trustworthy
-- **Accent Light**: `#F3F4C0` - Innovative, creative
-- **Light Version**: White logo for dark backgrounds
+#### Logo Colors (locked to `public/logo/logo-black.svg`, the only live logo asset)
+
+- **Primary Wordmark**: `#2E3543` - Slate-blue dark. The single color of the live logo.
+- **Hero / Dark Overlay Ink**: `#101828` - Deeper navy, used on dark hero sections and CTAs that sit on dark backgrounds.
+- **Accent (cream)**: `#F3F4C0` - Highlight only. Never used as a primary fill. Reserved for chips, badges, hover states on dark BG.
+- **Light Version**: White wordmark on `#101828` for dark sections (inline SVG recolor of `logo-black.svg`).
+- **Archive**: The previous cream-and-navy two-color mark has been moved to `/public/logo/_archive/new-logo.svg`. It is no longer in use.
 
 ### Color Palette
 
-#### Primary Brand Colors (Extracted from Logo)
+#### Primary Brand Colors (Extracted from Live Logo)
 
-**Mindscraft Dark** `#101828`
+**Brand Slate** `#2E3543`
+- **RGB**: 46, 53, 67
+- **HSL**: 220°, 19%, 22%
+- **Usage**: Logo wordmark, primary text, headers, navigation, button fills on light BG, body emphasis.
+- **Personality**: Modern, technical, restrained — reads as senior/technical rather than corporate.
+- **Accessibility**: WCAG AAA compliant on white backgrounds (contrast ratio ~10.4:1).
+- **CSS token**: `--brand-slate` (`46 53 67`).
+
+**Hero Ink** `#101828`
 - **RGB**: 16, 24, 40
 - **HSL**: 220°, 43%, 11%
-- **Usage**: Primary text, headers, navigation, logo backgrounds, professional elements
-- **Personality**: Professional, trustworthy, sophisticated, authoritative
-- **Accessibility**: WCAG AAA compliant on white backgrounds (contrast ratio 16.78:1)
+- **Usage**: Dark-section backgrounds, the hero CTA bar, about-page dark sections, footer dark variant. Always behind light text.
+- **Personality**: Deeper than the slate — used to make hero/footer feel more "weighty" than the body.
+- **Accessibility**: WCAG AAA compliant for white text on this background (contrast ratio ~16.8:1).
+- **CSS token**: `--primary-800` / `--primary-900` (legacy alias kept).
 
-**Mindscraft Accent** `#F3F4C0`
+**Cream Accent** `#F3F4C0`
 - **RGB**: 243, 244, 192
 - **HSL**: 61°, 68%, 85%
-- **Usage**: Highlights, creative elements, hover states, logo patterns, innovation indicators
-- **Personality**: Innovative, creative, approachable, optimistic
-- **Accessibility**: Use with dark text only (contrast ratio 1.35:1 with white)
+- **Usage**: Floating stat chips, badge backgrounds, hover-state highlights on dark BG, the hero showcase accent. **Never as primary text, never as a primary button fill.**
+- **Personality**: Optimistic, approachable, faintly editorial.
+- **Accessibility**: Use only on `--primary-800` (#101828) or `--brand-slate-dark` (#1C212B) backgrounds. Never on white.
+- **CSS token**: `--accent-400`.
 
 #### Extended Brand Color System
 

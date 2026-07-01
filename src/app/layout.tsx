@@ -117,12 +117,39 @@ export default async function RootLayout({
   const seo = await getSeoSettings();
 
   return (
-    <html suppressHydrationWarning
-      lang="en"
-      className="h-full scroll-smooth"
-      data-scroll-behavior="smooth"
-    >
-      <body className="antialiased h-full bg-background text-foreground selection:bg-primary-100 selection:text-primary-900">
+    <html suppressHydrationWarning lang="en" data-scroll-behavior="smooth">
+      <head>
+        {/* Preload the 4 LeniaSans weights used by the design system */}
+        <link
+          rel="preload"
+          href="/font/LeniaSans-Regular.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/font/LeniaSans-Medium.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/font/LeniaSans-SemiBold.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/font/LeniaSans-ExtraLight.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+      </head>
+      <body>
         <JsonLd />
         <Suspense fallback={null}>
           <GoogleAnalytics gaId={seo?.googleAnalyticsId} />

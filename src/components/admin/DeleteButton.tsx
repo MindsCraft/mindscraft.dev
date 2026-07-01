@@ -1,6 +1,7 @@
 'use client';
 
 import { Trash } from '@/components/ui/icons';
+import '@/styles/components/admin-surfaces.css';
 
 interface DeleteButtonProps {
   title: string;
@@ -40,10 +41,10 @@ export function DeleteButton({ title, itemId, resourceType }: DeleteButtonProps)
 
   return (
     <button
-      className="text-red-600 hover:text-red-900"
+      className="del-btn"
       onClick={handleDelete}
     >
-      <Trash className="h-4 w-4" />
+      <Trash />
       <span className="sr-only">Delete {title}</span>
     </button>
   );

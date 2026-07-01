@@ -4,7 +4,9 @@ import { ReactNode } from 'react'
 import Sidebar from './Sidebar'
 import MobileHeader from './MobileHeader'
 import AdminFooter from './AdminFooter'
-import '@/styles/admin/index.css'
+import '@/styles/admin/index.css';
+import '@/styles/components/admin.css';
+import '@/styles/components/admin-surfaces.css'
 
 interface AdminLayoutProps {
   children: ReactNode
@@ -12,7 +14,7 @@ interface AdminLayoutProps {
 
 export function AdminLayout({ children }: AdminLayoutProps) {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'var(--color-background)' }}>
+    <div className="al-root" style={{ backgroundColor: 'var(--color-background)' }}>
       {/* Mobile Header - only shown on mobile */}
       <MobileHeader />
 

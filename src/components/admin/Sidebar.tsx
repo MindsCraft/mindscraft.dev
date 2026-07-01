@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Image from 'next/image'
+import '@/styles/components/admin-surfaces.css';
 import {
   LayoutDashboard,
   FileText,
@@ -48,9 +49,9 @@ const Sidebar = () => {
   const pathname = usePathname()
 
   return (
-    <div className="hidden lg:flex lg:shrink-0 fixed top-0 left-0 h-full z-30">
+    <div className="as-shell">
       <div
-        className="flex flex-col w-64 h-full"
+        className="as-inner"
         style={{
           backgroundColor: 'var(--color-background)',
           borderRight: '1px solid var(--color-border)',
@@ -63,7 +64,7 @@ const Sidebar = () => {
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
           <Link href="/admin/dashboard" style={{ display: 'flex', alignItems: 'center' }}>
-            <Image src="/logo/new-logo.svg" alt="Mindscraft" width={120} height={32} className="h-7 w-auto" />
+            <Image src="/logo/logo-black.svg" alt="Mindscraft" width={120} height={32} className="as-logo" />
           </Link>
           <Link
             href="/"

@@ -108,7 +108,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                 </>
             )}
 
-            <div className="container relative z-10 py-36">
+            <div className="page-header-content-positioned">
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
@@ -146,7 +146,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
 
                     {/* Badge */}
                     {badge && (
-                        <motion.div variants={itemVariants as any} className="inline-flex">
+                        <motion.div variants={itemVariants as any} className="page-header-badge-wrapper">
                             <Badge variant="default" size="md">
                                 {badge}
                             </Badge>
@@ -179,7 +179,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
                                 className={`cta-button ${cta.variant === 'secondary' || variant === 'solid' ? 'cta-secondary' : 'cta-primary'}`}
                             >
                                 <span>{cta.text}</span>
-                                <FiArrowRight className="w-5 h-5" />
+                                <FiArrowRight size={20} />
                             </Link>
                         </motion.div>
                     )}

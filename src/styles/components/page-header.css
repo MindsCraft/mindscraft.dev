@@ -52,6 +52,15 @@
     /* max-w-4xl */
 }
 
+/* Inner wrapper (positioned above decorative blobs, generous vertical padding) */
+.page-header-content-positioned {
+    position: relative;
+    z-index: 10;
+    padding-top: 9rem;
+    /* py-36 */
+    padding-bottom: 9rem;
+}
+
 /* Badge */
 .page-header-badge-wrapper {
     display: inline-flex;
