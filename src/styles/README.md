@@ -20,13 +20,15 @@ src/styles/
 │
 ├── components/         # Component-specific styles
 │   ├── index.css       # Imports all component styles
-│   ├── hero.css        # Hero component styles
-│   ├── navigation.css  # Navigation component styles
+│   ├── header.css      # Header / nav component styles
 │   ├── footer.css      # Footer component styles
-│   ├── cards.css       # Card component styles
 │   ├── forms.css       # Form component styles
-│   ├── modals.css      # Modal component styles
-│   └── grids.css       # Grid component styles
+│   ├── page-header.css # Page header component styles
+│   ├── work-hero.css   # Work page hero component styles
+│   ├── admin.css       # Admin surface styles
+│   ├── admin-surfaces.css # Admin sub-surface styles
+│   ├── login.css       # Login component styles
+│   └── backgrounds.css # Background utility styles
 │
 ├── pages/              # Page-specific styles
 │   ├── index.css       # Imports all page styles
@@ -52,12 +54,11 @@ src/styles/
 
 The styles are imported in the following order for proper cascade:
 
-1. **Tailwind CSS** - Base framework
-2. **Foundation** - Core design system (variables, typography, layout)
-3. **Utilities** - Utility classes and helpers
-4. **Components** - Reusable component styles
-5. **Pages** - Page-specific styles
-6. **Admin** - Admin theme styles
+1. **Foundation** - Core design system (variables, typography, layout)
+2. **Utilities** - Utility classes and helpers
+3. **Components** - Reusable component styles
+4. **Pages** - Page-specific styles
+5. **Admin** - Admin theme styles
 
 ## Usage
 

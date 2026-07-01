@@ -60,12 +60,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
         // ── Secondary pages ──────────────────────────────────────
         {
-            url: `${baseUrl}/case-studies`,
-            lastModified: now,
-            changeFrequency: 'monthly',
-            priority: 0.7,
-        },
-        {
             url: `${baseUrl}/faq`,
             lastModified: now,
             changeFrequency: 'monthly',

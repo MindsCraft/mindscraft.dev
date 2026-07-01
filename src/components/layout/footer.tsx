@@ -29,7 +29,7 @@ const columns = [
     title: "Resources",
     links: [
       { title: "Blog", href: "/blog" },
-      { title: "Case Studies", href: "/case-studies" },
+      { title: "Work", href: "/work" },
       { title: "AI Audit", href: "/ai-audit" },
       { title: "FAQ", href: "/faq" },
       { title: "Contact", href: "/contact" },

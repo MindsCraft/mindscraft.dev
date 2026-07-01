@@ -1,7 +1,5 @@
 /* ==========================================================================
-   Page-background components (BlobBackground, DottedBackground,
-   GeometricPattern, GradientCanvas, ParallaxBackground,
-   ParticleBackground, SvgBackground)
+   Page-background components (DottedBackground, SvgBackground, AnimatedSection)
    Replaces Tailwind utility classes on visual decor layers.
    ========================================================================== */
 
@@ -19,5 +17,5 @@
 .bgx-anchor-pane  { position: absolute; inset: 0; }
 .bgx-anchor-full  { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-/* Filled rect / square helper used in GeometricPattern */
+/* Filled rect / square helper for shape-pattern decor layers */
 .bgx-square       { position: absolute; }
