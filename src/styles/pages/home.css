@@ -65,13 +65,13 @@
 }
 
 .ph-title {
-    font-size: clamp(2.5rem, 6vw + 0.75rem, 6.5rem);
-    line-height: 0.98;
-    letter-spacing: -0.035em;
+    font-size: clamp(2rem, 2.5vw + 1rem, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     font-weight: var(--fw-bold, 600);
     color: var(--ink-900);
-    margin: 0 0 2rem;
-    max-width: 18ch;
+    margin: 0 0 1.5rem;
+    max-width: 22ch;
     text-wrap: balance;
 }
 
@@ -975,6 +975,773 @@
     background: rgb(255 255 255 / 0.08);
 }
 
+/* ───────── TWO WAYS BAND (Section 4) ───────── */
+.tw-section {
+    background: var(--surface-1);
+    padding: 5rem 1.25rem;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+
+@media (min-width: 900px) {
+    .tw-section {
+        padding: 8rem 1.25rem;
+    }
+}
+
+.tw-header {
+    max-width: 1100px;
+    margin: 0 auto 3.5rem;
+}
+
+.tw-eyebrow {
+    margin: 0 0 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+}
+
+.tw-title {
+    margin: 0 0 1.25rem;
+    max-width: 22ch;
+    font-size: clamp(2rem, 4vw + 0.5rem, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: var(--fw-bold, 600);
+    color: var(--ink-900);
+    text-wrap: balance;
+}
+
+.tw-sub {
+    margin: 0;
+    max-width: 56ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink-600);
+    text-wrap: pretty;
+}
+
+.tw-grid {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+@media (min-width: 720px) {
+    .tw-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+.tw-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 2.25rem 2rem 2rem;
+    background: var(--bg-page);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    transition:
+        transform 200ms ease,
+        border-color 200ms ease,
+        box-shadow 200ms ease;
+}
+
+.tw-card:hover {
+    transform: translateY(-2px);
+    border-color: rgb(15 23 42 / 0.18);
+    box-shadow: 0 12px 32px rgb(15 23 42 / 0.06);
+}
+
+.tw-card-top {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1.5rem;
+}
+
+.tw-card-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.625rem;
+    background: var(--surface-1);
+    border: 1px solid var(--color-border);
+    color: var(--ink-800);
+}
+
+.tw-card-icon svg {
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+.tw-card-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+}
+
+.tw-card-title {
+    margin: 0 0 0.75rem;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: var(--fw-bold, 600);
+    color: var(--ink-900);
+}
+
+.tw-card-pitch {
+    margin: 0 0 1.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--ink-600);
+    text-wrap: pretty;
+}
+
+.tw-card-bullets {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+.tw-card-bullet {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.875rem;
+    color: var(--ink-700);
+}
+
+.tw-card-tick {
+    color: var(--ink-500);
+    font-size: 0.875rem;
+}
+
+.tw-card-cta {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    padding: 0.625rem 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--ink-900);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-900);
+    transition: gap 200ms ease;
+}
+
+.tw-card-cta svg {
+    width: 0.875rem;
+    height: 0.875rem;
+    transition: transform 200ms ease;
+}
+
+.tw-card-cta:hover {
+    gap: 0.6rem;
+}
+
+.tw-card-cta:hover svg {
+    transform: translate(2px, -2px);
+}
+
+/* ───────── TOOLING BAND (Section 5) ───────── */
+.tb-section {
+    background: var(--bg-page);
+    padding: 5rem 1.25rem;
+}
+
+@media (min-width: 900px) {
+    .tb-section {
+        padding: 8rem 1.25rem;
+    }
+}
+
+.tb-header {
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+}
+
+.tb-eyebrow {
+    margin: 0 0 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+}
+
+.tb-title {
+    margin: 0 0 1.25rem;
+    max-width: 22ch;
+    font-size: clamp(2rem, 4vw + 0.5rem, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: var(--fw-bold, 600);
+    color: var(--ink-900);
+    text-wrap: balance;
+}
+
+.tb-sub {
+    margin: 0;
+    max-width: 56ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink-600);
+    text-wrap: pretty;
+}
+
+.tb-grid {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 1100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tb-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--color-border);
+    align-items: start;
+}
+
+@media (min-width: 720px) {
+    .tb-row {
+        grid-template-columns: auto 1fr auto;
+        gap: 1.5rem 2rem;
+        align-items: center;
+    }
+}
+
+.tb-row:last-child {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.tb-row-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.5rem;
+    background: var(--surface-1);
+    border: 1px solid var(--color-border);
+    color: var(--ink-800);
+}
+
+.tb-row-mark svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.tb-row-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.tb-row-eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+}
+
+.tb-row-tagline {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--ink-700);
+}
+
+.tb-row-tools {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.tb-row-tool {
+    padding: 0.3rem 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--ink-700);
+    background: var(--surface-1);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+/* ───────── SHIPPING DISCIPLINE (Section 6) ───────── */
+.sd-section {
+    background: var(--bg-page);
+    padding: 5rem 1.25rem;
+    border-top: 1px solid var(--color-border);
+}
+
+@media (min-width: 900px) {
+    .sd-section {
+        padding: 8rem 1.25rem;
+    }
+}
+
+.sd-header {
+    max-width: 1100px;
+    margin: 0 auto 3.5rem;
+}
+
+.sd-eyebrow {
+    margin: 0 0 1.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+}
+
+.sd-title {
+    margin: 0 0 1.25rem;
+    max-width: 22ch;
+    font-size: clamp(2rem, 4vw + 0.5rem, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: var(--fw-bold, 600);
+    color: var(--ink-900);
+    text-wrap: balance;
+}
+
+.sd-sub {
+    margin: 0;
+    max-width: 56ch;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--ink-600);
+    text-wrap: pretty;
+}
+
+.sd-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+    .sd-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+    }
+}
+
+.sd-col {
+    display: flex;
+    flex-direction: column;
+    padding: 2.25rem 2rem;
+    background: var(--surface-1);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+}
+
+.sd-col-eyebrow {
+    margin: 0 0 0.75rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+}
+
+.sd-col-headline {
+    margin: 0 0 1.5rem;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: var(--fw-bold, 600);
+    color: var(--ink-900);
+    text-wrap: balance;
+}
+
+.sd-col-list {
+    list-style: none;
+    margin: 0 0 1.75rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.sd-col-point {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+}
+
+.sd-col-num {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--ink-400, #94a3b8);
+    padding-top: 0.15rem;
+}
+
+.sd-col-point-title {
+    margin: 0 0 0.35rem;
+    font-size: 0.9375rem;
+    line-height: 1.35;
+    font-weight: 600;
+    color: var(--ink-900);
+    text-wrap: pretty;
+}
+
+.sd-col-point-body {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--ink-600);
+    text-wrap: pretty;
+}
+
+.sd-col-cta {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    padding: 0.625rem 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    transition: gap 200ms ease;
+}
+
+.sd-col-cta-project {
+    color: var(--ink-900);
+}
+
+.sd-col-cta-retainer {
+    color: var(--ink-900);
+}
+
+.sd-col-cta:hover {
+    gap: 0.6rem;
+}
+
+/* ───────── FEATURED WORK — row labels + empty state + status badges ───────── */
+.fw-row {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.fw-row + .fw-row {
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.fw-row-label {
+    margin: 0 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+@media (min-width: 720px) {
+    .fw-row-label {
+        flex-direction: row;
+        align-items: baseline;
+        gap: 1.25rem;
+    }
+}
+
+.fw-row-eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+}
+
+.fw-row-desc {
+    font-size: 0.875rem;
+    color: var(--ink-600);
+}
+
+.fw-card-spec .fw-card-link {
+    background: var(--bg-page);
+}
+
+.fw-card-status {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.25rem 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--ink-700);
+    border: 1px solid var(--color-border);
+}
+
+.fw-card-status-live {
+    background: rgb(22 163 74 / 0.12);
+    color: #166534;
+    border-color: rgb(22 163 74 / 0.25);
+}
+
+.fw-card-status-in-build {
+    background: rgb(234 179 8 / 0.14);
+    color: #854d0e;
+    border-color: rgb(234 179 8 / 0.3);
+}
+
+.fw-card-status-planned {
+    background: var(--surface-1);
+    color: var(--ink-600);
+}
+
+.fw-empty {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+    background: var(--surface-1);
+    border: 1px dashed var(--color-border);
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.fw-empty p {
+    margin: 0 0 1rem;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--ink-600);
+    max-width: 48ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fw-empty-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--ink-900);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink-900);
+    transition: gap 200ms ease;
+}
+
+.fw-empty-link:hover {
+    gap: 0.55rem;
+}
+
+/* ───────── PROCESS — dual-track close line ───────── */
+.pr-close {
+    max-width: 1100px;
+    margin: 4rem auto 0;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 720px) {
+    .pr-close {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+    }
+}
+
+.pr-close-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: color 160ms ease;
+}
+
+.pr-close-item:hover {
+    color: var(--ink-700);
+}
+
+.pr-close-term {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-500);
+}
+
+.pr-close-headline {
+    font-size: clamp(1.5rem, 2.5vw + 0.75rem, 2.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    font-weight: var(--fw-bold, 600);
+    color: var(--ink-900);
+    text-wrap: balance;
+}
+
+/* ───────── SERVICES — 4-column variant ───────── */
+/* The old 3-column grid (.sv-grid) is kept for backwards compat.
+   New 4-pillar grid uses .sv-grid-four which collapses 1 → 2 → 4 cols. */
+.sv-grid-four {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+    .sv-grid-four {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 900px) {
+    .sv-grid-four {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* Accent variants — visual variation across the 4 pillars.
+   light = default (surface-1), navy = ink-dark, cream = warm accent. */
+.sv-card-light {
+    background: var(--surface-1);
+}
+
+.sv-card-navy {
+    background: var(--ink-900);
+    color: var(--bg-page);
+    border-color: var(--ink-900);
+}
+
+.sv-card-navy .sv-card-icon {
+    background: rgb(255 255 255 / 0.08);
+    border-color: rgb(255 255 255 / 0.12);
+    color: var(--bg-page);
+}
+
+.sv-card-navy .sv-card-num,
+.sv-card-navy .sv-card-tick,
+.sv-card-navy .sv-card-tag {
+    color: rgb(255 255 255 / 0.6);
+}
+
+.sv-card-tag {
+    display: inline-block;
+    align-self: flex-start;
+    margin-bottom: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-600);
+    background: var(--surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+}
+
+.sv-card-navy .sv-card-title,
+.sv-card-navy .sv-card-link {
+    color: var(--bg-page);
+}
+
+.sv-card-navy .sv-card-desc,
+.sv-card-navy .sv-card-feature {
+    color: rgb(255 255 255 / 0.75);
+}
+
+.sv-card-cream {
+    background: #faf6ee;
+    border-color: #e9dfc8;
+}
+
+/* ───────── CTA BAND — dual-route tracks ───────── */
+.cb-tracks {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    text-align: left;
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+@media (min-width: 720px) {
+    .cb-tracks {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+.cb-track {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1.75rem;
+    background: rgb(255 255 255 / 0.04);
+    border: 1px solid rgb(255 255 255 / 0.12);
+    border-radius: 1rem;
+}
+
+.cb-track-eyebrow {
+    margin: 0 0 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgb(255 255 255 / 0.6);
+}
+
+.cb-track-headline {
+    margin: 0 0 0.875rem;
+    font-size: 1.375rem;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    color: var(--bg-page);
+    text-wrap: balance;
+}
+
+.cb-track-body {
+    margin: 0 0 1.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: rgb(255 255 255 / 0.75);
+    text-wrap: pretty;
+}
+
+.cb-tracks .cb-cta,
+.cb-tracks .cb-ghost {
+    align-self: flex-start;
+}
+
 /* ───────── Reduced motion (global) ───────── */
 @media (prefers-reduced-motion: reduce) {
     .ph-cta,
@@ -988,6 +1755,10 @@
     .fw-card-img,
     .fw-all,
     .fw-all svg,
+    .tw-card,
+    .tw-card-cta,
+    .tw-card-cta svg,
+    .sd-col-cta,
     .cb-cta,
     .cb-cta svg,
     .cb-ghost {
@@ -995,7 +1766,8 @@
     }
     .ph-cta:hover,
     .sv-card:hover,
-    .fw-card-link:hover {
+    .fw-card-link:hover,
+    .tw-card:hover {
         transform: none;
     }
 }

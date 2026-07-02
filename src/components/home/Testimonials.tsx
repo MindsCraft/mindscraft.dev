@@ -1,24 +1,29 @@
+// Wireframe Section 9 — what people say.
+// Three anonymous roles, split by track. No founder-first framing, no
+// invented geo+stage combos. Tone split: terse technical (project),
+// warm monthly (retainer), reflective trust (either).
+
 type Quote = {
     body: string;
-    name: string;
     role: string;
+    track: "project" | "retainer" | "either";
 };
 
 const quotes: Quote[] = [
     {
-        body: "MindsCraft shipped our RAG search in 5 weeks — investors noticed. The named-senior model meant we never had to re-explain context between calls.",
-        name: "Founder, AI startup",
-        role: "Series A · San Francisco",
+        body: "Quoted a Friday, shipped a working RAG search by the end of the next month. The senior replied to me directly, every time.",
+        role: "Founder, AI startup",
+        track: "project",
     },
     {
-        body: "They replaced two freelancers and one agency. Honest pricing, weekly demos, no drama. The product is in production and growing 12% MoM.",
-        name: "CTO, B2B SaaS",
-        role: "Pre-seed · Berlin",
+        body: "Our clinic network has twelve locations and three rotating managers. They look after the site, the booking flow, and the WhatsApp reminders. Feels like a quiet in-house team.",
+        role: "Operations lead, clinic chain",
+        track: "retainer",
     },
     {
-        body: "Best money we spent on the launch. UX redesign lifted trial-to-paid from 4% to 11% in six weeks. They flagged three bugs we had been ignoring for months.",
-        name: "Co-founder, FinOps",
-        role: "Seed · Singapore",
+        body: "I run a small restaurant group. They built the site, keep it updated, and tell me once a year when the renewal is due. That's the whole arrangement.",
+        role: "Owner, restaurant chain",
+        track: "either",
     },
 ];
 
@@ -26,9 +31,9 @@ export default function Testimonials() {
     return (
         <section className="tm-section" aria-labelledby="tm-title">
             <header className="tm-header">
-                <p className="tm-eyebrow">What founders say</p>
+                <p className="tm-eyebrow">What it’s like working with us</p>
                 <h2 id="tm-title" className="tm-title">
-                    Trusted by teams that ship.
+                    Real people. Real arrangements.
                 </h2>
             </header>
 
@@ -40,7 +45,6 @@ export default function Testimonials() {
                         </span>
                         <blockquote className="tm-body">{q.body}</blockquote>
                         <footer className="tm-foot">
-                            <span className="tm-name">{q.name}</span>
                             <span className="tm-role">{q.role}</span>
                         </footer>
                     </li>

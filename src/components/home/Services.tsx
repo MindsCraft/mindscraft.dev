@@ -2,9 +2,13 @@ import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 import { servicesData } from "@/data/servicesData";
 
-// Home surface shows 3 services (AI-product, SaaS MVP, full-stack)
-// — the most relevant for an AI-first studio.
-const featured = servicesData.slice(0, 3);
+// Services — four honest pillars (wireframe Section 3, 2026-07-02).
+//
+// We removed the per-pillar "starting from $X" block. Pricing lives at
+// /pricing and /services/retainer now. Each pillar card shows: icon, tag,
+// title, description, 4 feature bullets, one CTA. CTA href is per-pillar
+// (pillar=website / pillar=apps / retainer route / sandbox/rag-demo) so
+// the contact form pre-fills with the pillar context.
 
 export default function Services() {
     return (
@@ -12,21 +16,19 @@ export default function Services() {
             <header className="sv-header">
                 <p className="sv-eyebrow">What we ship</p>
                 <h2 id="sv-title" className="sv-title">
-                    Three focused offerings.<br />
+                    Four focused pillars.<br />
                     One senior-led team.
                 </h2>
                 <p className="sv-sub">
-                    No agency theatre. No outsourcing. You get a named senior on
-                    every project, fixed scope, fixed price, and a working
-                    product in 2&ndash;8 weeks.
+                    Fixed-scope projects or a monthly retainer. One named senior per engagement, 2&ndash;8 weeks to ship.
                 </p>
             </header>
 
-            <ul className="sv-grid">
-                {featured.map((s) => {
+            <ul className="sv-grid sv-grid-four">
+                {servicesData.map((s) => {
                     const Icon = s.icon;
                     return (
-                        <li key={s.id} className="sv-card">
+                        <li key={s.id} className={`sv-card sv-card-${s.accent}`}>
                             <div className="sv-card-top">
                                 <span className="sv-card-icon" aria-hidden="true">
                                     <Icon />
@@ -34,11 +36,12 @@ export default function Services() {
                                 <span className="sv-card-num">{s.number}</span>
                             </div>
 
+                            <span className="sv-card-tag">{s.tag}</span>
                             <h3 className="sv-card-title">{s.title}</h3>
                             <p className="sv-card-desc">{s.description}</p>
 
                             <ul className="sv-card-features">
-                                {s.features.slice(0, 4).map((f) => (
+                                {s.features.map((f) => (
                                     <li key={f} className="sv-card-feature">
                                         <span className="sv-card-tick" aria-hidden="true">
                                             &rarr;
@@ -48,18 +51,13 @@ export default function Services() {
                                 ))}
                             </ul>
 
-                            <div className="sv-card-foot">
-                                <span className="sv-card-price">
-                                    from <strong>{s.startingFrom}</strong>
-                                </span>
-                                <Link
-                                    href={`/services#${s.id}`}
-                                    className="sv-card-link"
-                                >
-                                    {s.cta}
-                                    <FiArrowUpRight aria-hidden />
-                                </Link>
-                            </div>
+                            <Link
+                                href={s.href}
+                                className="sv-card-link"
+                            >
+                                {s.cta}
+                                <FiArrowUpRight aria-hidden />
+                            </Link>
                         </li>
                     );
                 })}

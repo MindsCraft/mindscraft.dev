@@ -86,7 +86,7 @@ export default function ServicesContent() {
                                         </p>
                                         <div className="svc-card-actions">
                                             <Link
-                                                href={`/contact?service=${service.id}`}
+                                                href={service.href}
                                                 className="svc-card-cta"
                                                 style={
                                                     service.accent === 'navy'
@@ -97,9 +97,6 @@ export default function ServicesContent() {
                                                 {service.cta}
                                                 <FiArrowRight className="svc-cta-arrow" />
                                             </Link>
-                                            <span className="svc-card-price" style={{ color: colors.text, opacity: 0.45 }}>
-                                                Starting from {service.startingFrom}
-                                            </span>
                                         </div>
                                     </div>
 

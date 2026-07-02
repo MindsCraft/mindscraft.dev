@@ -1,4 +1,13 @@
-import { FiCpu, FiMonitor, FiLayout, FiCode, FiZap, FiShoppingBag, FiLayers } from 'react-icons/fi';
+import { FiCpu, FiMonitor, FiEdit3, FiCode } from 'react-icons/fi';
+
+// Four honest pillars for the home page.
+// We removed the per-pillar "starting from $X" pricing because:
+//   - The old prices ($5K / $8K / $2,500 / $2,500 / $3,500 / $1,500) were
+//     invented and not grounded in real engagements.
+//   - The dual-track model (projects vs retainers) means pricing lives on
+//     /pricing and /services/retainer, not in 4 inline card CTAs.
+//   - Showing a fabricated starting price on the homepage forces a sales
+//     conversation around a number we can't defend.
 
 export interface Service {
     id: string;
@@ -8,130 +17,82 @@ export interface Service {
     description: string;
     features: string[];
     cta: string;
-    startingFrom: string;
+    href: string;          // explicit destination route per pillar
     accent: 'light' | 'navy' | 'cream';
-    icon: any; // For home page use
+    icon: any;
 }
 
 export const servicesData: Service[] = [
     {
-        id: 'ai-product-dev',
+        id: 'website-web-apps',
         number: '01',
-        tag: 'Most Popular',
-        title: 'AI Product Development',
+        tag: 'Most common',
+        title: 'Website & Web Apps',
         description:
-            'Ship AI-native features your users will actually use. We design and build LLM-powered products — from intelligent search and RAG pipelines to AI dashboards and automated workflows. If you need an AI feature to attract investors or users, we can take it from concept to production in under 6 weeks.',
+            'Marketing sites and content-heavy web apps. Next.js, Laravel, or WordPress — whichever ships fastest.',
         features: [
-            'LLM & RAG Integration',
-            'AI Chatbot & Assistants',
-            'Prompt Engineering',
-            'OpenAI / Anthropic APIs',
-            'Embeddings & Vector DBs',
-            'Process Automation',
+            'Next.js 15 + TypeScript',
+            'Laravel for content-heavy apps',
+            'Headless WordPress',
+            'Lighthouse 95+, sub-second LCP',
         ],
-        cta: 'Build Your AI Feature',
-        startingFrom: '$5,000',
-        accent: 'navy',
-        icon: FiCpu,
-    },
-    {
-        id: 'saas-mvp',
-        number: '02',
-        tag: 'Startup Favourite',
-        title: 'SaaS MVP Development',
-        description:
-            'From napkin sketch to deployed, demo-ready product — in 6 to 8 weeks. We handle the full stack: UX design, frontend, backend, auth, payments, and cloud deployment. Built to scale when your user base grows, not to be thrown away and rewritten.',
-        features: [
-            'Full-Stack React & Next.js',
-            'Auth & Subscription Billing',
-            'Admin Dashboard',
-            'REST & GraphQL APIs',
-            'CI/CD & Cloud Deploy',
-            'Post-Launch Support',
-        ],
-        cta: 'Launch Your MVP',
-        startingFrom: '$8,000',
+        cta: 'Website brief →',
+        href: '/contact?type=project&pillar=website',
         accent: 'light',
         icon: FiMonitor,
     },
     {
-        id: 'wordpress-cms',
-        number: '03',
-        tag: 'CMS Expertise',
-        title: 'WordPress & CMS Web Development',
-        description:
-            'We are capable of handling any kind of WordPress project, from simple marketing sites to complex custom themes, plugins, and headless CMS architectures. Whether you need an engaging corporate website, a high-traffic blog, or an enterprise-grade CMS platform, we build robust, scalable, and easy-to-manage solutions tailored to your business needs.',
-        features: [
-            'Custom Theme Development',
-            'Plugin Development & Integration',
-            'Headless WordPress (Next.js)',
-            'Migration & Performance tuning',
-            'E-commerce (WooCommerce)',
-            'Enterprise CMS Architecture',
-        ],
-        cta: 'Build Your Website',
-        startingFrom: '$2,500',
-        accent: 'light',
-        icon: FiLayers,
-    },
-    {
-        id: 'ux-cro',
-        number: '04',
+        id: 'apps-internal-tools',
+        number: '02',
         tag: 'High ROI',
-        title: 'UX Design & Conversion Optimisation',
+        title: 'Apps & Internal Tools',
         description:
-            "Bad UX is a revenue leak. We audit your existing product or website, identify where users drop off, and redesign the critical flows — sign-up, onboarding, checkout, pricing — to convert better. You'll see measurable improvement in trial-to-paid, CTR, and user retention.",
+            'Operations dashboards, client portals, multi-tenant SaaS. Source code, docs, 30 days support.',
         features: [
-            'UX Audit & Heatmap Analysis',
-            'User Research & Interviews',
-            'Wireframing & Prototyping',
-            'A/B Test Design',
-            'Figma Design System',
-            'Interaction Design',
+            'React + Node + Postgres + Prisma',
+            'Supabase for fast backends',
+            'Auth, billing, role-based access',
+            'CI/CD + cloud deploy',
         ],
-        cta: 'Improve My Conversions',
-        startingFrom: '$2,500',
-        accent: 'cream',
-        icon: FiLayout,
-    },
-    {
-        id: 'fullstack-dev',
-        number: '05',
-        tag: 'Core Service',
-        title: 'Full-Stack Web Development',
-        description:
-            'Reliable, scalable web applications built with modern tooling and clean architecture. Whether you need a marketing site, an internal tool, a client portal, or a complex web app — we build it right the first time and make it easy to maintain long-term.',
-        features: [
-            'React & Next.js 15',
-            'Node.js & PostgreSQL',
-            'TypeScript Throughout',
-            'Responsive & Accessible',
-            'Performance Optimised',
-            'Long-Term Maintenance',
-        ],
-        cta: 'Start Your Project',
-        startingFrom: '$3,500',
+        cta: 'App scope →',
+        href: '/contact?type=project&pillar=apps',
         accent: 'light',
         icon: FiCode,
     },
     {
-        id: 'performance-eng',
-        number: '06',
-        tag: 'SEO Critical',
-        title: 'Performance Engineering',
+        id: 'content-social',
+        number: '03',
+        tag: 'Retainer',
+        title: 'Content & Social',
         description:
-            "Google's Core Web Vitals are now a direct ranking factor. A slow site loses organic traffic and pushes users away. We diagnose and fix performance issues at the code level — reducing load times, improving Lighthouse scores, and ensuring your site passes CWV for every page.",
+            'Someone to post, reply, and keep the brand consistent every week. 12 posts, monthly call, WhatsApp.',
         features: [
-            'Core Web Vitals Audit',
-            'Lighthouse Score Boost',
-            'Image & Asset Optimisation',
-            'Server Response Time',
-            'Bundle Size Reduction',
-            'CDN & Edge Config',
+            '12 social posts / month',
+            'Monthly strategy call',
+            'WhatsApp + async',
+            '30-day rolling',
         ],
-        cta: 'Fix My Performance',
-        startingFrom: '$1,500',
-        accent: 'light',
-        icon: FiZap,
+        cta: 'Retainer brief →',
+        href: '/services/retainer',
+        accent: 'cream',
+        icon: FiEdit3,
+    },
+    {
+        id: 'ai-integrations',
+        number: '04',
+        tag: 'Newly proven',
+        title: 'AI Integrations',
+        description:
+            'RAG search, AI assistants, AI workflows. Model-agnostic — switch providers without rewriting.',
+        features: [
+            'RAG over your docs',
+            'AI assistants + prompt evaluation',
+            'Anthropic / OpenAI — switchable',
+            'Langfuse observability',
+        ],
+        cta: 'Try the AI demo →',
+        href: '/sandbox/rag-demo',
+        accent: 'navy',
+        icon: FiCpu,
     },
 ];

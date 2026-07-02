@@ -21,7 +21,24 @@ const steps = [
         n: "04",
         label: "Ship",
         title: "Deploy, hand-off, support",
-        body: "Production deploy with full source, docs and CI. 30 days of post-launch support included. We don\'t ghost.",
+        body: "Production deploy with full source, docs and CI. 30 days of post-launch support included. We don't ghost.",
+    },
+];
+
+// Process — wireframe Section 8.
+// Final line is the dual-track close: two pieces of text, side-by-side,
+// reading as parallel options. The "We stay" line is the most important
+// word on this section for the retainer audience.
+const dualTrackClose = [
+    {
+        term: "For projects",
+        headline: "2&ndash;8 weeks.",
+        href: "/contact?type=project",
+    },
+    {
+        term: "For retainers",
+        headline: "We stay.",
+        href: "/services/retainer",
     },
 ];
 
@@ -45,6 +62,21 @@ export default function Process() {
                     </li>
                 ))}
             </ol>
+
+            {/* Dual-track close line — sits below the timeline, above Section 9.
+                Two-column flex on desktop, stacks on mobile. Each side is a
+                link to the corresponding route, so the line is also navigation. */}
+            <div className="pr-close" aria-label="Two ways to engage">
+                {dualTrackClose.map((c) => (
+                    <a key={c.term} href={c.href} className="pr-close-item">
+                        <span className="pr-close-term">{c.term}:</span>{" "}
+                        <span
+                            className="pr-close-headline"
+                            dangerouslySetInnerHTML={{ __html: c.headline }}
+                        />
+                    </a>
+                ))}
+            </div>
         </section>
     );
 }
