@@ -1,0 +1,29 @@
+.mid-cta-section {
+  padding-block: var(--space-4xl);
+  background-color: var(--color-bg-subtle);
+}
+
+.mid-cta-card {
+  padding: var(--space-3xl);
+  background-color: var(--color-bg-stone);
+  border-radius: var(--radius-base);
+  border: none;
+  box-shadow: none;
+  animation: none;
+  transition: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+}
+
+.mid-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}

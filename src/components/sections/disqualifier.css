@@ -1,0 +1,47 @@
+.disqualifier-section {
+  padding-block: var(--space-4xl);
+  background-color: var(--color-bg-subtle);
+}
+
+.disqualifier-card {
+  padding: var(--space-3xl);
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-base);
+  border: none;
+  box-shadow: none;
+  animation: none;
+  transition: none;
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.disqualifier-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.disqualifier-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-bg-stone);
+  border-radius: var(--radius-base);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  border: none;
+  box-shadow: none;
+  animation: none;
+  transition: none;
+}
+
+.disqualifier-mark {
+  color: #D9480F;
+  font-weight: 800;
+  font-size: 1.1rem;
+}

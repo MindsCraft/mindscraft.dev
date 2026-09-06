@@ -1,0 +1,30 @@
+/**
+ * Custom Font Integration Slot
+ * When font files are provided, add them to /public/fonts/ and uncomment/adjust the @font-face rules below.
+ */
+
+/*
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/custom-font-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/custom-font-medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('/fonts/custom-font-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*/

@@ -1,0 +1,68 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  width: 100%;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-main);
+  border-radius: var(--radius-base);
+  border: none;
+  box-shadow: none;
+  animation: none;
+  transition: none;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  background-color: #EDEAE4;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--color-text-subtle);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-select {
+  cursor: pointer;
+}
+
+.form-disclaimer {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--color-text-subtle);
+}
+
+.form-disclaimer a {
+  color: var(--color-text-main);
+  text-decoration: underline;
+}
+
+.form-feedback {
+  padding: var(--space-md);
+  border-radius: var(--radius-base);
+  font-size: 0.95rem;
+  font-weight: 600;
+  background-color: var(--color-bg-stone);
+  color: var(--color-text-main);
+}

@@ -1,0 +1,9 @@
+.faq-section {
+  padding-block: var(--space-4xl);
+  background-color: var(--color-bg-page);
+}
+
+.faq-wrapper {
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+}

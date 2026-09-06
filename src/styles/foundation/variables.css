@@ -1,0 +1,62 @@
+:root {
+  /* ==========================================================================
+     Surfaces & Background Colors (Flat High-Contrast Hierarchy)
+     ========================================================================== */
+  --color-bg-page: #FFFFFF;
+  --color-bg-subtle: #F9F7F3;
+  --color-bg-card: #FFFFFF;
+  --color-bg-stone: #E6E4E0;
+  --color-bg-dark: #1D1E22;
+  --color-bg-accent-subtle: #FFF2E8;
+
+  /* ==========================================================================
+     Typography & Neutral Colors
+     ========================================================================== */
+  --color-text-main: #1D1E22;
+  --color-text-muted: #615D55;
+  --color-text-subtle: #888686;
+  --color-text-inverse: #FFFFFF;
+
+  /* ==========================================================================
+     Accent Colors
+     ========================================================================== */
+  --color-accent: #F59958;
+  --color-accent-hover: #E88944;
+
+  /* ==========================================================================
+     Enforced Strict Geometry & Aesthetics
+     Rule: No borders, border-radius 4px strictly, no shadows, no animations
+     ========================================================================== */
+  --radius-base: 4px;
+  --radius-sm: 4px;
+  --radius-md: 4px;
+  --radius-lg: 4px;
+  --radius-pill: 4px;
+
+  --border-none: none;
+  --shadow-none: none;
+
+  /* ==========================================================================
+     Spacing Scale
+     ========================================================================== */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  /* ==========================================================================
+     Layout Widths
+     ========================================================================== */
+  --container-max: 1200px;
+  --container-narrow: 840px;
+
+  /* ==========================================================================
+     Typography Font Stack (Slot ready for custom font files)
+     ========================================================================== */
+  --font-primary: var(--font-custom, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif);
+}

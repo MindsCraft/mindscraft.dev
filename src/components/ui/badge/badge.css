@@ -1,0 +1,37 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-base);
+  border: none;
+  box-shadow: none;
+  animation: none;
+  transition: none;
+  white-space: nowrap;
+}
+
+.badge--industry {
+  background-color: var(--color-bg-stone);
+  color: var(--color-text-main);
+}
+
+.badge--service {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-muted);
+}
+
+.badge--accent {
+  background-color: var(--color-bg-accent-subtle);
+  color: var(--color-accent);
+}
+
+.badge--dark {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+}

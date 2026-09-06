@@ -1,0 +1,31 @@
+.verticals-section {
+  padding-block: var(--space-4xl);
+  background-color: var(--color-bg-page);
+  text-align: center;
+}
+
+.verticals-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-2xl);
+}
+
+.vertical-pill {
+  padding: 14px 28px;
+  background-color: var(--color-bg-stone);
+  color: var(--color-text-main);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-base);
+  border: none;
+  box-shadow: none;
+  animation: none;
+  transition: none;
+}
+
+.vertical-pill:hover {
+  background-color: var(--color-text-main);
+  color: var(--color-text-inverse);
+}

@@ -1,0 +1,61 @@
+.problem-solution-section {
+  padding-block: var(--space-4xl);
+  background-color: var(--color-bg-page);
+}
+
+.trio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.trio-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-2xl);
+  background-color: var(--color-bg-subtle);
+  border-radius: var(--radius-base);
+  border: none;
+  box-shadow: none;
+  animation: none;
+  transition: none;
+  min-height: 440px;
+}
+
+.trio-card--alt {
+  background-color: var(--color-bg-stone);
+}
+
+.trio-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.trio-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+}
+
+.trio-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.trio-action {
+  margin-top: var(--space-xl);
+}
+
+@media (max-width: 960px) {
+  .trio-grid {
+    grid-template-columns: 1fr;
+  }
+  .trio-card {
+    min-height: auto;
+  }
+}

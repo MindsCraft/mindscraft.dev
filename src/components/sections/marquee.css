@@ -1,0 +1,50 @@
+.client-grid-section {
+  padding-block: var(--space-2xl);
+  background-color: var(--color-bg-subtle);
+}
+
+.client-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-md);
+}
+
+.client-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-base);
+  border: none;
+  box-shadow: none;
+  animation: none;
+  transition: none;
+  min-height: 120px;
+}
+
+.client-card:hover {
+  background-color: var(--color-bg-stone);
+}
+
+.client-card__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  letter-spacing: -0.01em;
+}
+
+.client-card__tag {
+  font-size: 0.725rem;
+  font-weight: 600;
+  color: var(--color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.client-card__service {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
