@@ -1,0 +1,86 @@
+/* ============================================
+   LOGO COMPONENT STYLES
+   MindsCraft Brand Mark & Wordmark
+   ============================================ */
+
+.logo-shell {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+/* Logo icon */
+.logo-icon {
+    display: block;
+    height: 28px;
+    width: auto;
+    flex-shrink: 0;
+    object-fit: contain;
+    filter: var(--logo-filter, none);
+}
+
+/* Icon size variants */
+.logo-icon-sm {
+    height: 20px;
+    width: auto;
+}
+
+.logo-icon-md {
+    height: 24px;
+    width: auto;
+}
+
+.logo-icon-lg {
+    height: 28px;
+    width: auto;
+}
+
+.logo-icon-xl {
+    height: 44px;
+    width: auto;
+}
+
+/* Logo Text - required: font-size: 28px; font-weight: 600; */
+.logo-text {
+    font-family: var(--font-sans);
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: currentColor;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* Responsive or size variants if size prop is explicitly provided */
+.logo-text-sm {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.logo-text-md {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.logo-text-lg {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.logo-text-xl {
+    font-size: 34px;
+    font-weight: 600;
+}
+
+/* Theme overrides */
+.logo-icon-light {
+    filter: brightness(0) invert(1);
+}
+
+.logo-text-light {
+    color: #ffffff;
+}

@@ -1,0 +1,42 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#F8FAFC"/>
+  <line x1="0" y1="75" x2="400" y2="75" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="0" y1="150" x2="400" y2="150" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="0" y1="225" x2="400" y2="225" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 4"/>
+  
+  <rect x="30" y="35" width="340" height="230" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+  <circle cx="50" cy="55" r="4" fill="#FF5F56"/>
+  <circle cx="62" cy="55" r="4" fill="#FFBD2E"/>
+  <circle cx="74" cy="55" r="4" fill="#27C93F"/>
+  <rect x="95" y="48" width="170" height="14" rx="4" fill="#F1F5F9"/>
+  <text x="105" y="59" fill="#64748B" font-family="system-ui, sans-serif" font-size="9">langgraph.mindscraft.dev</text>
+  
+  <!-- Agent 1: Planner -->
+  <rect x="50" y="90" width="85" height="55" rx="8" fill="#F1F5F9" stroke="#CBD5E1"/>
+  <text x="60" y="112" fill="#0F172A" font-family="system-ui, sans-serif" font-size="10" font-weight="600">Planner</text>
+  <text x="60" y="130" fill="#64748B" font-family="system-ui, sans-serif" font-size="8">Task Decomp</text>
+  
+  <!-- Connector 1 -->
+  <line x1="135" y1="117" x2="165" y2="117" stroke="#94A3B8" stroke-width="2" stroke-dasharray="2 2"/>
+  <polygon points="167,117 162,114 162,120" fill="#94A3B8"/>
+  
+  <!-- Agent 2: Searcher -->
+  <rect x="170" y="90" width="85" height="55" rx="8" fill="#EDE9FE" stroke="#C4B5FD"/>
+  <text x="180" y="112" fill="#5B21B6" font-family="system-ui, sans-serif" font-size="10" font-weight="600">Searcher</text>
+  <text x="180" y="130" fill="#6D28D9" font-family="system-ui, sans-serif" font-size="8">Deep Web Crawl</text>
+  
+  <!-- Connector 2 -->
+  <line x1="255" y1="117" x2="285" y2="117" stroke="#94A3B8" stroke-width="2" stroke-dasharray="2 2"/>
+  <polygon points="287,117 282,114 282,120" fill="#94A3B8"/>
+  
+  <!-- Agent 3: Synthesizer -->
+  <rect x="290" y="90" width="60" height="55" rx="8" fill="#F0FDF4" stroke="#86EFAC"/>
+  <text x="298" y="112" fill="#166534" font-family="system-ui, sans-serif" font-size="10" font-weight="600">Critic</text>
+  <text x="298" y="130" fill="#15803D" font-family="system-ui, sans-serif" font-size="8">Fact Check</text>
+  
+  <!-- Output Report Box -->
+  <rect x="50" y="165" width="300" height="70" rx="8" fill="#0F172A"/>
+  <text x="65" y="188" fill="#38BDF8" font-family="monospace" font-size="9">> State Graph: 3 parallel steps completed</text>
+  <text x="65" y="205" fill="#4ADE80" font-family="monospace" font-size="9">> Verification: 0 hallucinated claims passed</text>
+  <text x="65" y="222" fill="#94A3B8" font-family="monospace" font-size="9">> Output: 1,840-word executive briefing ready</text>
+</svg>
