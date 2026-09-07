@@ -1,30 +1,33 @@
 export interface ClientItem {
   id: string;
   name: string;
-  industry: string;
-  service: string;
+  logo: string;
+  industry?: string;
+  service?: string;
 }
 
 export const clientsData: ClientItem[] = [
-  { id: "hotspot", name: "Hotspot Shield", industry: "Cybersecurity", service: "Team extension" },
-  { id: "gamaya", name: "Gamaya", industry: "AgTech/AI", service: "Product Redesign" },
-  { id: "rex", name: "Rex", industry: "Real estate", service: "Design from scratch" },
-  { id: "cheerity", name: "Cheerity", industry: "Social impact", service: "Product Redesign" },
-  { id: "acadeum", name: "Acadeum", industry: "EdTech", service: "Product redesign" },
-  { id: "refera", name: "Refera", industry: "Healthcare", service: "Product redesign" },
-  { id: "peep", name: "Peep", industry: "Recruiting", service: "Team extension" },
-  { id: "highpoint", name: "HighPoint", industry: "EdTech", service: "Product Redesign" },
-  { id: "whoosh", name: "Whoosh", industry: "Travel tech", service: "Product Redesign" },
-  { id: "wrapt", name: "Wrapt", industry: "Gifting", service: "Product Redesign" },
-  { id: "datawisp", name: "Datawisp", industry: "Data analytics", service: "Product Redesign" },
-  { id: "joor", name: "JOOR", industry: "Fashion Wholesale", service: "Product Redesign" },
-  { id: "healthstream", name: "HealthStream", industry: "Healthcare", service: "Product Redesign" },
-  { id: "cylynx", name: "Cylynx", industry: "Cybersecurity", service: "MVP design" },
-  { id: "ricochet", name: "Ricochet 360", industry: "Sales automation", service: "Product Redesign" },
-  { id: "textmagic", name: "TextMagic", industry: "SMS marketing", service: "Product Redesign" },
-  { id: "stradigi", name: "Stradigi AI", industry: "AI", service: "Product Redesign" },
-  { id: "prift", name: "PRIFT", industry: "Fintech", service: "MVP design" },
-  { id: "abode", name: "Abode", industry: "Real estate", service: "Product Redesign" },
-  { id: "mindtickle", name: "MindTickle", industry: "Sales enablement", service: "Product Redesign" },
-  { id: "astrea", name: "Astrea", industry: "Geospatial analytics", service: "Team extension" },
+  { id: "appstar", name: "Appstar", logo: "/content/clients/appstar.png", industry: "Mobile & Apps", service: "Product Design" },
+  { id: "as-sunnah", name: "As-Sunnah", logo: "/content/clients/as-sunnah.png", industry: "Non-Profit", service: "Web Platform" },
+  { id: "balloon", name: "Balloon", logo: "/content/clients/balloon.png", industry: "Tech & SaaS", service: "Product Redesign" },
+  { id: "bdot-color", name: "Bdot Color", logo: "/content/clients/bdot-color.png", industry: "Creative", service: "Design System" },
+  { id: "capitalfm", name: "Capital FM", logo: "/content/clients/capitalfm.png", industry: "Media & Audio", service: "Digital Experience" },
+  { id: "chkware", name: "Chkware", logo: "/content/clients/chkware.png", industry: "DevTools", service: "MVP Design" },
+  { id: "cyberz", name: "Cyberz", logo: "/content/clients/cyberz.png", industry: "Cybersecurity", service: "Product Redesign" },
+  { id: "eloylab", name: "Eloy Lab", logo: "/content/clients/eloylab.png", industry: "Healthcare", service: "Team Extension" },
+  { id: "mlbd", name: "MLBD", logo: "/content/clients/mlbd.png", industry: "Enterprise", service: "UX Audit" },
+  { id: "mles", name: "MLES", logo: "/content/clients/mles.png", industry: "Engineering", service: "Product Design" },
+  { id: "monta", name: "Monta", logo: "/content/clients/monta.png", industry: "CleanTech", service: "Team Extension" },
+  { id: "namco", name: "Namco", logo: "/content/clients/namco 1.png", industry: "Entertainment", service: "UI/UX Design" },
+  { id: "neom", name: "Neom", logo: "/content/clients/neom.png", industry: "Smart City", service: "Design Strategy" },
+  { id: "nspec", name: "Nspec", logo: "/content/clients/nspec-logo.png", industry: "Inspection", service: "MVP Design" },
+  { id: "pocket", name: "Pocket", logo: "/content/clients/pocket.png", industry: "Fintech", service: "Mobile App" },
+  { id: "prayers", name: "Prayers", logo: "/content/clients/prayers.png", industry: "Lifestyle", service: "Product Redesign" },
+  { id: "sagawa", name: "Sagawa", logo: "/content/clients/sagawa.png", industry: "Logistics", service: "Enterprise UX" },
+  { id: "sdc", name: "SDC", logo: "/content/clients/SDC.png", industry: "Consulting", service: "Design System" },
+  { id: "sunstar", name: "Sunstar", logo: "/content/clients/sunstar-logo.png", industry: "Healthcare", service: "Product Redesign" },
+  { id: "tagnpac", name: "TAGNPAC", logo: "/content/clients/TAGNPAC.png", industry: "Manufacturing", service: "Web Design" },
+  { id: "taikyo", name: "Taikyo", logo: "/content/clients/taikyo.png", industry: "Industrial", service: "Digital Platform" },
+  { id: "tokup", name: "Tokup", logo: "/content/clients/tokup.png", industry: "E-Commerce", service: "MVP Design" },
+  { id: "typewriting", name: "Typewriting", logo: "/content/clients/typewriting.png", industry: "EdTech", service: "Product Design" },
 ];
