@@ -1,0 +1,154 @@
+/* ==========================================================================
+   SubpageDeliverablesGrid Styles (mindsCraft Modular Subpage Template)
+   ========================================================================== */
+
+.subpage-deliverables-section {
+  padding: 100px 0;
+  background-color: var(--color-bg-subtle);
+  border-top: 1px solid var(--color-gray-100);
+}
+
+.subpage-deliverables__intro {
+  max-width: 760px;
+  margin: 0 auto 64px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subpage-deliverables__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-gray-800);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-base);
+  margin-bottom: 16px;
+}
+
+.subpage-deliverables__title {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  margin: 0 0 16px 0;
+}
+
+.subpage-deliverables__subtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text-body);
+  margin: 0;
+}
+
+/* Bento Grid */
+.subpage-deliverables__bento {
+  display: grid;
+  gap: 20px;
+}
+
+.subpage-deliverables__bento--col-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.subpage-deliverables__bento--col-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Deliverable Card */
+.subpage-deliverable-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 28px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-100);
+  border-radius: var(--radius-base);
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.subpage-deliverable-card:hover {
+  border-color: var(--color-gray-300);
+  box-shadow: 0 8px 24px rgba(6, 7, 10, 0.04);
+  transform: translateY(-2px);
+}
+
+.subpage-deliverable-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.subpage-deliverable-card__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-base);
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.subpage-deliverable-card__cat {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 8px;
+  border-radius: var(--radius-base);
+  background-color: var(--color-bg-subtle);
+  color: var(--color-gray-600);
+  border: 1px solid var(--color-gray-200);
+}
+
+.subpage-deliverable-card__title {
+  font-size: 1.1875rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--color-text-main);
+  margin: 0 0 10px 0;
+}
+
+.subpage-deliverable-card__desc {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-text-body);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .subpage-deliverables__bento--col-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .subpage-deliverables-section {
+    padding: 64px 0;
+  }
+
+  .subpage-deliverables__intro {
+    margin-bottom: 40px;
+  }
+
+  .subpage-deliverables__bento--col-3,
+  .subpage-deliverables__bento--col-2 {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .subpage-deliverable-card {
+    padding: 24px;
+  }
+}

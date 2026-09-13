@@ -31,20 +31,23 @@
 
 .process-card__header {
   display: flex;
-  align-items: center;
-  gap: var(--space-sm);
+  align-items: flex-start;
+  gap: 12px;
 }
 
 .process-card__num {
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--color-accent);
+  line-height: 1.25;
+  flex-shrink: 0;
 }
 
 .process-card__title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--color-text-main);
+  line-height: 1.25;
 }
 
 .process-card__desc {

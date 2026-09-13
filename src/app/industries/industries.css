@@ -1,0 +1,98 @@
+.industries-list-section {
+  padding: var(--space-4xl) 0;
+  background-color: var(--color-bg-subtle);
+}
+
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--space-xl);
+}
+
+.industry-card {
+  background-color: var(--color-bg-page);
+  border: 1px solid var(--color-bg-stone);
+  border-radius: var(--radius-base);
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.industry-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06);
+}
+
+.industry-card__badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-xs);
+  display: block;
+}
+
+.industry-card__title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--color-text-main);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-xs);
+  line-height: 1.25;
+}
+
+.industry-card__desc {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-bottom: var(--space-lg);
+  flex-grow: 1;
+}
+
+.industry-card__challenges {
+  background-color: var(--color-bg-subtle);
+  padding: var(--space-md);
+  border-radius: var(--radius-base);
+  margin-bottom: var(--space-lg);
+}
+
+.industry-card__challenges strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-text-main);
+  margin-bottom: 6px;
+}
+
+.industry-card__challenges ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.industry-card__challenges li {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.industry-card__link {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.industry-card:hover .industry-card__link {
+  color: var(--color-accent);
+  gap: 10px;
+}

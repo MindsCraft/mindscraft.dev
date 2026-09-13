@@ -1,0 +1,104 @@
+.case-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-page);
+  border: 1px solid var(--color-bg-stone);
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.case-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+}
+
+.case-card__image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background-color: var(--color-bg-subtle);
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-bg-stone);
+}
+
+.case-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.case-card:hover .case-card__image {
+  transform: scale(1.03);
+}
+
+.case-card__image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-subtle);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+}
+
+.case-card__body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.case-card__meta {
+  margin-bottom: var(--space-xs);
+}
+
+.case-card__industry {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  background-color: var(--color-bg-accent-subtle);
+  padding: 3px 8px;
+  border-radius: var(--radius-base);
+}
+
+.case-card__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: var(--space-xs);
+  line-height: 1.2;
+}
+
+.case-card__text {
+  font-size: 0.925rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+  margin-bottom: var(--space-md);
+  flex-grow: 1;
+}
+
+.case-card__cta {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.case-card:hover .case-card__cta {
+  gap: 10px;
+  color: var(--color-accent);
+}

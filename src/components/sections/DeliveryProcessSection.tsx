@@ -8,9 +8,9 @@ export const DeliveryProcessSection: React.FC = () => {
       <div className="container">
         <div className="section-header">
           <span className="caption text-accent">Process</span>
-          <h2 className="h2" style={{ marginTop: "8px" }}>A battle-tested process, perfected for SaaS</h2>
+          <h2 className="h2" style={{ marginTop: "8px" }}>From initial wireframe to production code & support</h2>
           <p className="body-lead text-muted" style={{ marginTop: "12px" }}>
-            Start small with a trial, validate with research, iterate screens quickly, then smoothly hand off to developers with ongoing support.
+            A battle-tested 6-stage product lifecycle that eliminates handoff friction between UX design and engineering.
           </p>
         </div>
 

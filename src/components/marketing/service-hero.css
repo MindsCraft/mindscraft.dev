@@ -1,0 +1,305 @@
+/* ==========================================================================
+   ServiceHero Styles (mindsCraft Product Redesign Hero Section)
+   ========================================================================== */
+
+.service-hero {
+  background-color: var(--color-bg-page);
+  padding-bottom: 60px;
+  position: relative;
+}
+
+/* 1. Breadcrumbs Nav */
+.service-hero__breadcrumbs-nav {
+  padding: 24px 0 32px 0;
+}
+
+.service-hero__breadcrumbs-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-gray-600);
+}
+
+.service-hero__breadcrumbs-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.service-hero__breadcrumbs-link {
+  color: var(--color-gray-600);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.service-hero__breadcrumbs-link:hover {
+  color: var(--color-black);
+}
+
+.service-hero__breadcrumbs-divider {
+  color: var(--color-gray-400);
+  font-size: 0.75rem;
+  user-select: none;
+}
+
+.service-hero__breadcrumbs-current {
+  color: var(--color-black);
+  font-weight: 600;
+}
+
+/* 2. Main Two-Column Hero Grid */
+.service-hero__main-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: flex-start;
+  margin-bottom: 64px;
+}
+
+.service-hero__left-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-hero__h1 {
+  font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--color-text-main);
+  margin: 0;
+}
+
+.service-hero__right-col {
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+}
+
+.service-hero__lead {
+  font-size: 1.1875rem;
+  line-height: 1.6;
+  color: var(--color-text-body);
+  margin: 0 0 32px 0;
+}
+
+.service-hero__buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.service-hero__trust-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+}
+
+.service-hero__stars {
+  display: flex;
+  gap: 3px;
+  color: var(--color-black);
+}
+
+.service-hero__trust-text {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.service-hero__trust-text strong {
+  color: var(--color-text-main);
+}
+
+/* 3. Hero Visual Transformation Showcase Box */
+.service-hero__showcase-wrapper {
+  width: 100%;
+}
+
+.service-hero__window {
+  width: 100%;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-gray-100);
+  border-radius: var(--radius-base);
+  box-shadow: 0 16px 48px rgba(6, 7, 10, 0.06);
+  overflow: hidden;
+}
+
+.service-hero__window-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background-color: var(--color-bg-subtle);
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.service-hero__window-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.service-hero__window-dots .window-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-base);
+  background-color: var(--color-gray-300);
+}
+
+/* Toggle Group for Before / After */
+.service-hero__toggle-group {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--color-gray-100);
+  padding: 3px;
+  border-radius: var(--radius-base);
+  gap: 2px;
+}
+
+.service-hero__toggle-btn {
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 5px 14px;
+  color: var(--color-gray-600);
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.service-hero__toggle-btn:hover {
+  color: var(--color-black);
+}
+
+.service-hero__toggle-btn.is-active {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* Image Frame */
+.service-hero__image-frame {
+  position: relative;
+  width: 100%;
+  background-color: var(--color-bg-subtle);
+  overflow: hidden;
+  aspect-ratio: 16 / 9.5;
+}
+
+.service-hero__showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.25s ease;
+}
+
+.service-hero__screen-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-radius: var(--radius-base);
+  z-index: 5;
+}
+
+.service-hero__screen-badge--before {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.service-hero__screen-badge--after {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border: 1px solid var(--color-gray-200);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Caption Bar */
+.service-hero__caption-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background-color: var(--color-bg-card);
+  border-top: 1px solid var(--color-gray-100);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.service-hero__caption-tag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: var(--radius-base);
+  background-color: var(--color-bg-subtle);
+  color: var(--color-gray-700);
+  border: 1px solid var(--color-gray-200);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 992px) {
+  .service-hero__main-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+
+  .service-hero__h1 {
+    font-size: 2.5rem;
+  }
+
+  .service-hero__lead {
+    font-size: 1.0625rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .service-hero {
+    padding-bottom: 40px;
+  }
+
+  .service-hero__breadcrumbs-nav {
+    padding: 16px 0 24px 0;
+  }
+
+  .service-hero__buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .service-hero__buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .service-hero__image-frame {
+    aspect-ratio: 16 / 10;
+  }
+
+  .service-hero__caption-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

@@ -1,31 +1,182 @@
 .verticals-section {
-  padding-block: var(--space-4xl);
-  background-color: var(--color-bg-page);
-  text-align: center;
+  padding-block: clamp(70px, 9vw, 120px);
+  background-color: var(--color-white);
+  border-top: 1px solid var(--color-gray-10);
+  position: relative;
+  overflow: hidden;
 }
 
-.verticals-grid {
+.list-industries {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: center;
+}
+
+/* ==========================================================================
+   LEFT COLUMN: Copy & Action
+   ========================================================================== */
+.list-industries-text {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-md);
-  margin-top: var(--space-2xl);
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.vertical-pill {
+.verticals-badge {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gray-60);
+  margin-bottom: 16px;
+}
+
+.list-industries-h2 {
+  font-family: var(--font-primary);
+  font-size: clamp(2.2rem, 3.6vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--color-black);
+  margin-bottom: 20px;
+}
+
+.list-industries-desc {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-gray-60);
+  max-width: 520px;
+  margin-bottom: 32px;
+}
+
+.list-industries-btn-wrap {
+  margin-top: 4px;
+}
+
+.list-industries-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   padding: 14px 28px;
-  background-color: var(--color-bg-stone);
-  color: var(--color-text-main);
-  font-size: 1rem;
-  font-weight: 600;
+  background-color: var(--color-black);
+  color: var(--color-white);
   border-radius: var(--radius-base);
-  border: none;
-  box-shadow: none;
-  animation: none;
-  transition: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.vertical-pill:hover {
-  background-color: var(--color-text-main);
-  color: var(--color-text-inverse);
+.list-industries-btn:hover {
+  background-color: var(--color-gray-90);
+  transform: translateY(-1px);
 }
+
+/* ==========================================================================
+   RIGHT COLUMN: Continuous Vertical Infinite Marquee
+   ========================================================================== */
+.list-industries-slide {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+}
+
+.carousel-names-wrapper {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.carousel-words-component {
+  display: flex;
+  flex-direction: column;
+  animation: carouselVertical 24s linear infinite;
+  will-change: transform;
+  flex-shrink: 0;
+}
+
+.carousel-names-wrapper:hover .carousel-words-component {
+  animation-play-state: paused;
+}
+
+@keyframes carouselVertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.carousel-names-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-block: 7px;
+}
+
+.carousel-name-item {
+  font-family: var(--font-primary);
+  font-size: clamp(1.75rem, 2.5vw, 2.35rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-black);
+  line-height: 1.35;
+  padding-block: 4px;
+  transition: color 0.2s ease, transform 0.25s ease;
+  cursor: default;
+  white-space: nowrap;
+}
+
+.carousel-name-item:hover {
+  color: var(--color-gray-50);
+  transform: translateX(8px);
+}
+
+/* Clay Gradient Fade Masks (Top and Bottom) */
+.list-of-industries-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    var(--color-white) 0%,
+    rgba(255, 255, 255, 0) 25%,
+    rgba(255, 255, 255, 0) 75%,
+    var(--color-white) 100%
+  );
+}
+
+/* ==========================================================================
+   RESPONSIVE LAYOUTS
+   ========================================================================== */
+@media (max-width: 991px) {
+  .list-industries {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .list-industries-slide {
+    height: 320px;
+  }
+
+  .list-industries-desc {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .list-industries-slide {
+    height: 280px;
+  }
+
+  .carousel-name-item {
+    font-size: 1.6rem;
+  }
+}
+

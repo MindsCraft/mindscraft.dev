@@ -1,0 +1,45 @@
+.cta-banner {
+  padding: var(--space-4xl) 0;
+  background-color: var(--color-bg-page);
+}
+
+.cta-banner__card {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+  padding: var(--space-3xl) var(--space-2xl);
+  border-radius: var(--radius-base);
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cta-banner__title {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-inverse);
+}
+
+.cta-banner__desc {
+  font-size: 1.1rem;
+  color: var(--color-bg-stone);
+  max-width: 600px;
+  margin: 0 auto var(--space-xl) auto;
+  line-height: 1.5;
+}
+
+.cta-banner__action {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .cta-banner {
+    padding: var(--space-2xl) 0;
+  }
+  .cta-banner__card {
+    padding: var(--space-xl) var(--space-md);
+  }
+}

@@ -1,0 +1,197 @@
+/* ==========================================================================
+   ServiceUseCasesSection Styles (mindsCraft Product Redesign Use Cases)
+   ========================================================================== */
+
+.service-use-cases-section {
+  padding: 100px 0;
+  background-color: var(--color-bg-page);
+  border-top: 1px solid var(--color-gray-100);
+}
+
+.service-use-cases__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 64px;
+  align-items: flex-start;
+}
+
+/* Sticky Left Column */
+.service-use-cases__sticky-col {
+  position: sticky;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-use-cases__header {
+  margin-bottom: 36px;
+}
+
+.service-use-cases__eyebrow {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gray-500);
+  margin-bottom: 16px;
+}
+
+.service-use-cases__title {
+  font-size: clamp(2.25rem, 3.8vw, 3rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--color-text-main);
+  margin: 0 0 20px 0;
+}
+
+.service-use-cases__subtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text-body);
+  margin: 0;
+  max-width: 480px;
+}
+
+.service-use-cases__cta-desktop {
+  display: flex;
+}
+
+.service-use-cases__cta-mobile {
+  display: none;
+  margin-top: 32px;
+}
+
+/* Right Timeline Column */
+.service-use-cases__timeline-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-use-cases__timeline-track {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Connecting Line */
+.service-use-cases__timeline-track::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 20px;
+  width: 1px;
+  background-color: var(--color-gray-200);
+  z-index: 1;
+}
+
+/* Card */
+.service-use-case-card {
+  display: flex;
+  gap: 28px;
+  padding: 32px 28px;
+  position: relative;
+  z-index: 2;
+  background-color: var(--color-bg-page);
+  border: 1px solid transparent;
+  border-radius: var(--radius-base);
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 8px;
+}
+
+.service-use-case-card:hover {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-gray-100);
+  box-shadow: 0 8px 24px rgba(6, 7, 10, 0.03);
+}
+
+.service-use-case-card__pin-wrap {
+  flex-shrink: 0;
+}
+
+.service-use-case-card__pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-base);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.service-use-case-card__content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2px;
+}
+
+.service-use-case-card__title {
+  font-size: 1.3125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  color: var(--color-text-main);
+  margin: 0 0 12px 0;
+}
+
+.service-use-case-card__desc {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-text-body);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .service-use-cases__layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .service-use-cases__sticky-col {
+    position: static;
+  }
+
+  .service-use-cases__cta-desktop {
+    display: none;
+  }
+
+  .service-use-cases__cta-mobile {
+    display: flex;
+  }
+}
+
+@media (max-width: 640px) {
+  .service-use-cases-section {
+    padding: 64px 0;
+  }
+
+  .service-use-case-card {
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .service-use-cases__timeline-track::before {
+    left: 17px;
+  }
+
+  .service-use-case-card__pin {
+    width: 34px;
+    height: 34px;
+    font-size: 0.8125rem;
+  }
+
+  .service-use-case-card__title {
+    font-size: 1.125rem;
+  }
+}

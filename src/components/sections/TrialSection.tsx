@@ -41,28 +41,28 @@ export const TrialSection: React.FC = () => {
           {/* Left info column */}
           <div className="trial-info">
             <div>
-              <h2 className="h2">Test our SaaS design expertise with a free 3-day trial</h2>
+              <h2 className="h2">Test our UX & product capabilities with a 3-day trial</h2>
               <p className="body-lead text-muted" style={{ marginTop: "12px" }}>
-                Choosing a SaaS design agency on the web is often a game of luck. So we offer you to put our collaboration to test before committing.
+                Choosing a product partner is a high-stakes decision. Test our speed, UX thinking, and communication before committing to a full build.
               </p>
             </div>
 
             <div className="trial-steps">
               <div className="trial-step-card">
                 <span className="trial-step-card__num">01</span>
-                <span className="trial-step-card__text">Pick a small part of your existing product.</span>
+                <span className="trial-step-card__text">Select a key flow or feature in your existing product or new concept.</span>
               </div>
               <div className="trial-step-card">
                 <span className="trial-step-card__num">02</span>
-                <span className="trial-step-card__text">See our process in action and test if you enjoy it.</span>
+                <span className="trial-step-card__text">See our design velocity in action and experience direct builder communication.</span>
               </div>
               <div className="trial-step-card">
                 <span className="trial-step-card__num">03</span>
-                <span className="trial-step-card__text">Get 1-2 screens designed for you during the trial period.</span>
+                <span className="trial-step-card__text">Receive polished Figma screens and a scoped architecture blueprint.</span>
               </div>
               <div className="trial-step-card">
                 <span className="trial-step-card__num">04</span>
-                <span className="trial-step-card__text">Decide if you’re ready for a subscription.</span>
+                <span className="trial-step-card__text">Decide if you’re ready to proceed to full-stack engineering and ongoing support.</span>
               </div>
             </div>
 

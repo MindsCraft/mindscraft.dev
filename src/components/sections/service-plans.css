@@ -1,0 +1,183 @@
+/* ==========================================================================
+   ServicePlansSection Styles (mindsCraft Subscription Plans)
+   ========================================================================== */
+
+.service-plans-section {
+  padding: 100px 0;
+  background-color: var(--color-bg-subtle);
+  border-top: 1px solid var(--color-gray-100);
+}
+
+.service-plans__intro {
+  max-width: 760px;
+  margin: 0 auto 64px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.service-plans__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-gray-800);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-base);
+  margin-bottom: 16px;
+}
+
+.service-plans__title {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  margin: 0 0 16px 0;
+}
+
+.service-plans__subtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text-body);
+  margin: 0;
+}
+
+/* 3-column Grid */
+.service-plans__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.service-plan-card {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 32px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-100);
+  border-radius: var(--radius-base);
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-plan-card:hover {
+  border-color: var(--color-gray-300);
+  box-shadow: 0 12px 32px rgba(6, 7, 10, 0.05);
+  transform: translateY(-2px);
+}
+
+.service-plan-card--popular {
+  border: 2px solid var(--color-black);
+  position: relative;
+}
+
+.service-plan-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.service-plan-card__name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.service-plan-card__badge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 8px;
+  border-radius: var(--radius-base);
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.service-plan-card__hours {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.service-plan-card__ideal {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin: 0 0 24px 0;
+  min-height: 42px;
+}
+
+.service-plan-card__divider {
+  height: 1px;
+  background-color: var(--color-gray-100);
+  margin-bottom: 24px;
+}
+
+.service-plan-card__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex-grow: 1;
+}
+
+.service-plan-card__features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text-main);
+}
+
+.service-plan-card__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: var(--radius-base);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  margin-top: 2px;
+}
+
+.service-plan-card__cta {
+  margin-top: auto;
+}
+
+@media (max-width: 1024px) {
+  .service-plans__grid {
+    grid-template-columns: 1fr;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .service-plan-card__ideal {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .service-plans-section {
+    padding: 64px 0;
+  }
+
+  .service-plan-card {
+    padding: 28px 24px;
+  }
+}

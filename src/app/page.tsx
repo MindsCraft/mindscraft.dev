@@ -2,7 +2,6 @@ import React from "react";
 import { Header } from "@/components/marketing/Header";
 import { Footer } from "@/components/marketing/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { ClientMarquee } from "@/components/sections/ClientMarquee";
 import { ThesisSection } from "@/components/sections/ThesisSection";
 import { ProblemSolutionTrio } from "@/components/sections/ProblemSolutionTrio";
 import { CaseMetricsSection } from "@/components/sections/CaseMetricsSection";
@@ -27,7 +26,6 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroSection />
-        <ClientMarquee />
         <ThesisSection />
         <ProblemSolutionTrio />
         <CaseMetricsSection />

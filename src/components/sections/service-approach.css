@@ -1,0 +1,169 @@
+/* ==========================================================================
+   ServiceApproachSection Styles (mindsCraft Approach Strategy)
+   ========================================================================== */
+
+.service-approach-section {
+  padding: 100px 0;
+  background-color: var(--color-bg-page);
+  border-top: 1px solid var(--color-gray-100);
+}
+
+.service-approach__intro {
+  max-width: 760px;
+  margin: 0 auto 64px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.service-approach__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-gray-800);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-base);
+  margin-bottom: 16px;
+}
+
+.service-approach__title {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  margin: 0 0 16px 0;
+}
+
+.service-approach__subtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text-body);
+  margin: 0;
+}
+
+/* Grid */
+.service-approach__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.service-approach-card {
+  display: flex;
+  flex-direction: column;
+  padding: 44px 36px;
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-gray-100);
+  border-radius: var(--radius-base);
+  transition: border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-approach-card:hover {
+  border-color: var(--color-gray-300);
+  box-shadow: 0 8px 24px rgba(6, 7, 10, 0.04);
+  transform: translateY(-2px);
+}
+
+.service-approach-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.service-approach-card__tag {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-gray-400);
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-base);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-gray-200);
+}
+
+.service-approach-card__type {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: var(--radius-base);
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.service-approach-card__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--color-text-main);
+  margin: 0 0 14px 0;
+}
+
+.service-approach-card__desc {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-text-body);
+  margin: 0 0 28px 0;
+}
+
+.service-approach-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border-top: 1px solid var(--color-gray-100);
+  padding-top: 24px;
+}
+
+.service-approach-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-text-main);
+}
+
+.service-approach-card__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: var(--radius-base);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-gray-200);
+  color: var(--color-black);
+  margin-top: 1px;
+}
+
+@media (max-width: 860px) {
+  .service-approach-section {
+    padding: 64px 0;
+  }
+
+  .service-approach__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .service-approach-card {
+    padding: 28px 24px;
+  }
+}

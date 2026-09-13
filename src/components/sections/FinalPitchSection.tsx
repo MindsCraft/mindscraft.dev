@@ -8,10 +8,10 @@ export const FinalPitchSection: React.FC = () => {
       <div className="container">
         <div className="final-pitch-card">
           <h2 className="final-pitch-title">
-            We get hired to design, fix or scale SaaS products
+            We get hired to design, build, and scale digital products
           </h2>
           <p className="final-pitch-sub">
-            Whether you are looking to secure funding for your new product, redesign your SaaS to increase profitability, or get a remote design team for faster growth, mindsCraft is the right choice for continuous product development.
+            Whether you need to validate a new product concept, re-engineer a clunky tool to boost conversions, or secure an end-to-end partner for full-stack development and continuous support, mindsCraft is your full-cycle product team.
           </p>
           <div style={{ marginTop: "16px" }}>
             <Button href="#trial" variant="accent" size="lg">

@@ -1,0 +1,197 @@
+/* ==========================================================================
+   SubpageTestimonial Styles (mindsCraft Clutch Review Highlight)
+   ========================================================================== */
+
+.subpage-testimonial-section {
+  padding: 100px 0;
+  background-color: var(--color-bg-subtle);
+  border-top: 1px solid var(--color-gray-100);
+}
+
+.subpage-testimonial__intro {
+  max-width: 760px;
+  margin: 0 auto 64px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subpage-testimonial__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-gray-800);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-base);
+  margin-bottom: 16px;
+}
+
+.subpage-testimonial__title {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  margin: 0 0 16px 0;
+}
+
+.subpage-testimonial__subtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text-body);
+  margin: 0;
+}
+
+/* Card */
+.subpage-testimonial__card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 44px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-100);
+  border-radius: var(--radius-base);
+  box-shadow: 0 12px 36px rgba(6, 7, 10, 0.04);
+}
+
+.subpage-testimonial__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-gray-100);
+}
+
+.subpage-testimonial__rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.subpage-testimonial__stars {
+  display: flex;
+  gap: 4px;
+  color: var(--color-black);
+}
+
+.subpage-testimonial__score {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.subpage-testimonial__verified {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: var(--radius-base);
+  background-color: var(--color-bg-subtle);
+  color: var(--color-gray-700);
+  border: 1px solid var(--color-gray-200);
+}
+
+.subpage-testimonial__quote {
+  font-size: 1.3125rem;
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: var(--color-text-main);
+  margin: 0 0 36px 0;
+  font-style: normal;
+}
+
+.subpage-testimonial__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.subpage-testimonial__author-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.subpage-testimonial__avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-base);
+  background-color: var(--color-black);
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.05em;
+}
+
+.subpage-testimonial__author {
+  display: block;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  font-style: normal;
+}
+
+.subpage-testimonial__role {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.subpage-testimonial__metric-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  border-left: 2px solid var(--color-black);
+  padding-left: 16px;
+}
+
+.subpage-testimonial__metric-val {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.subpage-testimonial__metric-lbl {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+  .subpage-testimonial-section {
+    padding: 64px 0;
+  }
+
+  .subpage-testimonial__card {
+    padding: 28px 20px;
+  }
+
+  .subpage-testimonial__quote {
+    font-size: 1.125rem;
+  }
+
+  .subpage-testimonial__metric-box {
+    align-items: flex-start;
+    text-align: left;
+    border-left: none;
+    border-top: 2px solid var(--color-black);
+    padding-left: 0;
+    padding-top: 12px;
+    width: 100%;
+  }
+}

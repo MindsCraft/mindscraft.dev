@@ -29,13 +29,13 @@ export const ComparisonSection: React.FC = () => {
     <section className="comparison-section">
       <div className="container">
         <div className="section-header">
-          <h2 className="h2">A tailored design partner for SaaS startups</h2>
+          <h2 className="h2">Why tech founders choose mindsCraft</h2>
           <p className="body-lead text-muted" style={{ marginTop: "12px" }}>
-            Freelancers bail. Agencies overprice. In-house takes forever to hire. We keep what works from all of them, and cut what doesn’t.
+            Design agencies leave you with Figma files. Dev shops write code without UX insight. Freelancers disappear. We combine all three disciplines into one cohesive partnership.
           </p>
         </div>
 
-        <Tabs items={tabItems} defaultTab="flexibility" />
+        <Tabs items={tabItems} defaultTab="execution" />
 
         <div style={{ marginTop: "40px", textAlign: "center" }}>
           <Button href="#trial" variant="primary" size="lg">

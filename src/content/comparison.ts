@@ -13,51 +13,51 @@ export interface ComparisonItem {
 
 export const comparisonData: ComparisonItem[] = [
   {
-    id: "flexibility",
-    pillar: "Flexibility",
+    id: "execution",
+    pillar: "Full-Cycle Execution",
     problem: {
-      party: "Outsourcing Vendors",
-      description: "Outsourcing vendors' one-size-fits-all processes don't fit SaaS startups.",
+      party: "Design-Only Agencies",
+      description: "Design agencies hand you Figma screens and disappear. You're left to find developers, manage bugs, and deal with broken UI implementations.",
     },
     solution: {
-      headline: "Dedicated Embedded Designer",
-      description: "You get a dedicated designer that integrates into your team like an in-house specialist.",
+      headline: "From Figma to Scalable Production Code",
+      description: "We own the complete cycle. Our designers and full-stack engineers work side-by-side to deliver a finished, fully functional product with zero handoff friction.",
     },
   },
   {
-    id: "reliability",
-    pillar: "Reliability",
+    id: "polish",
+    pillar: "Product Polish",
     problem: {
-      party: "Freelancers",
-      description: "Freelance designers are flexible, but may not always be reliable.",
+      party: "Offshore Dev Shops",
+      description: "Offshore dev shops write code without UX sensibility — resulting in confusing navigation, clunky interfaces, and high user drop-off.",
     },
     solution: {
-      headline: "Exclusive Focus & Direct Comms",
-      description: "The designer communicates directly with your team and works exclusively on your project.",
+      headline: "Conversion-Focused UX Architecture",
+      description: "Every user flow, API response, and micro-interaction is designed around user engagement, conversion metrics, and business ROI.",
     },
   },
   {
-    id: "transparency",
-    pillar: "Transparency",
+    id: "support",
+    pillar: "Post-Launch Support",
     problem: {
-      party: "Traditional Agencies",
-      description: "Design agencies lack the transparency that in-house designers offer.",
+      party: "Freelancers & Contractors",
+      description: "Freelancers bail once the initial invoice clears, leaving you stranded when production bugs emerge or servers need scaling.",
     },
     solution: {
-      headline: "Zero Middlemen",
-      description: "You always know who’s working, what they’re doing, and how much time it takes — no middlemen, no surprises.",
+      headline: "SLA-Backed Long-Term Partnership",
+      description: "We stay on board after launch with guaranteed response SLAs, continuous maintenance, performance monitoring, and agile feature sprints.",
     },
   },
   {
-    id: "expertise",
-    pillar: "Expertise",
+    id: "velocity",
+    pillar: "Velocity & Access",
     problem: {
-      party: "In-House Hiring",
-      description: "In-house designers lack the team expertise that design agencies have.",
+      party: "Traditional Big Agencies",
+      description: "Traditional agencies bill massive overhead for account managers, slide decks, and endless discovery meetings with slow turnaround.",
     },
     solution: {
-      headline: "System-Level SaaS Thinking",
-      description: "You get SaaS-focused designers with system-level thinking, guided by senior design leads.",
+      headline: "Direct Builder Collaboration",
+      description: "Work directly with the senior designers and full-stack engineers building your product via Slack and Linear. Fast weekly demos, zero bureaucracy.",
     },
   },
 ];

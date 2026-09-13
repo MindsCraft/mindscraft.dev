@@ -1,0 +1,167 @@
+.about-story-section {
+  padding: var(--space-4xl) 0;
+  background-color: var(--color-bg-page);
+  border-bottom: 1px solid var(--color-bg-stone);
+}
+
+.about-story__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--space-3xl);
+  align-items: flex-start;
+}
+
+.about-story__left {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-clutch-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-bg-subtle);
+  border: 1px solid var(--color-bg-stone);
+  border-radius: var(--radius-base);
+  width: fit-content;
+}
+
+.about-clutch-badge {
+  height: 48px;
+  width: auto;
+}
+
+.about-clutch-info strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+}
+
+.about-clutch-info span {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.about-story__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.about-story__p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.about-principles-section {
+  padding: var(--space-4xl) 0;
+  background-color: var(--color-bg-subtle);
+}
+
+.about-principles__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
+}
+
+.about-principle-card {
+  background-color: var(--color-bg-page);
+  padding: var(--space-xl);
+  border-radius: var(--radius-base);
+  border: 1px solid var(--color-bg-stone);
+}
+
+.about-principle-number {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.about-principle-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: var(--space-xs);
+}
+
+.about-principle-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.about-culture-band {
+  padding: var(--space-4xl) 0;
+  background-color: var(--color-bg-page);
+}
+
+.about-culture-card {
+  background-color: var(--color-bg-stone);
+  padding: var(--space-3xl) var(--space-2xl);
+  border-radius: var(--radius-base);
+}
+
+.about-culture-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-culture-content h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-md);
+  color: var(--color-text-main);
+}
+
+.about-culture-content p {
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-bottom: var(--space-xl);
+}
+
+.about-culture-badges {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xl);
+}
+
+.culture-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-bg-page);
+  padding: 8px 16px;
+  border-radius: var(--radius-base);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+.about-culture-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  text-decoration: none;
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 2px;
+}
+
+@media (max-width: 900px) {
+  .about-story__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+}

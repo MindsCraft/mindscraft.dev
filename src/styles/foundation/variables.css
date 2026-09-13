@@ -1,44 +1,84 @@
 :root {
   /* ==========================================================================
-     Surfaces & Background Colors (Flat High-Contrast Hierarchy)
+     Clay.global Color System
+     Source: https://clay.global/ (Extracted Official Design Tokens)
      ========================================================================== */
-  --color-bg-page: #FFFFFF;
-  --color-bg-subtle: #F9F7F3;
-  --color-bg-card: #FFFFFF;
-  --color-bg-stone: #E6E4E0;
-  --color-bg-dark: #1D1E22;
-  --color-bg-accent-subtle: #FFF2E8;
+  --color-white: #ffffff;
+  --color-gray-2: #f9fafb;
+  --color-gray-5: #f3f4f6;
+  --color-gray-100: #e6e8eb;
+  --color-gray-200: #cbd0d6;
+  --color-gray-300: #b2b8c2;
+  --color-gray-400: #989fab;
+  --color-gray-500: #7f8694;
+  --color-gray-600: #666c7a;
+  --color-gray-700: #4e5361;
+  --color-gray-800: #353945;
+  --color-gray-850: #252833;
+  --color-gray-900: #171921;
+  --color-black: #06070a;
+
+  /* Clay Accent & Functional Highlights */
+  --color-red-600: #cf3723;
+  --color-blue-200: #bacdff;
+  --color-blue-600: #31356d;
+  --color-header-white: rgba(255, 255, 255, 0.94);
+  --color-header-dark: rgba(23, 25, 31, 0.94);
 
   /* ==========================================================================
-     Typography & Neutral Colors
+     Mapped Surfaces & Backgrounds (Clay Neutral Hierarchy)
      ========================================================================== */
-  --color-text-main: #1D1E22;
-  --color-text-muted: #615D55;
-  --color-text-subtle: #888686;
-  --color-text-inverse: #FFFFFF;
+  --color-bg-page: var(--color-white);
+  --color-bg-subtle: var(--color-gray-5);       /* #f3f4f6: crisp cool surface */
+  --color-bg-card: var(--color-white);
+  --color-bg-stone: var(--color-gray-100);      /* #e6e8eb: subtle dividers & pills */
+  --color-bg-dark: var(--color-gray-900);       /* #171921: dark sections & footer */
+  --color-bg-darker: var(--color-black);        /* #06070a: deep obsidian black */
+  --color-bg-accent-subtle: var(--color-gray-100); /* #e6e8eb: hover state */
+  --color-border: var(--color-gray-100);
+  --color-border-hover: var(--color-gray-300);
 
   /* ==========================================================================
-     Accent Colors
+     Typography & Neutral Colors (Clay Contrast System)
      ========================================================================== */
-  --color-accent: #F59958;
-  --color-accent-hover: #E88944;
+  --color-text-main: var(--color-black);        /* #06070a: primary high-contrast */
+  --color-text-body: var(--color-gray-700);     /* #4e5361: balanced body text */
+  --color-text-muted: var(--color-gray-600);    /* #666c7a: secondary descriptors */
+  --color-text-subtle: var(--color-gray-500);   /* #7f8694: captions & tags */
+  --color-text-inverse: var(--color-white);
 
   /* ==========================================================================
-     Enforced Strict Geometry & Aesthetics
-     Rule: No borders, border-radius 4px strictly, no shadows, no animations
+     Brand & Action Tokens (Clay Monochromatic Focus)
+     ========================================================================== */
+  --color-accent: var(--color-black);           /* #06070a: iconic Clay monochrome */
+  --color-accent-hover: var(--color-gray-800);  /* #353945 */
+  --color-accent-blue: var(--color-blue-600);   /* #31356d */
+  --color-accent-red: var(--color-red-600);     /* #cf3723 */
+
+  /* ==========================================================================
+     Clay Precision Easings & Curves
+     ========================================================================== */
+  --ease: cubic-bezier(1, 0, 0, 1);
+  --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --default: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-expo: cubic-bezier(0.7, 0, 0.84, 0);
+
+  /* ==========================================================================
+     Geometry & Layout Rules
      ========================================================================== */
   --radius-base: 4px;
   --radius-sm: 4px;
   --radius-md: 4px;
   --radius-lg: 4px;
-  --radius-pill: 4px;
+  --radius-pill: 9999px;
 
   --border-none: none;
   --shadow-none: none;
+  --shadow-subtle: 0 1px 3px rgba(6, 7, 10, 0.04);
 
-  /* ==========================================================================
-     Spacing Scale
-     ========================================================================== */
+  /* Spacing Scale */
   --space-2xs: 4px;
   --space-xs: 8px;
   --space-sm: 12px;
@@ -49,14 +89,11 @@
   --space-3xl: 64px;
   --space-4xl: 96px;
 
-  /* ==========================================================================
-     Layout Widths
-     ========================================================================== */
-  --container-max: 1200px;
+  /* Layout Widths */
+  --container-max: 1280px;
   --container-narrow: 840px;
 
-  /* ==========================================================================
-     Typography Font Stack (Slot ready for custom font files)
-     ========================================================================== */
-  --font-primary: var(--font-custom, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif);
+  /* Typography Font Stack */
+  --font-custom: 'Conigen';
+  --font-primary: 'Conigen', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
