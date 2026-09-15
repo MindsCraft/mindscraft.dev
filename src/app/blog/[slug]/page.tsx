@@ -67,6 +67,8 @@ export async function generateMetadata({
     };
   }
 
+  const ogImageUrl = post.image.startsWith('http') ? post.image : `https://mindscraft.dev${post.image}`;
+
   return {
     title: `${post.title} | MindsCraft Blog`,
     description: post.description,
@@ -76,13 +78,13 @@ export async function generateMetadata({
       type: 'article',
       publishedTime: post.date,
       authors: ['MindsCraft'],
-      images: [{ url: post.image, alt: post.imageAlt || post.title, width: 1200, height: 630 }],
+      images: [{ url: ogImageUrl, alt: post.imageAlt || post.title, width: 1200, height: 630 }],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.description,
-      images: [post.image],
+      images: [ogImageUrl],
     },
     alternates: {
       canonical: `https://mindscraft.dev/blog/${post.slug}`,
@@ -157,7 +159,7 @@ export default async function BlogPostPage({
         publisher: {
           '@type': 'Organization',
           name: 'MindsCraft',
-          logo: { '@type': 'ImageObject', url: 'https://mindscraft.dev/logo.png' },
+          logo: { '@type': 'ImageObject', url: 'https://mindscraft.dev/images/logo.png' },
         },
         mainEntityOfPage: {
           '@type': 'WebPage',
