@@ -12,7 +12,21 @@ export const metadata: Metadata = {
   title: 'MindsCraft - Premium Web Development & UX Design',
   description: 'Transform your digital presence with MindsCraft. We specialize in high-performance web development, modern UX/UI design, and scalable software solutions.',
   alternates: {
-    canonical: '/',
+    canonical: 'https://mindscraft.dev',
+  },
+  openGraph: {
+    title: 'MindsCraft - Premium Web Development & UX Design',
+    description: 'Transform your digital presence with MindsCraft. We specialize in high-performance web development, modern UX/UI design, and scalable software solutions.',
+    url: 'https://mindscraft.dev',
+    siteName: 'MindsCraft',
+    type: 'website',
+    images: [{ url: 'https://mindscraft.dev/images/og-image.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MindsCraft - Premium Web Development & UX Design',
+    description: 'Transform your digital presence with MindsCraft. We specialize in high-performance web development, modern UX/UI design, and scalable software solutions.',
+    images: ['https://mindscraft.dev/images/og-image.png'],
   },
 }
 

@@ -15,12 +15,18 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     };
   }
 
+  const url = `https://mindscraft.dev/work/${work.id}`;
+
   return {
     title: `${work.title} | Mindscraft Work`,
     description: work.description,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: work.title,
       description: work.description,
+      url,
       type: 'article',
       images: [
         {
@@ -30,6 +36,12 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
           height: 630,
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: work.title,
+      description: work.description,
+      images: [work.image],
     },
   };
 }
