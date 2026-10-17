@@ -17,6 +17,12 @@ export const metadata: Metadata = {
         locale: 'en_US',
         type: 'website',
     },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Client Case Studies | MindsCraft',
+        description: 'Real project results: problems solved, process used, and measurable business outcomes.',
+        images: ['https://mindscraft.dev/images/og-image.png'],
+    },
 };
 
 export default function CaseStudiesPage() {
