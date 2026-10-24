@@ -1,13 +1,21 @@
 import { MetadataRoute } from 'next'
+import postsData from '@/data/posts.json'
+import { workItems } from '@/data/workData'
 
 export const dynamic = 'force-static';
+
+type BlogPost = {
+    slug: string;
+    date: string;
+    status?: string;
+};
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://mindscraft.dev'
     const now = new Date()
 
-    return [
-        // ── Core pages ──────────────────────────────────────────
+    // ── Core pages ──────────────────────────────────────────
+    const staticPages: MetadataRoute.Sitemap = [
         {
             url: baseUrl,
             lastModified: now,
@@ -82,43 +90,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: 'yearly',
             priority: 0.2,
         },
-        // ── Blog posts ──────────────────────────────────────────
-        // TODO: Replace with dynamic fetch from CMS/DB when blog goes live
-        {
-            url: `${baseUrl}/blog/future-of-ux-design`,
-            lastModified: new Date('2024-03-20'),
-            changeFrequency: 'yearly',
-            priority: 0.6,
-        },
-        {
-            url: `${baseUrl}/blog/scalable-web-applications`,
-            lastModified: new Date('2024-03-18'),
-            changeFrequency: 'yearly',
-            priority: 0.6,
-        },
-        {
-            url: `${baseUrl}/blog/ai-integration-strategies`,
-            lastModified: new Date('2024-03-15'),
-            changeFrequency: 'yearly',
-            priority: 0.6,
-        },
-        {
-            url: `${baseUrl}/blog/startup-growth-hacking`,
-            lastModified: new Date('2024-03-12'),
-            changeFrequency: 'yearly',
-            priority: 0.6,
-        },
-        {
-            url: `${baseUrl}/blog/role-of-ux-in-product-success`,
-            lastModified: new Date('2024-03-10'),
-            changeFrequency: 'yearly',
-            priority: 0.6,
-        },
-        {
-            url: `${baseUrl}/blog/modern-web-development`,
-            lastModified: new Date('2024-03-08'),
-            changeFrequency: 'yearly',
-            priority: 0.6,
-        },
     ]
+
+    // ── Blog posts (dynamic from posts.json) ─────────────────
+    const publishedPosts = (postsData as BlogPost[]).filter(
+        (post) => post.status === 'Published'
+    )
+
+    const blogPages: MetadataRoute.Sitemap = publishedPosts.map((post) => ({
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified: new Date(post.date),
+        changeFrequency: 'yearly' as const,
+        priority: 0.6,
+    }))
+
+    // ── Work/portfolio items (dynamic from workData) ─────────
+    const workPages: MetadataRoute.Sitemap = workItems.map((item) => ({
+        url: `${baseUrl}/work/${item.id}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+    }))
+
+    return [...staticPages, ...blogPages, ...workPages]
 }
